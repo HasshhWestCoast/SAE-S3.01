@@ -4,28 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Charge {
-    private int idCharge; // Identifiant unique
-    private String nom; // Nom de la charge
-    private double montantReel; // Montant réel de la charge
-    private double montantPrevisionnel; // Montant prévisionnel de la charge
-    private boolean deductible; // Charge déductible ou non
-    private Compteur compteur; // Relation avec la classe Compteur
+    private int idCharge; 
+    private String nom; 
+    private double montantReel; 
+    private double montantPrevisionnel; 
+    private boolean deductible; 
+    private Bien bien; 
 
     // Liste des associations avec Louer via Retenir
     private List<Retenir> retenirList;
 
-    // Constructeur avec paramètres
-    public Charge(int idCharge, String nom, double montantReel, double montantPrevisionnel, boolean deductible, Compteur compteur) {
+    public Charge(int idCharge, String nom, double montantReel, double montantPrevisionnel, boolean deductible, Bien bien) {
         this.idCharge = idCharge;
         this.nom = nom;
         this.montantReel = montantReel;
         this.montantPrevisionnel = montantPrevisionnel;
         this.deductible = deductible;
-        this.compteur = compteur;
+        this.setBien(bien);
         this.retenirList = new ArrayList<>();
     }
 
-    // Getters et Setters
     public int getIdCharge() {
         return idCharge;
     }
@@ -66,14 +64,14 @@ public class Charge {
         this.deductible = deductible;
     }
 
-    public Compteur getCompteur() {
-        return compteur;
-    }
+	public Bien getBien() {
+		return bien;
+	}
 
-    public void setCompteur(Compteur compteur) {
-        this.compteur = compteur;
-    }
-
+	public void setBien(Bien bien) {
+		this.bien = bien;
+	}
+	
     public List<Retenir> getRetenirList() {
         return retenirList;
     }
@@ -87,7 +85,6 @@ public class Charge {
         this.retenirList.add(retenir);
     }
 
-    // Méthode toString()
     @Override
     public String toString() {
         return "Charge{" +
@@ -96,8 +93,9 @@ public class Charge {
                 ", montantReel=" + montantReel +
                 ", montantPrevisionnel=" + montantPrevisionnel +
                 ", deductible=" + deductible +
-                ", compteur=" + (compteur != null ? compteur.getIdCompteur() : "null") +
+                ", compteur=" + (bien != null ? bien.getIdBien(): "null") +
                 ", retenirList=" + retenirList.size() + " association(s)" +
                 '}';
     }
+
 }
