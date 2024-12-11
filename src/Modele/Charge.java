@@ -14,11 +14,6 @@ public class Charge {
     // Liste des associations avec Louer via Retenir
     private List<Retenir> retenirList;
 
-    // Constructeur vide
-    public Charge() {
-        this.retenirList = new ArrayList<>();
-    }
-
     // Constructeur avec paramètres
     public Charge(int idCharge, String nom, double montantReel, double montantPrevisionnel, boolean deductible, Compteur compteur) {
         this.idCharge = idCharge;
