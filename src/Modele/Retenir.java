@@ -1,16 +1,15 @@
 package Modele;
 
 public class Retenir {
+	
     private Charge charge; 
     private Louer louer; 
 
-    // Constructeur avec paramètres
     public Retenir(Charge charge, Louer louer) {
         this.charge = charge;
         this.louer = louer;
     }
 
-    // Getters et Setters
     public Charge getCharge() {
         return charge;
     }

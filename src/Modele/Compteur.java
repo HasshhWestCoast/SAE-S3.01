@@ -3,14 +3,16 @@ package Modele;
 public class Compteur {
 	private String idCompteur;
 	private String typeComp;
-	private double prixAbonnement;
+	private double indexCompteur;
+	private String dateRelevé;
 	private Bien bien;
 	private Immeuble immeuble;
 
-	public Compteur(String idCompteur, String typeComp,double prixAbonnement,Bien bien, Immeuble immeuble) {
+	public Compteur(String idCompteur, String typeComp,double indexCompteur, String dateRelevé, Bien bien, Immeuble immeuble) {
 		this.idCompteur = idCompteur;
 		this.typeComp = typeComp;
-		this.prixAbonnement = prixAbonnement;
+		this.indexCompteur = indexCompteur;
+		this.dateRelevé = dateRelevé;
 		this.bien = bien;
 		this.immeuble = immeuble;
 	}
@@ -31,12 +33,12 @@ public class Compteur {
 		this.typeComp = typeComp;
 	}
 
-	public double getPrix_abonnement() {
-		return prixAbonnement;
+	public double getPrix_indexCompteur() {
+		return indexCompteur;
 	}
 
-	public void setPrix_abonnement(double prixAbonnement) {
-		this.prixAbonnement = prixAbonnement;
+	public void setPrix_indexCompteur(double indexCompteur) {
+		this.indexCompteur = indexCompteur;
 	}
 
 	public Bien getBien() {
@@ -53,6 +55,14 @@ public class Compteur {
 
 	public void setImmeuble(Immeuble immeuble) {
 		this.immeuble = immeuble;
+	}
+
+	public String getDateRelevé() {
+		return dateRelevé;
+	}
+
+	public void setDateRelevé(String dateRelevé) {
+		this.dateRelevé = dateRelevé;
 	}
 
 }

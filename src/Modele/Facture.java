@@ -1,35 +1,32 @@
 package Modele;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 public class Facture {
 
-	private String numero;
+	private String IdFacture;
 	private String dateEmission;
 	private String datePaiement;
 	private String modePaiement;
 	private String numeroDevis;
 	private String designation;
-	private double montantReelPaye;
+	private double montantReelVerse;
 	private double montant;
-	private int imputableLocataire;
+	private int acompteVerse;
 	private Immeuble immeuble;
 	private Bien bien;
 	private Entreprise entreprise;
 
-	public Facture(String numero, String dateEmission, String datePaiement, String modePaiement, String numeroDevis,
-			String designation, double montantReelPaye, double montant, int imputableLocataire, Immeuble immeuble,
-			Bien bien, Entreprise entreprise) {
-		this.numero = numero;
+	public Facture(String IdFacture, String dateEmission, String datePaiement, double montantReelVerse, double montant,String modePaiement, 
+			String numeroDevis,	String designation, int acompteVerse, Immeuble immeuble, Bien bien, Entreprise entreprise) {
+		
+		this.IdFacture = IdFacture;
 		this.dateEmission = dateEmission;
 		this.datePaiement = datePaiement;
 		this.modePaiement = modePaiement;
 		this.numeroDevis = numeroDevis;
 		this.designation = designation;
-		this.montantReelPaye = montantReelPaye;
+		this.montantReelVerse = montantReelVerse;
 		this.montant = montant;
-		this.imputableLocataire = imputableLocataire;
+		this.acompteVerse = acompteVerse;
 		this.immeuble = immeuble;
 		this.bien = bien;
 		this.entreprise = entreprise;
@@ -39,8 +36,8 @@ public class Facture {
 		return montant;
 	}
 
-	public String getNumero() {
-		return numero;
+	public String getIdFacture() {
+		return IdFacture;
 	}
 
 	public String getDateEmission() {
@@ -63,12 +60,12 @@ public class Facture {
 		return designation;
 	}
 
-	public double getMontantReelPaye() {
-		return montantReelPaye;
+	public double getmontantReelVerse() {
+		return montantReelVerse;
 	}
 
-	public int getImputableLocataire() {
-		return imputableLocataire;
+	public int getacompteVerse() {
+		return acompteVerse;
 	}
 
 	public Immeuble getImmeuble() {
@@ -81,44 +78,6 @@ public class Facture {
 
 	public Entreprise getEntreprise() {
 		return entreprise;
-	}
-
-	/**
-	 * Convertit la date d'émission en objet java.sql.Date.
-	 * 
-	 * @return La date d'émission convertie en java.sql.Date.
-	 */
-	public java.sql.Date getDateEmissionAsSqlDate() {
-		return parseDate(dateEmission);
-	}
-
-	/**
-	 * Convertit la date de paiement en objet java.sql.Date.
-	 * 
-	 * @return La date de paiement convertie en java.sql.Date.
-	 */
-	public java.sql.Date getDatePaiementAsSqlDate() {
-		return parseDate(datePaiement);
-	}
-
-	/**
-	 * Parse la chaîne de caractères représentant une date au format "dd-MM-yyyy" en
-	 * objet java.sql.Date.
-	 * 
-	 * @param dateString La chaîne de caractères représentant la date.
-	 * @return La date convertie en java.sql.Date.
-	 */
-	private java.sql.Date parseDate(String dateString) {
-		try {
-			if (dateString != null) {
-				SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-				java.util.Date utilDate = dateFormat.parse(dateString);
-				return new java.sql.Date(utilDate.getTime());
-			}
-		} catch (ParseException e) {
-			e.printStackTrace(); // Gérer l'exception selon vos besoins
-		}
-		return null;
 	}
 
 }

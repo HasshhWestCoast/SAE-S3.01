@@ -6,7 +6,6 @@ public class Imposer {
 	private Impôt impot;
 
 	public Imposer(Bien bien, Impôt impot) {
-		super();
 		this.bien = bien;
 		this.impot = impot;
 	}

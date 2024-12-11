@@ -7,16 +7,18 @@ public class Bien {
 	private int numEtage;
 	private String dateAcquisition;
 	private String typeBien;
+	private String nbPlaces;
 	private Immeuble immeuble;
 
 	public Bien(String idBien, double surfaceHabitable, int nbPieces, int numEtage, String dateAcquisition,
-			String typeBien, Immeuble immeuble) {
+			String typeBien, String nbPlaces,Immeuble immeuble) {
 		this.idBien = idBien;
 		this.surfaceHabitable = surfaceHabitable;
 		this.nbPieces = nbPieces;
 		this.numEtage = numEtage;
 		this.dateAcquisition = dateAcquisition;
 		this.typeBien = typeBien;
+		this.nbPlaces = nbPlaces;
 		this.immeuble = immeuble;
 	}
 
@@ -76,8 +78,14 @@ public class Bien {
 		this.immeuble = immeuble;
 	}
 
-	@Override
-	public String toString() {
-		return getIdBien();
+
+	public String getNbPlaces() {
+		return nbPlaces;
 	}
+
+	public void setNbPlaces(String nbPlaces) {
+		this.nbPlaces = nbPlaces;
+	}
+	
+
 }

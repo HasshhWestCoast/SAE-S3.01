@@ -2,31 +2,22 @@ package Modele;
 
 public class Impôt {
 
-	private int idImpot; // AUTO INCREMENT
-	private String nom;
+	private String idImpot; // AUTO INCREMENT
 	private double montant;
 	private String annee;
 
-	public Impôt(String nom, double montant, String annee) {
-		this.nom = nom;
+	public Impôt(String idImpot, double montant, String annee) {
+		this.idImpot = idImpot;
 		this.montant = montant;
 		this.annee = annee;
 	}
 
-	public int getIdImpot() {
+	public String getIdImpot() {
 		return this.idImpot;
 	}
 
-	public void setIdImpot(int idImpot) {
+	public void setIdImpot(String idImpot) {
 		this.idImpot = idImpot;
-	}
-
-	public String getNom() {
-		return this.nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
 	}
 
 	public double getMontant() {

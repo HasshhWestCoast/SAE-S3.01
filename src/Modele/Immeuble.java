@@ -4,16 +4,15 @@ public class Immeuble {
 
 	private String idImmeuble;
 	private String adresse;
-	private String cp;
+	private String codePostal;
 	private String ville;
 	private String periodeConstruction;
 	private String type_immeuble;
 
-	public Immeuble(String idImmeuble, String adresse, String cp, String ville, String periodeConstruction,
-			 String type_immeuble) {
+	public Immeuble(String idImmeuble, String adresse, String codePostal, String ville, String periodeConstruction, String type_immeuble) {
 		this.idImmeuble = idImmeuble;
 		this.adresse = adresse;
-		this.cp = cp;
+		this.codePostal = codePostal;
 		this.ville = ville;
 		this.periodeConstruction = periodeConstruction;
 		this.type_immeuble = type_immeuble;
@@ -35,12 +34,12 @@ public class Immeuble {
 		this.adresse = adresse;
 	}
 
-	public String getCp() {
-		return cp;
+	public String getcodePostal() {
+		return codePostal;
 	}
 
-	public void setCp(String cp) {
-		this.cp = cp;
+	public void setcodePostal(String codePostal) {
+		this.codePostal = codePostal;
 	}
 
 	public String getVille() {

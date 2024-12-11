@@ -5,20 +5,21 @@ import java.util.List;
 
 public class Charge {
     private int idCharge; 
-    private String nom; 
+    private String designation; 
     private double montantReel; 
-    private double montantPrevisionnel; 
-    private boolean deductible; 
+    private String dateCharge;
+    //private double montantPrevisionnel; // ON AJOUTE CA OU PAS
+    private boolean deductible; // C'EST QUOI CA 
     private Bien bien; 
 
-    // Liste des associations avec Louer via Retenir
     private List<Retenir> retenirList;
 
-    public Charge(int idCharge, String nom, double montantReel, double montantPrevisionnel, boolean deductible, Bien bien) {
+    public Charge(int idCharge, String designation, double montantReel, String dateCharge, ??? ???, ???boolean deductible, Bien bien) {
         this.idCharge = idCharge;
-        this.nom = nom;
+        this.designation = designation;
         this.montantReel = montantReel;
-        this.montantPrevisionnel = montantPrevisionnel;
+        this.dateCharge = dateCharge;
+        //this.montantPrevisionnel = montantPrevisionnel;
         this.deductible = deductible;
         this.setBien(bien);
         this.retenirList = new ArrayList<>();
@@ -32,12 +33,12 @@ public class Charge {
         this.idCharge = idCharge;
     }
 
-    public String getNom() {
-        return nom;
+    public String getdesignation() {
+        return designation;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setdesignation(String designation) {
+        this.designation = designation;
     }
 
     public double getMontantReel() {
@@ -47,7 +48,8 @@ public class Charge {
     public void setMontantReel(double montantReel) {
         this.montantReel = montantReel;
     }
-
+    
+    /*
     public double getMontantPrevisionnel() {
         return montantPrevisionnel;
     }
@@ -55,7 +57,8 @@ public class Charge {
     public void setMontantPrevisionnel(double montantPrevisionnel) {
         this.montantPrevisionnel = montantPrevisionnel;
     }
-
+	*/
+    
     public boolean isDeductible() {
         return deductible;
     }
@@ -83,19 +86,6 @@ public class Charge {
     // Méthode pour ajouter une association
     public void addRetenir(Retenir retenir) {
         this.retenirList.add(retenir);
-    }
-
-    @Override
-    public String toString() {
-        return "Charge{" +
-                "idCharge=" + idCharge +
-                ", nom='" + nom + '\'' +
-                ", montantReel=" + montantReel +
-                ", montantPrevisionnel=" + montantPrevisionnel +
-                ", deductible=" + deductible +
-                ", compteur=" + (bien != null ? bien.getIdBien(): "null") +
-                ", retenirList=" + retenirList.size() + " association(s)" +
-                '}';
     }
 
 }

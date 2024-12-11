@@ -8,15 +8,16 @@ public class Locataire {
 	private String telephone;
 	private String mail;
 	private String dateNaissance;
+	private float quotite;
 
-	public Locataire(String idLocataire, String nom, String prenom, String telephone, String mail,
-			String dateNaissance) {
+	public Locataire(String idLocataire, String nom, String prenom, String telephone, String mail, String dateNaissance, float quotite) {
 		this.idLocataire = idLocataire;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.telephone = telephone;
 		this.mail = mail;
 		this.dateNaissance = dateNaissance;
+		this.quotite = quotite;
 	}
 
 	public String getIdLocataire() {
@@ -67,14 +68,12 @@ public class Locataire {
 		this.dateNaissance = dateNaissance;
 	}
 
-	@Override
-	public String toString() {
-		return this.getIdLocataire();
-		// return getNom() + " " + getPrenom();
+	public float getQuotite() {
+		return quotite;
 	}
 
-	public String getNewIdLocataire() {
-		return "NEW_" + this.idLocataire;
+	public void setQuotite(float quotite) {
+		this.quotite = quotite;
 	}
 
 }

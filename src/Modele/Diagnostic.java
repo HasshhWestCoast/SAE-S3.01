@@ -1,12 +1,14 @@
 package Modele;
 
 public class Diagnostic {
-	private int idDiagnostic; //Sequence
+	
+	private int idDiagnostic; 
 	private String dateValidite;
 	private String typeDiagnostic;
 	private Bien bien;
 
-	public Diagnostic(String dateValidite, String typeDiagnostic, Bien bien) {
+	public Diagnostic(int idDiagnostic, String dateValidite, String typeDiagnostic, Bien bien) {
+		this.idDiagnostic = idDiagnostic;
 		this.dateValidite = dateValidite;
 		this.typeDiagnostic = typeDiagnostic;
 		this.bien = bien;
@@ -43,5 +45,6 @@ public class Diagnostic {
 	public void setBien(Bien bien) {
 		this.bien = bien;
 	}
+
 
 }
