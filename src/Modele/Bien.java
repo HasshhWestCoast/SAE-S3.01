@@ -7,11 +7,11 @@ public class Bien {
 	private int numEtage;
 	private String dateAcquisition;
 	private String typeBien;
-	private String nbPlaces;
+	private int nbPlaces;
 	private Immeuble immeuble;
 
 	public Bien(String idBien, double surfaceHabitable, int nbPieces, int numEtage, String dateAcquisition,
-			String typeBien, String nbPlaces,Immeuble immeuble) {
+			String typeBien, int nbPlaces,Immeuble immeuble) {
 		this.idBien = idBien;
 		this.surfaceHabitable = surfaceHabitable;
 		this.nbPieces = nbPieces;
@@ -79,11 +79,11 @@ public class Bien {
 	}
 
 
-	public String getNbPlaces() {
+	public int getNbPlaces() {
 		return nbPlaces;
 	}
 
-	public void setNbPlaces(String nbPlaces) {
+	public void setNbPlaces(int nbPlaces) {
 		this.nbPlaces = nbPlaces;
 	}
 	

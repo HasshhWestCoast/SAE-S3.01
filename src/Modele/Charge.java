@@ -5,23 +5,23 @@ import java.util.List;
 
 public class Charge {
     private int idCharge; 
-    private String designation; 
+    private String nom; 
     private double montantReel; 
     private String dateCharge;
-    //private double montantPrevisionnel; // ON AJOUTE CA OU PAS
-    private boolean deductible; // C'EST QUOI CA 
+    private double montantPrevisionnel;
+    private int deductible; // C'EST QUOI CA 
     private Bien bien; 
 
     private List<Retenir> retenirList;
 
-    public Charge(int idCharge, String designation, double montantReel, String dateCharge, ??? ???, ???boolean deductible, Bien bien) {
+    public Charge(int idCharge, String nom, double montantReel, double montantPrevisionnel, String dateCharge, int deductible, Bien bien) {
         this.idCharge = idCharge;
-        this.designation = designation;
+        this.nom = nom;
         this.montantReel = montantReel;
         this.dateCharge = dateCharge;
-        //this.montantPrevisionnel = montantPrevisionnel;
+        this.montantPrevisionnel = montantPrevisionnel;
         this.deductible = deductible;
-        this.setBien(bien);
+        this.bien = bien;
         this.retenirList = new ArrayList<>();
     }
 
@@ -33,12 +33,12 @@ public class Charge {
         this.idCharge = idCharge;
     }
 
-    public String getdesignation() {
-        return designation;
+    public String getnom() {
+        return nom;
     }
 
-    public void setdesignation(String designation) {
-        this.designation = designation;
+    public void setnom(String nom) {
+        this.nom = nom;
     }
 
     public double getMontantReel() {
@@ -49,7 +49,7 @@ public class Charge {
         this.montantReel = montantReel;
     }
     
-    /*
+    
     public double getMontantPrevisionnel() {
         return montantPrevisionnel;
     }
@@ -57,13 +57,13 @@ public class Charge {
     public void setMontantPrevisionnel(double montantPrevisionnel) {
         this.montantPrevisionnel = montantPrevisionnel;
     }
-	*/
+	
     
-    public boolean isDeductible() {
+    public int isDeductible() {
         return deductible;
     }
 
-    public void setDeductible(boolean deductible) {
+    public void setDeductible(int deductible) {
         this.deductible = deductible;
     }
 
@@ -83,9 +83,16 @@ public class Charge {
         this.retenirList = retenirList;
     }
 
-    // Méthode pour ajouter une association
     public void addRetenir(Retenir retenir) {
         this.retenirList.add(retenir);
     }
+
+	public String getDateCharge() {
+		return dateCharge;
+	}
+
+	public void setDateCharge(String dateCharge) {
+		this.dateCharge = dateCharge;
+	}
 
 }
