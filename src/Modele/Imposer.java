@@ -1,6 +1,7 @@
 package Modele;
 
 public class Imposer {
+	
 	private Bien bien;
 	private Impôt impot;
 
