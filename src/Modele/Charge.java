@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Charge {
-    private int idCharge; 
+    private String idCharge; 
     private String nom; 
     private double montantReel; 
     private String dateCharge;
@@ -14,7 +14,7 @@ public class Charge {
 
     private List<Retenir> retenirList;
 
-    public Charge(int idCharge, String nom, double montantReel, double montantPrevisionnel, String dateCharge, int deductible, Bien bien) {
+    public Charge(String idCharge, String nom, double montantReel, double montantPrevisionnel, String dateCharge, int deductible, Bien bien) {
         this.idCharge = idCharge;
         this.nom = nom;
         this.montantReel = montantReel;
@@ -25,11 +25,11 @@ public class Charge {
         this.retenirList = new ArrayList<>();
     }
 
-    public int getIdCharge() {
+    public String getIdCharge() {
         return idCharge;
     }
 
-    public void setIdCharge(int idCharge) {
+    public void setIdCharge(String idCharge) {
         this.idCharge = idCharge;
     }
 

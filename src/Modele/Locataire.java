@@ -8,9 +8,9 @@ public class Locataire {
 	private String telephone;
 	private String mail;
 	private String dateNaissance;
-	private float quotite;
+	private double quotite;
 
-	public Locataire(String idLocataire, String nom, String prenom, String telephone, String mail, String dateNaissance, float quotite) {
+	public Locataire(String idLocataire, String nom, String prenom, String telephone, String mail, String dateNaissance, double quotite) {
 		this.idLocataire = idLocataire;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -68,7 +68,7 @@ public class Locataire {
 		this.dateNaissance = dateNaissance;
 	}
 
-	public float getQuotite() {
+	public double getQuotite() {
 		return quotite;
 	}
 

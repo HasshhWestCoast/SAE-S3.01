@@ -10,13 +10,14 @@ public class Facture {
 	private String designation;
 	private double montantReelVerse;
 	private double montant;
-	private int acompteVerse;
+	private double imputableLocataire;
+	private double acompteVerse;
 	private Immeuble immeuble;
 	private Bien bien;
 	private Entreprise entreprise;
 
-	public Facture(String IdFacture, String dateEmission, String datePaiement, double montantReelVerse, double montant,String modePaiement, 
-			String numeroDevis,	String designation, int acompteVerse, Immeuble immeuble, Bien bien, Entreprise entreprise) {
+	public Facture(String IdFacture, String dateEmission, String datePaiement, String modePaiement, String numeroDevis, String designation, double montantReelVerse, 
+			double montant, double imputableLocataire, double acompteVerse, Immeuble immeuble, Bien bien, Entreprise entreprise) {
 		
 		this.IdFacture = IdFacture;
 		this.dateEmission = dateEmission;
@@ -26,6 +27,7 @@ public class Facture {
 		this.designation = designation;
 		this.montantReelVerse = montantReelVerse;
 		this.montant = montant;
+		this.imputableLocataire = imputableLocataire;
 		this.acompteVerse = acompteVerse;
 		this.immeuble = immeuble;
 		this.bien = bien;
@@ -64,7 +66,7 @@ public class Facture {
 		return montantReelVerse;
 	}
 
-	public int getacompteVerse() {
+	public double getacompteVerse() {
 		return acompteVerse;
 	}
 
@@ -78,6 +80,10 @@ public class Facture {
 
 	public Entreprise getEntreprise() {
 		return entreprise;
+	}
+
+	public double getImputableLocataire() {
+		return imputableLocataire;
 	}
 
 }

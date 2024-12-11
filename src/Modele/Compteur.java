@@ -3,12 +3,12 @@ package Modele;
 public class Compteur {
 	private String idCompteur;
 	private String typeComp;
-	private double indexCompteur;
+	private int indexCompteur;
 	private String dateRelevé;
 	private Bien bien;
 	private Immeuble immeuble;
 
-	public Compteur(String idCompteur, String typeComp,double indexCompteur, String dateRelevé, Bien bien, Immeuble immeuble) {
+	public Compteur(String idCompteur, String typeComp, int indexCompteur, String dateRelevé, Bien bien, Immeuble immeuble) {
 		this.idCompteur = idCompteur;
 		this.typeComp = typeComp;
 		this.indexCompteur = indexCompteur;
@@ -33,11 +33,11 @@ public class Compteur {
 		this.typeComp = typeComp;
 	}
 
-	public double getPrix_indexCompteur() {
+	public int getIndexCompteur() {
 		return indexCompteur;
 	}
 
-	public void setPrix_indexCompteur(double indexCompteur) {
+	public void setIndexCompteur(int indexCompteur) {
 		this.indexCompteur = indexCompteur;
 	}
 
