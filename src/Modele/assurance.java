@@ -4,13 +4,13 @@ public class assurance {
 
 	private String numeroPolice;
 	private float montant;
-	private Bien bien;
+	private Immeuble immeuble;
 	private Entreprise entreprise;
 
-	public assurance(String numeroPolice, float montant, Bien bien, Entreprise entreprise) {
+	public assurance(String numeroPolice, float montant, Immeuble immeuble, Entreprise entreprise) {
 		this.numeroPolice = numeroPolice;
 		this.montant = montant;
-		this.bien = bien;
+		this.immeuble = immeuble;
 		this.entreprise = entreprise;
 	}
 
@@ -38,11 +38,12 @@ public class assurance {
 		this.montant = montantInit;
 	}
 
-	public Bien getBien() {
-		return this.bien;
+	public Immeuble getImmeuble() {
+		return immeuble;
 	}
 
-	public void setBien(Bien bien) {
-		this.bien = bien;
+	public void setImmeuble(Immeuble immeuble) {
+		this.immeuble = immeuble;
 	}
+
 }
