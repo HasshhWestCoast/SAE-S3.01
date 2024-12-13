@@ -1,4 +1,4 @@
-package vue;
+package Vue;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -11,7 +11,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import controleur.GestionConnexion;
 
 public class Fenetre_Connexion extends JFrame {
 
@@ -19,8 +18,7 @@ public class Fenetre_Connexion extends JFrame {
     private JPanel contentPane;
     private JTextField textFieldUtilisateur;
     private JPasswordField textFieldMdp;
-    private GestionConnexion gestionClic;
-
+    
     // Méthode principale pour lancer l'application
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -97,10 +95,7 @@ public class Fenetre_Connexion extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
-        // Initialisation de la gestion des clics pour les boutons
-        this.gestionClic = new GestionConnexion(this);
-        btnConnecter.addActionListener(this.gestionClic);
-        btnAnnuler.addActionListener(this.gestionClic);
+       
     }
 
     // Méthode pour récupérer le nom d'utilisateur
