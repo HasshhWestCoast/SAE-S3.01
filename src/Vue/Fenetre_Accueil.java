@@ -28,6 +28,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.Dimension;
+import java.awt.EventQueue;
 
 public class Fenetre_Accueil extends JFrame {
 
@@ -72,7 +73,24 @@ public class Fenetre_Accueil extends JFrame {
 	private JTable table_MesArchives_Locataire;
 	private JTable table_MesArchives_Louer;
 	private JTable table_MesArchives_Facture;
+	
+	
 
+	public static void main(String[] args) {
+	    // Utiliser EventQueue pour garantir que l'interface graphique est manipulée dans le thread d'Event Dispatch
+	    EventQueue.invokeLater(() -> {
+	        try {
+	            // Instancier la fenêtre principale
+	            Fenetre_Accueil frame = new Fenetre_Accueil();
+	            // Rendre la fenêtre visible
+	            frame.setVisible(true);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    });
+	}
+
+ 
 	/**
 	 * Create the frame.
 	 */
@@ -96,37 +114,12 @@ public class Fenetre_Accueil extends JFrame {
 		panel_Menu.add(panel_Menu_Boutons, BorderLayout.CENTER);
 		panel_Menu_Boutons.setLayout(new GridLayout(7, 1, 0, 0));
 
-		////// Bande accueil///////////////////////////////////////////////////////////////////////////////////////////////
-		JPanel bandeAccueil = new JPanel();
-		bandeAccueil.setBorder(new LineBorder(new Color(0, 102, 204), 2, true));
-		bandeAccueil.setBackground(Color.LIGHT_GRAY);
-		this.contentPane.add(bandeAccueil, BorderLayout.NORTH);
-		bandeAccueil.setLayout(new GridLayout(0, 8, 0, 0));
-
-		JLabel logo = new JLabel("");
-		logo.setHorizontalAlignment(SwingConstants.CENTER);
-
-		logo.setIcon(new ImageIcon(Fenetre_Accueil.class.getResource("/icon/logo_appli.png")));
-		bandeAccueil.add(logo);
-		JPanel panelDuBtnAccueil = new JPanel();
-		panelDuBtnAccueil.setBackground(new Color(192, 192, 192));
-		bandeAccueil.add(panelDuBtnAccueil);
-		panelDuBtnAccueil.setLayout(null);
-
-		JButton btnAccueil = new JButton("");
-		btnAccueil.setBorder(null);
-		btnAccueil.setBackground(new Color(192, 192, 192));
-		btnAccueil.setIcon(new ImageIcon(Fenetre_Accueil.class.getResource("/icon/home_att-removebg-preview.png")));
-		btnAccueil.setBounds(0, 53, 42, 31);
-		btnAccueil.setName("btnAccueil");
-		panelDuBtnAccueil.add(btnAccueil);
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MENU DE BOUTONS SUR LE CÔTE
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		JButton btnMesBiens = new JButton("Mes Biens");
-		btnMesBiens.setBackground(new Color(0, 102, 204));
+		btnMesBiens.setBackground(new Color(0, 128, 0));
 		btnMesBiens.setForeground(new Color(255, 255, 255));
 		btnMesBiens.setFont(new Font("Dialog", Font.BOLD, 12));
 		btnMesBiens.setName("btnMesBiens");
@@ -134,35 +127,35 @@ public class Fenetre_Accueil extends JFrame {
 
 		JButton btnMesLocations = new JButton("Mes Locations");
 		btnMesLocations.setForeground(new Color(255, 255, 255));
-		btnMesLocations.setBackground(new Color(0, 102, 204));
+		btnMesLocations.setBackground(new Color(0, 128, 0));
 		btnMesLocations.setFont(new Font("Dialog", Font.BOLD, 12));
 		btnMesLocations.setName("btnMesLocations");
 		panel_Menu_Boutons.add(btnMesLocations);
 
 		JButton btnMesTravaux = new JButton("Mes Travaux");
 		btnMesTravaux.setForeground(new Color(255, 255, 255));
-		btnMesTravaux.setBackground(new Color(0, 102, 204));
+		btnMesTravaux.setBackground(new Color(0, 128, 0));
 		btnMesTravaux.setFont(new Font("Dialog", Font.BOLD, 12));
 		btnMesTravaux.setName("btnMesTravaux");
 		panel_Menu_Boutons.add(btnMesTravaux);
 
 		JButton btnMesChargesLocatives = new JButton("Mes Factures");
 		btnMesChargesLocatives.setForeground(new Color(255, 255, 255));
-		btnMesChargesLocatives.setBackground(new Color(0, 102, 204));
+		btnMesChargesLocatives.setBackground(new Color(0, 128, 0));
 		btnMesChargesLocatives.setFont(new Font("Dialog", Font.BOLD, 12));
 		btnMesChargesLocatives.setName("btnMesChargesLocatives");
 		panel_Menu_Boutons.add(btnMesChargesLocatives);
 
 		JButton btnMesAssurances = new JButton("Mes Assurances");
 		btnMesAssurances.setForeground(new Color(255, 255, 255));
-		btnMesAssurances.setBackground(new Color(0, 102, 204));
+		btnMesAssurances.setBackground(new Color(0, 128, 0));
 		btnMesAssurances.setFont(new Font("Dialog", Font.BOLD, 12));
 		btnMesAssurances.setName("btnMesAssurances");
 		panel_Menu_Boutons.add(btnMesAssurances);
 
 		JButton btnMesDocuments = new JButton("Mes Documents");
 		btnMesDocuments.setForeground(new Color(255, 255, 255));
-		btnMesDocuments.setBackground(new Color(0, 102, 204));
+		btnMesDocuments.setBackground(new Color(0, 128, 0));
 		btnMesDocuments.setFont(new Font("Dialog", Font.BOLD, 12));
 		btnMesDocuments.setName("btnMesDocuments");
 		panel_Menu_Boutons.add(btnMesDocuments);
@@ -171,7 +164,7 @@ public class Fenetre_Accueil extends JFrame {
 		btnMesArchives.setMaximumSize(new Dimension(151, 21));
 		btnMesArchives.setMinimumSize(new Dimension(127, 21));
 		btnMesArchives.setForeground(new Color(255, 255, 255));
-		btnMesArchives.setBackground(new Color(0, 102, 204));
+		btnMesArchives.setBackground(new Color(0, 128, 0));
 		btnMesArchives.setFont(new Font("Dialog", Font.BOLD, 12));
 		btnMesArchives.setName("btnMesArchives");
 		panel_Menu_Boutons.add(btnMesArchives);
@@ -856,7 +849,7 @@ public class Fenetre_Accueil extends JFrame {
 
 		// Separators
 		JSeparator separator_MesArchives = new JSeparator();
-		separator_MesArchives.setForeground(new Color(0, 102, 204));
+		separator_MesArchives.setForeground(new Color(0, 128, 0));
 		separator_MesArchives.setBounds(258, 63, 190, 2);
 		panel_MesArchives.add(separator_MesArchives);
 		
@@ -870,7 +863,7 @@ public class Fenetre_Accueil extends JFrame {
 		
 		// Tableau et scroll pour Facture
 		JScrollPane scrollPane_MesArchives_Facture = new JScrollPane();
-		scrollPane_MesArchives_Facture.setBorder(new LineBorder(new Color(0, 102, 204), 2, true));
+		scrollPane_MesArchives_Facture.setBorder(new LineBorder(new Color(0, 128, 0), 2, true));
 		scrollPane_MesArchives_Facture.setBounds(117, 81, 463, 99);
 		panel_MesArchives.add(scrollPane_MesArchives_Facture);
 
@@ -882,7 +875,7 @@ public class Fenetre_Accueil extends JFrame {
 		// Boutons pour Facture
 		JButton btn_MesArchives_Facture = new JButton("Facture");
 		btn_MesArchives_Facture.setForeground(Color.WHITE);
-		btn_MesArchives_Facture.setBackground(new Color(0, 102, 204));
+		btn_MesArchives_Facture.setBackground(new Color(0, 128, 0));
 		btn_MesArchives_Facture.setBounds(298, 449, 94, 31);
 		btn_MesArchives_Facture.setName("btn_MesArchives_Facture");
 
@@ -897,7 +890,7 @@ public class Fenetre_Accueil extends JFrame {
 		
 		// Tableau et scroll pour le bouton Locataire
 		JScrollPane scrollPane_MesArchives_Locataire = new JScrollPane();
-		scrollPane_MesArchives_Locataire.setBorder(new LineBorder(new Color(0, 102, 204), 2, true));
+		scrollPane_MesArchives_Locataire.setBorder(new LineBorder(new Color(0, 128, 0), 2, true));
 		scrollPane_MesArchives_Locataire.setBounds(117, 211, 463, 99);
 		panel_MesArchives.add(scrollPane_MesArchives_Locataire);
 
@@ -909,7 +902,7 @@ public class Fenetre_Accueil extends JFrame {
 		// Bouton Locataire
 		JButton btn_MesArchives_Locataire = new JButton("Locataire");
 		btn_MesArchives_Locataire.setForeground(Color.WHITE);
-		btn_MesArchives_Locataire.setBackground(new Color(0, 102, 204));
+		btn_MesArchives_Locataire.setBackground(new Color(0, 128, 0));
 		btn_MesArchives_Locataire.setBounds(468, 449, 94, 31);
 		btn_MesArchives_Locataire.setName("btn_MesArchives_Locataire");
 		panel_MesArchives.add(btn_MesArchives_Locataire);
@@ -918,7 +911,7 @@ public class Fenetre_Accueil extends JFrame {
 		
 		// Tableau et scroll pour le bouton Location
 		JScrollPane scrollPane_MesArchives_Louer = new JScrollPane();
-		scrollPane_MesArchives_Louer.setBorder(new LineBorder(new Color(0, 102, 204), 2, true));
+		scrollPane_MesArchives_Louer.setBorder(new LineBorder(new Color(0, 128, 0), 2, true));
 		scrollPane_MesArchives_Louer.setBounds(117, 338, 463, 94);
 		panel_MesArchives.add(scrollPane_MesArchives_Louer);
 
@@ -930,7 +923,7 @@ public class Fenetre_Accueil extends JFrame {
 		// Bouton Louer
 		JButton btn_MesArchives_Louer = new JButton("Location");
 		btn_MesArchives_Louer.setForeground(Color.WHITE);
-		btn_MesArchives_Louer.setBackground(new Color(0, 102, 204));
+		btn_MesArchives_Louer.setBackground(new Color(0, 128, 0));
 		btn_MesArchives_Louer.setBounds(117, 449, 94, 31);
 		btn_MesArchives_Louer.setName("btn_MesArchives_Louer");
 		panel_MesArchives.add(btn_MesArchives_Louer);

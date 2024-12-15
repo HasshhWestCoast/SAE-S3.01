@@ -1,4 +1,4 @@
-package vue.modification;
+package Vue;
 
 import java.awt.Color;
 
@@ -14,9 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import controleur.GestionTableEntrepriseFenetreModificationAssurance;
-import controleur.modification.GestionModificationAssurance;
-import vue.Utils;
+
 
 public class Fenetre_ModificationAssurance extends JInternalFrame {
 	// Champs de saisie
@@ -31,15 +29,10 @@ public class Fenetre_ModificationAssurance extends JInternalFrame {
 	private JTable table_entreprise;
 	private JScrollPane scrollPane_table_entreprise;
 
-	// Gestionnaires d'événements
-	private GestionModificationAssurance gestionClic;
-	private GestionTableEntrepriseFenetreModificationAssurance gtefma;
+	
 
 	public Fenetre_ModificationAssurance() {
-		// Initialisation du gestionnaire d'actions
-		this.gestionClic = new GestionModificationAssurance(this);
-		this.gtefma = new GestionTableEntrepriseFenetreModificationAssurance(this);
-
+	
 		// Configuration de la fenêtre interne
 		this.setBounds(100, 100, 762, 541);
 		this.getContentPane().setLayout(null);
@@ -65,11 +58,10 @@ public class Fenetre_ModificationAssurance extends JInternalFrame {
 
 		// Bouton "Modifier"
 		JButton btnModifier = Utils.creerBouton(panel, "Modifier", 276, 431, 94, 31);
-		btnModifier.addActionListener(this.gestionClic);
-
+		
 		// Bouton "Annuler"
 		JButton btnAnnuler = Utils.creerBouton(panel, "Annuler", 428, 431, 94, 31);
-		btnAnnuler.addActionListener(this.gestionClic);
+	
 
 		// Séparateur
 		JSeparator separator_Assurance = new JSeparator();
@@ -86,15 +78,14 @@ public class Fenetre_ModificationAssurance extends JInternalFrame {
 
 		// Partie ENTREPRISE
 		this.btn_ajouter_entreprise = Utils.creerBouton(panel, "Insérer", 518, 328, 94, 31);
-		this.btn_ajouter_entreprise.addActionListener(gestionClic);
+	
 
 		this.btn_charger_entreprise = Utils.creerBouton(panel, "Charger", 412, 328, 94, 31);
-		this.btn_charger_entreprise.addActionListener(gestionClic);
+	
 
 		// Bouton "Modifier" pour entreprise
 		JButton btn_modifier_entreprise = Utils.creerBouton(panel, "Modifier ", 624, 329, 94, 31);
-		btn_modifier_entreprise.addActionListener(gestionClic);
-
+	
 		// JScrollPane pour la table des entreprises
 		this.scrollPane_table_entreprise = new JScrollPane();
 		this.scrollPane_table_entreprise.setBorder(new LineBorder(new Color(0, 102, 204), 1, true));
@@ -108,7 +99,7 @@ public class Fenetre_ModificationAssurance extends JInternalFrame {
 				.setModel(new DefaultTableModel(new Object[][] { { null, null }, }, new String[] { "SIRET", "Nom" }));
 		this.table_entreprise.setBounds(499, 80, 135, 16);
 		scrollPane_table_entreprise.setViewportView(this.table_entreprise);
-		this.table_entreprise.getSelectionModel().addListSelectionListener(this.gtefma);
+	
 
 		JLabel lbl_Entreprise = new JLabel("Entreprise");
 		lbl_Entreprise.setForeground(Color.BLACK);
