@@ -66,4 +66,15 @@ public class FenetreBien extends JFrame {
 
         setVisible(true);
     }
+
+    public static void main(String[] args) {
+        // Lancer la fenêtre principale
+        EventQueue.invokeLater(() -> {
+            try {
+                new FenetreBien();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 }

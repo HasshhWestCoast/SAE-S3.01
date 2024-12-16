@@ -60,12 +60,7 @@ public class Fenetre_MesLocations extends JFrame {
         getContentPane().add(panelBoutons, BorderLayout.SOUTH);
     }
 
-    /**
-     * Méthode pour créer un champ de texte avec bordure verte.
-     */
-    private JTextField createTextField(String title) {
-    }
-
+    
     /**
      * Méthode pour créer un bouton avec fond vert et texte blanc.
      */
