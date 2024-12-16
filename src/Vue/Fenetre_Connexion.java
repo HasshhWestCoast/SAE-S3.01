@@ -81,13 +81,13 @@ public class Fenetre_Connexion extends JFrame {
         // Boutons de connexion et d'annulation
         JButton btnConnecter = new JButton("Se connecter");
         btnConnecter.setForeground(Color.WHITE);
-        btnConnecter.setBackground(new Color(0, 102, 204));
+        btnConnecter.setBackground(new Color(0, 128, 0));
         btnConnecter.setBounds(90, 195, 120, 30);
         this.contentPane.add(btnConnecter);
 
         JButton btnAnnuler = new JButton("Annuler");
         btnAnnuler.setForeground(Color.WHITE);
-        btnAnnuler.setBackground(new Color(0, 102, 204));
+        btnAnnuler.setBackground(new Color(0, 128, 0));
         btnAnnuler.setBounds(220, 195, 120, 30);
         this.contentPane.add(btnAnnuler);
 
