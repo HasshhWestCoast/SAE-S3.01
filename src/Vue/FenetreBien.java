@@ -36,7 +36,7 @@ public class FenetreBien extends JFrame {
 
         // Premier panneau : tableau des biens
         JPanel panelBiens = new JPanel(new BorderLayout());
-        panelBiens.setBorder(BorderFactory.createTitledBorder(new LineBorder(Color.GREEN, 2), "Bien"));
+        panelBiens.setBorder(BorderFactory.createTitledBorder(new LineBorder(new Color(0, 128, 0), 2), "Bien"));
         panelBiens.setBackground(Color.WHITE);
         tableBiens = new JTable(new DefaultTableModel(new Object[][] {}, new String[] { "Nom du bien", "Adresse", "Nb de logements", "Type" }));
         tableBiens.setBackground(Color.WHITE);
@@ -46,7 +46,7 @@ public class FenetreBien extends JFrame {
 
         // Deuxième panneau : tableau des logements
         JPanel panelLogements = new JPanel(new BorderLayout());
-        panelLogements.setBorder(BorderFactory.createTitledBorder(new LineBorder(Color.GREEN, 2), "Mes Logements"));
+        panelLogements.setBorder(BorderFactory.createTitledBorder(new LineBorder(new Color(0, 128, 0), 2), "Mes Logements"));
         panelLogements.setBackground(Color.WHITE);
         tableLogements = new JTable(new DefaultTableModel(new Object[][] {}, new String[] { "Nom", "Surface", "Nb pièces", "Etage", "Acquisition", "Occupé", "Type" }));
         tableLogements.setBackground(Color.WHITE);
