@@ -2,7 +2,7 @@ package Vue;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,101 +10,76 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
 
 public class Fenetre_Connexion extends JFrame {
 
-    // Déclaration des composants de l'interface utilisateur
     private JPanel contentPane;
     private JTextField textFieldUtilisateur;
     private JPasswordField textFieldMdp;
-    
-    // Méthode principale pour lancer l'application
+
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Fenetre_Connexion frame = new Fenetre_Connexion();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                Fenetre_Connexion frame = new Fenetre_Connexion();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
 
-    // Constructeur de la fenêtre de connexion
     public Fenetre_Connexion() {
-        // Configuration de la fenêtre
-        this.setBounds(100, 100, 450, 300);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Configuration de la fenêtre principale
+        setTitle("Connexion");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 300, 250);
+        setLocationRelativeTo(null);
 
-        // Configuration du panneau principal
-        this.contentPane = new JPanel();
-        this.contentPane.setBackground(Color.WHITE);
-        this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        this.setContentPane(this.contentPane);
-        this.contentPane.setLayout(null);
+        // Panneau principal
+        contentPane = new JPanel();
+        contentPane.setBackground(Color.WHITE);
+        contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
+        setContentPane(contentPane);
+        contentPane.setLayout(new BorderLayout());
 
-        // Titre de la fenêtre
-        JLabel lblTitre = new JLabel("Connexion");
-        lblTitre.setBounds(180, 10, 100, 30);
-        this.contentPane.add(lblTitre);
+        // Titre en haut (NORTH)
+        JLabel lblTitre = new JLabel("Connexion ");
+        lblTitre.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        lblTitre.setForeground(new Color(0, 128, 0));
+        lblTitre.setHorizontalAlignment(JLabel.CENTER);
+        contentPane.add(lblTitre, BorderLayout.NORTH);
 
-        // Panneau contenant les champs de saisie
-        JPanel panel = new JPanel();
-        panel.setBackground(Color.WHITE);
-        panel.setBounds(120, 50, 200, 120);
-        this.contentPane.add(panel);
-        panel.setLayout(null);
+        // Panneau central pour le formulaire
+        JPanel panelFormulaire = new JPanel();
+        panelFormulaire.setLayout(new GridLayout(4, 1, 10, 5)); // 4 lignes, 1 colonne avec espacement
+        panelFormulaire.setBackground(Color.WHITE);
+        contentPane.add(panelFormulaire, BorderLayout.CENTER);
 
-        // Label et champ de saisie pour le nom d'utilisateur
-        JLabel lblUtilisateur = new JLabel("Nom d'utilisateur:");
-        lblUtilisateur.setBounds(10, 10, 120, 20);
-        panel.add(lblUtilisateur);
+        // Label et champ pour le nom d'utilisateur
+        JLabel lblUtilisateur = new JLabel("Nom d'utilisateur :");
+        lblUtilisateur.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        panelFormulaire.add(lblUtilisateur);
 
-        this.textFieldUtilisateur = new JTextField();
-        this.textFieldUtilisateur.setBounds(10, 30, 180, 20);
-        panel.add(this.textFieldUtilisateur);
-        this.textFieldUtilisateur.setColumns(10);
+        textFieldUtilisateur = new JTextField();
+        panelFormulaire.add(textFieldUtilisateur);
 
-        // Label et champ de saisie pour le mot de passe
-        JLabel lblMdp = new JLabel("Mot de passe:");
-        lblMdp.setBounds(10, 60, 120, 20);
-        panel.add(lblMdp);
+        // Label et champ pour le mot de passe
+        JLabel lblMdp = new JLabel("Mot de passe :");
+        lblMdp.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        panelFormulaire.add(lblMdp);
 
-        this.textFieldMdp = new JPasswordField();
-        this.textFieldMdp.setBounds(10, 80, 180, 20);
-        panel.add(this.textFieldMdp);
+        textFieldMdp = new JPasswordField();
+        panelFormulaire.add(textFieldMdp);
 
-        // Boutons de connexion et d'annulation
-        JButton btnConnecter = new JButton("Se connecter");
-        btnConnecter.setForeground(Color.WHITE);
-        btnConnecter.setBackground(new Color(0, 128, 0));
-        btnConnecter.setBounds(90, 195, 120, 30);
-        this.contentPane.add(btnConnecter);
+        // Panneau du bouton de connexion (SOUTH)
+        JPanel panelBouton = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelBouton.setBackground(Color.WHITE);
+        contentPane.add(panelBouton, BorderLayout.SOUTH);
 
-        JButton btnAnnuler = new JButton("Annuler");
-        btnAnnuler.setForeground(Color.WHITE);
-        btnAnnuler.setBackground(new Color(0, 128, 0));
-        btnAnnuler.setBounds(220, 195, 120, 30);
-        this.contentPane.add(btnAnnuler);
-
-        // Centre la fenêtre sur l'écran
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
-
-       
-    }
-
-    // Méthode pour récupérer le nom d'utilisateur
-    public String getNomUtilisateur() {
-        return this.textFieldUtilisateur.getText();
-    }
-
-    // Méthode pour récupérer le mot de passe
-    public String getMdp() {
-        return new String(this.textFieldMdp.getPassword());
+        JButton btnConnexion = new JButton("Connexion");
+        panelBouton.add(btnConnexion);
     }
 }

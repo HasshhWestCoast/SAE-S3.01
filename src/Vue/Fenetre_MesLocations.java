@@ -48,16 +48,24 @@ public class Fenetre_MesLocations extends JFrame {
         // Boutons en bas
         JPanel panelBoutons = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
         panelBoutons.setBackground(Color.WHITE);
-        panelBoutons.add(createButton("Insérer"));
-        panelBoutons.add(createButton("Modifier"));
-        panelBoutons.add(createButton("Supprimer"));
-        panelBoutons.add(createButton("Archiver"));
 
         // Ajouter les panneaux principaux à la fenêtre
         getContentPane().add(panelTitre, BorderLayout.NORTH);
         getContentPane().add(panelTable, BorderLayout.CENTER);
         getContentPane().add(panelChamps, BorderLayout.EAST);
         getContentPane().add(panelBoutons, BorderLayout.SOUTH);
+        
+        JButton btnCharger = new JButton("Charger");
+        panelBoutons.add(btnCharger);
+        
+        JButton btnInserer = new JButton("Inserer");
+        panelBoutons.add(btnInserer);
+        
+        JButton btnMaj = new JButton("Mise à jour");
+        panelBoutons.add(btnMaj);
+        
+        JButton btnSupprimer = new JButton("Supprimer");
+        panelBoutons.add(btnSupprimer);
     }
 
     
@@ -65,11 +73,6 @@ public class Fenetre_MesLocations extends JFrame {
      * Méthode pour créer un bouton avec fond vert et texte blanc.
      */
     private JButton createButton(String text) {
-        JButton button = new JButton(text);
-        button.setForeground(Color.WHITE);
-        button.setBackground(new Color(0, 128, 0));
-        button.setFont(new Font("Tahoma", Font.BOLD, 12));
-        return button;
     }
 
     public static void main(String[] args) {

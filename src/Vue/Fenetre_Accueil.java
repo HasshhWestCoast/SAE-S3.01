@@ -184,7 +184,7 @@ public class Fenetre_Accueil extends JFrame {
 		// Tableau et scroll pour Facture
 		JScrollPane scrollPane_MesArchives_Facture = new JScrollPane();
 		scrollPane_MesArchives_Facture.setBorder(new LineBorder(new Color(0, 128, 0), 2, true));
-		scrollPane_MesArchives_Facture.setBounds(117, 81, 463, 99);
+		scrollPane_MesArchives_Facture.setBounds(117, 80, 463, 99);
 		panel_MesArchives.add(scrollPane_MesArchives_Facture);
 
 		this.table_MesArchives_Facture = new JTable();
