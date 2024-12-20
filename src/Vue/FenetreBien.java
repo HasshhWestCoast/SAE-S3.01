@@ -12,7 +12,7 @@ public class FenetreBien extends JFrame {
     public FenetreBien() {
         setTitle("Mes Biens");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(800, 600);
+        setSize(984, 882);
         setLocationRelativeTo(null);
 
         // Utilisation du BorderLayout pour la fenêtre principale

@@ -18,6 +18,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class FenLocations extends JFrame {
 
@@ -79,7 +81,15 @@ public class FenLocations extends JFrame {
         ));
         JScrollPane scrollPane = new JScrollPane(tabMesLocations);
         scrollPane.setBorder(new LineBorder(new Color(31, 153, 88), 2));
-        panelCentre.add(scrollPane, BorderLayout.CENTER);
+        panelCentre.add(scrollPane, BorderLayout.SOUTH);
+        
+        JPanel panelEspaceComboTable = new JPanel();
+        panelCentre.add(panelEspaceComboTable, BorderLayout.CENTER);
+        
+        JComboBox comboBoxIDLocations = new JComboBox();
+        comboBoxIDLocations.setToolTipText("ID Locations");
+        comboBoxIDLocations.setModel(new DefaultComboBoxModel(new String[] {"ID Locations"}));
+        panelCentre.add(comboBoxIDLocations, BorderLayout.NORTH);
         
         JPanel panelSud = new JPanel();
         contentPane.add(panelSud, BorderLayout.SOUTH);

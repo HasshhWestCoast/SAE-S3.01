@@ -26,7 +26,7 @@ public class FenAssurances extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable tabMesLocations;
-	private JComboBox comboBoxIDImmeuble;
+	private JComboBox comboBoxIDAssurance;
 
 	/**
 	 * Launch the application.
@@ -84,13 +84,13 @@ public class FenAssurances extends JFrame {
         scrollPane.setBorder(new LineBorder(new Color(31, 153, 88), 2));
         panelCentre.add(scrollPane, BorderLayout.SOUTH);
         
-        comboBoxIDImmeuble = new JComboBox();
-        comboBoxIDImmeuble.setForeground(new Color(0, 0, 0));
-        comboBoxIDImmeuble.setFont(new Font("Sylfaen", Font.PLAIN, 14));
-        comboBoxIDImmeuble.setBackground(new Color(31, 153, 88));
-        comboBoxIDImmeuble.setModel(new DefaultComboBoxModel(new String[] {"ID immeuble"}));
-        comboBoxIDImmeuble.setToolTipText("ID immeuble");
-        panelCentre.add(comboBoxIDImmeuble, BorderLayout.NORTH);
+        comboBoxIDAssurance = new JComboBox();
+        comboBoxIDAssurance.setForeground(new Color(0, 0, 0));
+        comboBoxIDAssurance.setFont(new Font("Sylfaen", Font.PLAIN, 14));
+        comboBoxIDAssurance.setBackground(new Color(31, 153, 88));
+        comboBoxIDAssurance.setModel(new DefaultComboBoxModel(new String[] {"ID Assurance"}));
+        comboBoxIDAssurance.setToolTipText("ID Assurance");
+        panelCentre.add(comboBoxIDAssurance, BorderLayout.NORTH);
         
         JPanel panelEspaceComboTable = new JPanel();
         panelCentre.add(panelEspaceComboTable, BorderLayout.CENTER);
@@ -118,7 +118,7 @@ public class FenAssurances extends JFrame {
 	}
 	
 	public JComboBox getcomboBoxIDImmeuble() {
-		return comboBoxIDImmeuble;
+		return comboBoxIDAssurance;
 	}
 
 }
