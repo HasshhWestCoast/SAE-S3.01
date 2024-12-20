@@ -23,6 +23,8 @@ public class FenLocations extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTable tabMesLocations;
+
 
 	/**
 	 * Launch the application.
@@ -101,6 +103,10 @@ public class FenLocations extends JFrame {
         JSeparator separator_1 = new JSeparator();
         panelSud.add(separator_1, BorderLayout.NORTH);
 	
+	}
+	
+	public JTable gettabMesLocations() {
+		return tabMesLocations;
 	}
 
 }
