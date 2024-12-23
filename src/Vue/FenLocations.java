@@ -49,7 +49,7 @@ public class FenLocations extends JFrame {
 	 */
 	public FenLocations() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 935, 504);
+		setBounds(100, 100, 971, 613);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -87,6 +87,7 @@ public class FenLocations extends JFrame {
         panelCentre.add(panelEspaceComboTable, BorderLayout.CENTER);
         
         JComboBox comboBoxIDLocations = new JComboBox();
+        comboBoxIDLocations.setBackground(new Color(31, 153, 88));
         comboBoxIDLocations.setToolTipText("ID Locations");
         comboBoxIDLocations.setModel(new DefaultComboBoxModel(new String[] {"ID Locations"}));
         panelCentre.add(comboBoxIDLocations, BorderLayout.NORTH);
@@ -98,16 +99,16 @@ public class FenLocations extends JFrame {
         JPanel panel = new JPanel();
         panelSud.add(panel);
         
-        JButton btnICharger = new JButton("Charger");
+        RoundedButton btnICharger = new RoundedButton("Charger", 20);
         panel.add(btnICharger);
         
-        JButton btnInserer = new JButton("Inserer");
+        RoundedButton btnInserer = new RoundedButton("Inserer", 20);
         panel.add(btnInserer);
         
-        JButton btnMiseAJour = new JButton("Mise à jour");
+        RoundedButton btnMiseAJour = new RoundedButton("Mise à jour", 20);
         panel.add(btnMiseAJour);
         
-        JButton btnSupprimer = new JButton("Supprimer");
+        RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
         panel.add(btnSupprimer);
         
         JSeparator separator_1 = new JSeparator();

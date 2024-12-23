@@ -49,7 +49,7 @@ public class FenAssurances extends JFrame {
 	 */
 	public FenAssurances() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 904, 486);
+		setBounds(100, 100, 947, 616);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -102,10 +102,10 @@ public class FenAssurances extends JFrame {
         JPanel panelBouton = new JPanel();
         panelSud.add(panelBouton);
         
-        JButton btnICharger = new JButton("Charger");
+        RoundedButton btnICharger = new RoundedButton("Charger", 20);
         panelBouton.add(btnICharger);
         
-        JButton btnInserer = new JButton("Inserer");
+        RoundedButton btnInserer = new RoundedButton("Inserer", 20);
         panelBouton.add(btnInserer);
         
         JSeparator separatorSUD = new JSeparator();

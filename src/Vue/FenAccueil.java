@@ -13,6 +13,8 @@ import java.awt.GridLayout;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class FenAccueil extends JFrame {
@@ -43,6 +45,7 @@ public class FenAccueil extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 953, 485);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -53,51 +56,57 @@ public class FenAccueil extends JFrame {
 		panelMenuNorth.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelMenu = new JPanel();
+		panelMenu.setBackground(new Color(33, 153, 88));
 		panelMenuNorth.add(panelMenu, BorderLayout.CENTER);
 		panelMenu.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelMenuGauche = new JPanel();
+		panelMenuGauche.setBackground(new Color(33, 153, 88));
 		panelMenuGauche.setAlignmentX(Component.LEFT_ALIGNMENT);
 		panelMenu.add(panelMenuGauche, BorderLayout.WEST);
 		
-		JButton btnMesBiens = new JButton("Biens");
+		RoundedButton btnMesBiens = new RoundedButton("Biens", 20);
+		btnMesBiens.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnMesBiens.setFont(new Font("Sylfaen", Font.PLAIN, 17));
 		panelMenuGauche.add(btnMesBiens);
 		
-		JButton btnMesLoactions = new JButton("Locations");
+		RoundedButton btnMesLoactions = new RoundedButton("Locations", 20);
 		btnMesLoactions.setFont(new Font("Sylfaen", Font.PLAIN, 17));
 		panelMenuGauche.add(btnMesLoactions);
 		
-		JButton btnMesFactures = new JButton("Factures");
+		RoundedButton btnMesFactures = new RoundedButton("Factures", 20);
 		btnMesFactures.setFont(new Font("Sylfaen", Font.PLAIN, 17));
 		panelMenuGauche.add(btnMesFactures);
 		
-		JButton btnMesAssurances = new JButton("Assurances");
+		RoundedButton btnMesAssurances = new RoundedButton("Assurances", 20);
 		btnMesAssurances.setFont(new Font("Sylfaen", Font.PLAIN, 17));
 		panelMenuGauche.add(btnMesAssurances);
 		
-		JButton btnMesDocuments = new JButton("Documents");
+		RoundedButton btnMesDocuments = new RoundedButton("Documents", 20);
 		btnMesDocuments.setFont(new Font("Sylfaen", Font.PLAIN, 17));
 		panelMenuGauche.add(btnMesDocuments);
 		
-		JButton btnMesArchives = new JButton("Archives");
+		RoundedButton btnMesArchives = new RoundedButton("Archives", 20);
 		btnMesArchives.setFont(new Font("Sylfaen", Font.PLAIN, 17));
 		panelMenuGauche.add(btnMesArchives);
 		
 		JPanel panelMenuCenter = new JPanel();
+		panelMenuCenter.setBackground(new Color(33, 153, 88));
 		panelMenu.add(panelMenuCenter, BorderLayout.CENTER);
 		
 		JPanel panelMenuDroite = new JPanel();
+		panelMenuDroite.setBackground(new Color(33, 153, 88));
 		panelMenu.add(panelMenuDroite, BorderLayout.EAST);
 		
-		JButton btnSeDeconnecter = new JButton("Se Déconnecter");
+		RoundedButton btnSeDeconnecter = new RoundedButton("Se Déconnecter", 20);
 		btnSeDeconnecter.setFont(new Font("Sylfaen", Font.PLAIN, 14));
 		panelMenuDroite.add(btnSeDeconnecter);
 		
-		JButton btnAccueil = new JButton("New button");
-		panelMenuDroite.add(btnAccueil);
-		
 		JPanel panelMenuCentre = new JPanel();
+		panelMenuCentre.setBackground(new Color(255, 255, 255));
 		contentPane.add(panelMenuCentre, BorderLayout.CENTER);
 		panelMenuCentre.setLayout(new GridLayout(3, 1, 0, 0));
 		
@@ -106,9 +115,11 @@ public class FenAccueil extends JFrame {
 		panelNorth.setLayout(new GridLayout(1, 3, 0, 0));
 		
 		JPanel panelNorthGauche = new JPanel();
+		panelNorthGauche.setBackground(new Color(255, 255, 255));
 		panelNorth.add(panelNorthGauche);
 		
 		JPanel panelNorthCenter = new JPanel();
+		panelNorthCenter.setBackground(new Color(255, 255, 255));
 		panelNorth.add(panelNorthCenter);
 		panelNorthCenter.setLayout(new BorderLayout(0, 0));
 		
@@ -119,22 +130,28 @@ public class FenAccueil extends JFrame {
 		panelNorthCenter.add(lblNewLabel, BorderLayout.CENTER);
 		
 		JPanel panelNorthDroite = new JPanel();
+		panelNorthDroite.setBackground(new Color(255, 255, 255));
 		panelNorth.add(panelNorthDroite);
 		
 		JPanel panelCenter = new JPanel();
+		panelCenter.setBackground(new Color(255, 255, 255));
 		panelMenuCentre.add(panelCenter);
 		panelCenter.setLayout(new GridLayout(1, 3, 0, 0));
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
 		panelCenter.add(panel);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 255, 255));
 		panelCenter.add(panel_1);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(255, 255, 255));
 		panelCenter.add(panel_2);
 		
 		JPanel panelSouth = new JPanel();
+		panelSouth.setBackground(new Color(255, 255, 255));
 		panelMenuCentre.add(panelSouth);
 	}
 
