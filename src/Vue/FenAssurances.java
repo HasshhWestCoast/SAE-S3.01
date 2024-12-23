@@ -51,6 +51,7 @@ public class FenAssurances extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 947, 616);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -71,6 +72,7 @@ public class FenAssurances extends JFrame {
 		
 
 		JPanel panelCentre = new JPanel(new BorderLayout());
+		panelCentre.setBackground(new Color(255, 255, 255));
 		panelCentre.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		contentPane.add(panelCentre, BorderLayout.CENTER);
 		panelCentre.setLayout(new BorderLayout(0, 0));
@@ -93,6 +95,7 @@ public class FenAssurances extends JFrame {
         panelCentre.add(comboBoxIDAssurance, BorderLayout.NORTH);
         
         JPanel panelEspaceComboTable = new JPanel();
+        panelEspaceComboTable.setBackground(new Color(255, 255, 255));
         panelCentre.add(panelEspaceComboTable, BorderLayout.CENTER);
         
         JPanel panelSud = new JPanel();
