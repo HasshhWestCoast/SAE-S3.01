@@ -66,10 +66,6 @@ public class FenAccueil extends JFrame {
 		panelMenu.add(panelMenuGauche, BorderLayout.WEST);
 		
 		RoundedButton btnMesBiens = new RoundedButton("Biens", 20);
-		btnMesBiens.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnMesBiens.setFont(new Font("Sylfaen", Font.PLAIN, 17));
 		panelMenuGauche.add(btnMesBiens);
 		
@@ -104,6 +100,9 @@ public class FenAccueil extends JFrame {
 		RoundedButton btnSeDeconnecter = new RoundedButton("Se Déconnecter", 20);
 		btnSeDeconnecter.setFont(new Font("Sylfaen", Font.PLAIN, 14));
 		panelMenuDroite.add(btnSeDeconnecter);
+		
+		RoundedButton btnAccueil = new RoundedButton("New button", 20);
+		panelMenuDroite.add(btnAccueil);
 		
 		JPanel panelMenuCentre = new JPanel();
 		panelMenuCentre.setBackground(new Color(255, 255, 255));

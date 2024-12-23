@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
+import javax.swing.JButton;
 
 public class FenAjoutLogement extends JInternalFrame {
 
@@ -93,6 +94,14 @@ public class FenAjoutLogement extends JInternalFrame {
 		textFieldIdImmeuble.setBounds(80, 84, 223, 19);
 		getContentPane().add(textFieldIdImmeuble);
 		textFieldIdImmeuble.setColumns(10);
+		
+		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
+		btnAnnuler.setBounds(77, 455, 85, 21);
+		getContentPane().add(btnAnnuler);
+		
+		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
+		btnAjouter.setBounds(218, 455, 85, 21);
+		getContentPane().add(btnAjouter);
 		setBounds(100, 100, 456, 568);
 
 	}
