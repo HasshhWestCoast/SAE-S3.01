@@ -79,8 +79,8 @@ public class FenAssurances extends JFrame {
        
 		tabMesLocations = new JTable();
         tabMesLocations.setModel(new DefaultTableModel(
-            new Object[][] { { null, null, null, null, null, null, null } },
-            new String[] { "Numéro police", "ID assurance", "Protection juridique", "Prime", "Quotité", "Date de début", "Date de fin" }
+            new Object[][] { { null, null, null} },
+            new String[] { "Numéro police", "montant", "Date échéance" }
         ));
         JScrollPane scrollPane = new JScrollPane(tabMesLocations);
         scrollPane.setBorder(new LineBorder(new Color(31, 153, 88), 2));
