@@ -15,9 +15,9 @@ class RoundedButton extends JButton {
         setOpaque(false);
         setContentAreaFilled(false);
         setBorderPainted(false);
-        setFocusPainted(false);
+        //setFocusPainted(false);
         setForeground(Color.WHITE);
-        setBackground(new Color(31, 153, 88));
+        setBackground(new Color(171, 180, 169));
     }
 
     @Override

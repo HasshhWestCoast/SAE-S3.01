@@ -72,6 +72,7 @@ public class FenConnexion extends JFrame implements ActionListener {
 		
 		RoundedButton btnConnexion = new RoundedButton("Connexion", 20);
 		btnConnexion.addActionListener(this);
+		btnConnexion.setBackground(new Color(31, 153, 88));
 		btnConnexion.setBounds(335, 315, 132, 31);
 		contentPane.add(btnConnexion);
 
