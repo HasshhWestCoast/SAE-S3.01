@@ -172,7 +172,7 @@ public class FenAccueil extends JFrame {
 
         // Ajouter la JComboBox en haut
         JComboBox comboBoxIDAssurance = new JComboBox();
-        comboBoxIDAssurance.setBounds(0, 11, 148, 26);
+        comboBoxIDAssurance.setBounds(59, 11, 148, 26);
         comboBoxIDAssurance.setForeground(new Color(255, 255, 255));
         comboBoxIDAssurance.setFont(new Font("Sylfaen", Font.PLAIN, 14));
         comboBoxIDAssurance.setBackground(new Color(31, 153, 88));
@@ -187,7 +187,7 @@ public class FenAccueil extends JFrame {
             new String[] { "Numéro police", "ID assurance", "Protection juridique", "Prime", "Quotité", "Date de début", "Date de fin" }
         ));
         JScrollPane scrollPane = new JScrollPane(tabMesLocations);
-        scrollPane.setBounds(0, 48, 1024, 407);
+        scrollPane.setBounds(59, 48, 890, 407);
         scrollPane.setBorder(new LineBorder(new Color(31, 153, 88), 2));
         panelCentre.add(scrollPane);
 
