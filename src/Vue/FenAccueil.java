@@ -14,9 +14,12 @@ public class FenAccueil extends JFrame {
     private JPanel panelAccueil;
     private JPanel panelLocations;
     private JPanel panelFactures;
+    private JPanel panelBiens;
+
+    private JPanel panel;
     private JComboBox comboBoxIDAssurance;
     private JLayeredPane layeredPane;
-
+	
     /**
      * Launch the application.
      */
@@ -67,7 +70,7 @@ public class FenAccueil extends JFrame {
 
         // Buttons
         RoundedButton btnMesBiens = new RoundedButton("Biens", 20);
-        btnMesBiens.addActionListener(e -> switchToPanel("Accueil"));
+        btnMesBiens.addActionListener(e -> switchToPanel("Biens"));
         btnMesBiens.setFont(new Font("Sylfaen", Font.PLAIN, 17));
         panelMenuGauche.add(btnMesBiens);
 
@@ -126,6 +129,10 @@ public class FenAccueil extends JFrame {
         // Panel Facture
         panelFactures = createFacturesPanel();
         layeredPane.add(panelFactures, "Factures");
+        
+        // Panel Facture
+        panelBiens = createBiensPanel();
+        layeredPane.add(panelBiens, "Biens");
 
     }
 
@@ -351,6 +358,96 @@ public class FenAccueil extends JFrame {
 
         return panelFactures;
     }
+    
+    private JPanel createBiensPanel() {
+        JPanel panelBiens = new JPanel();
+        panelBiens.setLayout(new BorderLayout(0, 0));
+
+        JPanel panelTitre = new JPanel();
+        panelBiens.add(panelTitre, BorderLayout.NORTH);
+        panelTitre.setLayout(new BorderLayout(0, 0));
+
+        JLabel lblFactures = new JLabel("Mes Biens ");
+        lblFactures.setHorizontalAlignment(SwingConstants.CENTER);
+        lblFactures.setForeground(new Color(31, 153, 88));
+        lblFactures.setFont(new Font("Sylfaen", Font.ITALIC, 28));
+        lblFactures.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Décalage de 10px vers le bas
+        panelTitre.add(lblFactures, BorderLayout.CENTER);
+
+        JSeparator separator = new JSeparator();
+        separator.setForeground(new Color(0, 0, 0));
+        panelTitre.add(separator, BorderLayout.SOUTH);
+
+        JPanel panelCentre = new JPanel();
+        panelCentre.setBackground(new Color(255, 255, 255));
+        panelBiens.add(panelCentre, BorderLayout.CENTER);
+        panelCentre.setLayout(null);
+
+        JComboBox comboBoxIDLocations = new JComboBox();
+        comboBoxIDLocations.setForeground(new Color(255, 255, 255));
+        comboBoxIDLocations.setBackground(new Color(31, 153, 88));
+        comboBoxIDLocations.setToolTipText("");
+        comboBoxIDLocations.setModel(new DefaultComboBoxModel(new String[] { "" }));
+
+        comboBoxIDLocations.setBounds(41, 11, 126, 22);
+        panelCentre.add(comboBoxIDLocations);
+
+        // JTable pour "Bien"
+        JTable tabMesBiens = new JTable();
+        tabMesBiens.setModel(new DefaultTableModel(
+            new Object[][] {
+                { null, null, null, null, null, null },
+            },
+            new String[] {
+                "IDBien", "Type de Bien", "Surface Habitable", "Nb Pièces", "Date Acquisition", "Nb Places"
+            }
+        ));
+        JScrollPane scrollPaneBiens = new JScrollPane(tabMesBiens);
+        scrollPaneBiens.setBounds(41, 50, 947, 171);
+        scrollPaneBiens.setBorder(new LineBorder(new Color(31, 153, 88), 2));
+        panelCentre.add(scrollPaneBiens);
+
+        // JTable pour "Immeuble"
+        JTable tabMesImmeubles = new JTable();
+        tabMesImmeubles.setModel(new DefaultTableModel(
+            new Object[][] {
+                { null, null, null, null, null },
+            },
+            new String[] {
+                "IDImmeuble", "Adresse", "Code Postal", "Ville", "Période Construction", "Type Immeuble"
+            }
+        ));
+        JScrollPane scrollPaneImmeuble = new JScrollPane(tabMesImmeubles);
+        scrollPaneImmeuble.setBorder(new LineBorder(new Color(31, 153, 88), 2));
+        scrollPaneImmeuble.setBounds(41, 268, 947, 171);
+        panelCentre.add(scrollPaneImmeuble);
+
+        JPanel panel = new JPanel();
+        panel.setBounds(0, 501, 1024, 48);
+        panelCentre.add(panel);
+        panel.setLayout(null);
+
+        RoundedButton btnIArchiver = new RoundedButton("Charger", 20);
+        btnIArchiver.setText("Archiver");
+        btnIArchiver.setBounds(315, 11, 85, 23);
+        panel.add(btnIArchiver);
+
+        RoundedButton btnInserer = new RoundedButton("Inserer", 20);
+        btnInserer.setBounds(410, 11, 80, 23);
+        panel.add(btnInserer);
+
+        RoundedButton btnModifier = new RoundedButton("Mise à jour", 20);
+        btnModifier.setText("Modifier");
+        btnModifier.setBounds(513, 11, 96, 23);
+        panel.add(btnModifier);
+
+        RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
+        btnSupprimer.setBounds(619, 11, 96, 23);
+        panel.add(btnSupprimer);
+
+        return panelBiens;
+    }
+
 
 
     private void switchToPanel(String panelName) {
