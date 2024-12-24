@@ -9,6 +9,10 @@ import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JSeparator;
+import javax.swing.DefaultComboBoxModel;
 
 public class FenAjoutLogement extends JInternalFrame {
 
@@ -74,6 +78,7 @@ public class FenAjoutLogement extends JInternalFrame {
 		getContentPane().add(lblTypeDebien);
 		
 		JComboBox comboBoxTypeDeBien = new JComboBox();
+		comboBoxTypeDeBien.setModel(new DefaultComboBoxModel(new String[] {"Appartement", "Maison", "Garage"}));
 		comboBoxTypeDeBien.setBounds(80, 320, 223, 21);
 		getContentPane().add(comboBoxTypeDeBien);
 		
@@ -102,7 +107,18 @@ public class FenAjoutLogement extends JInternalFrame {
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
 		btnAjouter.setBounds(218, 455, 85, 21);
 		getContentPane().add(btnAjouter);
-		setBounds(100, 100, 456, 568);
+		
+		JLabel lblNewLabel_1 = new JLabel("Ajout Logement");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		lblNewLabel_1.setBounds(124, 26, 131, 21);
+		getContentPane().add(lblNewLabel_1);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBackground(new Color(31, 151, 83));
+		separator.setBounds(93, 45, 188, 2);
+		getContentPane().add(separator);
+		setBounds(100, 100, 423, 568);
 
 	}
 }
