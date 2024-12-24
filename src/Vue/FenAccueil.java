@@ -13,6 +13,7 @@ public class FenAccueil extends JFrame {
     private JPanel panelAssurances;
     private JPanel panelAccueil;
     private JPanel panelLocations;
+    private JPanel panelFactures;
     private JComboBox comboBoxIDAssurance;
     private JLayeredPane layeredPane;
 
@@ -77,6 +78,7 @@ public class FenAccueil extends JFrame {
 
         RoundedButton btnMesFactures = new RoundedButton("Factures", 20);
         btnMesFactures.setFont(new Font("Sylfaen", Font.PLAIN, 17));
+        btnMesFactures.addActionListener(e -> switchToPanel("Factures"));
         panelMenuGauche.add(btnMesFactures);
 
         RoundedButton btnMesAssurances = new RoundedButton("Assurances", 20);
@@ -120,6 +122,10 @@ public class FenAccueil extends JFrame {
         // Panel Facture
         panelLocations = createLocationsPanel();
         layeredPane.add(panelLocations, "Locations");
+        
+        // Panel Facture
+        panelFactures = createFacturesPanel();
+        layeredPane.add(panelFactures, "Factures");
 
     }
 
@@ -233,7 +239,7 @@ public class FenAccueil extends JFrame {
          comboBoxIDLocations.setToolTipText("ID Locations");
          comboBoxIDLocations.setModel(new DefaultComboBoxModel(new String[] {"ID Locations"}));
     	 
-    	 comboBoxIDLocations.setBounds(0, 11, 126, 22);
+    	 comboBoxIDLocations.setBounds(54, 11, 126, 22);
     	 panelCentre.add(comboBoxIDLocations);
     	 
     	 JTable tabMesLocations = new JTable();
@@ -242,7 +248,7 @@ public class FenAccueil extends JFrame {
              new String[] { "Locataire", "Bien", "Type", "Date début", "Dernière régularisation" }
          ));
          JScrollPane scrollPane = new JScrollPane(tabMesLocations);
-         scrollPane.setBounds(0, 50, 1024, 440);
+         scrollPane.setBounds(54, 50, 928, 418);
          scrollPane.setBorder(new LineBorder(new Color(31, 153, 88), 2));
          panelCentre.add(scrollPane);
           
@@ -271,6 +277,81 @@ public class FenAccueil extends JFrame {
 		
     	
     }
+    
+    private JPanel createFacturesPanel() {
+        JPanel panelFactures = new JPanel();
+        panelFactures.setLayout(new BorderLayout(0, 0));
+
+        JPanel panelTitre = new JPanel();
+        panelFactures.add(panelTitre, BorderLayout.NORTH);
+        panelTitre.setLayout(new BorderLayout(0, 0));
+
+        JLabel lblFactures = new JLabel("Mes Factures");
+        lblFactures.setHorizontalAlignment(SwingConstants.CENTER);
+        lblFactures.setForeground(new Color(31, 153, 88));
+        lblFactures.setFont(new Font("Sylfaen", Font.ITALIC, 28));
+        lblFactures.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Décalage de 10px vers le bas
+        panelTitre.add(lblFactures, BorderLayout.CENTER);
+
+        JSeparator separator = new JSeparator();
+        separator.setForeground(new Color(0, 0, 0));
+        panelTitre.add(separator, BorderLayout.SOUTH);
+
+        JPanel panelCentre = new JPanel();
+        panelCentre.setBackground(new Color(255, 255, 255));
+        panelFactures.add(panelCentre, BorderLayout.CENTER);
+        panelCentre.setLayout(null);
+
+        JComboBox comboBoxIDLocations = new JComboBox();
+        comboBoxIDLocations.setForeground(new Color(255, 255, 255));
+        comboBoxIDLocations.setBackground(new Color(31, 153, 88));
+        comboBoxIDLocations.setToolTipText("");
+        comboBoxIDLocations.setModel(new DefaultComboBoxModel(new String[] { "" }));
+
+        comboBoxIDLocations.setBounds(41, 11, 126, 22);
+        panelCentre.add(comboBoxIDLocations);
+
+        JTable tabMesFactures = new JTable();
+        tabMesFactures.setModel(new DefaultTableModel(
+            new Object[][] {
+                { null, null, null, null, null, null, null, null, null },
+            },
+            new String[] {
+                "Numéro", "Date d'émission", "Date de paiement", "Mode de paiement", 
+                "Désignation", "Montant réel versé", "Montant", "Imputable locataire", "Acompte versé"
+            }
+        ));
+        JScrollPane scrollPane = new JScrollPane(tabMesFactures);
+        scrollPane.setBounds(41, 50, 947, 408);
+        scrollPane.setBorder(new LineBorder(new Color(31, 153, 88), 2));
+        panelCentre.add(scrollPane);
+
+        JPanel panel = new JPanel();
+        panel.setBounds(0, 501, 1024, 48);
+        panelCentre.add(panel);
+        panel.setLayout(null);
+
+        RoundedButton btnIArchiver = new RoundedButton("Charger", 20);
+        btnIArchiver.setText("Archiver");
+        btnIArchiver.setBounds(315, 11, 85, 23);
+        panel.add(btnIArchiver);
+
+        RoundedButton btnInserer = new RoundedButton("Inserer", 20);
+        btnInserer.setBounds(410, 11, 80, 23);
+        panel.add(btnInserer);
+
+        RoundedButton btnModifier = new RoundedButton("Mise à jour", 20);
+        btnModifier.setText("Modifier");
+        btnModifier.setBounds(513, 11, 96, 23);
+        panel.add(btnModifier);
+
+        RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
+        btnSupprimer.setBounds(619, 11, 96, 23);
+        panel.add(btnSupprimer);
+
+        return panelFactures;
+    }
+
 
     private void switchToPanel(String panelName) {
         CardLayout layout = (CardLayout) layeredPane.getLayout();
