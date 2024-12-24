@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.JButton;
 
-class RoundedButton extends JButton {
+public class RoundedButton extends JButton {
     private int radius;
 
     public RoundedButton(String text, int radius) {

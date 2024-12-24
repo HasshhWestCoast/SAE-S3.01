@@ -1,4 +1,4 @@
-package Vue;
+package Vue.Insertion;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import Vue.RoundedButton;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;

@@ -1,4 +1,4 @@
-package Vue;
+package Vue.Insertion;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import Vue.RoundedButton;
 
 public class FenAjoutCompteur extends JInternalFrame {
 
