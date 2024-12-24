@@ -2,26 +2,22 @@ package Vue;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JInternalFrame;
 import java.awt.Color;
-import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import java.awt.BorderLayout;
-import javax.swing.SwingConstants;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JSpinner;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
 
-public class FenAjoutLogement extends JFrame {
+public class FenAjoutLogement extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
 	private JTextField textFieldAdresse;
 	private JTextField textFieldCodePostale;
-	private JTextField textField;
+	private JTextField textFieldVille;
+	private JTextField textFieldPeriodeDeConstruction;
+	private JTextField textFieldIdImmeuble;
 
 	/**
 	 * Launch the application.
@@ -43,138 +39,70 @@ public class FenAjoutLogement extends JFrame {
 	 * Create the frame.
 	 */
 	public FenAjoutLogement() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 696, 625);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 255, 255));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(8, 1, 0, 0));
+		getContentPane().setBackground(new Color(255, 255, 255));
+		getContentPane().setLayout(null);
 		
-		JPanel panelAdresse = new JPanel();
-		contentPane.add(panelAdresse);
-		panelAdresse.setLayout(new GridLayout(1, 3, 0, 0));
-		
-		JLabel lblAdresse = new JLabel("Adresse :");
-		lblAdresse.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAdresse.setVerticalAlignment(SwingConstants.BOTTOM);
-		panelAdresse.add(lblAdresse);
-		
-		JPanel paneltextFieldAdresse = new JPanel();
-		panelAdresse.add(paneltextFieldAdresse);
-		paneltextFieldAdresse.setLayout(new BorderLayout(0, 0));
+		JLabel lblAdresse = new JLabel("Adresse");
+		lblAdresse.setBounds(80, 130, 45, 13);
+		getContentPane().add(lblAdresse);
 		
 		textFieldAdresse = new JTextField();
-		paneltextFieldAdresse.add(textFieldAdresse, BorderLayout.SOUTH);
+		textFieldAdresse.setBounds(80, 146, 223, 19);
+		getContentPane().add(textFieldAdresse);
 		textFieldAdresse.setColumns(10);
 		
-		JPanel panelAdresseVide = new JPanel();
-		panelAdresse.add(panelAdresseVide);
-		
-		JPanel panelCodePostale = new JPanel();
-		contentPane.add(panelCodePostale);
-		panelCodePostale.setLayout(new GridLayout(1, 3, 0, 0));
-		
-		JLabel lblCodePostale = new JLabel("Code postale :");
-		lblCodePostale.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCodePostale.setVerticalAlignment(SwingConstants.BOTTOM);
-		panelCodePostale.add(lblCodePostale);
-		
-		JPanel paneltextFieldCodePostale = new JPanel();
-		panelCodePostale.add(paneltextFieldCodePostale);
-		paneltextFieldCodePostale.setLayout(new BorderLayout(0, 0));
+		JLabel lblCodePostale = new JLabel("Code Postale");
+		lblCodePostale.setBounds(80, 186, 66, 13);
+		getContentPane().add(lblCodePostale);
 		
 		textFieldCodePostale = new JTextField();
-		paneltextFieldCodePostale.add(textFieldCodePostale, BorderLayout.SOUTH);
+		textFieldCodePostale.setBounds(80, 201, 223, 19);
+		getContentPane().add(textFieldCodePostale);
 		textFieldCodePostale.setColumns(10);
 		
-		JPanel panelCodePostaleVide = new JPanel();
-		panelCodePostale.add(panelCodePostaleVide);
+		JLabel lblVille = new JLabel("Ville");
+		lblVille.setBounds(80, 243, 45, 13);
+		getContentPane().add(lblVille);
 		
-		JPanel panelVille = new JPanel();
-		contentPane.add(panelVille);
-		panelVille.setLayout(new GridLayout(1, 3, 0, 0));
+		textFieldVille = new JTextField();
+		textFieldVille.setBounds(80, 262, 223, 19);
+		getContentPane().add(textFieldVille);
+		textFieldVille.setColumns(10);
 		
-		JLabel lblVille = new JLabel("Ville :");
-		lblVille.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVille.setVerticalAlignment(SwingConstants.BOTTOM);
-		panelVille.add(lblVille);
-		
-		JPanel paneltextFieldVille = new JPanel();
-		panelVille.add(paneltextFieldVille);
-		paneltextFieldVille.setLayout(new BorderLayout(0, 0));
-		
-		textField = new JTextField();
-		paneltextFieldVille.add(textField, BorderLayout.SOUTH);
-		textField.setColumns(10);
-		
-		JPanel panelVilleVide = new JPanel();
-		panelVille.add(panelVilleVide);
-		
-		JPanel panelTypeDeBien = new JPanel();
-		contentPane.add(panelTypeDeBien);
-		panelTypeDeBien.setLayout(new GridLayout(1, 3, 0, 0));
-		
-		JLabel lblTypeDeBien = new JLabel("Type de bien :");
-		lblTypeDeBien.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTypeDeBien.setVerticalAlignment(SwingConstants.BOTTOM);
-		panelTypeDeBien.add(lblTypeDeBien);
-		
-		JPanel paneltextTypeDeBien = new JPanel();
-		panelTypeDeBien.add(paneltextTypeDeBien);
-		paneltextTypeDeBien.setLayout(new BorderLayout(0, 0));
+		JLabel lblTypeDebien = new JLabel("Type de bien");
+		lblTypeDebien.setBounds(80, 304, 66, 13);
+		getContentPane().add(lblTypeDebien);
 		
 		JComboBox comboBoxTypeDeBien = new JComboBox();
-		comboBoxTypeDeBien.setModel(new DefaultComboBoxModel(new String[] {"Type De Bien"}));
-		paneltextTypeDeBien.add(comboBoxTypeDeBien, BorderLayout.SOUTH);
+		comboBoxTypeDeBien.setBounds(80, 320, 223, 21);
+		getContentPane().add(comboBoxTypeDeBien);
 		
-		JPanel panelTypeDeBienVide = new JPanel();
-		panelTypeDeBien.add(panelTypeDeBienVide);
+		JLabel lblPeriodeDeConstruction = new JLabel("Période de construction");
+		lblPeriodeDeConstruction.setBounds(80, 362, 131, 13);
+		getContentPane().add(lblPeriodeDeConstruction);
 		
-		JPanel panelNombrePieceEtEtage = new JPanel();
-		contentPane.add(panelNombrePieceEtEtage);
-		panelNombrePieceEtEtage.setLayout(new GridLayout(1, 6, 0, 0));
+		textFieldPeriodeDeConstruction = new JTextField();
+		textFieldPeriodeDeConstruction.setBounds(80, 377, 96, 19);
+		getContentPane().add(textFieldPeriodeDeConstruction);
+		textFieldPeriodeDeConstruction.setColumns(10);
 		
-		JPanel panelNombreDePieceVide = new JPanel();
-		panelNombrePieceEtEtage.add(panelNombreDePieceVide);
+		JLabel lblNewLabel = new JLabel("ID Immeuble");
+		lblNewLabel.setBounds(80, 68, 96, 13);
+		getContentPane().add(lblNewLabel);
 		
-		JLabel lblNbPiece = new JLabel("Nombre de Pièce :");
-		lblNbPiece.setVerticalAlignment(SwingConstants.BOTTOM);
-		panelNombrePieceEtEtage.add(lblNbPiece);
+		textFieldIdImmeuble = new JTextField();
+		textFieldIdImmeuble.setBounds(80, 84, 223, 19);
+		getContentPane().add(textFieldIdImmeuble);
+		textFieldIdImmeuble.setColumns(10);
 		
-		JPanel panelComboBoxPiece = new JPanel();
-		panelNombrePieceEtEtage.add(panelComboBoxPiece);
-		panelComboBoxPiece.setLayout(new BorderLayout(0, 0));
+		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
+		btnAnnuler.setBounds(77, 455, 85, 21);
+		getContentPane().add(btnAnnuler);
 		
-		JSpinner spinnerPiece = new JSpinner();
-		panelComboBoxPiece.add(spinnerPiece, BorderLayout.SOUTH);
-		
-		JLabel lblNbEtage = new JLabel("Nombre d'Etage :");
-		lblNbEtage.setVerticalAlignment(SwingConstants.BOTTOM);
-		panelNombrePieceEtEtage.add(lblNbEtage);
-		
-		JPanel panelComboBoxEtage = new JPanel();
-		panelNombrePieceEtEtage.add(panelComboBoxEtage);
-		panelComboBoxEtage.setLayout(new BorderLayout(0, 0));
-		
-		JSpinner spinnerEtage = new JSpinner();
-		panelComboBoxEtage.add(spinnerEtage, BorderLayout.SOUTH);
-		
-		JPanel panelNombreDEtageVide = new JPanel();
-		panelNombrePieceEtEtage.add(panelNombreDEtageVide);
-		
-		JPanel panelPeriodeConstruction = new JPanel();
-		contentPane.add(panelPeriodeConstruction);
-		panelPeriodeConstruction.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		JPanel panelDateAcquisition = new JPanel();
-		contentPane.add(panelDateAcquisition);
-		panelDateAcquisition.setLayout(new GridLayout(1, 0, 0, 0));
-		
-		JPanel panelSuperficie = new JPanel();
-		contentPane.add(panelSuperficie);
-		panelSuperficie.setLayout(new GridLayout(1, 0, 0, 0));
-	}
+		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
+		btnAjouter.setBounds(218, 455, 85, 21);
+		getContentPane().add(btnAjouter);
+		setBounds(100, 100, 456, 568);
 
+	}
 }
