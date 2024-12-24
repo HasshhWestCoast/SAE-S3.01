@@ -76,10 +76,14 @@ public class FenAjoutLogement extends JInternalFrame {
 		JLabel lblTypeDebien = new JLabel("Type de bien");
 		lblTypeDebien.setBounds(80, 304, 66, 13);
 		getContentPane().add(lblTypeDebien);
-		
+
 		JComboBox comboBoxTypeDeBien = new JComboBox();
-		comboBoxTypeDeBien.setModel(new DefaultComboBoxModel(new String[] {"Appartement", "Maison", "Garage"}));
 		comboBoxTypeDeBien.setBounds(80, 320, 223, 21);
+		comboBoxTypeDeBien.setForeground(new Color(0, 0, 0));
+		comboBoxTypeDeBien.setFont(new Font("Sylfaen", Font.PLAIN, 12));
+		comboBoxTypeDeBien.setBackground(new Color(31, 153, 88));
+		comboBoxTypeDeBien.setModel(new DefaultComboBoxModel(new String[] {"Appartement", "Maison", "Garage"}));
+		comboBoxTypeDeBien.setToolTipText("ID Immeuble");
 		getContentPane().add(comboBoxTypeDeBien);
 		
 		JLabel lblPeriodeDeConstruction = new JLabel("Période de construction");
@@ -115,6 +119,7 @@ public class FenAjoutLogement extends JInternalFrame {
 		getContentPane().add(lblNewLabel_1);
 		
 		JSeparator separator = new JSeparator();
+		separator.setForeground(new Color(255, 255, 255));
 		separator.setBackground(new Color(31, 151, 83));
 		separator.setBounds(93, 45, 188, 2);
 		getContentPane().add(separator);

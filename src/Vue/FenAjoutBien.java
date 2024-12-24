@@ -16,6 +16,9 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
 import java.util.Calendar;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenAjoutBien extends JInternalFrame {
 
@@ -84,11 +87,11 @@ public class FenAjoutBien extends JInternalFrame {
 		textFieldIdBien.setColumns(10);
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
-		btnAnnuler.setBounds(80, 401, 85, 21);
+		btnAnnuler.setBounds(82, 374, 85, 21);
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
-		btnAjouter.setBounds(211, 401, 85, 21);
+		btnAjouter.setBounds(218, 374, 85, 21);
 		getContentPane().add(btnAjouter);
 		
 		JLabel lblAjoutBien = new JLabel("Ajout Bien");
@@ -98,23 +101,36 @@ public class FenAjoutBien extends JInternalFrame {
 		getContentPane().add(lblAjoutBien);
 		
 		JSeparator separator = new JSeparator();
+		separator.setForeground(new Color(255, 255, 255));
 		separator.setBackground(new Color(31, 151, 83));
 		separator.setBounds(93, 45, 188, 2);
 		getContentPane().add(separator);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Immeuble", "Maison"}));
-		comboBox.setBounds(82, 252, 221, 21);
-		getContentPane().add(comboBox);
+		JComboBox comboBoxTypeDeBien = new JComboBox();
+		comboBoxTypeDeBien.setBounds(82, 252, 221, 21);
+		comboBoxTypeDeBien.setForeground(new Color(0, 0, 0));
+		comboBoxTypeDeBien.setFont(new Font("Sylfaen", Font.PLAIN, 12));
+		comboBoxTypeDeBien.setBackground(new Color(31, 153, 88));
+		comboBoxTypeDeBien.setModel(new DefaultComboBoxModel(new String[] {"Immeuble", "Maison"}));
+		comboBoxTypeDeBien.setToolTipText("ID Immeuble");
+		getContentPane().add(comboBoxTypeDeBien);
 		
 		JSpinner spinnerNbPiece = new JSpinner();
-		spinnerNbPiece.setBounds(82, 308, 44, 20);
+		spinnerNbPiece.setBounds(82, 316, 44, 20);
 		getContentPane().add(spinnerNbPiece);
 		
 		JSpinner spinnerNbEtage = new JSpinner();
-		spinnerNbEtage.setBounds(193, 308, 44, 20);
+		spinnerNbEtage.setBounds(193, 316, 44, 20);
 		getContentPane().add(spinnerNbEtage);
-		setBounds(100, 100, 423, 568);
+		
+		RoundedButton btnAjoutCompteur = new RoundedButton("Compteur", 20);
+		btnAjoutCompteur.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAjoutCompteur.setText("Ajout Compteur");
+		btnAjoutCompteur.setBounds(146, 412, 109, 21);
+		getContentPane().add(btnAjoutCompteur);
+		setBounds(100, 100, 423, 493);
 	}
-
 }
