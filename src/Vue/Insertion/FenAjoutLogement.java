@@ -1,4 +1,4 @@
-package Vue;
+package Vue.Insertion;
 
 import java.awt.EventQueue;
 
@@ -11,6 +11,9 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import Vue.RoundedButton;
+
 import javax.swing.JSeparator;
 import javax.swing.DefaultComboBoxModel;
 

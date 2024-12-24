@@ -1,4 +1,4 @@
-package Vue;
+package Vue.Insertion;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import Vue.RoundedButton;
 
 public class FenAjoutCompteur extends JInternalFrame {
 
@@ -83,7 +85,7 @@ public class FenAjoutCompteur extends JInternalFrame {
 		textFieldIndiceCompteur.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Type de compteur");
-		lblNewLabel_1.setBounds(77, 230, 85, 13);
+		lblNewLabel_1.setBounds(77, 230, 98, 13);
 		getContentPane().add(lblNewLabel_1);
 		
 		JComboBox comboBox = new JComboBox();
