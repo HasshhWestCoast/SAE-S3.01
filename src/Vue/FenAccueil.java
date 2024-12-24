@@ -12,7 +12,9 @@ public class FenAccueil extends JFrame {
     private JPanel contentPane;
     private JPanel panelAssurances;
     private JPanel panelAccueil;
+    private JPanel panelLocations;
     private JComboBox comboBoxIDAssurance;
+    private JLayeredPane layeredPane;
 
     /**
      * Launch the application.
@@ -34,7 +36,7 @@ public class FenAccueil extends JFrame {
     public FenAccueil() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Définir seulement la taille
-        setSize(1050,700);
+        setSize(1050, 700);
 
         // Centrer automatiquement la fenêtre
         setLocationRelativeTo(null);
@@ -64,20 +66,21 @@ public class FenAccueil extends JFrame {
 
         // Buttons
         RoundedButton btnMesBiens = new RoundedButton("Biens", 20);
-        btnMesBiens.addActionListener(e -> switchToPanel(panelAccueil));
+        btnMesBiens.addActionListener(e -> switchToPanel("Accueil"));
         btnMesBiens.setFont(new Font("Sylfaen", Font.PLAIN, 17));
         panelMenuGauche.add(btnMesBiens);
 
-        RoundedButton btnMesLoactions = new RoundedButton("Locations", 20);
-        btnMesLoactions.setFont(new Font("Sylfaen", Font.PLAIN, 17));
-        panelMenuGauche.add(btnMesLoactions);
+        RoundedButton btnMesLocations = new RoundedButton("Locations", 20);
+        btnMesLocations.addActionListener(e -> switchToPanel("Locations"));
+        btnMesLocations.setFont(new Font("Sylfaen", Font.PLAIN, 17));
+        panelMenuGauche.add(btnMesLocations);
 
         RoundedButton btnMesFactures = new RoundedButton("Factures", 20);
         btnMesFactures.setFont(new Font("Sylfaen", Font.PLAIN, 17));
         panelMenuGauche.add(btnMesFactures);
 
         RoundedButton btnMesAssurances = new RoundedButton("Assurances", 20);
-        btnMesAssurances.addActionListener(e -> switchToPanel(panelAssurances));
+        btnMesAssurances.addActionListener(e -> switchToPanel("Assurances"));
         btnMesAssurances.setFont(new Font("Sylfaen", Font.PLAIN, 17));
         panelMenuGauche.add(btnMesAssurances);
 
@@ -102,23 +105,36 @@ public class FenAccueil extends JFrame {
         panelMenuDroite.add(btnSeDeconnecter);
 
         // LayeredPane for switching panels
-        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane = new JLayeredPane();
         contentPane.add(layeredPane, BorderLayout.CENTER);
         layeredPane.setLayout(new CardLayout());
 
         // Panel Accueil
-        panelAccueil = new JPanel();
-        panelAccueil.setBackground(Color.WHITE);
-        panelAccueil.setLayout(new BorderLayout());
-        JLabel lblAccueil = new JLabel("Accueil", SwingConstants.CENTER);
-        lblAccueil.setFont(new Font("Sylfaen", Font.PLAIN, 24));
-        lblAccueil.setForeground(new Color(31, 153, 88));
-        panelAccueil.add(lblAccueil, BorderLayout.CENTER);
+        panelAccueil = createAccueilPanel();
         layeredPane.add(panelAccueil, "Accueil");
 
         // Panel Assurances
         panelAssurances = createAssurancesPanel();
         layeredPane.add(panelAssurances, "Assurances");
+        
+        // Panel Facture
+        panelLocations = createLocationsPanel();
+        layeredPane.add(panelLocations, "Locations");
+
+    }
+
+    private JPanel createAccueilPanel() {
+        JPanel panelAccueil = new JPanel();
+        panelAccueil.setBackground(Color.WHITE);
+        panelAccueil.setLayout(new BorderLayout());
+
+        JLabel lblAccueil = new JLabel("Accueil", SwingConstants.CENTER);
+        lblAccueil.setFont(new Font("Sylfaen", Font.PLAIN, 24));
+        lblAccueil.setForeground(new Color(31, 153, 88));
+
+        panelAccueil.add(lblAccueil, BorderLayout.CENTER);
+
+        return panelAccueil;
     }
 
     private JPanel createAssurancesPanel() {
@@ -129,16 +145,16 @@ public class FenAccueil extends JFrame {
         // Bandeau supérieur
         JPanel panelTitre = new JPanel();
         panelTitre.setLayout(new BorderLayout());
-        panelTitre.setBackground(new Color(240,240,240));
+        panelTitre.setBackground(new Color(240, 240, 240));
         JLabel lblMesAssurances = new JLabel("Mes Assurances");
         lblMesAssurances.setHorizontalAlignment(SwingConstants.CENTER);
-        lblMesAssurances.setFont(new Font("Sylfaen", Font.ITALIC, 24));
+        lblMesAssurances.setFont(new Font("Sylfaen", Font.ITALIC, 28));
         lblMesAssurances.setForeground(new Color(31, 153, 88));
         lblMesAssurances.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Décalage de 10px vers le bas
         panelTitre.add(lblMesAssurances, BorderLayout.CENTER);
 
-
         JSeparator separatorNord = new JSeparator();
+        separatorNord.setForeground(new Color(0,0,0));
         panelTitre.add(separatorNord, BorderLayout.SOUTH);
 
         panelAssurances.add(panelTitre, BorderLayout.NORTH);
@@ -165,32 +181,99 @@ public class FenAccueil extends JFrame {
             new String[] { "Numéro police", "ID assurance", "Protection juridique", "Prime", "Quotité", "Date de début", "Date de fin" }
         ));
         JScrollPane scrollPane = new JScrollPane(tabMesLocations);
-        scrollPane.setBounds(0, 48, 1024, 429);
+        scrollPane.setBounds(0, 48, 1024, 407);
         scrollPane.setBorder(new LineBorder(new Color(31, 153, 88), 2));
         panelCentre.add(scrollPane);
-        
-                // Panel des boutons
-                JPanel panelSud = new JPanel();
-                panelSud.setBounds(0, 491, 1024, 75);
-                panelCentre.add(panelSud);
-                panelSud.setBackground(new Color(240, 240, 240));
-                        panelSud.setLayout(null);
-                
-                        RoundedButton btnICharger = new RoundedButton("Charger", 20);
-                        btnICharger.setBounds(396, 30, 92, 23);
-                        panelSud.add(btnICharger);
-                        
-                                RoundedButton btnInserer = new RoundedButton("Inserer", 20);
-                                btnInserer.setBounds(519, 30, 81, 23);
-                                panelSud.add(btnInserer);
+
+        // Panel des boutons
+        JPanel panelSud = new JPanel();
+        panelSud.setBounds(0, 479, 1024, 65);
+        panelCentre.add(panelSud);
+        panelSud.setBackground(new Color(240, 240, 240));
+        panelSud.setLayout(null);
+
+        RoundedButton btnICharger = new RoundedButton("Charger", 20);
+        btnICharger.setBounds(393, 11, 92, 23);
+        panelSud.add(btnICharger);
+
+        RoundedButton btnInserer = new RoundedButton("Inserer", 20);
+        btnInserer.setBounds(520, 11, 81, 23);
+        panelSud.add(btnInserer);
 
         return panelAssurances;
     }
+    
+    private JPanel createLocationsPanel() {
+    	 JPanel panelLocations = new JPanel();
+    	 panelLocations.setLayout(new BorderLayout(0, 0));
+    	 
+    	 JPanel panelTitre = new JPanel();
+    	 panelLocations.add(panelTitre, BorderLayout.NORTH);
+    	 panelTitre.setLayout(new BorderLayout(0, 0));
+    	 
+    	 JLabel lblLocations = new JLabel("Mes Locations");
+ 		lblLocations.setHorizontalAlignment(SwingConstants.CENTER);
+ 		lblLocations.setForeground(new Color(31, 153, 88));
+ 		lblLocations.setFont(new Font("Sylfaen", Font.ITALIC, 28));
+ 		lblLocations.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Décalage de 10px vers le bas
+ 		panelTitre.add(lblLocations, BorderLayout.CENTER);
+ 		
+ 		JSeparator separator = new JSeparator();
+ 		separator.setForeground(new Color(0,0,0));
+		panelTitre.add(separator, BorderLayout.SOUTH);
+    	 
+    	 JPanel panelCentre = new JPanel();
+    	 panelCentre.setBackground(new Color(255, 255, 255));
+    	 panelLocations.add(panelCentre, BorderLayout.CENTER);
+    	 panelCentre.setLayout(null);
+    	 
+    	 JComboBox comboBoxIDLocations = new JComboBox();
+    	 comboBoxIDLocations.setForeground(new Color(255, 255, 255));
+    	 comboBoxIDLocations.setBackground(new Color(31, 153, 88));
+         comboBoxIDLocations.setToolTipText("ID Locations");
+         comboBoxIDLocations.setModel(new DefaultComboBoxModel(new String[] {"ID Locations"}));
+    	 
+    	 comboBoxIDLocations.setBounds(0, 11, 126, 22);
+    	 panelCentre.add(comboBoxIDLocations);
+    	 
+    	 JTable tabMesLocations = new JTable();
+         tabMesLocations.setModel(new DefaultTableModel(
+             new Object[][] { { null, null, null, null, null } },
+             new String[] { "Locataire", "Bien", "Type", "Date début", "Dernière régularisation" }
+         ));
+         JScrollPane scrollPane = new JScrollPane(tabMesLocations);
+         scrollPane.setBounds(0, 50, 1024, 440);
+         scrollPane.setBorder(new LineBorder(new Color(31, 153, 88), 2));
+         panelCentre.add(scrollPane);
+          
+          JPanel panel = new JPanel();
+          panel.setBounds(0, 501, 1024, 48);
+          panelCentre.add(panel);
+           	  panel.setLayout(null);
+          
+           	  RoundedButton btnICharger = new RoundedButton("Charger", 20);
+           	  btnICharger.setBounds(315, 11, 85, 23);
+           	  panel.add(btnICharger);
+           	  
+           	  RoundedButton btnInserer = new RoundedButton("Inserer", 20);
+           	  btnInserer.setBounds(410, 11, 80, 23);
+           	  panel.add(btnInserer);
+           	  
+           	  RoundedButton btnMiseAJour = new RoundedButton("Mise à jour", 20);
+           	  btnMiseAJour.setBounds(513, 11, 96, 23);
+           	  panel.add(btnMiseAJour);
+           	  
+           	  RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
+           	  btnSupprimer.setBounds(619, 11, 96, 23);
+           	  panel.add(btnSupprimer);
+  	
+    	 return panelLocations;
+		
+    	
+    }
 
-
-    private void switchToPanel(JPanel panelToShow) {
-        panelAccueil.setVisible(false);
-        panelAssurances.setVisible(false);
-        panelToShow.setVisible(true);
+    private void switchToPanel(String panelName) {
+        CardLayout layout = (CardLayout) layeredPane.getLayout();
+        layout.show(layeredPane, panelName);
     }
 }
