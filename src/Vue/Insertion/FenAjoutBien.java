@@ -26,6 +26,8 @@ import java.awt.event.ActionEvent;
 public class FenAjoutBien extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
+	private JTextField textFieldCodePostale;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -50,35 +52,31 @@ public class FenAjoutBien extends JInternalFrame {
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
 		
-		JLabel lblSurfaceHabitable = new JLabel("Surface habitable");
-		lblSurfaceHabitable.setBounds(82, 123, 80, 13);
-		getContentPane().add(lblSurfaceHabitable);
+		JLabel lblAdresse = new JLabel("Adresse");
+		lblAdresse.setBounds(82, 123, 80, 13);
+		getContentPane().add(lblAdresse);
 		
-		JTextField textSurfaceHabitable = new JTextField();
-		textSurfaceHabitable.setBounds(80, 137, 223, 19);
-		getContentPane().add(textSurfaceHabitable);
-		textSurfaceHabitable.setColumns(10);
+		JTextField textAdresse = new JTextField();
+		textAdresse.setBounds(80, 137, 223, 19);
+		getContentPane().add(textAdresse);
+		textAdresse.setColumns(10);
 		
-		JLabel lblDateAcquisition = new JLabel("Date acquisition");
-		lblDateAcquisition.setBounds(82, 179, 94, 13);
-		getContentPane().add(lblDateAcquisition);
+		JLabel lblVille = new JLabel("Ville");
+		lblVille.setBounds(82, 179, 94, 13);
+		getContentPane().add(lblVille);
 		
-		JTextField textFieldDateAcquisition = new JTextField();
-		textFieldDateAcquisition.setBounds(82, 195, 223, 19);
-		getContentPane().add(textFieldDateAcquisition);
-		textFieldDateAcquisition.setColumns(10);
+		JTextField textFieldVille = new JTextField();
+		textFieldVille.setBounds(82, 195, 223, 19);
+		getContentPane().add(textFieldVille);
+		textFieldVille.setColumns(10);
 		
 		JLabel lblTypeDeBien = new JLabel("Type de bien");
 		lblTypeDeBien.setBounds(82, 234, 64, 13);
 		getContentPane().add(lblTypeDeBien);
 		
-		JLabel lblNombreDePiece = new JLabel("Nombre de pièces");
-		lblNombreDePiece.setBounds(82, 293, 94, 13);
-		getContentPane().add(lblNombreDePiece);
-		
-		JLabel lblNombreEtage = new JLabel("Nombre étage");
-		lblNombreEtage.setBounds(193, 293, 131, 13);
-		getContentPane().add(lblNombreEtage);
+		JLabel lblCodePostale = new JLabel("Code Postal");
+		lblCodePostale.setBounds(82, 293, 94, 13);
+		getContentPane().add(lblCodePostale);
 		
 		JLabel lblIdBien = new JLabel("ID Bien");
 		lblIdBien.setBounds(80, 68, 96, 13);
@@ -90,11 +88,11 @@ public class FenAjoutBien extends JInternalFrame {
 		textFieldIdBien.setColumns(10);
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
-		btnAnnuler.setBounds(82, 374, 85, 21);
+		btnAnnuler.setBounds(82, 419, 85, 21);
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
-		btnAjouter.setBounds(218, 374, 85, 21);
+		btnAjouter.setBounds(218, 419, 85, 21);
 		getContentPane().add(btnAjouter);
 		
 		JLabel lblAjoutBien = new JLabel("Ajout Bien");
@@ -118,22 +116,28 @@ public class FenAjoutBien extends JInternalFrame {
 		comboBoxTypeDeBien.setToolTipText("ID Immeuble");
 		getContentPane().add(comboBoxTypeDeBien);
 		
-		JSpinner spinnerNbPiece = new JSpinner();
-		spinnerNbPiece.setBounds(82, 316, 44, 20);
-		getContentPane().add(spinnerNbPiece);
-		
-		JSpinner spinnerNbEtage = new JSpinner();
-		spinnerNbEtage.setBounds(193, 316, 44, 20);
-		getContentPane().add(spinnerNbEtage);
-		
 		RoundedButton btnAjoutCompteur = new RoundedButton("Compteur", 20);
 		btnAjoutCompteur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		btnAjoutCompteur.setText("Ajout Compteur");
-		btnAjoutCompteur.setBounds(146, 412, 109, 21);
+		btnAjoutCompteur.setBounds(146, 461, 109, 21);
 		getContentPane().add(btnAjoutCompteur);
-		setBounds(100, 100, 423, 493);
+		
+		textFieldCodePostale = new JTextField();
+		textFieldCodePostale.setBounds(80, 311, 223, 19);
+		getContentPane().add(textFieldCodePostale);
+		textFieldCodePostale.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Période construction");
+		lblNewLabel.setBounds(82, 352, 109, 13);
+		getContentPane().add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setBounds(80, 370, 223, 19);
+		getContentPane().add(textField);
+		textField.setColumns(10);
+		setBounds(100, 100, 423, 540);
 	}
 }
