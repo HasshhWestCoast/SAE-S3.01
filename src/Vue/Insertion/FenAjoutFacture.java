@@ -152,7 +152,8 @@ public class FenAjoutFacture extends JInternalFrame {
 		getContentPane().add(lblImputableLocataire);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("OUI");
-		chckbxNewCheckBox.setBounds(341, 260, 93, 21);
+		chckbxNewCheckBox.setBackground(new Color(31, 151, 83));
+		chckbxNewCheckBox.setBounds(347, 260, 93, 21);
 		getContentPane().add(chckbxNewCheckBox);
 		
 		JLabel lblTrouverEntreprise = new JLabel("Trouver Entreprise");
