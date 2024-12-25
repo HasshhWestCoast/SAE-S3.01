@@ -212,7 +212,7 @@ public class FenAccueil extends JFrame {
 
         // Panel des boutons
         JPanel panelSud = new JPanel();
-        panelSud.setBounds(0, 479, 1024, 65);
+        panelSud.setBounds(10, 508, 1024, 41);
         panelCentre.add(panelSud);
         panelSud.setBackground(new Color(240, 240, 240));
         panelSud.setLayout(null);
@@ -402,11 +402,11 @@ public class FenAccueil extends JFrame {
                 { null, null, null, null, null, null },
             },
             new String[] {
-                "IDBien", "Type de Bien", "Surface Habitable", "Nb Pièces", "Date Acquisition", "Nb Places"
+                "IDBien", "Adresse", "Ville", "Code postal", "Type Bien", "période construction"
             }
         ));
         JScrollPane scrollPaneBiens = new JScrollPane(tabMesBiens);
-        scrollPaneBiens.setBounds(46, 76, 636, 359);
+        scrollPaneBiens.setBounds(46, 60, 658, 375);
         scrollPaneBiens.setBorder(new LineBorder(new Color(31, 153, 88), 2));
         panelCentre.add(scrollPaneBiens);
 
@@ -435,15 +435,15 @@ public class FenAccueil extends JFrame {
         
         // Buttons
         RoundedButton btnAjouterUnBien = new RoundedButton("Ajouter un bien", 20);
-        btnAjouterUnBien.setBounds(728, 164, 173, 23);
+        btnAjouterUnBien.setBounds(743, 198, 173, 23);
         panelCentre.add(btnAjouterUnBien);
   
         RoundedButton btnAjouterFactures = new RoundedButton("Ajouter des factures", 20);
-        btnAjouterFactures.setBounds(728, 233, 173, 23);
+        btnAjouterFactures.setBounds(743, 251, 173, 23);
         panelCentre.add(btnAjouterFactures);
         
         RoundedButton btnAfficherCompteur = new RoundedButton("Afficher les compteurs", 20);
-        btnAfficherCompteur.setBounds(728, 305, 173, 23);
+        btnAfficherCompteur.setBounds(743, 303, 173, 23);
         panelCentre.add(btnAfficherCompteur);
         
         
@@ -515,20 +515,20 @@ public class FenAccueil extends JFrame {
         
         // Buttons
         RoundedButton btnAjouterLogement = new RoundedButton("Ajouter un logement", 20);
-        btnAjouterLogement.setBounds(728, 164, 173, 23);
+        btnAjouterLogement.setBounds(728, 182, 173, 23);
         panelCentre.add(btnAjouterLogement);
   
         RoundedButton btnAjouterDiagnostic = new RoundedButton("Ajouter un diagnostic", 20);
-        btnAjouterDiagnostic.setBounds(728, 205, 173, 23);
+        btnAjouterDiagnostic.setBounds(728, 228, 173, 23);
         panelCentre.add(btnAjouterDiagnostic);
         
         RoundedButton btnAjouterFactures = new RoundedButton("Ajouter des factures", 20);
-        btnAjouterFactures.setBounds(728, 249, 173, 23);
+        btnAjouterFactures.setBounds(728, 277, 173, 23);
         panelCentre.add(btnAjouterFactures);
         
         
         RoundedButton btnAfficherCompteur = new RoundedButton("Afficher les compteurs", 20);
-        btnAfficherCompteur.setBounds(728, 300, 173, 23);
+        btnAfficherCompteur.setBounds(728, 325, 173, 23);
         panelCentre.add(btnAfficherCompteur);
         
         return  panelLogements;
