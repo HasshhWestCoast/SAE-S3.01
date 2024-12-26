@@ -5,6 +5,10 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+
+import Controleur.GestionFenAssurances;
+import Controleur.GestionFenFacture;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -19,11 +23,10 @@ public class FenAccueil extends JFrame {
     private JPanel panelBiens;
     private JPanel panelLogements;
     
-    
-
-    private JPanel panel;
-    private JComboBox comboBoxIDAssurance;
     private JLayeredPane layeredPane;
+	private GestionFenAssurances gestionClicAssurances;
+	private GestionFenFacture gestionClicFacture;
+
 	
     /**
      * Launch the application.
@@ -163,6 +166,7 @@ public class FenAccueil extends JFrame {
     }
 
     private JPanel createAssurancesPanel() {
+    	
         JPanel panelAssurances = new JPanel();
         panelAssurances.setBackground(Color.WHITE);
         panelAssurances.setLayout(new BorderLayout(0, 0));
@@ -188,6 +192,8 @@ public class FenAccueil extends JFrame {
         panelCentre.setBackground(new Color(255, 255, 255));
         panelAssurances.add(panelCentre, BorderLayout.CENTER);
         panelCentre.setLayout(null);
+
+    	this.gestionClicAssurances = new GestionFenAssurances(this.panelAssurances);
 
         // Ajouter la JComboBox en haut
         JComboBox comboBoxIDAssurance = new JComboBox();
@@ -350,22 +356,27 @@ public class FenAccueil extends JFrame {
         panelCentre.add(panel);
         panel.setLayout(null);
 
-        RoundedButton btnIArchiver = new RoundedButton("Charger", 20);
-        btnIArchiver.setText("Archiver");
-        btnIArchiver.setBounds(269, 11, 85, 23);
-        panel.add(btnIArchiver);
+    	this.gestionClicFacture = new GestionFenFacture(this.panelFactures);
+
+        
+        RoundedButton btnArchiver = new RoundedButton("Archiver", 20);
+        btnArchiver.setBounds(269, 11, 85, 23);
+        btnArchiver.addActionListener(this.gestionClicFacture);
+        panel.add(btnArchiver);
 
         RoundedButton btnInserer = new RoundedButton("Inserer", 20);
         btnInserer.setBounds(410, 11, 80, 23);
+        btnInserer.addActionListener(this.gestionClicFacture);
         panel.add(btnInserer);
 
-        RoundedButton btnModifier = new RoundedButton("Mise à jour", 20);
-        btnModifier.setText("Modifier");
+        RoundedButton btnModifier = new RoundedButton("Modifier", 20);
         btnModifier.setBounds(536, 11, 96, 23);
+        btnModifier.addActionListener(this.gestionClicFacture);
         panel.add(btnModifier);
 
         RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
         btnSupprimer.setBounds(676, 11, 96, 23);
+        btnSupprimer.addActionListener(this.gestionClicFacture);
         panel.add(btnSupprimer);
 
         return panelFactures;
@@ -539,4 +550,5 @@ public class FenAccueil extends JFrame {
         CardLayout layout = (CardLayout) layeredPane.getLayout();
         layout.show(layeredPane, panelName);
     }
+    
 }
