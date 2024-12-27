@@ -3,20 +3,18 @@ package Controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JPanel;
-
 import Vue.FenAccueil;
 import Vue.RoundedButton;
-import Vue.Insertion.FenAjoutAssurance;
 
 
-public class GestionFenAssurances implements ActionListener{
+public class GestionFenLocation implements ActionListener {
 
 	private FenAccueil fenAc;
 	
-	public GestionFenAssurances(FenAccueil fenAc) {
+	public GestionFenLocation(FenAccueil fenAc) {
 		this.fenAc = fenAc;
 	}
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -26,14 +24,19 @@ public class GestionFenAssurances implements ActionListener{
 		if (texte != null) {
 			switch (texte) {
 				case "Charger":
-					System.out.println("Vous CHARGER les données dans Assurance !");
+					System.out.println("Vous Charger les donnée dans Location !");
 					break;
 					
+				case "Supprimer":
+					System.out.println("Vous SUPPRIMER une données dans Location !");
+					break;
+				
 				case "Inserer":
-					System.out.println("Vous INSERER une donnée dans Assurances !");
-					FenAjoutAssurance fenAddAssurance = new FenAjoutAssurance();
-					fenAc.getLayeredPane().add(fenAddAssurance);
-					fenAddAssurance.setVisible(true);
+					System.out.println("Vous INSERER une donnée dans Location !");
+					break;
+					
+				case "Mise à jour":
+					System.out.println("Vous METTEZ A JOUR une donnée dans Location !");
 					break;
 					
 				default:

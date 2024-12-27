@@ -14,12 +14,11 @@ import Vue.Insertion.FenAjoutFacture;
 
 public class GestionFenBien implements ActionListener{
 
-	private FenAccueil fenAc;
+private FenAccueil fenAc;
 	
 	public GestionFenBien(FenAccueil fenAc) {
 		this.fenAc = fenAc;
 	}
-	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -29,32 +28,33 @@ public class GestionFenBien implements ActionListener{
 		if (texte != null) {
 			switch (texte) {
 				case "Modifier":
-					System.out.println("Vous MODIFIER une donnée dans Facture !");
+					System.out.println("Vous MODIFIER une donnée dans Bien !");
 					break;
 					
 				case "Supprimer":
-					System.out.println("Vous SUPPRIMER une données dans Facture !");
-					//Fen Cn = new Connexion();
-					//fenPr.getLayeredPane().add(Cn);
-					//Cn.setVisible(true);
+					System.out.println("Vous SUPPRIMER une données dans Bien !");
 					break;
-					
-				case "Inserer":
-					System.out.println("Vous INSERER une donnée dans Bien !");
-					FenAjoutBien fenBien = new FenAjoutBien();
-					fenAc.getLayeredPane().add(fenBien);
-					fenBien.setVisible(true);
-					
-
-					
 				
+				case "Archiver":
+					System.out.println("Vous ARCHIVER une donnée prevenant de Bien !");
 					break;
 					
-				case "Archiver":
-					System.out.println("Vous ARCHIVER une donnée prevenant de Facture !");
-					//Fen Cn = new Connexion();
-					//fenPr.getLayeredPane().add(Cn);
-					//Cn.setVisible(true);
+				case "Afficher les compteurs":
+					System.out.println("Vous AFFICHER LES COMPTEURS depuis Bien !");
+					break;
+					
+				case "Ajouter un bien":
+					System.out.println("Vous AJOUTER UN BIEN dans Bien !");
+					FenAjoutBien fenAddBien = new FenAjoutBien();
+					fenAc.getLayeredPane().add(fenAddBien);
+					fenAddBien.setVisible(true);
+					break;
+					
+				case "Ajouter des factures":
+					System.out.println("Vous AJOUTER DES FACTURES depuis Bien !");
+					FenAjoutFacture fenAddFacture = new FenAjoutFacture();
+					fenAc.getLayeredPane().add(fenAddFacture);
+					fenAddFacture.setVisible(true);
 					break;
 					
 				default:
@@ -64,5 +64,4 @@ public class GestionFenBien implements ActionListener{
 			System.out.println("Source non reconnu !");
 		}
 	}
-
 }

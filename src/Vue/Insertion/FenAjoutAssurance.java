@@ -116,22 +116,22 @@ public class FenAjoutAssurance extends JInternalFrame {
         ));
         JScrollPane scrollPaneEntreprise = new JScrollPane(tabMesEntreprise);
         scrollPaneEntreprise.setBorder(new LineBorder(new Color(109, 109, 109), 2));
-		scrollPaneEntreprise.setBounds(645, 87, 268, 134);        
+		scrollPaneEntreprise.setBounds(612, 87, 268, 134);        
 		getContentPane().add(scrollPaneEntreprise);
 		
 		RoundedButton btnChargerEntreprise = new RoundedButton("Annuler", 20);
 		btnChargerEntreprise.setText("Charger");
-		btnChargerEntreprise.setBounds(697, 241, 85, 21);
+		btnChargerEntreprise.setBounds(645, 231, 85, 21);
 		getContentPane().add(btnChargerEntreprise);
 		
 		RoundedButton btnInsererEntreprise = new RoundedButton("Annuler", 20);
 		btnInsererEntreprise.setText("Inserer");
-		btnInsererEntreprise.setBounds(804, 241, 85, 21);
+		btnInsererEntreprise.setBounds(769, 231, 85, 21);
 		getContentPane().add(btnInsererEntreprise);
 		
 		RoundedButton btnChargerLogement = new RoundedButton("Annuler", 20);
 		btnChargerLogement.setText("Charger");
-		btnChargerLogement.setBounds(42, 241, 85, 21);
+		btnChargerLogement.setBounds(42, 231, 85, 21);
 		getContentPane().add(btnChargerLogement);
 		
 		JLabel lblTrouverLogement = new JLabel("Trouver Logement");
@@ -148,7 +148,7 @@ public class FenAjoutAssurance extends JInternalFrame {
 		
 		RoundedButton btnInsererLogement = new RoundedButton("Annuler", 20);
 		btnInsererLogement.setText("Inserer");
-		btnInsererLogement.setBounds(151, 241, 85, 21);
+		btnInsererLogement.setBounds(151, 231, 85, 21);
 		getContentPane().add(btnInsererLogement);
 		
 		JTable tabMesLogements = new JTable();

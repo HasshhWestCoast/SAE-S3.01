@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import Controleur.GestionFenBien;
 import Controleur.GestionFenAssurances;
 import Controleur.GestionFenFacture;
+import Controleur.GestionFenLocation;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -27,7 +28,8 @@ public class FenAccueil extends JFrame {
     private JLayeredPane layeredPane;
 	private GestionFenAssurances gestionClicAssurances;
 	private GestionFenFacture gestionClicFacture;
-	private GestionFenBien gestionBien;
+	private GestionFenBien gestionClicBien;
+	private GestionFenLocation gestionClicLocation;
 
 
 	
@@ -170,6 +172,8 @@ public class FenAccueil extends JFrame {
 
     private JPanel createAssurancesPanel() {
     	
+    	this.gestionClicAssurances = new GestionFenAssurances(this);
+
         JPanel panelAssurances = new JPanel();
         panelAssurances.setBackground(Color.WHITE);
         panelAssurances.setLayout(new BorderLayout(0, 0));
@@ -195,8 +199,6 @@ public class FenAccueil extends JFrame {
         panelCentre.setBackground(new Color(255, 255, 255));
         panelAssurances.add(panelCentre, BorderLayout.CENTER);
         panelCentre.setLayout(null);
-
-    	this.gestionClicAssurances = new GestionFenAssurances(this);
 
         // Ajouter la JComboBox en haut
         JComboBox comboBoxIDAssurance = new JComboBox();
@@ -226,11 +228,13 @@ public class FenAccueil extends JFrame {
         panelSud.setBackground(new Color(240, 240, 240));
         panelSud.setLayout(null);
 
-        RoundedButton btnICharger = new RoundedButton("Charger", 20);
-        btnICharger.setBounds(393, 11, 92, 23);
-        panelSud.add(btnICharger);
+        RoundedButton btnCharger = new RoundedButton("Charger", 20);
+        btnCharger.addActionListener(this.gestionClicAssurances);
+        btnCharger.setBounds(393, 11, 92, 23);
+        panelSud.add(btnCharger);
 
         RoundedButton btnInserer = new RoundedButton("Inserer", 20);
+        btnInserer.addActionListener(this.gestionClicAssurances);
         btnInserer.setBounds(520, 11, 81, 23);
         panelSud.add(btnInserer);
 
@@ -238,6 +242,9 @@ public class FenAccueil extends JFrame {
     }
     
     private JPanel createLocationsPanel() {
+    	
+        this.gestionClicLocation = new GestionFenLocation(this);
+
     	 JPanel panelLocations = new JPanel();
     	 panelLocations.setLayout(new BorderLayout(0, 0));
     	 
@@ -283,23 +290,27 @@ public class FenAccueil extends JFrame {
           JPanel panel = new JPanel();
           panel.setBounds(0, 501, 1024, 48);
           panelCentre.add(panel);
-           	  panel.setLayout(null);
-          
-           	  RoundedButton btnICharger = new RoundedButton("Charger", 20);
-           	  btnICharger.setBounds(265, 11, 85, 23);
-           	  panel.add(btnICharger);
-           	  
-           	  RoundedButton btnInserer = new RoundedButton("Inserer", 20);
-           	  btnInserer.setBounds(405, 11, 80, 23);
-           	  panel.add(btnInserer);
-           	  
-           	  RoundedButton btnMiseAJour = new RoundedButton("Mise à jour", 20);
-           	  btnMiseAJour.setBounds(528, 11, 96, 23);
-           	  panel.add(btnMiseAJour);
-           	  
-           	  RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
-           	  btnSupprimer.setBounds(657, 11, 96, 23);
-           	  panel.add(btnSupprimer);
+          panel.setLayout(null);
+                    
+       	  RoundedButton btnICharger = new RoundedButton("Charger", 20);
+       	  btnICharger.addActionListener(this.gestionClicLocation);
+       	  btnICharger.setBounds(265, 11, 85, 23);
+       	  panel.add(btnICharger);
+       	  
+       	  RoundedButton btnInserer = new RoundedButton("Inserer", 20);
+       	  btnInserer.addActionListener(this.gestionClicLocation);
+       	  btnInserer.setBounds(405, 11, 80, 23);
+       	  panel.add(btnInserer);
+       	  
+       	  RoundedButton btnMiseAJour = new RoundedButton("Mise à jour", 20);
+       	  btnMiseAJour.addActionListener(this.gestionClicLocation);
+       	  btnMiseAJour.setBounds(528, 11, 96, 23);
+       	  panel.add(btnMiseAJour);
+       	  
+       	  RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
+       	  btnSupprimer.addActionListener(this.gestionClicLocation);
+       	  btnSupprimer.setBounds(657, 11, 96, 23);
+       	  panel.add(btnSupprimer);
   	
     	 return panelLocations;
 		
@@ -307,6 +318,9 @@ public class FenAccueil extends JFrame {
     }
     
     private JPanel createFacturesPanel() {
+    	
+    	this.gestionClicFacture = new GestionFenFacture(this);
+
         JPanel panelFactures = new JPanel();
         panelFactures.setLayout(new BorderLayout(0, 0));
 
@@ -358,9 +372,6 @@ public class FenAccueil extends JFrame {
         panel.setBounds(0, 501, 1024, 48);
         panelCentre.add(panel);
         panel.setLayout(null);
-
-    	this.gestionClicFacture = new GestionFenFacture(this);
-
         
         RoundedButton btnArchiver = new RoundedButton("Archiver", 20);
         btnArchiver.setBounds(269, 11, 85, 23);
@@ -386,6 +397,9 @@ public class FenAccueil extends JFrame {
     }
     
     private JPanel createBiensPanel() {
+    	
+        this.gestionClicBien = new GestionFenBien(this);
+
         JPanel panelBiens = new JPanel();
         panelBiens.setLayout(new BorderLayout(0, 0));
 
@@ -428,44 +442,38 @@ public class FenAccueil extends JFrame {
         panel.setBounds(0, 501, 1024, 48);
         panelCentre.add(panel);
         panel.setLayout(null);
-        
-        this.gestionBien = new GestionFenBien(this);
 
-
-        RoundedButton btnIArchiver = new RoundedButton("Charger", 20);
-        btnIArchiver.setText("Archiver");
+        RoundedButton btnIArchiver = new RoundedButton("Archiver", 20);
+        btnIArchiver.addActionListener(this.gestionClicBien);
         btnIArchiver.setBounds(255, 11, 85, 23);
         panel.add(btnIArchiver);
 
-        RoundedButton btnInserer = new RoundedButton("Inserer", 20);
-        btnInserer.setBounds(373, 11, 80, 23);
-        btnInserer.addActionListener(this.gestionBien);
-        panel.add(btnInserer);
-
-        RoundedButton btnModifier = new RoundedButton("Mise à jour", 20);
-        btnModifier.setText("Modifier");
-        btnModifier.setBounds(489, 11, 96, 23);
+        RoundedButton btnModifier = new RoundedButton("Modifier", 20);
+        btnModifier.addActionListener(this.gestionClicBien);
+        btnModifier.setBounds(364, 11, 96, 23);
         panel.add(btnModifier);
 
         RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
-        btnSupprimer.setBounds(616, 11, 96, 23);
+        btnSupprimer.addActionListener(this.gestionClicBien);
+        btnSupprimer.setBounds(480, 11, 96, 23);
         panel.add(btnSupprimer);
         
         // Buttons
         RoundedButton btnAjouterUnBien = new RoundedButton("Ajouter un bien", 20);
+        btnAjouterUnBien.addActionListener(this.gestionClicBien);
         btnAjouterUnBien.setBounds(743, 198, 173, 23);
         panelCentre.add(btnAjouterUnBien);
   
         RoundedButton btnAjouterFactures = new RoundedButton("Ajouter des factures", 20);
+        btnAjouterFactures.addActionListener(this.gestionClicBien);
         btnAjouterFactures.setBounds(743, 251, 173, 23);
         panelCentre.add(btnAjouterFactures);
         
         RoundedButton btnAfficherCompteur = new RoundedButton("Afficher les compteurs", 20);
+        btnAfficherCompteur.addActionListener(this.gestionClicBien);
         btnAfficherCompteur.setBounds(743, 303, 173, 23);
         panelCentre.add(btnAfficherCompteur);
         
-        
-
         return panelBiens;
     }
 

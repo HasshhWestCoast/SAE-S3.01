@@ -19,7 +19,6 @@ public class GestionFenFacture implements ActionListener{
 		this.fenAc = fenAc;
 	}
 	
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
@@ -33,9 +32,6 @@ public class GestionFenFacture implements ActionListener{
 					
 				case "Supprimer":
 					System.out.println("Vous SUPPRIMER une données dans Facture !");
-					//Fen Cn = new Connexion();
-					//fenPr.getLayeredPane().add(Cn);
-					//Cn.setVisible(true);
 					break;
 					
 				case "Inserer":
@@ -48,9 +44,6 @@ public class GestionFenFacture implements ActionListener{
 					
 				case "Archiver":
 					System.out.println("Vous ARCHIVER une donnée prevenant de Facture !");
-					//Fen Cn = new Connexion();
-					//fenPr.getLayeredPane().add(Cn);
-					//Cn.setVisible(true);
 					break;
 					
 				default:
