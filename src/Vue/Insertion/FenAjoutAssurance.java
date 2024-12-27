@@ -63,11 +63,11 @@ public class FenAjoutAssurance extends JInternalFrame {
 		getContentPane().add(lblNumeroPolice);
 		
 		RoundedButton btnAnnulerAssurance = new RoundedButton("Annuler", 20);
-		btnAnnulerAssurance.setBounds(355, 274, 85, 21);
+		btnAnnulerAssurance.setBounds(355, 339, 85, 21);
 		getContentPane().add(btnAnnulerAssurance);
 		
 		RoundedButton btnAjouterAssurance = new RoundedButton("Ajouter", 20);
-		btnAjouterAssurance.setBounds(476, 274, 85, 21);
+		btnAjouterAssurance.setBounds(475, 339, 85, 21);
 		getContentPane().add(btnAjouterAssurance);
 		
 		JLabel lblAjoutAssurance = new JLabel("Ajout Assurance");

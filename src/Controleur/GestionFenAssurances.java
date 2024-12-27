@@ -3,8 +3,6 @@ package Controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JPanel;
-
 import Vue.FenAccueil;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutAssurance;
@@ -32,6 +30,11 @@ public class GestionFenAssurances implements ActionListener{
 				case "Inserer":
 					System.out.println("Vous INSERER une donnée dans Assurances !");
 					FenAjoutAssurance fenAddAssurance = new FenAjoutAssurance();
+					
+					int width = fenAc.getLayeredPane().getWidth();
+		            int height = fenAc.getLayeredPane().getHeight();
+					fenAddAssurance.setBounds(50, 50, width - 100, height - 100);
+					
 					fenAc.getLayeredPane().add(fenAddAssurance);
 					fenAddAssurance.setVisible(true);
 					break;
