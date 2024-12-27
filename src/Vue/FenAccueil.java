@@ -6,7 +6,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Controleur.GestionBien;
+import Controleur.GestionFenBien;
 import Controleur.GestionFenAssurances;
 import Controleur.GestionFenFacture;
 
@@ -27,7 +27,7 @@ public class FenAccueil extends JFrame {
     private JLayeredPane layeredPane;
 	private GestionFenAssurances gestionClicAssurances;
 	private GestionFenFacture gestionClicFacture;
-	private GestionBien gestionBien;
+	private GestionFenBien gestionBien;
 
 
 	
@@ -429,7 +429,7 @@ public class FenAccueil extends JFrame {
         panelCentre.add(panel);
         panel.setLayout(null);
         
-        this.gestionBien = new GestionBien(this);
+        this.gestionBien = new GestionFenBien(this);
 
 
         RoundedButton btnIArchiver = new RoundedButton("Charger", 20);

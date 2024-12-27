@@ -12,11 +12,11 @@ import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutBien;
 import Vue.Insertion.FenAjoutFacture;
 
-public class GestionBien implements ActionListener{
+public class GestionFenBien implements ActionListener{
 
 	private FenAccueil fenAc;
 	
-	public GestionBien(FenAccueil fenAc) {
+	public GestionFenBien(FenAccueil fenAc) {
 		this.fenAc = fenAc;
 	}
 	
