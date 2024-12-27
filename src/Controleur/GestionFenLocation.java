@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import Vue.FenAccueil;
 import Vue.RoundedButton;
+import Vue.Insertion.FenAjoutLocation;
 
 
 public class GestionFenLocation implements ActionListener {
@@ -33,6 +34,14 @@ public class GestionFenLocation implements ActionListener {
 				
 				case "Inserer":
 					System.out.println("Vous INSERER une donnée dans Location !");
+					FenAjoutLocation fenAddLocation = new FenAjoutLocation();
+					
+					int width = fenAc.getLayeredPane().getWidth();
+		            int height = fenAc.getLayeredPane().getHeight();
+		            fenAddLocation.setBounds(50, 50, width - 100, height - 50);
+					
+					fenAc.getLayeredPane().add(fenAddLocation);
+					fenAddLocation.setVisible(true);
 					break;
 					
 				case "Mise à jour":

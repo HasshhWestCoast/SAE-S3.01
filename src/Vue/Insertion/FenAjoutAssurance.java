@@ -51,62 +51,62 @@ public class FenAjoutAssurance extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblMontant = new JLabel("Montant");
-		lblMontant.setBounds(355, 125, 96, 13);
+		lblMontant.setBounds(489, 127, 96, 13);
 		getContentPane().add(lblMontant);
 		
 		JLabel lblDateEcheance = new JLabel("Date échéance");
-		lblDateEcheance.setBounds(355, 178, 85, 13);
+		lblDateEcheance.setBounds(489, 179, 85, 13);
 		getContentPane().add(lblDateEcheance);
 		
 		JLabel lblNumeroPolice = new JLabel("Numero police");
-		lblNumeroPolice.setBounds(355, 64, 96, 13);
+		lblNumeroPolice.setBounds(489, 60, 96, 13);
 		getContentPane().add(lblNumeroPolice);
 		
 		RoundedButton btnAnnulerAssurance = new RoundedButton("Annuler", 20);
-		btnAnnulerAssurance.setBounds(355, 339, 85, 21);
+		btnAnnulerAssurance.setBounds(489, 277, 85, 21);
 		getContentPane().add(btnAnnulerAssurance);
 		
 		RoundedButton btnAjouterAssurance = new RoundedButton("Ajouter", 20);
-		btnAjouterAssurance.setBounds(475, 339, 85, 21);
+		btnAjouterAssurance.setBounds(613, 277, 85, 21);
 		getContentPane().add(btnAjouterAssurance);
 		
 		JLabel lblAjoutAssurance = new JLabel("Ajout Assurance");
 		lblAjoutAssurance.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAjoutAssurance.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblAjoutAssurance.setBounds(388, 27, 131, 21);
+		lblAjoutAssurance.setBounds(536, 14, 131, 21);
 		getContentPane().add(lblAjoutAssurance);
 		
 		JSeparator separatorAjoutAssurance = new JSeparator();
 		separatorAjoutAssurance.setForeground(new Color(255, 255, 255));
 		separatorAjoutAssurance.setBackground(new Color(31, 151, 83));
-		separatorAjoutAssurance.setBounds(362, 45, 188, 2);
+		separatorAjoutAssurance.setBounds(510, 33, 188, 2);
 		getContentPane().add(separatorAjoutAssurance);
 		
 		textFieldNumeroPolice = new JTextField();
-		textFieldNumeroPolice.setBounds(354, 87, 207, 19);
+		textFieldNumeroPolice.setBounds(489, 83, 207, 19);
 		getContentPane().add(textFieldNumeroPolice);
 		textFieldNumeroPolice.setColumns(10);
 		
 		textFieldMontant = new JTextField();
-		textFieldMontant.setBounds(354, 142, 207, 19);
+		textFieldMontant.setBounds(489, 146, 207, 19);
 		getContentPane().add(textFieldMontant);
 		textFieldMontant.setColumns(10);
 		
 		textFieldDateEcheance = new JTextField();
-		textFieldDateEcheance.setBounds(354, 198, 207, 19);
+		textFieldDateEcheance.setBounds(489, 202, 207, 19);
 		getContentPane().add(textFieldDateEcheance);
 		textFieldDateEcheance.setColumns(10);
 		
 		JLabel lblTrouverEntreprise = new JLabel("Trouver Entreprise");
 		lblTrouverEntreprise.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTrouverEntreprise.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblTrouverEntreprise.setBounds(672, 27, 131, 21);
+		lblTrouverEntreprise.setBounds(80, 200, 131, 21);
 		getContentPane().add(lblTrouverEntreprise);
 		
 		JSeparator separatorTrouverEntreprise = new JSeparator();
 		separatorTrouverEntreprise.setForeground(Color.WHITE);
 		separatorTrouverEntreprise.setBackground(new Color(31, 151, 83));
-		separatorTrouverEntreprise.setBounds(645, 45, 188, 2);
+		separatorTrouverEntreprise.setBounds(55, 215, 188, 2);
 		getContentPane().add(separatorTrouverEntreprise);
 	
 		JTable tabMesEntreprise = new JTable();
@@ -116,39 +116,39 @@ public class FenAjoutAssurance extends JInternalFrame {
         ));
         JScrollPane scrollPaneEntreprise = new JScrollPane(tabMesEntreprise);
         scrollPaneEntreprise.setBorder(new LineBorder(new Color(109, 109, 109), 2));
-		scrollPaneEntreprise.setBounds(612, 87, 268, 134);        
+		scrollPaneEntreprise.setBounds(10, 232, 306, 134);        
 		getContentPane().add(scrollPaneEntreprise);
 		
 		RoundedButton btnChargerEntreprise = new RoundedButton("Annuler", 20);
 		btnChargerEntreprise.setText("Charger");
-		btnChargerEntreprise.setBounds(645, 231, 85, 21);
+		btnChargerEntreprise.setBounds(326, 277, 85, 21);
 		getContentPane().add(btnChargerEntreprise);
 		
 		RoundedButton btnInsererEntreprise = new RoundedButton("Annuler", 20);
 		btnInsererEntreprise.setText("Inserer");
-		btnInsererEntreprise.setBounds(769, 231, 85, 21);
+		btnInsererEntreprise.setBounds(326, 315, 85, 21);
 		getContentPane().add(btnInsererEntreprise);
 		
 		RoundedButton btnChargerLogement = new RoundedButton("Annuler", 20);
 		btnChargerLogement.setText("Charger");
-		btnChargerLogement.setBounds(42, 231, 85, 21);
+		btnChargerLogement.setBounds(326, 82, 85, 21);
 		getContentPane().add(btnChargerLogement);
 		
 		JLabel lblTrouverLogement = new JLabel("Trouver Logement");
 		lblTrouverLogement.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTrouverLogement.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblTrouverLogement.setBounds(84, 27, 131, 21);
+		lblTrouverLogement.setBounds(80, 14, 131, 21);
 		getContentPane().add(lblTrouverLogement);
 		
 		JSeparator separatorTrouverLogement = new JSeparator();
 		separatorTrouverLogement.setForeground(Color.WHITE);
 		separatorTrouverLogement.setBackground(new Color(31, 151, 83));
-		separatorTrouverLogement.setBounds(56, 45, 188, 2);
+		separatorTrouverLogement.setBounds(55, 33, 188, 2);
 		getContentPane().add(separatorTrouverLogement);
 		
 		RoundedButton btnInsererLogement = new RoundedButton("Annuler", 20);
 		btnInsererLogement.setText("Inserer");
-		btnInsererLogement.setBounds(151, 231, 85, 21);
+		btnInsererLogement.setBounds(326, 121, 85, 21);
 		getContentPane().add(btnInsererLogement);
 		
 		JTable tabMesLogements = new JTable();
@@ -159,7 +159,7 @@ public class FenAjoutAssurance extends JInternalFrame {
 		
 		JScrollPane scrollPaneLogement = new JScrollPane(tabMesLogements);
 		scrollPaneLogement.setBorder(new LineBorder(new Color(109, 109, 109), 2));
-		scrollPaneLogement.setBounds(10, 87, 306, 134);
+		scrollPaneLogement.setBounds(10, 45, 306, 134);
 		getContentPane().add(scrollPaneLogement);
 	}
 }
