@@ -138,6 +138,6 @@ public class FenAjoutBien extends JInternalFrame {
 		textField.setBounds(80, 370, 223, 19);
 		getContentPane().add(textField);
 		textField.setColumns(10);
-		setBounds(100, 100, 423, 540);
+		setBounds(200, 100, 423, 540);
 	}
 }

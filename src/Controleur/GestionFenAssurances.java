@@ -5,15 +5,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
+import Vue.FenAccueil;
 import Vue.RoundedButton;
 
 
 public class GestionFenAssurances implements ActionListener{
 
 	private JPanel panel;
+	private FenAccueil fenAc;
 	
-	public GestionFenAssurances(JPanel panelAssurance) {
-		this.panel = panelAssurance;
+	public GestionFenAssurances(FenAccueil fenAc) {
+		this.fenAc = fenAc;
 	}
 	
 	@Override
@@ -25,6 +27,7 @@ public class GestionFenAssurances implements ActionListener{
 			switch (texte) {
 				case "Charger":
 					System.out.println("Vous charger les données dans table Assurance !");
+					
 					break;
 					
 				case "Inserer":

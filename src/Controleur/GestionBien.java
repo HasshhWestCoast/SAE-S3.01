@@ -9,13 +9,14 @@ import javax.swing.JPanel;
 
 import Vue.FenAccueil;
 import Vue.RoundedButton;
+import Vue.Insertion.FenAjoutBien;
 import Vue.Insertion.FenAjoutFacture;
 
-public class GestionFenFacture implements ActionListener{
+public class GestionBien implements ActionListener{
 
 	private FenAccueil fenAc;
 	
-	public GestionFenFacture(FenAccueil fenAc) {
+	public GestionBien(FenAccueil fenAc) {
 		this.fenAc = fenAc;
 	}
 	
@@ -39,10 +40,13 @@ public class GestionFenFacture implements ActionListener{
 					break;
 					
 				case "Inserer":
-					System.out.println("Vous INSERER une donnée dans Facture !");
-					FenAjoutFacture fenfac = new FenAjoutFacture();
-					fenAc.getLayeredPane().add(fenfac);
-					fenfac.setVisible(true);
+					System.out.println("Vous INSERER une donnée dans Bien !");
+					FenAjoutBien fenBien = new FenAjoutBien();
+					fenAc.getLayeredPane().add(fenBien);
+					fenBien.setVisible(true);
+					
+
+					
 				
 					break;
 					

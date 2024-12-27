@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Controleur.GestionBien;
 import Controleur.GestionFenAssurances;
 import Controleur.GestionFenFacture;
 
@@ -26,6 +27,8 @@ public class FenAccueil extends JFrame {
     private JLayeredPane layeredPane;
 	private GestionFenAssurances gestionClicAssurances;
 	private GestionFenFacture gestionClicFacture;
+	private GestionBien gestionBien;
+
 
 	
     /**
@@ -193,7 +196,7 @@ public class FenAccueil extends JFrame {
         panelAssurances.add(panelCentre, BorderLayout.CENTER);
         panelCentre.setLayout(null);
 
-    	this.gestionClicAssurances = new GestionFenAssurances(this.panelAssurances);
+    	this.gestionClicAssurances = new GestionFenAssurances(this);
 
         // Ajouter la JComboBox en haut
         JComboBox comboBoxIDAssurance = new JComboBox();
@@ -356,7 +359,7 @@ public class FenAccueil extends JFrame {
         panelCentre.add(panel);
         panel.setLayout(null);
 
-    	this.gestionClicFacture = new GestionFenFacture(this.panelFactures);
+    	this.gestionClicFacture = new GestionFenFacture(this);
 
         
         RoundedButton btnArchiver = new RoundedButton("Archiver", 20);
@@ -425,6 +428,9 @@ public class FenAccueil extends JFrame {
         panel.setBounds(0, 501, 1024, 48);
         panelCentre.add(panel);
         panel.setLayout(null);
+        
+        this.gestionBien = new GestionBien(this);
+
 
         RoundedButton btnIArchiver = new RoundedButton("Charger", 20);
         btnIArchiver.setText("Archiver");
@@ -433,6 +439,7 @@ public class FenAccueil extends JFrame {
 
         RoundedButton btnInserer = new RoundedButton("Inserer", 20);
         btnInserer.setBounds(373, 11, 80, 23);
+        btnInserer.addActionListener(this.gestionBien);
         panel.add(btnInserer);
 
         RoundedButton btnModifier = new RoundedButton("Mise à jour", 20);

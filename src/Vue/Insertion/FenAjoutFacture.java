@@ -52,6 +52,9 @@ public class FenAjoutFacture extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public FenAjoutFacture() {
+		
+		setBounds(50, 100, 950, 500); // Exemple de dimensions
+
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
 		
