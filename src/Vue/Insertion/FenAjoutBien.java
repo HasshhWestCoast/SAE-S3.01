@@ -71,7 +71,7 @@ public class FenAjoutBien extends JInternalFrame {
 		textFieldVille.setColumns(10);
 		
 		JLabel lblTypeDeBien = new JLabel("Type de bien");
-		lblTypeDeBien.setBounds(82, 234, 64, 13);
+		lblTypeDeBien.setBounds(82, 234, 80, 13);
 		getContentPane().add(lblTypeDeBien);
 		
 		JLabel lblCodePostale = new JLabel("Code Postal");
