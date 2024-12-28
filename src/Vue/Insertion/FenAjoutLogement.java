@@ -10,8 +10,11 @@ import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.SwingConstants;
 
+import ControleurAjouter.GestionFenAjoutLogement;
 import Vue.RoundedButton;
 
 import javax.swing.JSeparator;
@@ -23,6 +26,7 @@ public class FenAjoutLogement extends JInternalFrame {
 	private JTextField textFieldAcquisition;
 	private JTextField textFieldIdLogement;
 	private JTextField textField;
+	private GestionFenAjoutLogement gestionFenAjoutLogement;
 
 	/**
 	 * Launch the application.
@@ -44,6 +48,8 @@ public class FenAjoutLogement extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public FenAjoutLogement() {
+	
+	    gestionFenAjoutLogement = new GestionFenAjoutLogement(this);
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
 		
@@ -83,10 +89,12 @@ public class FenAjoutLogement extends JInternalFrame {
 		textFieldIdLogement.setColumns(10);
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
+		btnAnnuler.addActionListener(gestionFenAjoutLogement);
 		btnAnnuler.setBounds(80, 399, 85, 21);
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
+		btnAjouter.addActionListener(gestionFenAjoutLogement);
 		btnAjouter.setBounds(211, 399, 85, 21);
 		getContentPane().add(btnAjouter);
 		
@@ -122,7 +130,7 @@ public class FenAjoutLogement extends JInternalFrame {
 		textField.setBounds(80, 261, 223, 19);
 		getContentPane().add(textField);
 		textField.setColumns(10);
-		setBounds(100, 100, 423, 507);
+		setBounds(300, 100, 423, 507);
 
 	}
 }

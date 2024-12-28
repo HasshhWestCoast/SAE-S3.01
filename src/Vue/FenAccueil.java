@@ -10,6 +10,7 @@ import Controleur.GestionFenBien;
 import Controleur.GestionFenAssurances;
 import Controleur.GestionFenFacture;
 import Controleur.GestionFenLocation;
+import Controleur.GestionFenLogements;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -30,6 +31,7 @@ public class FenAccueil extends JFrame {
 	private GestionFenFacture gestionClicFacture;
 	private GestionFenBien gestionClicBien;
 	private GestionFenLocation gestionClicLocation;
+	private GestionFenLogements gestionClicLogement;
 
 
 	
@@ -478,6 +480,8 @@ public class FenAccueil extends JFrame {
     }
 
     private JPanel createLogementsPanel() {
+    	
+    	this.gestionClicLogement = new GestionFenLogements(this);
     	JPanel panelLogements = new JPanel();
     	 panelLogements.setLayout(new BorderLayout(0, 0));
 
@@ -541,6 +545,7 @@ public class FenAccueil extends JFrame {
         
         // Buttons
         RoundedButton btnAjouterLogement = new RoundedButton("Ajouter un logement", 20);
+        btnAjouterLogement.addActionListener(this.gestionClicLogement);
         btnAjouterLogement.setBounds(728, 182, 173, 23);
         panelCentre.add(btnAjouterLogement);
   

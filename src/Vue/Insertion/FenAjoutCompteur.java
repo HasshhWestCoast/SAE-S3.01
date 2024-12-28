@@ -3,6 +3,7 @@ package Vue.Insertion;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -12,6 +13,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import ControleurAjouter.GestionFenAjoutCompteur;
 import Vue.RoundedButton;
 
 public class FenAjoutCompteur extends JInternalFrame {
@@ -20,6 +22,7 @@ public class FenAjoutCompteur extends JInternalFrame {
 	private JTextField textFieldIdCompteur;
 	private JTextField textFieldIndiceCompteur;
 	private JTextField textField;
+	private GestionFenAjoutCompteur gestionFenAjoutCompteur;
 
 	/**
 	 * Launch the application.
@@ -41,15 +44,19 @@ public class FenAjoutCompteur extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public FenAjoutCompteur() {
+		
+		this.gestionFenAjoutCompteur = new GestionFenAjoutCompteur(this);
 		setBackground(new Color(255, 255, 255));
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
+		btnAnnuler.addActionListener(gestionFenAjoutCompteur);
 		btnAnnuler.setBounds(77, 392, 85, 21);
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
+		btnAjouter.addActionListener(gestionFenAjoutCompteur);
 		btnAjouter.setBounds(213, 392, 85, 21);
 		getContentPane().add(btnAjouter);
 		

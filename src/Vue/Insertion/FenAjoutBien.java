@@ -12,6 +12,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import ControleurAjouter.GestionFenAjoutBien;
+import ControleurAjouter.GestionFenAjoutLogement;
+import Vue.FenAccueil;
 import Vue.RoundedButton;
 
 import javax.swing.DefaultComboBoxModel;
@@ -28,6 +31,9 @@ public class FenAjoutBien extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField textFieldCodePostale;
 	private JTextField textField;
+	private GestionFenAjoutBien gestionFenAjoutBien;
+	private  FenAccueil fenAccueil;
+	
 
 	/**
 	 * Launch the application.
@@ -49,6 +55,8 @@ public class FenAjoutBien extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public FenAjoutBien() {
+		
+		gestionFenAjoutBien = new GestionFenAjoutBien(this);
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
 		
@@ -88,10 +96,12 @@ public class FenAjoutBien extends JInternalFrame {
 		textFieldIdBien.setColumns(10);
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
+		btnAnnuler.addActionListener(gestionFenAjoutBien);
 		btnAnnuler.setBounds(82, 419, 85, 21);
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
+		btnAjouter.addActionListener(gestionFenAjoutBien);
 		btnAjouter.setBounds(218, 419, 85, 21);
 		getContentPane().add(btnAjouter);
 		
@@ -117,10 +127,7 @@ public class FenAjoutBien extends JInternalFrame {
 		getContentPane().add(comboBoxTypeDeBien);
 		
 		RoundedButton btnAjoutCompteur = new RoundedButton("Compteur", 20);
-		btnAjoutCompteur.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnAjoutCompteur.addActionListener(gestionFenAjoutBien);
 		btnAjoutCompteur.setText("Ajout Compteur");
 		btnAjoutCompteur.setBounds(146, 461, 109, 21);
 		getContentPane().add(btnAjoutCompteur);
