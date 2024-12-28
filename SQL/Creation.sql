@@ -1,37 +1,35 @@
--- Supprimez les tables existantes pour éviter les conflits
-DROP TABLE SAE_Immeuble CASCADE CONSTRAINTS;
-DROP TABLE SAE_Impot CASCADE CONSTRAINTS;
-DROP TABLE SAE_Entreprise CASCADE CONSTRAINTS;
-DROP TABLE SAE_Locataire CASCADE CONSTRAINTS;
-DROP TABLE SAE_ICC CASCADE CONSTRAINTS;
-DROP TABLE SAE_Bien CASCADE CONSTRAINTS;
-DROP TABLE SAE_Diagnostic CASCADE CONSTRAINTS;
-DROP TABLE SAE_Assurance CASCADE CONSTRAINTS;
-DROP TABLE SAE_Facture CASCADE CONSTRAINTS;
-DROP TABLE SAE_Louer CASCADE CONSTRAINTS;
-DROP TABLE SAE_Charge CASCADE CONSTRAINTS;
-DROP TABLE SAE_Compteur CASCADE CONSTRAINTS;
-DROP TABLE SAE_Imposer CASCADE CONSTRAINTS;
+-- Supprimer les tables existantes dans le bon ordre
 DROP TABLE SAE_Retient CASCADE CONSTRAINTS;
+DROP TABLE SAE_Imposer CASCADE CONSTRAINTS;
+DROP TABLE SAE_Compteur CASCADE CONSTRAINTS;
+DROP TABLE SAE_Charge CASCADE CONSTRAINTS;
+DROP TABLE SAE_Louer CASCADE CONSTRAINTS;
+DROP TABLE SAE_Facture CASCADE CONSTRAINTS;
+DROP TABLE SAE_Assurance CASCADE CONSTRAINTS;
+DROP TABLE SAE_Diagnostic CASCADE CONSTRAINTS;
+DROP TABLE SAE_Bien CASCADE CONSTRAINTS;
+DROP TABLE SAE_ICC CASCADE CONSTRAINTS;
+DROP TABLE SAE_Locataire CASCADE CONSTRAINTS;
+DROP TABLE SAE_Entreprise CASCADE CONSTRAINTS;
+DROP TABLE SAE_Impot CASCADE CONSTRAINTS;
+DROP TABLE SAE_Logement CASCADE CONSTRAINTS;
 
---suprretion des seqeunce
+-- Supprimer les séquences
 DROP SEQUENCE compteur_Impot;
 DROP SEQUENCE compteur_Diagnostic;
 
--- Création des séquences
+-- Créer les séquences
 CREATE SEQUENCE compteur_Impot START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE compteur_Diagnostic START WITH 1 INCREMENT BY 1;
 
---------------------------IMMEUBLE-------------------------------------
-CREATE TABLE SAE_Immeuble(
-   Id_Immeuble VARCHAR2(30) CONSTRAINT SAE_pk_imm PRIMARY KEY,
-   adresse VARCHAR2(50) CONSTRAINT SAE_nn_imm_adresse NOT NULL,
-   codepostal CHAR(5) CONSTRAINT SAE_nn_imm_cp NOT NULL,
-   ville VARCHAR2(50) CONSTRAINT SAE_nn_imm_ville NOT NULL,
-   periode_construction VARCHAR2(15),
-   type_immeuble VARCHAR2(30) CONSTRAINT SAE_nn_imm_type NOT NULL,
-   CONSTRAINT SAE_un_imm_adresse UNIQUE(adresse, codepostal, ville),
-   CONSTRAINT SAE_ck_imm_cp CHECK (REGEXP_LIKE(codepostal, '^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$'))
+--------------------------LOGEMENT-------------------------------------
+CREATE TABLE SAE_Logement(
+   Id_Logement VARCHAR2(30) CONSTRAINT SAE_pk_log PRIMARY KEY,
+   surface_habitable NUMBER CONSTRAINT SAE_nn_bien_surface_habitable NOT NULL,
+   date_acquisition DATE CONSTRAINT SAE_nn_bien_date_acq NOT NULL,
+   type_immeuble VARCHAR2(30) CONSTRAINT SAE_nn_log_type NOT NULL,
+   nb_pieces INT CONSTRAINT SAE_nn_bien_nb_pieces NOT NULL,
+   num_etage INT CONSTRAINT SAE_nn_bien_etage NOT NULL
 );
 
 --------------------------IMPOT-------------------------------------
@@ -78,12 +76,14 @@ CREATE TABLE SAE_ICC(
 --------------------------BIEN-------------------------------------
 CREATE TABLE SAE_Bien(
    Id_Bien VARCHAR2(30) CONSTRAINT SAE_pk_bien PRIMARY KEY,
-   surface_habitable NUMBER CONSTRAINT SAE_nn_bien_surface_habitable NOT NULL,
-   nb_pieces INT CONSTRAINT SAE_nn_bien_nb_pieces NOT NULL,
-   num_etage INT CONSTRAINT SAE_nn_bien_etage NOT NULL,
-   date_acquisition DATE CONSTRAINT SAE_nn_bien_date_acq NOT NULL,
+   adresse VARCHAR2(50) CONSTRAINT SAE_nn_log_adresse NOT NULL,
+   ville VARCHAR2(50) CONSTRAINT SAE_nn_log_ville NOT NULL,
    type_bien VARCHAR2(30) CONSTRAINT SAE_nn_bien_type NOT NULL,
-   Id_Immeuble VARCHAR2(30) CONSTRAINT SAE_fk_bien_immeuble REFERENCES SAE_Immeuble(Id_Immeuble) NOT NULL
+   codepostal CHAR(5) CONSTRAINT SAE_nn_log_cp NOT NULL,
+   periode_construction VARCHAR2(15),
+   Id_Logement VARCHAR2(30) CONSTRAINT SAE_fk_bien_Logement REFERENCES SAE_Logement(Id_Logement) NOT NULL,
+   CONSTRAINT SAE_un_log_adresse UNIQUE(adresse, codepostal, ville),
+   CONSTRAINT SAE_ck_log_cp CHECK (REGEXP_LIKE(codepostal, '^[0-9]{5}$'))
 );
 
 --------------------------DIAGNOSTIC-------------------------------------
@@ -100,7 +100,7 @@ CREATE TABLE SAE_Assurance(
    montant NUMBER NOT NULL,
    date_echeance DATE NOT NULL,
    SIRET CHAR(14) CONSTRAINT SAE_fk_assurance_siret REFERENCES SAE_Entreprise(SIRET),
-   Id_Immeuble VARCHAR2(30) CONSTRAINT SAE_fk_assurance_immeuble REFERENCES SAE_Immeuble(Id_Immeuble)
+   Id_Logement VARCHAR2(30) CONSTRAINT SAE_fk_assurance_logement REFERENCES SAE_Logement(Id_Logement)
 );
 
 --------------------------FACTURE-------------------------------------
@@ -115,10 +115,10 @@ CREATE TABLE SAE_Facture(
    montant NUMBER CONSTRAINT SAE_nn_facture_montant NOT NULL,
    imputable_locataire NUMBER(1) CONSTRAINT SAE_ck_facture_imputable_loc CHECK (imputable_locataire IN (0, 1)),
    acompte_verse NUMBER,
-   Id_Immeuble VARCHAR2(30),
+   Id_Logement VARCHAR2(30),
    Id_Bien VARCHAR2(30),
    SIRET CHAR(14),
-   CONSTRAINT SAE_fk_facture_immeuble FOREIGN KEY(Id_Immeuble) REFERENCES SAE_Immeuble(Id_Immeuble),
+   CONSTRAINT SAE_fk_facture_Logement FOREIGN KEY(Id_Logement) REFERENCES SAE_Logement(Id_Logement),
    CONSTRAINT SAE_fk_facture_bien FOREIGN KEY(Id_Bien) REFERENCES SAE_Bien(Id_Bien),
    CONSTRAINT SAE_fk_facture_siret FOREIGN KEY(SIRET) REFERENCES SAE_Entreprise(SIRET)
 );
@@ -158,15 +158,16 @@ CREATE TABLE SAE_Compteur(
    TypeComp VARCHAR2(50) CONSTRAINT SAE_nn_compteur_type NOT NULL,
    indexCompteur INT,
    date_releve DATE,
-   Id_Immeuble VARCHAR2(30),
+   Id_Logement VARCHAR2(30),
    Id_Bien VARCHAR2(30),
-   CONSTRAINT SAE_fk_compteur_immeuble FOREIGN KEY(Id_Immeuble) REFERENCES SAE_Immeuble(Id_Immeuble),
+   CONSTRAINT SAE_fk_compteur_logement FOREIGN KEY(Id_Logement) REFERENCES SAE_Logement(Id_Logement),
    CONSTRAINT SAE_fk_compteur_bien FOREIGN KEY(Id_Bien) REFERENCES SAE_Bien(Id_Bien)
 );
 
 --------------------------IMPOSER-------------------------------------
 CREATE TABLE SAE_Imposer(
-   Id_Bien VARCHAR2(30) CONSTRAINT SAE_fk_imposer_bien REFERENCES SAE_Bien(Id_Bien),Id_Impot VARCHAR2(50) CONSTRAINT SAE_fk_imposer_impot REFERENCES SAE_Impot(Id_Impot),
+   Id_Bien VARCHAR2(30) CONSTRAINT SAE_fk_imposer_bien REFERENCES SAE_Bien(Id_Bien),
+   Id_Impot VARCHAR2(50) CONSTRAINT SAE_fk_imposer_impot REFERENCES SAE_Impot(Id_Impot),
    CONSTRAINT SAE_pk_imposer PRIMARY KEY(Id_Bien, Id_Impot)
 );
 
@@ -181,7 +182,4 @@ CREATE TABLE SAE_Retient(
    CONSTRAINT SAE_fk_retient_locataire FOREIGN KEY (Id_Locataire) REFERENCES SAE_Locataire(Id_Locataire),
    CONSTRAINT SAE_fk_retient_charges FOREIGN KEY (Id_Charges) REFERENCES SAE_Charge(Id_Charges)
 );
-
-/
-
 
