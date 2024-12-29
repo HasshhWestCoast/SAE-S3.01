@@ -6,9 +6,9 @@ public class Compteur {
 	private int indexCompteur;
 	private String dateRelevé;
 	private Bien bien;
-	private Immeuble immeuble;
+	private Logement immeuble;
 
-	public Compteur(String idCompteur, String typeComp, int indexCompteur, String dateRelevé, Bien bien, Immeuble immeuble) {
+	public Compteur(String idCompteur, String typeComp, int indexCompteur, String dateRelevé, Bien bien, Logement immeuble) {
 		this.idCompteur = idCompteur;
 		this.typeComp = typeComp;
 		this.indexCompteur = indexCompteur;
@@ -49,11 +49,11 @@ public class Compteur {
 		this.bien = bien;
 	}
 
-	public Immeuble getImmeuble() {
+	public Logement getImmeuble() {
 		return immeuble;
 	}
 
-	public void setImmeuble(Immeuble immeuble) {
+	public void setImmeuble(Logement immeuble) {
 		this.immeuble = immeuble;
 	}
 

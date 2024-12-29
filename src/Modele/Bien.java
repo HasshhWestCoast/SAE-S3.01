@@ -3,27 +3,28 @@ package Modele;
 public class Bien {
 	private String idBien;
 	private double surfaceHabitable;
-	private int nbPieces;
-	private int numEtage;
-	private String dateAcquisition;
+	private String adresse;
+	private String ville;
 	private String typeBien;
-	private int nbPlaces;
-	private Immeuble immeuble;
+	private String codePostal;
+	private String periodeConstruction;
+	private Logement logement;
 
-	public Bien(String idBien, double surfaceHabitable, int nbPieces, int numEtage, String dateAcquisition,
-			String typeBien, int nbPlaces,Immeuble immeuble) {
+	public Bien(String idBien, double surfaceHabitable, String adresse,String ville,String typeBien,String codePostal,String periodeConstruction,Logement logement) {
 		this.idBien = idBien;
-		this.surfaceHabitable = surfaceHabitable;
-		this.nbPieces = nbPieces;
-		this.numEtage = numEtage;
-		this.dateAcquisition = dateAcquisition;
+		this.surfaceHabitable=surfaceHabitable;
+		this.adresse = adresse;
+		this.ville = ville;
 		this.typeBien = typeBien;
-		this.nbPlaces = nbPlaces;
-		this.immeuble = immeuble;
+		this.codePostal = codePostal;
+		this.periodeConstruction = periodeConstruction;
+		this.logement = logement;
+		
+		
 	}
 
 	public String getIdBien() {
-		return this.idBien;
+		return idBien;
 	}
 
 	public void setIdBien(String idBien) {
@@ -31,61 +32,62 @@ public class Bien {
 	}
 
 	public double getSurfaceHabitable() {
-		return this.surfaceHabitable;
+		return surfaceHabitable;
 	}
 
 	public void setSurfaceHabitable(double surfaceHabitable) {
 		this.surfaceHabitable = surfaceHabitable;
 	}
 
-	public int getNbPieces() {
-		return this.nbPieces;
+	public String getAdresse() {
+		return adresse;
 	}
 
-	public void setNbPieces(int nbPieces) {
-		this.nbPieces = nbPieces;
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 
-	public int getNumEtage() {
-		return this.numEtage;
+	public String getVille() {
+		return ville;
 	}
 
-	public void setNumEtage(int numEtage) {
-		this.numEtage = numEtage;
+	public void setVille(String ville) {
+		this.ville = ville;
 	}
 
-	public String getDateAcquisition() {
-		return this.dateAcquisition;
+	public String getTypeBien() {
+		return typeBien;
 	}
 
-	public void setDateAcquisition(String dateAcquisition) {
-		this.dateAcquisition = dateAcquisition;
-	}
-
-	public String getType_bien() {
-		return this.typeBien;
-	}
-
-	public void setType_bien(String typeBien) {
+	public void setTypeBien(String typeBien) {
 		this.typeBien = typeBien;
 	}
 
-	public Immeuble getImmeuble() {
-		return this.immeuble;
+	public String getCodePostal() {
+		return codePostal;
 	}
 
-	public void setImmeuble(Immeuble immeuble) {
-		this.immeuble = immeuble;
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
 	}
 
-
-	public int getNbPlaces() {
-		return nbPlaces;
+	public String getPeriodeConstruction() {
+		return periodeConstruction;
 	}
 
-	public void setNbPlaces(int nbPlaces) {
-		this.nbPlaces = nbPlaces;
+	public void setPeriodeConstruction(String periodeConstruction) {
+		this.periodeConstruction = periodeConstruction;
 	}
+
+	public Logement getLogement() {
+		return logement;
+	}
+
+	public void setLogement(Logement logement) {
+		this.logement = logement;
+	}
+
+	
 	
 
 }

@@ -5,10 +5,10 @@ public class assurance {
 	private String numeroPolice;
 	private float montant;
 	private String dateEcheance;
-	private Immeuble immeuble;
+	private Logement immeuble;
 	private Entreprise entreprise;
 
-	public assurance(String numeroPolice, float montant, String dateEcheance, Immeuble immeuble, Entreprise entreprise) {
+	public assurance(String numeroPolice, float montant, String dateEcheance, Logement immeuble, Entreprise entreprise) {
 		this.numeroPolice = numeroPolice;
 		this.montant = montant;
 		this.dateEcheance = dateEcheance;
@@ -40,11 +40,11 @@ public class assurance {
 		this.montant = montantInit;
 	}
 
-	public Immeuble getImmeuble() {
+	public Logement getImmeuble() {
 		return immeuble;
 	}
 
-	public void setImmeuble(Immeuble immeuble) {
+	public void setImmeuble(Logement immeuble) {
 		this.immeuble = immeuble;
 	}
 
