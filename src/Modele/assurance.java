@@ -1,5 +1,7 @@
 package Modele;
 
+import java.util.Objects;
+
 public class assurance {
 
 	private String numeroPolice;
@@ -8,7 +10,7 @@ public class assurance {
 	private Logement immeuble;
 	private Entreprise entreprise;
 
-	public assurance(String numeroPolice, float montant, String dateEcheance, Logement immeuble, Entreprise entreprise) {
+	public assurance(String numeroPolice, float montant, String dateEcheance, Logement logement, Entreprise entreprise) {
 		this.numeroPolice = numeroPolice;
 		this.montant = montant;
 		this.dateEcheance = dateEcheance;
@@ -56,6 +58,34 @@ public class assurance {
 		this.dateEcheance = dateEcheance;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(numeroPolice);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof assurance)) {
+			return false;
+		}
+		assurance other = (assurance) obj;
+		return Objects.equals(numeroPolice, other.numeroPolice);
+	}
+
+	@Override
+	public String toString() {
+		return "assurance [numeroPolice=" + numeroPolice + ", montant=" + montant + ", dateEcheance=" + dateEcheance
+				+ ", immeuble=" + immeuble + ", entreprise=" + entreprise + "]";
+	}
+	
+	
+	
+	
+
+	
 
 
 }
