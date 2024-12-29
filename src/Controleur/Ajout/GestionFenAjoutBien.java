@@ -8,6 +8,7 @@ import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutAssurance;
 import Vue.Insertion.FenAjoutBien;
 import Vue.Insertion.FenAjoutCompteur;
+import Vue.Insertion.FenAjoutFacture;
 import Vue.Insertion.FenAjoutLogement;
 
 
@@ -46,6 +47,15 @@ public class GestionFenAjoutBien implements ActionListener{
 	                fenAC.getLayeredPane().add(fenAjoutCompteur);
 	                fenAjoutCompteur.setVisible(true);
 	                fenAjoutCompteur.moveToFront();
+	               
+					break;
+				case "Ajouter des factures":
+					System.out.println("Vous ajouter des factures au logements");
+					  FenAjoutFacture fenAjoutFacture = new FenAjoutFacture();
+	                
+	                fenAC.getLayeredPane().add(fenAjoutFacture);
+	                fenAjoutFacture.setVisible(true);
+	                fenAjoutFacture.moveToFront();
 	               
 					
 					break;

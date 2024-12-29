@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import Vue.FenAccueil;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutAssurance;
+import Vue.Insertion.FenAjoutCompteur;
 import Vue.Insertion.FenAjoutLogement;
 
 
@@ -22,6 +23,9 @@ public class GestionFenAjoutLogement implements ActionListener{
 		Object source = e.getSource();
 		String texte = ((RoundedButton) source).getText();
 		
+		FenAccueil fenAC = (FenAccueil) this.fenAjoutLogement.getTopLevelAncestor();
+		
+		
 		if (texte != null) {
 			switch (texte) {
 				case "Annuler":
@@ -31,6 +35,18 @@ public class GestionFenAjoutLogement implements ActionListener{
 					
 				case "Ajouter":
 					System.out.println("Vous AJOUTER un logement !");
+					break;
+					
+				case "Ajouter un compteur":
+					System.out.println("Vous OUVREZ la page ajout compteur");
+				     FenAjoutCompteur fenAjoutCompteur = new FenAjoutCompteur();
+					
+	                
+	                fenAC.getLayeredPane().add(fenAjoutCompteur);
+	                fenAjoutCompteur.setVisible(true);
+	                fenAjoutCompteur.moveToFront();
+	               
+					
 					break;
 				default:
 					System.out.println("Action non reconnu !");

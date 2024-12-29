@@ -17,6 +17,8 @@ import Vue.RoundedButton;
 
 import javax.swing.JSeparator;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenAjoutLogement extends JInternalFrame {
 
@@ -88,12 +90,14 @@ public class FenAjoutLogement extends JInternalFrame {
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
 		btnAnnuler.addActionListener(gestionFenAjoutLogement);
-		btnAnnuler.setBounds(80, 399, 85, 21);
+		btnAnnuler.setBounds(80, 419, 85, 21);
 		getContentPane().add(btnAnnuler);
+		
+	
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
 		btnAjouter.addActionListener(gestionFenAjoutLogement);
-		btnAjouter.setBounds(211, 399, 85, 21);
+		btnAjouter.setBounds(209, 419, 85, 21);
 		getContentPane().add(btnAjouter);
 		
 		JLabel lblNewLabel_1 = new JLabel("Ajout Logement");
@@ -128,6 +132,11 @@ public class FenAjoutLogement extends JInternalFrame {
 		textField.setBounds(80, 261, 223, 19);
 		getContentPane().add(textField);
 		textField.setColumns(10);
+		
+		RoundedButton btnAjouterCompteur = new RoundedButton("Ajouter un compteur", 20);
+		btnAjouterCompteur.addActionListener(gestionFenAjoutLogement);
+		btnAjouterCompteur.setBounds(110, 370, 162, 21);
+		getContentPane().add(btnAjouterCompteur);
 		setBounds(300, 100, 423, 507);
 
 	}
