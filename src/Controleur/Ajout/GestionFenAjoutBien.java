@@ -5,12 +5,9 @@ import java.awt.event.ActionListener;
 
 import Vue.FenAccueil;
 import Vue.RoundedButton;
-import Vue.Insertion.FenAjoutAssurance;
 import Vue.Insertion.FenAjoutBien;
 import Vue.Insertion.FenAjoutCompteur;
 import Vue.Insertion.FenAjoutFacture;
-import Vue.Insertion.FenAjoutLogement;
-
 
 public class GestionFenAjoutBien implements ActionListener{
 

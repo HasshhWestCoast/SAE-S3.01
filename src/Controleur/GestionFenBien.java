@@ -3,10 +3,6 @@ package Controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JInternalFrame;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
-
 import Vue.FenAccueil;
 import Vue.FenCompteursBien;
 import Vue.RoundedButton;

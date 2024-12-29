@@ -14,8 +14,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Controleur.Ajout.GestionFenAjoutLocation;
 import Vue.RoundedButton;
-import java.awt.Component;
 
 public class FenAjoutLocation extends JInternalFrame {
 
@@ -25,7 +25,7 @@ public class FenAjoutLocation extends JInternalFrame {
 	private JTextField textFieldProvisionsCharge;
 	private JTextField textFieldMontantReel;
 	private JTextField textFieldCaution;
-
+	private GestionFenAjoutLocation gestionClicFenAjoutLoc;
 
 	/**
 	 * Launch the application.
@@ -47,6 +47,9 @@ public class FenAjoutLocation extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public FenAjoutLocation() {
+		
+		this.gestionClicFenAjoutLoc = new GestionFenAjoutLocation(this);
+		
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
 		
@@ -61,14 +64,6 @@ public class FenAjoutLocation extends JInternalFrame {
 		JLabel lblDateDebut = new JLabel("Date début");
 		lblDateDebut.setBounds(491, 60, 96, 13);
 		getContentPane().add(lblDateDebut);
-		
-		RoundedButton btnAnnulerLocation = new RoundedButton("Annuler", 20);
-		btnAnnulerLocation.setBounds(491, 479, 85, 21);
-		getContentPane().add(btnAnnulerLocation);
-		
-		RoundedButton btnAjouterLocation = new RoundedButton("Ajouter", 20);
-		btnAjouterLocation.setBounds(613, 479, 85, 21);
-		getContentPane().add(btnAjouterLocation);
 		
 		JLabel lblAjoutLocations = new JLabel("Ajout Location");
 		lblAjoutLocations.setHorizontalAlignment(SwingConstants.CENTER);
@@ -118,22 +113,7 @@ public class FenAjoutLocation extends JInternalFrame {
         scrollPaneMesBiens.setBorder(new LineBorder(new Color(109, 109, 109), 2));
 		scrollPaneMesBiens.setBounds(10, 228, 306, 142);        
 		getContentPane().add(scrollPaneMesBiens);
-		
-		RoundedButton btnChargerBien = new RoundedButton("Annuler", 20);
-		btnChargerBien.setText("Charger");
-		btnChargerBien.setBounds(334, 283, 85, 21);
-		getContentPane().add(btnChargerBien);
-		
-		RoundedButton btnInsererBien = new RoundedButton("Annuler", 20);
-		btnInsererBien.setText("Inserer");
-		btnInsererBien.setBounds(334, 317, 85, 21);
-		getContentPane().add(btnInsererBien);
-		
-		RoundedButton btnChargerLocataire = new RoundedButton("Annuler", 20);
-		btnChargerLocataire.setText("Charger");
-		btnChargerLocataire.setBounds(334, 98, 85, 21);
-		getContentPane().add(btnChargerLocataire);
-		
+	
 		JLabel lblTrouverLocataire = new JLabel("Trouver Locataire");
 		lblTrouverLocataire.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTrouverLocataire.setFont(new Font("Sylfaen", Font.PLAIN, 16));
@@ -145,11 +125,6 @@ public class FenAjoutLocation extends JInternalFrame {
 		separatorTrouverLogcataire.setBackground(new Color(31, 151, 83));
 		separatorTrouverLogcataire.setBounds(56, 32, 188, 2);
 		getContentPane().add(separatorTrouverLogcataire);
-		
-		RoundedButton btnInsererLocataire = new RoundedButton("Annuler", 20);
-		btnInsererLocataire.setText("Inserer");
-		btnInsererLocataire.setBounds(334, 134, 85, 21);
-		getContentPane().add(btnInsererLocataire);
 		
 		JTable tabMesLocataires = new JTable();
 		tabMesLocataires.setModel(new DefaultTableModel(
@@ -203,26 +178,57 @@ public class FenAjoutLocation extends JInternalFrame {
 		separatorTrouverICC.setBounds(68, 420, 188, 2);
 		getContentPane().add(separatorTrouverICC);
 		
-		RoundedButton btnChargerICC = new RoundedButton("Annuler", 20);
-		btnChargerICC.setText("Charger");
-		btnChargerICC.setBounds(334, 492, 85, 21);
+		RoundedButton btnChargerICC = new RoundedButton("Charger ICC", 20);
+		btnChargerICC.addActionListener(this.gestionClicFenAjoutLoc);
+		btnChargerICC.setBounds(334, 492, 108, 21);
 		getContentPane().add(btnChargerICC);
 		
-		RoundedButton btnInsererICC = new RoundedButton("Annuler", 20);
-		btnInsererICC.setText("Inserer");
-		btnInsererICC.setBounds(334, 532, 85, 21);
+		RoundedButton btnInsererICC = new RoundedButton("Inserer ICC", 20);
+		btnInsererICC.addActionListener(this.gestionClicFenAjoutLoc);
+		btnInsererICC.setBounds(334, 532, 108, 21);
 		getContentPane().add(btnInsererICC);
 		
-		RoundedButton btnAjouterEtatLieux = new RoundedButton("Annuler", 20);
-		btnAjouterEtatLieux.setText("Ajouter Etat Lieux");
+		RoundedButton btnAjouterEtatLieux = new RoundedButton("Ajouter Etat Lieux", 20);
+		btnAjouterEtatLieux.addActionListener(this.gestionClicFenAjoutLoc);
 		btnAjouterEtatLieux.setBounds(491, 362, 207, 21);
 		btnAjouterEtatLieux.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouterEtatLieux);
 		
-		RoundedButton btnAjouterBail = new RoundedButton("Annuler", 20);
-		btnAjouterBail.setText("Ajouter Lieux");
+		RoundedButton btnAjouterBail = new RoundedButton("Ajouter Lieux", 20);
+		btnAjouterBail.addActionListener(this.gestionClicFenAjoutLoc);
 		btnAjouterBail.setBounds(491, 402, 207, 21);
 		btnAjouterBail.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouterBail);
+		
+		RoundedButton btnInsererLocataire = new RoundedButton("Inserer L", 20);
+		btnInsererLocataire.addActionListener(this.gestionClicFenAjoutLoc);
+		btnInsererLocataire.setBounds(334, 134, 108, 21);
+		getContentPane().add(btnInsererLocataire);
+		
+		RoundedButton btnAnnulerLocation = new RoundedButton("Annuler", 20);
+		btnAnnulerLocation.addActionListener(this.gestionClicFenAjoutLoc);
+		btnAnnulerLocation.setBounds(491, 479, 85, 21);
+		getContentPane().add(btnAnnulerLocation);
+		
+		RoundedButton btnAjouterLocation = new RoundedButton("Ajouter", 20);
+		btnAjouterLocation.addActionListener(this.gestionClicFenAjoutLoc);
+		btnAjouterLocation.setBounds(613, 479, 85, 21);
+		getContentPane().add(btnAjouterLocation);
+		
+		RoundedButton btnChargerBien = new RoundedButton("Charger Bien", 20);
+		btnChargerBien.addActionListener(this.gestionClicFenAjoutLoc);
+		btnChargerBien.setBounds(330, 283, 112, 21);
+		getContentPane().add(btnChargerBien);
+		
+		RoundedButton btnInsererBien = new RoundedButton("Inserer Bien", 20);
+		btnInsererBien.addActionListener(this.gestionClicFenAjoutLoc);
+		btnInsererBien.setBounds(330, 317, 112, 21);
+		getContentPane().add(btnInsererBien);
+		
+		RoundedButton btnChargerLocataire = new RoundedButton("Charger L", 20);
+		btnChargerLocataire.addActionListener(this.gestionClicFenAjoutLoc);
+		btnChargerLocataire.setBounds(334, 98, 108, 21);
+		getContentPane().add(btnChargerLocataire);
+		
 	}
 }

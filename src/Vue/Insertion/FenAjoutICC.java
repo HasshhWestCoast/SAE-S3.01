@@ -4,14 +4,13 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import Controleur.Ajout.GestionFenAjoutICC;
 import Vue.RoundedButton;
 
 public class FenAjoutICC extends JInternalFrame {
@@ -20,6 +19,7 @@ public class FenAjoutICC extends JInternalFrame {
 	private JTextField textFieldAnnee;
 	private JTextField textFieldTrimestre;
 	private JTextField textFieldIndice;
+	private GestionFenAjoutICC gestionClicFenAjoutICC;
 
 	/**
 	 * Launch the application.
@@ -41,6 +41,9 @@ public class FenAjoutICC extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public FenAjoutICC() {
+		
+		this.gestionClicFenAjoutICC = new GestionFenAjoutICC(this);
+		
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
 		
@@ -56,19 +59,11 @@ public class FenAjoutICC extends JInternalFrame {
 		lblIndice.setBounds(80, 256, 131, 13);
 		getContentPane().add(lblIndice);
 		
-		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
-		btnAnnuler.setBounds(80, 353, 85, 21);
-		getContentPane().add(btnAnnuler);
-		
-		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
-		btnAjouter.setBounds(215, 353, 85, 21);
-		getContentPane().add(btnAjouter);
-		
-		JLabel lblNewLabel_1 = new JLabel("Ajout Logement");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(124, 26, 131, 21);
-		getContentPane().add(lblNewLabel_1);
+		JLabel lblICC = new JLabel("Ajout ICC");
+		lblICC.setHorizontalAlignment(SwingConstants.CENTER);
+		lblICC.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		lblICC.setBounds(124, 26, 131, 21);
+		getContentPane().add(lblICC);
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(255, 255, 255));
@@ -92,6 +87,16 @@ public class FenAjoutICC extends JInternalFrame {
 		textFieldIndice.setColumns(10);
 		setBounds(100, 100, 423, 453);
 
+
+		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
+		btnAnnuler.addActionListener(this.gestionClicFenAjoutICC);
+		btnAnnuler.setBounds(80, 353, 85, 21);
+		getContentPane().add(btnAnnuler);
+		
+		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
+		btnAjouter.addActionListener(this.gestionClicFenAjoutICC);
+		btnAjouter.setBounds(215, 353, 85, 21);
+		getContentPane().add(btnAjouter);
 
 	}
 

@@ -4,34 +4,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Vue.RoundedButton;
-import Vue.Insertion.FenAjoutCompteur;
+import Vue.Insertion.FenAjoutLocataire;
 
+public class GestionFenAjoutLocataire implements ActionListener{
 
-public class GestionFenAjoutCompteur implements ActionListener{
-
-	private FenAjoutCompteur fenAjoutCompteur;
+	private FenAjoutLocataire fenAjoutLoc;
 	
-	
-	public GestionFenAjoutCompteur(FenAjoutCompteur fenAjoutCompteur) {
-		this.fenAjoutCompteur = fenAjoutCompteur;
+	public GestionFenAjoutLocataire(FenAjoutLocataire fenAjoutLoc) {
+		this.fenAjoutLoc = fenAjoutLoc;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		String texte = ((RoundedButton) source).getText();
+
+		//FenAccueil fenAC = (FenAccueil) this.fenAjoutLoc.getTopLevelAncestor();
 		
 		if (texte != null) {
 			switch (texte) {
 				case "Annuler":
-					System.out.println("Vous FERMEZ la page ajout compteur");
-					this.fenAjoutCompteur.dispose();
+					System.out.println("Vous FERMEZ la page ajout Locataire !");
+					this.fenAjoutLoc.dispose();
 					break;
 					
 				case "Ajouter":
-					System.out.println("Vous AJOUTER un compteur au bien !");
+					System.out.println("Vous AJOUTER une Locataire !");
 					break;
-					
+				
 				default:
 					System.out.println("Action non reconnu !");
 			}
@@ -39,5 +39,4 @@ public class GestionFenAjoutCompteur implements ActionListener{
 			System.out.println("Source non reconnu !");
 		}
 	}
-
 }

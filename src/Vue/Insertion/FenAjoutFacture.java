@@ -9,7 +9,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
-import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -18,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import Controleur.Ajout.GestionFenAjoutFacture;
 import Vue.RoundedButton;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;

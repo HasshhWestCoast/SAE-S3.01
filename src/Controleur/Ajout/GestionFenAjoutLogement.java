@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import Vue.FenAccueil;
 import Vue.RoundedButton;
-import Vue.Insertion.FenAjoutAssurance;
 import Vue.Insertion.FenAjoutCompteur;
 import Vue.Insertion.FenAjoutLogement;
 

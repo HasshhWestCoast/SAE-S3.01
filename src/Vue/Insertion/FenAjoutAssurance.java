@@ -4,9 +4,6 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -17,8 +14,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Controleur.Ajout.GestionFenAjoutAssurance;
 import Vue.RoundedButton;
-import java.awt.Component;
 
 public class FenAjoutAssurance extends JInternalFrame {
 
@@ -26,6 +23,7 @@ public class FenAjoutAssurance extends JInternalFrame {
 	private JTextField textFieldNumeroPolice;
 	private JTextField textFieldMontant;
 	private JTextField textFieldDateEcheance;
+	private GestionFenAjoutAssurance gestionClicFenAjoutEntreprise;
 
 	/**
 	 * Launch the application.
@@ -47,6 +45,9 @@ public class FenAjoutAssurance extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public FenAjoutAssurance() {
+		
+		this.gestionClicFenAjoutEntreprise = new GestionFenAjoutAssurance(this);
+		
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
 		
@@ -61,14 +62,6 @@ public class FenAjoutAssurance extends JInternalFrame {
 		JLabel lblNumeroPolice = new JLabel("Numero police");
 		lblNumeroPolice.setBounds(489, 60, 96, 13);
 		getContentPane().add(lblNumeroPolice);
-		
-		RoundedButton btnAnnulerAssurance = new RoundedButton("Annuler", 20);
-		btnAnnulerAssurance.setBounds(489, 277, 85, 21);
-		getContentPane().add(btnAnnulerAssurance);
-		
-		RoundedButton btnAjouterAssurance = new RoundedButton("Ajouter", 20);
-		btnAjouterAssurance.setBounds(613, 277, 85, 21);
-		getContentPane().add(btnAjouterAssurance);
 		
 		JLabel lblAjoutAssurance = new JLabel("Ajout Assurance");
 		lblAjoutAssurance.setHorizontalAlignment(SwingConstants.CENTER);
@@ -119,21 +112,6 @@ public class FenAjoutAssurance extends JInternalFrame {
 		scrollPaneEntreprise.setBounds(10, 232, 306, 134);        
 		getContentPane().add(scrollPaneEntreprise);
 		
-		RoundedButton btnChargerEntreprise = new RoundedButton("Annuler", 20);
-		btnChargerEntreprise.setText("Charger");
-		btnChargerEntreprise.setBounds(326, 277, 85, 21);
-		getContentPane().add(btnChargerEntreprise);
-		
-		RoundedButton btnInsererEntreprise = new RoundedButton("Annuler", 20);
-		btnInsererEntreprise.setText("Inserer");
-		btnInsererEntreprise.setBounds(326, 315, 85, 21);
-		getContentPane().add(btnInsererEntreprise);
-		
-		RoundedButton btnChargerLogement = new RoundedButton("Annuler", 20);
-		btnChargerLogement.setText("Charger");
-		btnChargerLogement.setBounds(326, 82, 85, 21);
-		getContentPane().add(btnChargerLogement);
-		
 		JLabel lblTrouverLogement = new JLabel("Trouver Logement");
 		lblTrouverLogement.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTrouverLogement.setFont(new Font("Sylfaen", Font.PLAIN, 16));
@@ -146,11 +124,6 @@ public class FenAjoutAssurance extends JInternalFrame {
 		separatorTrouverLogement.setBounds(55, 33, 188, 2);
 		getContentPane().add(separatorTrouverLogement);
 		
-		RoundedButton btnInsererLogement = new RoundedButton("Annuler", 20);
-		btnInsererLogement.setText("Inserer");
-		btnInsererLogement.setBounds(326, 121, 85, 21);
-		getContentPane().add(btnInsererLogement);
-		
 		JTable tabMesLogements = new JTable();
 		tabMesLogements.setModel(new DefaultTableModel(
             new Object[][] { { null, null} },
@@ -161,5 +134,35 @@ public class FenAjoutAssurance extends JInternalFrame {
 		scrollPaneLogement.setBorder(new LineBorder(new Color(109, 109, 109), 2));
 		scrollPaneLogement.setBounds(10, 45, 306, 134);
 		getContentPane().add(scrollPaneLogement);
+		
+		RoundedButton btnChargerEntreprise = new RoundedButton("Charger E", 20);
+		btnChargerEntreprise.addActionListener(this.gestionClicFenAjoutEntreprise);
+		btnChargerEntreprise.setBounds(326, 277, 107, 21);
+		getContentPane().add(btnChargerEntreprise);
+		
+		RoundedButton btnInsererEntreprise = new RoundedButton("Inserer E", 20);
+		btnInsererEntreprise.addActionListener(this.gestionClicFenAjoutEntreprise);
+		btnInsererEntreprise.setBounds(326, 315, 107, 21);
+		getContentPane().add(btnInsererEntreprise);
+		
+		RoundedButton btnChargerLogement = new RoundedButton("Charger L", 20);
+		btnChargerLogement.addActionListener(this.gestionClicFenAjoutEntreprise);
+		btnChargerLogement.setBounds(326, 82, 107, 21);
+		getContentPane().add(btnChargerLogement);
+		
+		RoundedButton btnInsererLogement = new RoundedButton("Inserer L", 20);
+		btnInsererLogement.addActionListener(this.gestionClicFenAjoutEntreprise);
+		btnInsererLogement.setBounds(326, 121, 107, 21);
+		getContentPane().add(btnInsererLogement);
+		
+		RoundedButton btnAnnulerAssurance = new RoundedButton("Annuler", 20);
+		btnAnnulerAssurance.addActionListener(this.gestionClicFenAjoutEntreprise);
+		btnAnnulerAssurance.setBounds(489, 277, 85, 21);
+		getContentPane().add(btnAnnulerAssurance);
+		
+		RoundedButton btnAjouterAssurance = new RoundedButton("Ajouter", 20);
+		btnAjouterAssurance.addActionListener(this.gestionClicFenAjoutEntreprise);
+		btnAjouterAssurance.setBounds(613, 277, 85, 21);
+		getContentPane().add(btnAjouterAssurance);
 	}
 }

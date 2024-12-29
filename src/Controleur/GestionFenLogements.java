@@ -4,11 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Vue.FenAccueil;
-import Vue.FenCompteursBien;
 import Vue.FenCompteursLogement;
 import Vue.RoundedButton;
-import Vue.Insertion.FenAjoutAssurance;
-import Vue.Insertion.FenAjoutBien;
 import Vue.Insertion.FenAjoutFacture;
 import Vue.Insertion.FenAjoutLogement;
 
