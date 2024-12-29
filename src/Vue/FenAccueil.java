@@ -524,20 +524,16 @@ public class FenAccueil extends JFrame {
 
         RoundedButton btnIArchiver = new RoundedButton("Charger", 20);
         btnIArchiver.setText("Archiver");
-        btnIArchiver.setBounds(255, 11, 85, 23);
+        btnIArchiver.setBounds(284, 11, 85, 23);
         panel.add(btnIArchiver);
-
-        RoundedButton btnInserer = new RoundedButton("Inserer", 20);
-        btnInserer.setBounds(373, 11, 80, 23);
-        panel.add(btnInserer);
 
         RoundedButton btnModifier = new RoundedButton("Mise à jour", 20);
         btnModifier.setText("Modifier");
-        btnModifier.setBounds(489, 11, 96, 23);
+        btnModifier.setBounds(418, 11, 96, 23);
         panel.add(btnModifier);
 
         RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
-        btnSupprimer.setBounds(616, 11, 96, 23);
+        btnSupprimer.setBounds(559, 11, 96, 23);
         panel.add(btnSupprimer);
         
         // Buttons
@@ -551,6 +547,7 @@ public class FenAccueil extends JFrame {
         panelCentre.add(btnAjouterDiagnostic);
         
         RoundedButton btnAjouterFactures = new RoundedButton("Ajouter des factures", 20);
+        btnAjouterFactures.addActionListener(this.gestionClicLogement);
         btnAjouterFactures.setBounds(728, 277, 173, 23);
         panelCentre.add(btnAjouterFactures);
         
