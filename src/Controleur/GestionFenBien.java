@@ -8,6 +8,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import Vue.FenAccueil;
+import Vue.FenCompteursBien;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutBien;
 import Vue.Insertion.FenAjoutFacture;
@@ -41,6 +42,9 @@ private FenAccueil fenAc;
 					
 				case "Afficher les compteurs":
 					System.out.println("Vous AFFICHER LES COMPTEURS depuis Bien !");
+					FenCompteursBien fenCompMesBien = new FenCompteursBien();
+					fenAc.getLayeredPane().add(fenCompMesBien);
+					fenCompMesBien.setVisible(true);
 					break;
 					
 				case "Ajouter un bien":
