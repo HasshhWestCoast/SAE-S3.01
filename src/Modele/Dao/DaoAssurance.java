@@ -58,17 +58,21 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 	    java.sql.Date dateéchéance = curseur.getDate("date_échéance");
 	    
 	    String date_échéance = new java.text.SimpleDateFormat("dd/MM/yyyy").format(dateéchéance);
-	    
 	    String numero_Police = curseur.getString("numero_police");
-	    String montant = curseur.getString("montant");
-
+	    String montantString = curseur.getString("montant");
+	    float montant = Float.parseFloat(montantString);
+	    
 	    /*
+	    String SIRET = curseur.getString("SIRET");
+	    String ID_Logement = curseur.getString("ID_Logement");
+	    
 	    DaoLogement daoLogement = new DaoImmeuble(this.connexion);
-	    Logement log = daoLogement.findById(idLogement);
+	    Logement logement = daoLogement.findById(ID_Logement);
 
-	    DaoLogement daoMat = new DaoMat(this.connexion);
-	    Mat matiere = daoMat.findById(idMat);
+	    DaoEntreprise daoEntreprise = new DaoEntreprise(this.connexion);
+	    Entreprise entreprise = daoEntreprise.findById(SIRET);
 	     */
+	    
 	    return new assurance(numero_Police, montant, date_échéance, null, null );
 	}
 	
