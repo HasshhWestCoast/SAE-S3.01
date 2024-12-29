@@ -12,9 +12,6 @@ import Controleur.GestionFenFacture;
 import Controleur.GestionFenLocation;
 import Controleur.GestionFenLogements;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 public class FenAccueil extends JFrame {
 
     private static final long serialVersionUID = 1L;

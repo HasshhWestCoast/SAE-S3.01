@@ -1,7 +1,6 @@
 package Vue.Insertion;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 
@@ -12,28 +11,17 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import ControleurAjouter.GestionFenAjoutBien;
-import ControleurAjouter.GestionFenAjoutLogement;
-import Vue.FenAccueil;
+import Controleur.Ajout.GestionFenAjoutBien;
 import Vue.RoundedButton;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
-import java.util.Date;
-import java.util.Calendar;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class FenAjoutBien extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textFieldCodePostale;
 	private JTextField textField;
-	private GestionFenAjoutBien gestionFenAjoutBien;
-	private  FenAccueil fenAccueil;
-	
+	private GestionFenAjoutBien gestionClicFenAjoutBien;	
 
 	/**
 	 * Launch the application.
@@ -56,7 +44,7 @@ public class FenAjoutBien extends JInternalFrame {
 	 */
 	public FenAjoutBien() {
 		
-		gestionFenAjoutBien = new GestionFenAjoutBien(this);
+		gestionClicFenAjoutBien = new GestionFenAjoutBien(this);
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
 		
@@ -96,12 +84,12 @@ public class FenAjoutBien extends JInternalFrame {
 		textFieldIdBien.setColumns(10);
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
-		btnAnnuler.addActionListener(gestionFenAjoutBien);
+		btnAnnuler.addActionListener(gestionClicFenAjoutBien);
 		btnAnnuler.setBounds(82, 419, 85, 21);
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
-		btnAjouter.addActionListener(gestionFenAjoutBien);
+		btnAjouter.addActionListener(gestionClicFenAjoutBien);
 		btnAjouter.setBounds(218, 419, 85, 21);
 		getContentPane().add(btnAjouter);
 		
@@ -127,9 +115,9 @@ public class FenAjoutBien extends JInternalFrame {
 		getContentPane().add(comboBoxTypeDeBien);
 		
 		RoundedButton btnAjoutCompteur = new RoundedButton("Compteur", 20);
-		btnAjoutCompteur.addActionListener(gestionFenAjoutBien);
+		btnAjoutCompteur.addActionListener(gestionClicFenAjoutBien);
 		btnAjoutCompteur.setText("Ajout Compteur");
-		btnAjoutCompteur.setBounds(146, 461, 109, 21);
+		btnAjoutCompteur.setBounds(124, 461, 131, 21);
 		getContentPane().add(btnAjoutCompteur);
 		
 		textFieldCodePostale = new JTextField();

@@ -3,7 +3,6 @@ package Vue.Insertion;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -13,7 +12,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import ControleurAjouter.GestionFenAjoutCompteur;
+import Controleur.Ajout.GestionFenAjoutCompteur;
 import Vue.RoundedButton;
 
 public class FenAjoutCompteur extends JInternalFrame {

@@ -1,4 +1,4 @@
-package ControleurAjouter;
+package Controleur.Ajout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,16 +30,16 @@ public class GestionFenAjoutBien implements ActionListener{
 		if (texte != null) {
 			switch (texte) {
 				case "Annuler":
-					System.out.println("Vous fermez la page ajout bien");
+					System.out.println("Vous FERMEZ la page ajout bien");
 					this.fenAjoutBien.dispose();
 					break;
 					
 				case "Ajouter":
-					System.out.println("Vous ajouter un bien !");
+					System.out.println("Vous AJOUTER un bien !");
 					break;
 					
 				case "Ajout Compteur":
-					System.out.println("Vous ouvrer la page ajout compteur");
+					System.out.println("Vous OUVREZ la page ajout compteur");
 				     FenAjoutCompteur fenAjoutCompteur = new FenAjoutCompteur();
 					
 	                

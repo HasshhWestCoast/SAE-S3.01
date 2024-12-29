@@ -1,4 +1,4 @@
-package ControleurAjouter;
+package Controleur.Ajout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,15 +6,18 @@ import java.awt.event.ActionListener;
 import Vue.FenAccueil;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutAssurance;
+import Vue.Insertion.FenAjoutBien;
+import Vue.Insertion.FenAjoutCompteur;
 import Vue.Insertion.FenAjoutLogement;
 
 
-public class GestionFenAjoutLogement implements ActionListener{
+public class GestionFenAjoutCompteur implements ActionListener{
 
-	private FenAjoutLogement fenAjoutLogement;
+	private FenAjoutCompteur fenAjoutCompteur;
 	
-	public GestionFenAjoutLogement(FenAjoutLogement fenAjoutLogement) {
-		this.fenAjoutLogement = fenAjoutLogement;
+	
+	public GestionFenAjoutCompteur(FenAjoutCompteur fenAjoutCompteur) {
+		this.fenAjoutCompteur = fenAjoutCompteur;
 	}
 	
 	@Override
@@ -25,13 +28,14 @@ public class GestionFenAjoutLogement implements ActionListener{
 		if (texte != null) {
 			switch (texte) {
 				case "Annuler":
-					System.out.println("Vous fermez la page ajout logement");
-					this.fenAjoutLogement.dispose();
+					System.out.println("Vous FERMEZ la page ajout compteur");
+					this.fenAjoutCompteur.dispose();
 					break;
 					
 				case "Ajouter":
-					System.out.println("Vous ajouter un logement !");
+					System.out.println("Vous AJOUTER un compteur au bien !");
 					break;
+					
 				default:
 					System.out.println("Action non reconnu !");
 			}

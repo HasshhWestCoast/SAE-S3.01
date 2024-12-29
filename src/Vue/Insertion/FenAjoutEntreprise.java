@@ -14,6 +14,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import Controleur.Ajout.GestionFenAjoutEntreprise;
 import Vue.RoundedButton;
 
 public class FenAjoutEntreprise extends JInternalFrame {
@@ -25,6 +26,7 @@ public class FenAjoutEntreprise extends JInternalFrame {
 	private JTextField textFieldMail;
 	private JTextField textFieldIBAN;
 
+	private GestionFenAjoutEntreprise gestionClicFenAjoutEntreprise;
 	/**
 	 * Launch the application.
 	 */
@@ -45,6 +47,9 @@ public class FenAjoutEntreprise extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public FenAjoutEntreprise() {
+		
+		this.gestionClicFenAjoutEntreprise = new GestionFenAjoutEntreprise(this);
+				
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
 		
@@ -78,14 +83,6 @@ public class FenAjoutEntreprise extends JInternalFrame {
 		textfiledSIRET.setBounds(80, 84, 223, 19);
 		getContentPane().add(textfiledSIRET);
 		textfiledSIRET.setColumns(10);
-		
-		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
-		btnAnnuler.setBounds(205, 323, 85, 21);
-		getContentPane().add(btnAnnuler);
-		
-		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
-		btnAjouter.setBounds(359, 323, 85, 21);
-		getContentPane().add(btnAjouter);
 		
 		JLabel lblAjoutEntreprise = new JLabel("Ajout Entreprise");
 		lblAjoutEntreprise.setHorizontalAlignment(SwingConstants.CENTER);
@@ -141,6 +138,15 @@ public class FenAjoutEntreprise extends JInternalFrame {
 		getContentPane().add(textFieldIBAN);
 		setBounds(100, 100, 674, 433);
 
+		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
+		btnAnnuler.addActionListener(this.gestionClicFenAjoutEntreprise);
+		btnAnnuler.setBounds(205, 323, 85, 21);
+		getContentPane().add(btnAnnuler);
+		
+		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
+		btnAjouter.addActionListener(this.gestionClicFenAjoutEntreprise);
+		btnAjouter.setBounds(359, 323, 85, 21);
+		getContentPane().add(btnAjouter);
 	}
 
 }

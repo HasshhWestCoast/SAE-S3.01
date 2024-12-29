@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Controleur.Ajout.GestionFenAjoutFacture;
 import Vue.RoundedButton;
 
 import java.awt.BorderLayout;
@@ -31,6 +32,8 @@ public class FenAjoutFacture extends JInternalFrame {
 	private JTextField textFieldAcompteVersé;
 	private JTextField textFieldNuméroDevis;
 	private JTextField textFieldMontant;
+	
+	private GestionFenAjoutFacture gestionClicFenAjoutFacture; 
 
 	/**
 	 * Launch the application.
@@ -53,6 +56,8 @@ public class FenAjoutFacture extends JInternalFrame {
 	 */
 	public FenAjoutFacture() {
 		
+		gestionClicFenAjoutFacture = new GestionFenAjoutFacture(this);
+				
 		setBounds(50, 100, 950, 500); // Exemple de dimensions
 
 		getContentPane().setBackground(new Color(255, 255, 255));
@@ -73,14 +78,6 @@ public class FenAjoutFacture extends JInternalFrame {
 		JLabel lblIdFacture = new JLabel("ID Facture");
 		lblIdFacture.setBounds(80, 68, 96, 13);
 		getContentPane().add(lblIdFacture);
-		
-		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
-		btnAnnuler.setBounds(233, 388, 85, 21);
-		getContentPane().add(btnAnnuler);
-		
-		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
-		btnAjouter.setBounds(380, 388, 85, 21);
-		getContentPane().add(btnAjouter);
 		
 		JLabel lblAjoutFacture = new JLabel("Ajout Facture");
 		lblAjoutFacture.setHorizontalAlignment(SwingConstants.CENTER);
@@ -181,14 +178,24 @@ public class FenAjoutFacture extends JInternalFrame {
 		scrollPane.setBounds(645, 87, 268, 134);        
 		getContentPane().add(scrollPane);
 		
-		RoundedButton btnCharger = new RoundedButton("Annuler", 20);
-		btnCharger.setText("Charger");
+		RoundedButton btnCharger = new RoundedButton("Charger", 20);
+		btnCharger.addActionListener(this.gestionClicFenAjoutFacture);
 		btnCharger.setBounds(656, 260, 85, 21);
 		getContentPane().add(btnCharger);
 		
-		RoundedButton btnInserer = new RoundedButton("Annuler", 20);
-		btnInserer.setText("Inserer");
+		RoundedButton btnInserer = new RoundedButton("Inserer", 20);
+		btnInserer.addActionListener(this.gestionClicFenAjoutFacture);
 		btnInserer.setBounds(804, 260, 85, 21);
 		getContentPane().add(btnInserer);
+		
+		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
+		btnAnnuler.addActionListener(this.gestionClicFenAjoutFacture);
+		btnAnnuler.setBounds(233, 388, 85, 21);
+		getContentPane().add(btnAnnuler);
+		
+		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
+		btnAjouter.addActionListener(this.gestionClicFenAjoutFacture);
+		btnAjouter.setBounds(380, 388, 85, 21);
+		getContentPane().add(btnAjouter);
 	}
 }

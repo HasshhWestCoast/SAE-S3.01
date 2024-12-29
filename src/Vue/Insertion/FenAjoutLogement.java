@@ -8,13 +8,11 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
-import javax.swing.JButton;
 import java.awt.Font;
-import java.awt.event.ActionListener;
 
 import javax.swing.SwingConstants;
 
-import ControleurAjouter.GestionFenAjoutLogement;
+import Controleur.Ajout.GestionFenAjoutLogement;
 import Vue.RoundedButton;
 
 import javax.swing.JSeparator;
