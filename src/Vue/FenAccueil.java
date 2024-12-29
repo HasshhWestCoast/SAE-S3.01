@@ -29,6 +29,7 @@ public class FenAccueil extends JFrame {
 	private GestionFenBien gestionClicBien;
 	private GestionFenLocation gestionClicLocation;
 	private GestionFenLogements gestionClicLogement;
+	
 
 
 	
@@ -522,17 +523,18 @@ public class FenAccueil extends JFrame {
         panelCentre.add(panel);
         panel.setLayout(null);
 
-        RoundedButton btnIArchiver = new RoundedButton("Charger", 20);
-        btnIArchiver.setText("Archiver");
-        btnIArchiver.setBounds(284, 11, 85, 23);
-        panel.add(btnIArchiver);
+        RoundedButton btnArchiver = new RoundedButton("Archiver", 20);
+        btnArchiver.addActionListener(this.gestionClicLogement);
+        btnArchiver.setBounds(284, 11, 85, 23);
+        panel.add(btnArchiver);
 
-        RoundedButton btnModifier = new RoundedButton("Mise à jour", 20);
-        btnModifier.setText("Modifier");
+        RoundedButton btnModifier = new RoundedButton("Modifier", 20);
+        btnModifier.addActionListener(this.gestionClicLogement);
         btnModifier.setBounds(418, 11, 96, 23);
         panel.add(btnModifier);
 
         RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
+        btnSupprimer.addActionListener(this.gestionClicLogement);
         btnSupprimer.setBounds(559, 11, 96, 23);
         panel.add(btnSupprimer);
         
@@ -543,6 +545,7 @@ public class FenAccueil extends JFrame {
         panelCentre.add(btnAjouterLogement);
   
         RoundedButton btnAjouterDiagnostic = new RoundedButton("Ajouter un diagnostic", 20);
+        btnAjouterDiagnostic.addActionListener(this.gestionClicLogement);
         btnAjouterDiagnostic.setBounds(728, 228, 173, 23);
         panelCentre.add(btnAjouterDiagnostic);
         
@@ -553,10 +556,11 @@ public class FenAccueil extends JFrame {
         
         
         RoundedButton btnAfficherCompteur = new RoundedButton("Afficher les compteurs", 20);
+        btnAfficherCompteur.addActionListener(this.gestionClicLogement);
         btnAfficherCompteur.setBounds(728, 325, 173, 23);
         panelCentre.add(btnAfficherCompteur);
         
-        return  panelLogements;
+        return panelLogements;
     }
 
 
