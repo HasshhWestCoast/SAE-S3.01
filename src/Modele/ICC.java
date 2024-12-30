@@ -1,5 +1,7 @@
 package Modele;
 
+import java.util.Objects;
+
 public class ICC {
 
 	private String annee;
@@ -35,5 +37,31 @@ public class ICC {
 	public void setIndice(int indice) {
 		this.indice = indice;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(annee);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof ICC)) {
+			return false;
+		}
+		ICC other = (ICC) obj;
+		return Objects.equals(annee, other.annee);
+	}
+
+	@Override
+	public String toString() {
+		return "ICC [annee=" + annee + ", trimestre=" + trimestre + ", indice=" + indice + "]";
+	}
+	
+	
+	
+	
 
 }

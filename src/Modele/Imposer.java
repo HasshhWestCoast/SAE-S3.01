@@ -26,4 +26,11 @@ public class Imposer {
 		this.impot = impot;
 	}
 
+	@Override
+	public String toString() {
+		return "Imposer [bien=" + bien + ", impot=" + impot + "]";
+	}
+	
+	
+
 }

@@ -1,5 +1,7 @@
 package Modele;
 
+import java.util.Objects;
+
 public class Logement {
 
 	private String idLogement;
@@ -78,6 +80,35 @@ public class Logement {
 	public void setNumEtage(int numEtage) {
 		this.numEtage = numEtage;
 	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idLogement);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Logement)) {
+			return false;
+		}
+		Logement other = (Logement) obj;
+		return Objects.equals(idLogement, other.idLogement);
+	}
+
+
+	@Override
+	public String toString() {
+		return "Logement [idLogement=" + idLogement + ", surfaceHabitable=" + surfaceHabitable + ", dateAcquisition="
+				+ dateAcquisition + ", type_logement=" + type_logement + ", nbPieces=" + nbPieces + ", numEtage="
+				+ numEtage + "]";
+	}
+	
+	
 
 
 	

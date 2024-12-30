@@ -2,6 +2,7 @@ package Modele;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Charge {
     private String idCharge; 
@@ -94,5 +95,33 @@ public class Charge {
 	public void setDateCharge(String dateCharge) {
 		this.dateCharge = dateCharge;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idCharge);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Charge)) {
+			return false;
+		}
+		Charge other = (Charge) obj;
+		return Objects.equals(idCharge, other.idCharge);
+	}
+
+	@Override
+	public String toString() {
+		return "Charge [idCharge=" + idCharge + ", nom=" + nom + ", montantReel=" + montantReel + ", dateCharge="
+				+ dateCharge + ", montantPrevisionnel=" + montantPrevisionnel + ", deductible=" + deductible + ", bien="
+				+ bien + ", retenirList=" + retenirList + "]";
+	}
+	
+	
+	
+	
 
 }

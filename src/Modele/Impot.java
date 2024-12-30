@@ -1,6 +1,12 @@
 package Modele;
 
+<<<<<<< HEAD:src/Modele/Impot.java
 public class Impot {
+=======
+import java.util.Objects;
+
+public class Impôt {
+>>>>>>> 38339cd0cf2973ae59a84b7c60defcc31abf79b8:src/Modele/Impôt.java
 
 	private String idImpot; 
 	private double montant;
@@ -35,5 +41,29 @@ public class Impot {
 	public void setAnnee(String annee) {
 		this.annee = annee;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idImpot);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Impôt)) {
+			return false;
+		}
+		Impôt other = (Impôt) obj;
+		return Objects.equals(idImpot, other.idImpot);
+	}
+
+	@Override
+	public String toString() {
+		return "Impôt [idImpot=" + idImpot + ", montant=" + montant + ", annee=" + annee + "]";
+	}
+	
+	
 
 }
