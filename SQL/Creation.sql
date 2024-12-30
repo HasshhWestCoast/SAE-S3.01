@@ -27,7 +27,7 @@ CREATE TABLE SAE_Logement(
    Id_Logement VARCHAR2(30) CONSTRAINT SAE_pk_log PRIMARY KEY,
    surface_habitable NUMBER CONSTRAINT SAE_nn_bien_surface_habitable NOT NULL,
    date_acquisition DATE CONSTRAINT SAE_nn_bien_date_acq NOT NULL,
-   type_immeuble VARCHAR2(30) CONSTRAINT SAE_nn_log_type NOT NULL,
+   type_logement VARCHAR2(30) CONSTRAINT SAE_nn_log_type NOT NULL,
    nb_pieces INT CONSTRAINT SAE_nn_bien_nb_pieces NOT NULL,
    num_etage INT CONSTRAINT SAE_nn_bien_etage NOT NULL
 );
@@ -182,4 +182,3 @@ CREATE TABLE SAE_Retient(
    CONSTRAINT SAE_fk_retient_locataire FOREIGN KEY (Id_Locataire) REFERENCES SAE_Locataire(Id_Locataire),
    CONSTRAINT SAE_fk_retient_charges FOREIGN KEY (Id_Charges) REFERENCES SAE_Charge(Id_Charges)
 );
-
