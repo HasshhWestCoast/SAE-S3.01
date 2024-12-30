@@ -6,9 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import Modele.Entreprise;
+import Modele.Logement;
 import Modele.assurance;
 import Modele.Dao.Requetes.RequeteSelectAssuranceById;
-import Modele.Dao.Requetes.RequeteSelectCreneau;
+import Modele.Dao.Requetes.RequeteSelectAssurance;
 
 public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>{
 
@@ -40,7 +42,7 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 
 	@Override
 	public List<assurance> findAll() throws SQLException {
-		RequeteSelectCreneau requete = new RequeteSelectCreneau();
+		RequeteSelectAssurance requete = new RequeteSelectAssurance();
 		
 	    List<assurance> list = find(requete);
 	    
@@ -61,19 +63,18 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 	    String numero_Police = curseur.getString("numero_police");
 	    String montantString = curseur.getString("montant");
 	    float montant = Float.parseFloat(montantString);
-	    
-	    /*
+
 	    String SIRET = curseur.getString("SIRET");
 	    String ID_Logement = curseur.getString("ID_Logement");
 	    
-	    DaoLogement daoLogement = new DaoImmeuble(this.connexion);
+	    DaoLogement daoLogement = new DaoLogement(this.connexion);
 	    Logement logement = daoLogement.findById(ID_Logement);
 
 	    DaoEntreprise daoEntreprise = new DaoEntreprise(this.connexion);
 	    Entreprise entreprise = daoEntreprise.findById(SIRET);
-	     */
 	    
-	    return new assurance(numero_Police, montant, date_échéance, null, null );
+	    
+	    return new assurance(numero_Police, montant, date_échéance, logement, entreprise );
 	}
 	
 	public static Iterateur<assurance> getIterateurCreneau() {

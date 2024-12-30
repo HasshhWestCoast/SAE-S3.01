@@ -3,12 +3,12 @@ package Modele.Dao.Requetes;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import Modele.assurance;
+import Modele.Logement;
 
-public class RequeteSelectCreneau extends Requete<assurance>{
+public class RequeteSelectLogement extends Requete<Logement>{
 
 	public String requete() {
-		return "Select * from assurance ";
+		return "Select * from Logement ";
 	}
 
     @Override
@@ -16,6 +16,6 @@ public class RequeteSelectCreneau extends Requete<assurance>{
     }
     
     @Override
-    public void parametres(PreparedStatement prSt, assurance donnee) throws SQLException {
+    public void parametres(PreparedStatement prSt, Logement donnee) throws SQLException {
     }
 }

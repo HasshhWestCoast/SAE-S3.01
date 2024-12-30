@@ -7,14 +7,14 @@ public class assurance {
 	private String numeroPolice;
 	private float montant;
 	private String dateEcheance;
-	private Logement immeuble;
+	private Logement logement;
 	private Entreprise entreprise;
 
 	public assurance(String numeroPolice, float montant, String dateEcheance, Logement logement, Entreprise entreprise) {
 		this.numeroPolice = numeroPolice;
 		this.montant = montant;
 		this.dateEcheance = dateEcheance;
-		this.immeuble = immeuble;
+		this.logement = logement;
 		this.entreprise = entreprise;
 	}
 
@@ -42,12 +42,12 @@ public class assurance {
 		this.montant = montantInit;
 	}
 
-	public Logement getImmeuble() {
-		return immeuble;
+	public Logement getLogement() {
+		return logement;
 	}
 
-	public void setImmeuble(Logement immeuble) {
-		this.immeuble = immeuble;
+	public void setLogement(Logement logement) {
+		this.logement = logement;
 	}
 
 	public String getDateEcheance() {
@@ -78,7 +78,7 @@ public class assurance {
 	@Override
 	public String toString() {
 		return "assurance [numeroPolice=" + numeroPolice + ", montant=" + montant + ", dateEcheance=" + dateEcheance
-				+ ", immeuble=" + immeuble + ", entreprise=" + entreprise + "]";
+				+ ", immeuble=" + logement + ", entreprise=" + entreprise + "]";
 	}
 	
 	
