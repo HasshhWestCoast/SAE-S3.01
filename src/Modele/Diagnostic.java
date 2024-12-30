@@ -1,5 +1,7 @@
 package Modele;
 
+import java.util.Objects;
+
 public class Diagnostic {
 	
 	private String idDiagnostic; 
@@ -45,6 +47,33 @@ public class Diagnostic {
 	public void setBien(Bien bien) {
 		this.bien = bien;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idDiagnostic);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Diagnostic)) {
+			return false;
+		}
+		Diagnostic other = (Diagnostic) obj;
+		return Objects.equals(idDiagnostic, other.idDiagnostic);
+	}
+
+	@Override
+	public String toString() {
+		return "Diagnostic [idDiagnostic=" + idDiagnostic + ", dateValidite=" + dateValidite + ", typeDiagnostic="
+				+ typeDiagnostic + ", bien=" + bien + "]";
+	}
+	
+	
+	
+	
 
 
 }

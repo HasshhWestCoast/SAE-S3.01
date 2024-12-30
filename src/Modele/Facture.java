@@ -1,5 +1,7 @@
 package Modele;
 
+import java.util.Objects;
+
 public class Facture {
 
 	private String IdFacture;
@@ -85,5 +87,35 @@ public class Facture {
 	public double getImputableLocataire() {
 		return imputableLocataire;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(IdFacture);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Facture)) {
+			return false;
+		}
+		Facture other = (Facture) obj;
+		return Objects.equals(IdFacture, other.IdFacture);
+	}
+
+	@Override
+	public String toString() {
+		return "Facture [IdFacture=" + IdFacture + ", dateEmission=" + dateEmission + ", datePaiement=" + datePaiement
+				+ ", modePaiement=" + modePaiement + ", numeroDevis=" + numeroDevis + ", designation=" + designation
+				+ ", montantReelVerse=" + montantReelVerse + ", montant=" + montant + ", imputableLocataire="
+				+ imputableLocataire + ", acompteVerse=" + acompteVerse + ", immeuble=" + immeuble + ", bien=" + bien
+				+ ", entreprise=" + entreprise + "]";
+	}
+	
+	
+	
+	
 
 }

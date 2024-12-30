@@ -1,5 +1,7 @@
 package Modele;
 
+import java.util.Objects;
+
 public class Locataire {
 
 	private String idLocataire;
@@ -75,5 +77,30 @@ public class Locataire {
 	public void setQuotite(float quotite) {
 		this.quotite = quotite;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idLocataire);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Locataire)) {
+			return false;
+		}
+		Locataire other = (Locataire) obj;
+		return Objects.equals(idLocataire, other.idLocataire);
+	}
+
+	@Override
+	public String toString() {
+		return "Locataire [idLocataire=" + idLocataire + ", nom=" + nom + ", prenom=" + prenom + ", telephone="
+				+ telephone + ", mail=" + mail + ", dateNaissance=" + dateNaissance + ", quotite=" + quotite + "]";
+	}
+	
+	
 
 }

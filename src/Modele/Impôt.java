@@ -1,5 +1,7 @@
 package Modele;
 
+import java.util.Objects;
+
 public class Impôt {
 
 	private String idImpot; // AUTO INCREMENT
@@ -35,5 +37,29 @@ public class Impôt {
 	public void setAnnee(String annee) {
 		this.annee = annee;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idImpot);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Impôt)) {
+			return false;
+		}
+		Impôt other = (Impôt) obj;
+		return Objects.equals(idImpot, other.idImpot);
+	}
+
+	@Override
+	public String toString() {
+		return "Impôt [idImpot=" + idImpot + ", montant=" + montant + ", annee=" + annee + "]";
+	}
+	
+	
 
 }

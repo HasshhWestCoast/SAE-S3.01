@@ -1,5 +1,7 @@
 package Modele;
 
+import java.util.Objects;
+
 public class Compteur {
 	private String idCompteur;
 	private String typeComp;
@@ -64,5 +66,32 @@ public class Compteur {
 	public void setDateRelevé(String dateRelevé) {
 		this.dateRelevé = dateRelevé;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idCompteur);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Compteur)) {
+			return false;
+		}
+		Compteur other = (Compteur) obj;
+		return Objects.equals(idCompteur, other.idCompteur);
+	}
+
+	@Override
+	public String toString() {
+		return "Compteur [idCompteur=" + idCompteur + ", typeComp=" + typeComp + ", indexCompteur=" + indexCompteur
+				+ ", dateRelevé=" + dateRelevé + ", bien=" + bien + ", immeuble=" + immeuble + "]";
+	}
+	
+	
+	
+	
 
 }

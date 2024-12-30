@@ -73,5 +73,7 @@ public class Louer {
 	public double getMontantReelPaye() {
 		return montantReelPaye;
 	}
+	
+	
 
 }

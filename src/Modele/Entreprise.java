@@ -1,5 +1,7 @@
 package Modele;
 
+import java.util.Objects;
+
 public class Entreprise {
 
 	private String siret;
@@ -86,5 +88,32 @@ public class Entreprise {
 	public void setIban(String iban) {
 		this.iban = iban;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(siret);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Entreprise)) {
+			return false;
+		}
+		Entreprise other = (Entreprise) obj;
+		return Objects.equals(siret, other.siret);
+	}
+
+	@Override
+	public String toString() {
+		return "Entreprise [siret=" + siret + ", nom=" + nom + ", adresse=" + adresse + ", codepostal=" + codepostal
+				+ ", ville=" + ville + ", mail=" + mail + ", telephone=" + telephone + ", iban=" + iban + "]";
+	}
+	
+	
+	
+	
 
 }
