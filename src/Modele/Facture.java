@@ -110,7 +110,7 @@ public class Facture {
 		return "Facture [IdFacture=" + IdFacture + ", dateEmission=" + dateEmission + ", datePaiement=" + datePaiement
 				+ ", modePaiement=" + modePaiement + ", numeroDevis=" + numeroDevis + ", designation=" + designation
 				+ ", montantReelVerse=" + montantReelVerse + ", montant=" + montant + ", imputableLocataire="
-				+ imputableLocataire + ", acompteVerse=" + acompteVerse + ", immeuble=" + immeuble + ", bien=" + bien
+				+ imputableLocataire + ", acompteVerse=" + acompteVerse + ", immeuble=" + logement + ", bien=" + bien
 				+ ", entreprise=" + entreprise + "]";
 	}
 	

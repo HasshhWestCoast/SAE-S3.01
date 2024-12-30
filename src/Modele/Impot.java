@@ -1,12 +1,8 @@
 package Modele;
 
-<<<<<<< HEAD:src/Modele/Impot.java
-public class Impot {
-=======
 import java.util.Objects;
 
-public class Impôt {
->>>>>>> 38339cd0cf2973ae59a84b7c60defcc31abf79b8:src/Modele/Impôt.java
+public class Impot {
 
 	private String idImpot; 
 	private double montant;
@@ -52,10 +48,10 @@ public class Impôt {
 		if (this == obj) {
 			return true;
 		}
-		if (!(obj instanceof Impôt)) {
+		if (!(obj instanceof Impot)) {
 			return false;
 		}
-		Impôt other = (Impôt) obj;
+		Impot other = (Impot) obj;
 		return Objects.equals(idImpot, other.idImpot);
 	}
 
