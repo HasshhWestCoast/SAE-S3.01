@@ -12,12 +12,12 @@ public class Facture {
 	private double montant;
 	private double imputableLocataire;
 	private double acompteVerse;
-	private Logement immeuble;
+	private Logement logement;
 	private Bien bien;
 	private Entreprise entreprise;
 
 	public Facture(String IdFacture, String dateEmission, String datePaiement, String modePaiement, String numeroDevis, String designation, double montantReelVerse, 
-			double montant, double imputableLocataire, double acompteVerse, Logement immeuble, Bien bien, Entreprise entreprise) {
+			double montant, double imputableLocataire, double acompteVerse, Logement logement, Bien bien, Entreprise entreprise) {
 		
 		this.IdFacture = IdFacture;
 		this.dateEmission = dateEmission;
@@ -29,7 +29,7 @@ public class Facture {
 		this.montant = montant;
 		this.imputableLocataire = imputableLocataire;
 		this.acompteVerse = acompteVerse;
-		this.immeuble = immeuble;
+		this.logement = logement;
 		this.bien = bien;
 		this.entreprise = entreprise;
 	}
@@ -70,8 +70,8 @@ public class Facture {
 		return acompteVerse;
 	}
 
-	public Logement getImmeuble() {
-		return immeuble;
+	public Logement getLogement() {
+		return logement;
 	}
 
 	public Bien getBien() {

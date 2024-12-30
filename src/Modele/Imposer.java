@@ -3,9 +3,9 @@ package Modele;
 public class Imposer {
 	
 	private Bien bien;
-	private Impôt impot;
+	private Impot impot;
 
-	public Imposer(Bien bien, Impôt impot) {
+	public Imposer(Bien bien, Impot impot) {
 		this.bien = bien;
 		this.impot = impot;
 	}
@@ -18,11 +18,11 @@ public class Imposer {
 		this.bien = bien;
 	}
 
-	public Impôt getImpot() {
+	public Impot getImpot() {
 		return impot;
 	}
 
-	public void setImpot(Impôt impot) {
+	public void setImpot(Impot impot) {
 		this.impot = impot;
 	}
 

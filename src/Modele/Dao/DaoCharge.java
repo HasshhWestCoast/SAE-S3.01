@@ -66,7 +66,7 @@ public class DaoCharge extends DaoModele<Charge> implements Dao<Charge>{
 	    double montant_reel = Double.parseDouble(montantReel);
 
 	    String montantPrevisionnel = curseur.getString("montant_previsionnel");
-	    double montant_previsionnel = Double.parseDouble(montantReel);
+	    double montant_previsionnel = Double.parseDouble(montantPrevisionnel);
 	    
 	    String deductibleString = curseur.getString("deductible");
 	    int deductible = Integer.parseInt(deductibleString);

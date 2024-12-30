@@ -1,12 +1,12 @@
 package Modele;
 
-public class Impôt {
+public class Impot {
 
-	private String idImpot; // AUTO INCREMENT
+	private String idImpot; 
 	private double montant;
 	private String annee;
 
-	public Impôt(String idImpot, double montant, String annee) {
+	public Impot(String idImpot, double montant, String annee) {
 		this.idImpot = idImpot;
 		this.montant = montant;
 		this.annee = annee;
