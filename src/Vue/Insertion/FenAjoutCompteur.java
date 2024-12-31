@@ -23,21 +23,6 @@ public class FenAjoutCompteur extends JInternalFrame {
 	private JTextField textField;
 	private GestionFenAjoutCompteur gestionFenAjoutCompteur;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenAjoutCompteur frame = new FenAjoutCompteur();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

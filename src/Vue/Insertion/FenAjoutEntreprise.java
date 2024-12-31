@@ -22,21 +22,7 @@ public class FenAjoutEntreprise extends JInternalFrame {
 	private JTextField textFieldIBAN;
 
 	private GestionFenAjoutEntreprise gestionClicFenAjoutEntreprise;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenAjoutEntreprise frame = new FenAjoutEntreprise();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.

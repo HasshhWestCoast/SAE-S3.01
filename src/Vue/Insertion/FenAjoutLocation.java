@@ -27,21 +27,6 @@ public class FenAjoutLocation extends JInternalFrame {
 	private JTextField textFieldCaution;
 	private GestionFenAjoutLocation gestionClicFenAjoutLoc;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenAjoutLocation frame = new FenAjoutLocation();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

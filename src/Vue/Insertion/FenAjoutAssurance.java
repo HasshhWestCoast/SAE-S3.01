@@ -25,21 +25,6 @@ public class FenAjoutAssurance extends JInternalFrame {
 	private JTextField textFieldDateEcheance;
 	private GestionFenAjoutAssurance gestionClicFenAjoutEntreprise;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenAjoutFacture frame = new FenAjoutFacture();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

@@ -20,21 +20,6 @@ public class FenCompteursLogement extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 	private GestionFenCompteursLogement gestionClicFenCompLog;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenCompteursLogement frame = new FenCompteursLogement();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
