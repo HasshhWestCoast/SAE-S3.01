@@ -69,7 +69,16 @@ public class GestionFenFacture implements ActionListener{
 					
 				case "Inserer":
 					System.out.println("Vous INSERER une donnée dans Facture !");
-					FenAjoutFacture fenfac = new FenAjoutFacture();
+					
+					FenAjoutFacture fenfac = null;
+					
+					try {
+						fenfac = new FenAjoutFacture();
+					} catch (SQLException e1) {
+						System.out.println(e1.getMessage());
+						e1.printStackTrace();
+					}
+					
 					fenAc.getLayeredPane().add(fenfac);
 					fenfac.setVisible(true);
 				

@@ -1,7 +1,5 @@
 package Vue.Insertion;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -17,8 +15,6 @@ import Vue.RoundedButton;
 
 import javax.swing.JSeparator;
 import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class FenAjoutLogement extends JInternalFrame {
 

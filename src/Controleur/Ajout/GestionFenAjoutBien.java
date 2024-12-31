@@ -2,6 +2,7 @@ package Controleur.Ajout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import Vue.FenAccueil;
 import Vue.RoundedButton;
@@ -48,7 +49,15 @@ public class GestionFenAjoutBien implements ActionListener{
 					break;
 				case "Ajouter des factures":
 					System.out.println("Vous ajouter des factures au logements");
-					  FenAjoutFacture fenAjoutFacture = new FenAjoutFacture();
+					
+					FenAjoutFacture fenAjoutFacture = null;
+					
+					try {
+						fenAjoutFacture = new FenAjoutFacture();
+					} catch (SQLException e1) {
+						System.out.println(e1.getMessage());
+						e1.printStackTrace();
+					}
 	                
 	                fenAC.getLayeredPane().add(fenAjoutFacture);
 	                fenAjoutFacture.setVisible(true);

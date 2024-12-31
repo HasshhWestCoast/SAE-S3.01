@@ -75,7 +75,16 @@ public class GestionFenBien implements ActionListener{
 					
 				case "Afficher les compteurs":
 					System.out.println("Vous AFFICHER LES COMPTEURS depuis Bien !");
-					FenCompteursBien fenCompMesBien = new FenCompteursBien();
+					
+					FenCompteursBien fenCompMesBien = null;
+					
+					try {
+						fenCompMesBien = new FenCompteursBien();
+					} catch (SQLException e1) {
+						System.out.println(e1.getMessage());
+						e1.printStackTrace();
+					}
+					
 					fenAc.getLayeredPane().add(fenCompMesBien);
 					fenCompMesBien.setVisible(true);
 					break;
@@ -89,7 +98,16 @@ public class GestionFenBien implements ActionListener{
 					
 				case "Ajouter des factures":
 					System.out.println("Vous AJOUTER DES FACTURES depuis Bien !");
-					FenAjoutFacture fenAddFacture = new FenAjoutFacture();
+					
+					FenAjoutFacture fenAddFacture = null;
+					
+					try {
+						fenAddFacture = new FenAjoutFacture();
+					} catch (SQLException e1) {
+						System.out.println(e1.getMessage());
+						e1.printStackTrace();
+					}
+					
 					fenAc.getLayeredPane().add(fenAddFacture);
 					fenAddFacture.setVisible(true);
 					break;

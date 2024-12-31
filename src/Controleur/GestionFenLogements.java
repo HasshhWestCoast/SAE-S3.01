@@ -8,10 +8,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 import Modele.Logement;
-import Modele.Louer;
-import Modele.assurance;
 import Modele.Dao.CictOracleDataSource;
-import Modele.Dao.DaoAssurance;
 import Modele.Dao.DaoLogement;
 import Modele.Dao.Iterateur;
 import Vue.FenAccueil;
@@ -83,7 +80,16 @@ public class GestionFenLogements implements ActionListener{
 					
 				case "Afficher les compteurs":
 					System.out.println("Vous AFFICHER LES COMPTEURS depuis Logement !");
-					FenCompteursLogement fenCompMesLogements = new FenCompteursLogement();
+				
+					FenCompteursLogement fenCompMesLogements = null;
+					
+					try {
+						fenCompMesLogements = new FenCompteursLogement();
+					} catch (SQLException e1) {
+						System.out.println(e1.getMessage());
+						e1.printStackTrace();
+					}
+					
 					fenAc.getLayeredPane().add(fenCompMesLogements);
 					fenCompMesLogements.setVisible(true);
 					break;
@@ -97,7 +103,15 @@ public class GestionFenLogements implements ActionListener{
 					
 				case "Ajouter des factures":
 					System.out.println("Vous AJOUTER DES FACTURES depuis Logement !");
-					FenAjoutFacture fenAddFacture = new FenAjoutFacture();
+					FenAjoutFacture fenAddFacture = null;
+					
+					try {
+						fenAddFacture = new FenAjoutFacture();
+					} catch (SQLException e1) {
+						System.out.println(e1.getMessage());
+						e1.printStackTrace();
+					}
+					
 					fenAc.getLayeredPane().add(fenAddFacture);
 					fenAddFacture.setVisible(true);
 					break;

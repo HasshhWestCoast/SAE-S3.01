@@ -1,7 +1,6 @@
 package Vue;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
@@ -13,6 +12,8 @@ import Controleur.Afficher.GestionFenCompteursBien;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.sql.SQLException;
+
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 
@@ -20,12 +21,14 @@ public class FenCompteursBien extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private GestionFenCompteursBien gestionClicFenCompBien;
+	private JTable tabMesBiens;
 
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public FenCompteursBien() {
+	public FenCompteursBien() throws SQLException {
 		
 		this.gestionClicFenCompBien = new GestionFenCompteursBien(this);
 		
@@ -33,13 +36,13 @@ public class FenCompteursBien extends JInternalFrame {
         getContentPane().setLayout(null);
 		
 		 // JTable pour "Bien"
-        JTable tabMesBiens = new JTable();
+        tabMesBiens = new JTable();
         tabMesBiens.setModel(new DefaultTableModel(
             new Object[][] {
-                { null, null, null},
+                { null, null, null, null},
             },
             new String[] {
-                "ID Compteur", "Type Compteur", "Prix abonnement"
+                "ID Compteur", "Type Compteur", "Index", "Date relevé"
             }
         ));
         JScrollPane scrollPaneBiens = new JScrollPane(tabMesBiens);
@@ -62,20 +65,19 @@ public class FenCompteursBien extends JInternalFrame {
         
         RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
         btnAnnuler.addActionListener(this.gestionClicFenCompBien);
-        btnAnnuler.setBounds(61, 472, 115, 21);
+        btnAnnuler.setBounds(177, 472, 96, 21);
         getContentPane().add(btnAnnuler);
         
-        RoundedButton btnAfficherRelevé = new RoundedButton("Afficher les relevés", 20);
-        btnAfficherRelevé.addActionListener(this.gestionClicFenCompBien);
-        btnAfficherRelevé.setBounds(194, 472, 182, 21);
-        getContentPane().add(btnAfficherRelevé);
-        
-        RoundedButton btnAjouterRelevé = new RoundedButton("Ajouter un relevé", 20);
-        btnAjouterRelevé.addActionListener(this.gestionClicFenCompBien);
-        btnAjouterRelevé.setBounds(394, 472, 163, 21);
-        getContentPane().add(btnAjouterRelevé);
+        RoundedButton btnCharger = new RoundedButton("Charger", 20);
+        btnCharger.addActionListener(this.gestionClicFenCompBien);
+        btnCharger.setBounds(304, 472, 96, 21);
+        getContentPane().add(btnCharger);
         
 		setBounds(100, 100, 669, 550);
 
+	}
+	
+	public JTable getTabMesBiens() {
+		return tabMesBiens;
 	}
 }
