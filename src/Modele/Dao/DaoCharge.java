@@ -48,7 +48,7 @@ public class DaoCharge extends DaoModele<Charge> implements Dao<Charge>{
 	    PreparedStatement prSt = connexion.prepareStatement(requete.requete());
 	    ResultSet resultSet = prSt.executeQuery();
 	    
-	    DaoCharge.setIterateurCreneau(new Iterateur<>(resultSet, this));
+	    DaoCharge.setIterateurCharge(new Iterateur<>(resultSet, this));
 
 	    return list;
 	}
@@ -79,11 +79,11 @@ public class DaoCharge extends DaoModele<Charge> implements Dao<Charge>{
 	    return new Charge(idCharge, nom, montant_reel, montant_previsionnel, date_Charge, deductible, bien);
 	}
 	
-	public static Iterateur<Charge> getIterateurCreneau() {
+	public static Iterateur<Charge> getIterateurCharge() {
         return it;
     }
 
-    public static void setIterateurCreneau(Iterateur<Charge> iterateur) {
+    public static void setIterateurCharge(Iterateur<Charge> iterateur) {
         it = iterateur;
     }
 

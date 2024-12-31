@@ -49,7 +49,7 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 	    PreparedStatement prSt = connexion.prepareStatement(requete.requete());
 	    ResultSet resultSet = prSt.executeQuery();
 	    
-	    DaoAssurance.setIterateurCreneau(new Iterateur<>(resultSet, this));
+	    DaoAssurance.setIterateurAssurance(new Iterateur<>(resultSet, this));
 
 	    return list;
 	}
@@ -77,11 +77,11 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 	    return new assurance(numero_Police, montant, date_échéance, logement, entreprise );
 	}
 	
-	public static Iterateur<assurance> getIterateurCreneau() {
+	public static Iterateur<assurance> getIterateurAssurance() {
         return it;
     }
 
-    public static void setIterateurCreneau(Iterateur<assurance> iterateur) {
+    public static void setIterateurAssurance(Iterateur<assurance> iterateur) {
         it = iterateur;
     }
 

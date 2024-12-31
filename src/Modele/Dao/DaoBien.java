@@ -49,7 +49,7 @@ public class DaoBien extends DaoModele<Bien> implements Dao<Bien> {
 	    PreparedStatement prSt = connexion.prepareStatement(requete.requete());
 	    ResultSet resultSet = prSt.executeQuery();
 	    
-	    DaoBien.setIterateurCreneau(new Iterateur<>(resultSet, this));
+	    DaoBien.setIterateurBien(new Iterateur<>(resultSet, this));
 
 	    return list;
 	}
@@ -77,11 +77,11 @@ public class DaoBien extends DaoModele<Bien> implements Dao<Bien> {
 	    return new Bien(id_Bien, surface_Habitable, adresse, ville, type_Bien, codePostal, periode_Construction, logement);
 	}
 	
-	public static Iterateur<Bien> getIterateurCreneau() {
+	public static Iterateur<Bien> getIterateurBien() {
         return it;
     }
 
-    public static void setIterateurCreneau(Iterateur<Bien> iterateur) {
+    public static void setIterateurBien(Iterateur<Bien> iterateur) {
         it = iterateur;
     }
 

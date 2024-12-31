@@ -47,7 +47,7 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 	    PreparedStatement prSt = connexion.prepareStatement(requete.requete());
 	    ResultSet resultSet = prSt.executeQuery();
 	    
-	    DaoLocataire.setIterateurCreneau(new Iterateur<>(resultSet, this));
+	    DaoLocataire.setIterateurLocataire(new Iterateur<>(resultSet, this));
 
 	    return list;
 	}
@@ -70,11 +70,11 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 	    return new Locataire(id_Locataire, nom, prenom, telephone, mail, date_Naissance, quotite);
 	}
 	
-	public static Iterateur<Locataire> getIterateurCreneau() {
+	public static Iterateur<Locataire> getIterateurLocataire() {
         return it;
     }
 
-    public static void setIterateurCreneau(Iterateur<Locataire> iterateur) {
+    public static void setIterateurLocataire(Iterateur<Locataire> iterateur) {
         it = iterateur;
     }
 }

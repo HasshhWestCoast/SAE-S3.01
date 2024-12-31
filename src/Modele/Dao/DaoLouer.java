@@ -50,7 +50,7 @@ public class DaoLouer extends DaoModele<Louer> implements Dao<Louer>{
 	    PreparedStatement prSt = connexion.prepareStatement(requete.requete());
 	    ResultSet resultSet = prSt.executeQuery();
 	    
-	    DaoLouer.setIterateurCreneau(new Iterateur<>(resultSet, this));
+	    DaoLouer.setIterateurLouer(new Iterateur<>(resultSet, this));
 
 	    return list;
 	}
@@ -99,11 +99,11 @@ public class DaoLouer extends DaoModele<Louer> implements Dao<Louer>{
 	    return new Louer(date_Debut, nb_Mois, loye_Payer, provision_chargeMois_TTC, caution_TTC, bail, etat_lieux, montant_Reel_Paye, locataire, icc, bien);
 	}
 	
-	public static Iterateur<Louer> getIterateurCreneau() {
+	public static Iterateur<Louer> getIterateurLouer() {
         return it;
     }
 
-    public static void setIterateurCreneau(Iterateur<Louer> iterateur) {
+    public static void setIterateurLouer(Iterateur<Louer> iterateur) {
         it = iterateur;
     }
 }

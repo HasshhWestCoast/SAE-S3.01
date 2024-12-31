@@ -49,7 +49,7 @@ public class DaoDiagnostic  extends DaoModele<Diagnostic> implements Dao<Diagnos
 	    PreparedStatement prSt = connexion.prepareStatement(requete.requete());
 	    ResultSet resultSet = prSt.executeQuery();
 	    
-	    DaoDiagnostic.setIterateurCreneau(new Iterateur<>(resultSet, this));
+	    DaoDiagnostic.setIterateurDiagnostic(new Iterateur<>(resultSet, this));
 
 	    return list;
 	}
@@ -71,11 +71,11 @@ public class DaoDiagnostic  extends DaoModele<Diagnostic> implements Dao<Diagnos
 	    return new Diagnostic(id_Diagnostic, date_Validite, type_Diagnostic, bien);
 	}
 	
-	public static Iterateur<Diagnostic> getIterateurCreneau() {
+	public static Iterateur<Diagnostic> getIterateurDiagnostic() {
         return it;
     }
 
-    public static void setIterateurCreneau(Iterateur<Diagnostic> iterateur) {
+    public static void setIterateurDiagnostic(Iterateur<Diagnostic> iterateur) {
         it = iterateur;
     }
 }

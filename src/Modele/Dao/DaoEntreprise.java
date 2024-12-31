@@ -47,7 +47,7 @@ public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entrepri
 	    PreparedStatement prSt = connexion.prepareStatement(requete.requete());
 	    ResultSet resultSet = prSt.executeQuery();
 	    
-	    DaoEntreprise.setIterateurCreneau(new Iterateur<>(resultSet, this));
+	    DaoEntreprise.setIterateurEntreprise(new Iterateur<>(resultSet, this));
 
 	    return list;
 	}
@@ -67,11 +67,11 @@ public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entrepri
 	    return new Entreprise(SIRET, nom, adresse, codepostal, ville, mail, telephone, iban);
 	}
 	
-	public static Iterateur<Entreprise> getIterateurCreneau() {
+	public static Iterateur<Entreprise> getIterateurEntreprise() {
         return it;
     }
 
-    public static void setIterateurCreneau(Iterateur<Entreprise> iterateur) {
+    public static void setIterateurEntreprise(Iterateur<Entreprise> iterateur) {
         it = iterateur;
     }
 }
