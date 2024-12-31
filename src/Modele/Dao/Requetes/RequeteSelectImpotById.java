@@ -9,7 +9,7 @@ public class RequeteSelectImpotById extends Requete<Impot>{
 
 	@Override
     public String requete() {
-        return "SELECT * FROM Impot " +
+        return "SELECT * FROM Sae_Impot " +
                "WHERE Id_Impot = ? ";
     }
 

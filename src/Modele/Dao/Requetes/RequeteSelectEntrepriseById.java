@@ -9,7 +9,7 @@ public class RequeteSelectEntrepriseById extends Requete<Entreprise> {
 	   
 	@Override
 	 public String requete() {
-	     return "SELECT * FROM Entreprise " +
+	     return "SELECT * FROM Sae_Entreprise " +
 	            "WHERE SIRET = ? ";
 	 }
 	

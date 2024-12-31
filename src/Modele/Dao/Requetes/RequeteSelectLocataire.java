@@ -8,7 +8,7 @@ import Modele.Locataire;
 public class RequeteSelectLocataire extends Requete<Locataire>{
 
 	public String requete() {
-		return "Select * from locataire ";
+		return "Select * from Sae_locataire ";
 	}
 
     @Override

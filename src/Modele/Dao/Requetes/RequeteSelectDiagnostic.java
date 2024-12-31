@@ -8,7 +8,7 @@ import Modele.Diagnostic;
 public class RequeteSelectDiagnostic extends Requete<Diagnostic>{
 
 	public String requete() {
-		return "Select * from diagnostic ";
+		return "Select * from Sae_diagnostic ";
 	}
 
     @Override

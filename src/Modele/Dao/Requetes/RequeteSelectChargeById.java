@@ -9,7 +9,7 @@ public class RequeteSelectChargeById extends Requete<Charge> {
 	   
 		@Override
 	    public String requete() {
-	        return "SELECT * FROM charge " +
+	        return "SELECT * FROM Sae_charge " +
 	               "WHERE id_charges = ? " + 
 	        		"AND id_Bien = ?";
 	    }

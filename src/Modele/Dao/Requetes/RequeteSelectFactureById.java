@@ -10,7 +10,7 @@ public class RequeteSelectFactureById extends Requete<Facture> {
 	   
 		@Override
 	    public String requete() {
-	        return "SELECT * FROM facture " +
+	        return "SELECT * FROM Sae_facture " +
 	               "WHERE Id_Facture = ? " +
 	        	    "AND SIRET = ? " +
 	                "AND Id_logement = ? " +

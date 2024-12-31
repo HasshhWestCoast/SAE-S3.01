@@ -9,7 +9,7 @@ public class RequeteSelectAssuranceById extends Requete<assurance> {
    
 	@Override
     public String requete() {
-        return "SELECT * FROM assurance " +
+        return "SELECT * FROM Sae_assurance " +
                "WHERE numero_Police = ? ";
     }
 

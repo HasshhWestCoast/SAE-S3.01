@@ -8,7 +8,7 @@ import Modele.assurance;
 public class RequeteSelectAssurance extends Requete<assurance>{
 
 	public String requete() {
-		return "Select * from assurance ";
+		return "Select * from Sae_assurance ";
 	}
 
     @Override
