@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controleur.GestionFenConnexion;
+
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import java.awt.SystemColor;
@@ -24,6 +27,7 @@ public class FenConnexion extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JPasswordField passwordField;
 	private JTextField UserField;
+	private GestionFenConnexion gestionClicFenConnexion;
 
 	/**
 	 * Launch the application.
@@ -45,6 +49,9 @@ public class FenConnexion extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public FenConnexion() {
+		
+		this.gestionClicFenConnexion = new GestionFenConnexion(this);
+		
 		try {
 		    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 		} catch (Exception e) {
@@ -71,7 +78,7 @@ public class FenConnexion extends JFrame implements ActionListener {
 		UserField.setColumns(10);
 		
 		RoundedButton btnConnexion = new RoundedButton("Connexion", 20);
-		btnConnexion.addActionListener(this);
+		btnConnexion.addActionListener(this.gestionClicFenConnexion);
 		btnConnexion.setBackground(new Color(31, 153, 88));
 		btnConnexion.setBounds(335, 315, 132, 31);
 		contentPane.add(btnConnexion);

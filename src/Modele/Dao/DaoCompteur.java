@@ -49,7 +49,7 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur>{
 	    PreparedStatement prSt = connexion.prepareStatement(requete.requete());
 	    ResultSet resultSet = prSt.executeQuery();
 	    
-	    DaoCompteur.setIterateurCreneau(new Iterateur<>(resultSet, this));
+	    DaoCompteur.setIterateurCompteur(new Iterateur<>(resultSet, this));
 
 	    return list;
 	}
@@ -79,11 +79,11 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur>{
 	    return new Compteur(id_Compteur, typeComp, indexCompteur, date_Relevé, bien, logement);
 	}
 	
-	public static Iterateur<Compteur> getIterateurCreneau() {
+	public static Iterateur<Compteur> getIterateurCompteur() {
         return it;
     }
 
-    public static void setIterateurCreneau(Iterateur<Compteur> iterateur) {
+    public static void setIterateurCompteur(Iterateur<Compteur> iterateur) {
         it = iterateur;
     }
 }

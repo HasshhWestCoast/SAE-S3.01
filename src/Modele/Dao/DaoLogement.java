@@ -47,7 +47,7 @@ public class DaoLogement extends DaoModele<Logement> implements Dao<Logement>{
 	    PreparedStatement prSt = connexion.prepareStatement(requete.requete());
 	    ResultSet resultSet = prSt.executeQuery();
 	    
-	    DaoLogement.setIterateurCreneau(new Iterateur<>(resultSet, this));
+	    DaoLogement.setIterateurLogement(new Iterateur<>(resultSet, this));
 
 	    return list;
 	}
@@ -74,11 +74,11 @@ public class DaoLogement extends DaoModele<Logement> implements Dao<Logement>{
 	    return new Logement(idLogement, surface_Habitable, date_Acquisition, type_logement, nb_Pieces, num_Etage);
 	}
 	
-	public static Iterateur<Logement> getIterateurCreneau() {
+	public static Iterateur<Logement> getIterateurLogement() {
         return it;
     }
 
-    public static void setIterateurCreneau(Iterateur<Logement> iterateur) {
+    public static void setIterateurLogement(Iterateur<Logement> iterateur) {
         it = iterateur;
     }
 }

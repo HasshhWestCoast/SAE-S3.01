@@ -47,7 +47,7 @@ public class DaoICC extends DaoModele<ICC> implements Dao<ICC>{
 	    PreparedStatement prSt = connexion.prepareStatement(requete.requete());
 	    ResultSet resultSet = prSt.executeQuery();
 	    
-	    DaoICC.setIterateurCreneau(new Iterateur<>(resultSet, this));
+	    DaoICC.setIterateurICC(new Iterateur<>(resultSet, this));
 
 	    return list;
 	}
@@ -64,11 +64,11 @@ public class DaoICC extends DaoModele<ICC> implements Dao<ICC>{
 	    return new ICC(annee, trimestre, indice);
 	}
 	
-	public static Iterateur<ICC> getIterateurCreneau() {
+	public static Iterateur<ICC> getIterateurICC() {
         return it;
     }
 
-    public static void setIterateurCreneau(Iterateur<ICC> iterateur) {
+    public static void setIterateurICC(Iterateur<ICC> iterateur) {
         it = iterateur;
     }
 

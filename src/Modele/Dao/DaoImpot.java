@@ -47,7 +47,7 @@ public class DaoImpot extends DaoModele<Impot> implements Dao<Impot>{
 	    PreparedStatement prSt = connexion.prepareStatement(requete.requete());
 	    ResultSet resultSet = prSt.executeQuery();
 	    
-	    DaoImpot.setIterateurCreneau(new Iterateur<>(resultSet, this));
+	    DaoImpot.setIterateurImpot(new Iterateur<>(resultSet, this));
 
 	    return list;
 	}
@@ -64,11 +64,11 @@ public class DaoImpot extends DaoModele<Impot> implements Dao<Impot>{
 	    return new Impot(id_Impot, montant, annee);
 	}
 	
-	public static Iterateur<Impot> getIterateurCreneau() {
+	public static Iterateur<Impot> getIterateurImpot() {
         return it;
     }
 
-    public static void setIterateurCreneau(Iterateur<Impot> iterateur) {
+    public static void setIterateurImpot(Iterateur<Impot> iterateur) {
         it = iterateur;
     }
 }

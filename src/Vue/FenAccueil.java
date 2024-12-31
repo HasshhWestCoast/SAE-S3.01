@@ -1,6 +1,8 @@
 package Vue;
 
 import java.awt.*;
+import java.sql.SQLException;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -30,6 +32,8 @@ public class FenAccueil extends JFrame {
 	private GestionFenLocation gestionClicLocation;
 	private GestionFenLogements gestionClicLogement;
 	
+	private JTable tabMesBiens;
+	
 
 
 	
@@ -49,8 +53,9 @@ public class FenAccueil extends JFrame {
 
     /**
      * Create the frame.
+     * @throws SQLException 
      */
-    public FenAccueil() {
+    public FenAccueil() throws SQLException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Définir seulement la taille
         setSize(1050, 700);
@@ -396,7 +401,7 @@ public class FenAccueil extends JFrame {
         return panelFactures;
     }
     
-    private JPanel createBiensPanel() {
+    private JPanel createBiensPanel() throws SQLException {
     	
         this.gestionClicBien = new GestionFenBien(this);
 
@@ -424,7 +429,7 @@ public class FenAccueil extends JFrame {
         panelCentre.setLayout(null);
 
         // JTable pour "Bien"
-        JTable tabMesBiens = new JTable();
+        tabMesBiens = new JTable();
         tabMesBiens.setModel(new DefaultTableModel(
             new Object[][] {
                 { null, null, null, null, null, null },
@@ -457,6 +462,11 @@ public class FenAccueil extends JFrame {
         btnSupprimer.addActionListener(this.gestionClicBien);
         btnSupprimer.setBounds(480, 11, 96, 23);
         panel.add(btnSupprimer);
+        
+        RoundedButton btnCharger = new RoundedButton("Charger", 20);
+        btnCharger.addActionListener(this.gestionClicBien);
+        btnCharger.setBounds(157, 11, 85, 23);
+        panel.add(btnCharger);
         
         // Buttons
         RoundedButton btnAjouterUnBien = new RoundedButton("Ajouter un bien", 20);
@@ -569,4 +579,7 @@ public class FenAccueil extends JFrame {
         layout.show(layeredPane, panelName);
     }
     
+    public JTable getTabMesBiens() {
+        return tabMesBiens;
+    }
 }

@@ -50,7 +50,7 @@ public class DaoFacture  extends DaoModele<Facture> implements Dao<Facture>{
 	    PreparedStatement prSt = connexion.prepareStatement(requete.requete());
 	    ResultSet resultSet = prSt.executeQuery();
 	    
-	    DaoFacture.setIterateurCreneau(new Iterateur<>(resultSet, this));
+	    DaoFacture.setIterateurFacture(new Iterateur<>(resultSet, this));
 
 	    return list;
 	}
@@ -97,11 +97,11 @@ public class DaoFacture  extends DaoModele<Facture> implements Dao<Facture>{
 	    return new Facture(Id_Facture, date_Emission, date_Paiement, mode_Paiement, numero_Devis, designation, montant_Reel_Verse, montant, imputable_Locataire, acompte_Verse, logement, bien, entreprise);
 	}
 	
-	public static Iterateur<Facture> getIterateurCreneau() {
+	public static Iterateur<Facture> getIterateurFacture() {
         return it;
     }
 
-    public static void setIterateurCreneau(Iterateur<Facture> iterateur) {
+    public static void setIterateurFacture(Iterateur<Facture> iterateur) {
         it = iterateur;
     }
 }
