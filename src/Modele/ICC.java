@@ -6,9 +6,9 @@ public class ICC {
 
 	private String annee;
 	private String trimestre;
-	private int indice;
+	private double indice;
 
-	public ICC(String annee, String trimestre, int indice) {
+	public ICC(String annee, String trimestre, double indice) {
 		this.annee = annee;
 		this.trimestre = trimestre;
 		this.indice = indice;
@@ -34,7 +34,7 @@ public class ICC {
 		return indice;
 	}
 
-	public void setIndice(int indice) {
+	public void setIndice(double indice) {
 		this.indice = indice;
 	}
 
