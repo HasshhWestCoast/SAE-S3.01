@@ -52,18 +52,18 @@ public class GestionFenBien implements ActionListener{
 					try {
 						List<Bien> mesDonnees = this.daoBien.findAll();
 		
-						Iterateur<Bien> iterateur = DaoBien.getIterateurBien();
+						Iterateur<Bien> it = DaoBien.getIterateurBien();
 						
-				        if (iterateur == null) {
+				        if (it == null) {
 				            System.out.println("Itérateur non initialisé !");
 				            break;
 				        }
 						modeleTable.setRowCount(mesDonnees.size());  
 						
 						int count = 0;
-						while(iterateur.hasNext() && count < mesDonnees.size()) {	
-							Bien creneau = iterateur.next();
-							this.ecrireLigneTable(creneau, count);
+						while(it.hasNext() && count < mesDonnees.size()) {	
+							Bien bien = it.next();
+							this.ecrireLigneTable(bien, count);
 							count++;
 						}
 						
