@@ -57,24 +57,20 @@ public class DaoBien extends DaoModele<Bien> implements Dao<Bien> {
 	@Override
 	protected Bien creerInstance(ResultSet curseur) throws SQLException {
 		
-	    java.sql.Date periodeConstruction = curseur.getDate("periode_Construction");
-	    String periode_Construction = new java.text.SimpleDateFormat("dd/MM/yyyy").format(periodeConstruction);
+	    String periode_Construction = curseur.getString("periode_Construction");
 	    
 	    String id_Bien = curseur.getString("id_Bien");
 	    String adresse = curseur.getString("adresse");
 	    String ville = curseur.getString("ville");
 	    String type_Bien = curseur.getString("type_Bien");
 	    String codePostal = curseur.getString("codepostal");
-	    
-	    String surfaceHabitable = curseur.getString("surface_Habitable");
-	    double surface_Habitable = Double.parseDouble(surfaceHabitable);
 
 	    String ID_Logement = curseur.getString("ID_Logement");
 	    
 	    DaoLogement daoLogement = new DaoLogement(this.connexion);
 	    Logement logement = daoLogement.findById(ID_Logement);
 
-	    return new Bien(id_Bien, surface_Habitable, adresse, ville, type_Bien, codePostal, periode_Construction, logement);
+	    return new Bien(id_Bien, adresse, ville, type_Bien, codePostal, periode_Construction, logement);
 	}
 	
 	public static Iterateur<Bien> getIterateurBien() {

@@ -9,7 +9,7 @@ public class RequeteSelectBien extends Requete<Bien> {
 	   
 	@Override
 	 public String requete() {
-	     return "SELECT * FROM Bien ";
+	     return "SELECT * FROM SAE_Bien ";
 	 }
 	
 	 @Override
