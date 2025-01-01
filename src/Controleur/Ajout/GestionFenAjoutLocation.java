@@ -2,7 +2,19 @@ package Controleur.Ajout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.List;
 
+import javax.swing.table.DefaultTableModel;
+
+import Modele.Bien;
+import Modele.ICC;
+import Modele.Locataire;
+import Modele.Dao.CictOracleDataSource;
+import Modele.Dao.DaoBien;
+import Modele.Dao.DaoICC;
+import Modele.Dao.DaoLocataire;
+import Modele.Dao.Iterateur;
 import Vue.FenAccueil;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutBien;
@@ -13,9 +25,17 @@ import Vue.Insertion.FenAjoutLocation;
 public class GestionFenAjoutLocation implements ActionListener{
 
 	private FenAjoutLocation fenAjoutLoc;
+	private DaoLocataire daoLocataire;
+	private DaoBien daoBien;
+	private DaoICC daoICC;
+
+
 	
-	public GestionFenAjoutLocation(FenAjoutLocation fenAjoutLoc) {
+	public GestionFenAjoutLocation(FenAjoutLocation fenAjoutLoc) throws SQLException {
 		this.fenAjoutLoc = fenAjoutLoc;
+		this.daoLocataire = new DaoLocataire(CictOracleDataSource.getInstance().getConnection());
+		this.daoBien = new DaoBien(CictOracleDataSource.getInstance().getConnection());
+		this.daoICC = new DaoICC(CictOracleDataSource.getInstance().getConnection());
 	}
 	
 	@Override
@@ -24,7 +44,10 @@ public class GestionFenAjoutLocation implements ActionListener{
 		String texte = ((RoundedButton) source).getText();
 
 		FenAccueil fenAC = (FenAccueil) this.fenAjoutLoc.getTopLevelAncestor();
-		
+		DefaultTableModel modeleTableLocataire = (DefaultTableModel) this.fenAjoutLoc.getTabMesLocataires().getModel();
+		DefaultTableModel modeleTableBien = (DefaultTableModel) this.fenAjoutLoc.getTabMesBiens().getModel();
+		DefaultTableModel modeleTableICC = (DefaultTableModel) this.fenAjoutLoc.getTabMesICC().getModel();
+
 		if (texte != null) {
 			switch (texte) {
 				case "Annuler":
@@ -37,15 +60,85 @@ public class GestionFenAjoutLocation implements ActionListener{
 					break;
 					
 				case "Charger L":
-					System.out.println("Vous CHARGEZ LOCATAIRES depuis Location !");              
+					System.out.println("Vous CHARGEZ LOCATAIRES depuis Location !");
+					
+					List<Locataire> mesDonneesLoc = null;
+					
+					try {
+						mesDonneesLoc = this.daoLocataire.findAll();
+					} catch (SQLException e1) {
+						System.out.println(e1.getMessage());
+						e1.printStackTrace();
+					}
+					
+					Iterateur<Locataire> it = DaoLocataire.getIterateurLocataire();
+					
+			        if (it == null) {
+			            System.out.println("Itérateur non initialisé !");
+			            break;
+			        }
+			        modeleTableLocataire.setRowCount(mesDonneesLoc.size());  
+					
+					int count = 0;
+					while(it.hasNext() && count < mesDonneesLoc.size()) {	
+						Locataire locataire = it.next();
+						this.ecrireLigneTableLoc(locataire, count);
+						count++;
+					}
 					break;
 					
 				case "Charger Bien":
-					System.out.println("Vous CHARGEZ BIENS depuis Location !");              
+					System.out.println("Vous CHARGEZ BIENS depuis Location !");
+					List<Bien> mesDonneesBien = null;
+					
+					try {
+						mesDonneesBien = this.daoBien.findAll();
+					} catch (SQLException e1) {
+						System.out.println(e1.getMessage());
+						e1.printStackTrace();
+					}
+					
+					Iterateur<Bien> itBien = DaoBien.getIterateurBien();
+					
+			        if (itBien == null) {
+			            System.out.println("Itérateur non initialisé !");
+			            break;
+			        }
+			        modeleTableBien.setRowCount(mesDonneesBien.size());  
+					
+					int countBien = 0;
+					while(itBien.hasNext() && countBien < mesDonneesBien.size()) {	
+						Bien bien = itBien.next();
+						this.ecrireLigneTableBien(bien, countBien);
+						countBien++;
+					}
 					break;
 					
 				case "Charger ICC":
-					System.out.println("Vous CHARGEZ ICC depuis Location !");              
+					System.out.println("Vous CHARGEZ ICC depuis Location !");
+					List<ICC> mesDonneesICC = null;
+					
+					try {
+						mesDonneesICC = this.daoICC.findAll();
+					} catch (SQLException e1) {
+						System.out.println(e1.getMessage());
+						e1.printStackTrace();
+					}
+					
+					Iterateur<ICC> itICC = DaoICC.getIterateurICC();
+					
+			        if (itICC == null) {
+			            System.out.println("Itérateur non initialisé !");
+			            break;
+			        }
+			        modeleTableICC.setRowCount(mesDonneesICC.size());  
+					
+					int countICC = 0;
+					while(itICC.hasNext() && countICC < mesDonneesICC.size()) {	
+						ICC icc = itICC.next();
+						this.ecrireLigneTableICC(icc, countICC);
+						countICC++;
+					}
 					break;
 					
 				case "Inserer L":
@@ -87,4 +180,28 @@ public class GestionFenAjoutLocation implements ActionListener{
 			System.out.println("Source non reconnu !");
 		}
 	}
+	
+	public void ecrireLigneTableLoc(Locataire locataire, int numeroLigne) {
+		DefaultTableModel modeleTableLocataire = (DefaultTableModel) this.fenAjoutLoc.getTabMesLocataires().getModel();
+
+		modeleTableLocataire.setValueAt(locataire.getIdLocataire(), numeroLigne, 0);
+		modeleTableLocataire.setValueAt(locataire.getNom(), numeroLigne, 1);
+	}
+	
+	public void ecrireLigneTableBien(Bien bien, int numeroLigne) {
+		DefaultTableModel modeleTableBien = (DefaultTableModel) this.fenAjoutLoc.getTabMesBiens().getModel();
+
+		modeleTableBien.setValueAt(bien.getIdBien(), numeroLigne, 0);
+	}
+	
+	public void ecrireLigneTableICC(ICC icc, int numeroLigne) {
+		DefaultTableModel modeleTableICC = (DefaultTableModel) this.fenAjoutLoc.getTabMesICC().getModel();
+
+		modeleTableICC.setValueAt(icc.getAnnee(), numeroLigne, 0);
+		modeleTableICC.setValueAt(icc.getTrimestre(), numeroLigne, 1);
+		modeleTableICC.setValueAt(icc.getIndice(), numeroLigne, 2);
+
+	}
+
+
 }

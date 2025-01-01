@@ -2,6 +2,7 @@ package Vue.Insertion;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.SQLException;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -25,12 +26,16 @@ public class FenAjoutLocation extends JInternalFrame {
 	private JTextField textFieldMontantReel;
 	private JTextField textFieldCaution;
 	private GestionFenAjoutLocation gestionClicFenAjoutLoc;
+	private JTable tabMesLocataires;
+	private JTable tabMesBiens;
+	private JTable tabMesICC;
 
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public FenAjoutLocation() {
+	public FenAjoutLocation() throws SQLException {
 		
 		this.gestionClicFenAjoutLoc = new GestionFenAjoutLocation(this);
 		
@@ -88,7 +93,7 @@ public class FenAjoutLocation extends JInternalFrame {
 		separatorTrouverBien.setBounds(68, 215, 188, 2);
 		getContentPane().add(separatorTrouverBien);
 	
-		JTable tabMesBiens = new JTable();
+		tabMesBiens = new JTable();
 		tabMesBiens.setModel(new DefaultTableModel(
             new Object[][] { { null} },
             new String[] { "Id Bien" }
@@ -110,7 +115,7 @@ public class FenAjoutLocation extends JInternalFrame {
 		separatorTrouverLogcataire.setBounds(56, 32, 188, 2);
 		getContentPane().add(separatorTrouverLogcataire);
 		
-		JTable tabMesLocataires = new JTable();
+		tabMesLocataires = new JTable();
 		tabMesLocataires.setModel(new DefaultTableModel(
             new Object[][] { { null, null} },
             new String[] { "Id Locataire", "nom" }
@@ -145,7 +150,7 @@ public class FenAjoutLocation extends JInternalFrame {
 		lblTrouverICC.setBounds(96, 403, 131, 21);
 		getContentPane().add(lblTrouverICC);
 		
-		JTable tabMesICC = new JTable();
+		tabMesICC = new JTable();
 		tabMesICC.setModel(new DefaultTableModel(
             new Object[][] { { null, null, null} },
             new String[] { "Annee", "trimestre", "indice" }
@@ -215,4 +220,17 @@ public class FenAjoutLocation extends JInternalFrame {
 		getContentPane().add(btnChargerLocataire);
 		
 	}
+	
+	public JTable getTabMesLocataires() {
+		return tabMesLocataires;
+	}
+	
+	public JTable getTabMesBiens() {
+		return tabMesBiens;
+	}
+	
+	public JTable getTabMesICC() {
+		return tabMesICC;
+	}
+	
 }

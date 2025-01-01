@@ -69,7 +69,15 @@ public class GestionFenLocation implements ActionListener {
 				
 				case "Inserer":
 					System.out.println("Vous INSERER une donnée dans Location !");
-					FenAjoutLocation fenAddLocation = new FenAjoutLocation();
+					
+					FenAjoutLocation fenAddLocation = null;
+					
+					try {
+						fenAddLocation = new FenAjoutLocation();
+					} catch (SQLException e1) {
+						System.out.println(e1.getMessage());
+						e1.printStackTrace();
+					}
 					
 					int width = fenAc.getLayeredPane().getWidth();
 		            int height = fenAc.getLayeredPane().getHeight();
