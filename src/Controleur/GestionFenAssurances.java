@@ -63,7 +63,15 @@ public class GestionFenAssurances implements ActionListener{
 					
 				case "Inserer":
 					System.out.println("Vous INSERER une donnée dans Assurances !");
-					FenAjoutAssurance fenAddAssurance = new FenAjoutAssurance();
+					
+					FenAjoutAssurance fenAddAssurance = null;
+					
+					try {
+						fenAddAssurance = new FenAjoutAssurance();
+					} catch (SQLException e1) {
+						System.out.println(e1.getMessage());
+						e1.printStackTrace();
+					}
 					
 					int width = fenAc.getLayeredPane().getWidth();
 		            int height = fenAc.getLayeredPane().getHeight();

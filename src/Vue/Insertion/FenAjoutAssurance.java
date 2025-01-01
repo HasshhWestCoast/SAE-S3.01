@@ -2,6 +2,7 @@ package Vue.Insertion;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.SQLException;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -23,12 +24,15 @@ public class FenAjoutAssurance extends JInternalFrame {
 	private JTextField textFieldMontant;
 	private JTextField textFieldDateEcheance;
 	private GestionFenAjoutAssurance gestionClicFenAjoutEntreprise;
+	private JTable tabMesEntreprise;
+	private JTable tabMesLogements;
 
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public FenAjoutAssurance() {
+	public FenAjoutAssurance() throws SQLException {
 		
 		this.gestionClicFenAjoutEntreprise = new GestionFenAjoutAssurance(this);
 		
@@ -86,7 +90,7 @@ public class FenAjoutAssurance extends JInternalFrame {
 		separatorTrouverEntreprise.setBounds(55, 215, 188, 2);
 		getContentPane().add(separatorTrouverEntreprise);
 	
-		JTable tabMesEntreprise = new JTable();
+		tabMesEntreprise = new JTable();
 		tabMesEntreprise.setModel(new DefaultTableModel(
             new Object[][] { { null, null} },
             new String[] { "SIRET", "nom" }
@@ -108,10 +112,10 @@ public class FenAjoutAssurance extends JInternalFrame {
 		separatorTrouverLogement.setBounds(55, 33, 188, 2);
 		getContentPane().add(separatorTrouverLogement);
 		
-		JTable tabMesLogements = new JTable();
+		tabMesLogements = new JTable();
 		tabMesLogements.setModel(new DefaultTableModel(
             new Object[][] { { null, null} },
-            new String[] { "Id Immeuble", "adresse" }
+            new String[] { "Id Logement", "Date Acquisition" }
         ));
 		
 		JScrollPane scrollPaneLogement = new JScrollPane(tabMesLogements);
@@ -149,4 +153,13 @@ public class FenAjoutAssurance extends JInternalFrame {
 		btnAjouterAssurance.setBounds(613, 277, 85, 21);
 		getContentPane().add(btnAjouterAssurance);
 	}
+	
+	public JTable getTabMesEntreprise() {
+		return tabMesEntreprise;
+	}
+	
+	public JTable getTabMesLogements() {
+		return tabMesLogements;
+	}
+	
 }

@@ -18,8 +18,6 @@ public class GestionFenAjoutEntreprise implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		String texte = ((RoundedButton) source).getText();
-
-		//FenAccueil fenAC = (FenAccueil) this.fenAjoutEntreprise.getTopLevelAncestor();
 		
 		if (texte != null) {
 			switch (texte) {
