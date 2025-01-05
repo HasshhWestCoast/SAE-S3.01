@@ -66,4 +66,48 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Erreur');
     END IF;
 END;
+/SET SERVEROUTPUT ON;
+
+---------------------------------------------------------------------------
+------------- CONSOMMATION D'UN COMPTEUR POUR UN LOGEMENT DONNÉ ---------------
+---------------------------------------------------------------------------
+-- Fonction pour calculer la consommation entre deux relevés pour un compteur donné
+DECLARE
+    v_Id_Compteur SAE_Compteur.Id_Compteur%TYPE;
+    v_Consommation NUMBER;
+BEGIN
+    -- Sélectionner un identifiant aléatoire parmi les compteurs existants
+    SELECT Id_Compteur
+    INTO v_Id_Compteur
+    FROM (SELECT Id_Compteur FROM SAE_Compteur ORDER BY DBMS_RANDOM.VALUE)
+    WHERE ROWNUM = 1;
+
+    -- Appeler la fonction CalculerConsommation avec l'identifiant sélectionné
+    v_Consommation := CalculerConsommation(v_Id_Compteur);
+
+    -- Afficher les résultats
+    DBMS_OUTPUT.PUT_LINE('Identifiant du compteur testé (aléatoire) : ' || v_Id_Compteur);
+    IF v_Consommation IS NOT NULL THEN
+        DBMS_OUTPUT.PUT_LINE('Consommation calculée : ' || v_Consommation);
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Erreur dans le calcul de la consommation.');
+    END IF;
+END;
 /
+
+
+----------------------- Bloc anonyme pour tester la fonction ---------------------------
+DECLARE
+    v_Consommation INT;
+BEGIN 
+    v_Consommation := CalculerConsommation('ComptMaisonSTMichel_Eau');
+
+    IF v_Consommation IS NOT NULL THEN
+        DBMS_OUTPUT.PUT_LINE('CalculerConsommation: ' || v_Consommation);
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Erreur');
+    END IF;
+END;
+/
+
+
