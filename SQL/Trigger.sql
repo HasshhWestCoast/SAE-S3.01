@@ -36,16 +36,22 @@ BEGIN
 END;
 /
 
--- Déclencheur pour vérifier le type de logement en fonction de ses caractéristiques
-CREATE OR REPLACE TRIGGER SAE_check_type_logement
+CREATE OR REPLACE TRIGGER SAE_CHECK_TYPE_LOGEMENT
 BEFORE INSERT OR UPDATE ON SAE_Logement
 FOR EACH ROW
 BEGIN
-   IF (:NEW.type_logement = 'Maison' AND :NEW.nb_pieces > 10) THEN
+   -- Vérification du type de logement et du nombre de pièces
+   IF (:NEW.type_immeuble = 'Maison' AND :NEW.nb_pieces > 10) THEN
       RAISE_APPLICATION_ERROR(-20003, 'Une maison ne peut pas avoir plus de 10 pièces.');
+   END IF;
+
+   -- Vérification de la proportionnalité entre nb_pieces et surface_habitable
+   IF (:NEW.nb_pieces * 10 > :NEW.surface_habitable) THEN
+      RAISE_APPLICATION_ERROR(-20004, 'Le nombre de pièces doit être proportionnel à la surface habitable.');
    END IF;
 END;
 /
+
 
 -- Déclencheur pour vérifier que le nombre de pièces est proportionnel à la surface habitable
 CREATE OR REPLACE TRIGGER SAE_verif_nb_pieces
