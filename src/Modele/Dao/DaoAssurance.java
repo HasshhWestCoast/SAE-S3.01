@@ -57,7 +57,7 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 	@Override
 	protected assurance creerInstance(ResultSet curseur) throws SQLException {
 		
-	    java.sql.Date dateéchéance = curseur.getDate("date_échéance");
+	    java.sql.Date dateéchéance = curseur.getDate("date_echeance");
 	    
 	    String date_échéance = new java.text.SimpleDateFormat("dd/MM/yyyy").format(dateéchéance);
 	    String numero_Police = curseur.getString("numero_police");

@@ -9,7 +9,7 @@ public class RequeteSelectICCById  extends Requete<ICC> {
 	   
 		@Override
 	    public String requete() {
-	        return "SELECT * FROM icc " +
+	        return "SELECT * FROM Sae_icc " +
 	               "WHERE annee = ? " +
 	        	   "AND trimestre = ?";
 	    }

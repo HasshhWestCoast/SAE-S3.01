@@ -1,7 +1,7 @@
 package Vue.Insertion;
 
-import java.awt.EventQueue;
 import java.awt.Font;
+import java.sql.SQLException;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -32,27 +32,15 @@ public class FenAjoutFacture extends JInternalFrame {
 	private JTextField textFieldMontant;
 	
 	private GestionFenAjoutFacture gestionClicFenAjoutFacture; 
+	private JScrollPane scrollPane;
+	private JTable tabMesEntreprise;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenAjoutFacture frame = new FenAjoutFacture();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public FenAjoutFacture() {
+	public FenAjoutFacture() throws SQLException {
 		
 		gestionClicFenAjoutFacture = new GestionFenAjoutFacture(this);
 				
@@ -166,12 +154,12 @@ public class FenAjoutFacture extends JInternalFrame {
 		separatorTrouverEntreprise.setBounds(645, 45, 188, 2);
 		getContentPane().add(separatorTrouverEntreprise);
 	
-		JTable tabMesEntreprise = new JTable();
+		tabMesEntreprise = new JTable();
 		tabMesEntreprise.setModel(new DefaultTableModel(
             new Object[][] { { null, null} },
             new String[] { "SIRET", "nom" }
         ));
-        JScrollPane scrollPane = new JScrollPane(tabMesEntreprise);
+        scrollPane = new JScrollPane(tabMesEntreprise);
         scrollPane.setBorder(new LineBorder(new Color(109, 109, 109), 2));
 		scrollPane.setBounds(645, 87, 268, 134);        
 		getContentPane().add(scrollPane);
@@ -195,5 +183,9 @@ public class FenAjoutFacture extends JInternalFrame {
 		btnAjouter.addActionListener(this.gestionClicFenAjoutFacture);
 		btnAjouter.setBounds(380, 388, 85, 21);
 		getContentPane().add(btnAjouter);
+	}
+	
+	public JTable getTabMesEntreprise() {
+		return tabMesEntreprise;
 	}
 }

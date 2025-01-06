@@ -58,7 +58,7 @@ public class DaoFacture  extends DaoModele<Facture> implements Dao<Facture>{
 	@Override
 	protected Facture creerInstance(ResultSet curseur) throws SQLException {
 		
-	    java.sql.Date dateEmission = curseur.getDate("dateEmission");
+	    java.sql.Date dateEmission = curseur.getDate("date_Emission");
 	    String date_Emission = new java.text.SimpleDateFormat("dd/MM/yyyy").format(dateEmission);
 	    
 	    java.sql.Date datePaiement = curseur.getDate("date_Paiement");

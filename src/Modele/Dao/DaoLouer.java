@@ -67,16 +67,16 @@ public class DaoLouer extends DaoModele<Louer> implements Dao<Louer>{
 	    String nbMois = curseur.getString("nb_Mois");
 	    int nb_Mois = Integer.parseInt(nbMois);
 	    
-	    String loyePayer = curseur.getString("loye_Payer");
+	    String loyePayer = curseur.getString("loyer_payer");
 	    double loye_Payer = Double.parseDouble(loyePayer);
 	    
-	    String provision_chargeMoisTTC = curseur.getString("provision_chargeMois_TTC");
+	    String provision_chargeMoisTTC = curseur.getString("provisions_chargesMois_TTC");
 	    double provision_chargeMois_TTC = Double.parseDouble(provision_chargeMoisTTC);
 	    
 	    String cautionTTC = curseur.getString("caution_TTC");
 	    double caution_TTC = Double.parseDouble(cautionTTC);
 	    
-	    String montantReelPaye = curseur.getString("montant_Reel_Paye");
+	    String montantReelPaye = curseur.getString("montant_reel_payer");
 	    double montant_Reel_Paye = Double.parseDouble(montantReelPaye);
 	    
 	    String Id_Bien = curseur.getString("Id_Bien");

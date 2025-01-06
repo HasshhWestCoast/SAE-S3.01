@@ -9,7 +9,7 @@ public class RequeteSelectBienById extends Requete<Bien> {
 	   
 	@Override
 	 public String requete() {
-	     return "SELECT * FROM Bien " +
+	     return "SELECT * FROM Sae_Bien " +
 	            "WHERE Id_bien = ? ";
 	 }
 	

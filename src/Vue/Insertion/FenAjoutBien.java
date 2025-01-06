@@ -1,7 +1,6 @@
 package Vue.Insertion;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JComboBox;
@@ -22,22 +21,6 @@ public class FenAjoutBien extends JInternalFrame {
 	private JTextField textFieldCodePostale;
 	private JTextField textField;
 	private GestionFenAjoutBien gestionClicFenAjoutBien;	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenAjoutBien frame = new FenAjoutBien();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

@@ -11,6 +11,8 @@ import Modele.Compteur;
 import Modele.Logement;
 import Modele.Dao.Requetes.RequeteSelectCompteur;
 import Modele.Dao.Requetes.RequeteSelectCompteurById;
+import Modele.Dao.Requetes.RequeteSelectCompteurLogement;
+import Modele.Dao.Requetes.RequeteSelectCompteurBien;
 
 public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur>{
 
@@ -38,6 +40,33 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur>{
 		RequeteSelectCompteurById requete = new RequeteSelectCompteurById();
 	    return super.findById(requete, id);
 	}
+	
+	
+	public  List<Compteur> findComptBien() throws SQLException {
+		RequeteSelectCompteurBien requete = new RequeteSelectCompteurBien();
+		
+		List<Compteur> list = find(requete);
+	    
+	    PreparedStatement prSt = connexion.prepareStatement(requete.requete());
+	    ResultSet resultSet = prSt.executeQuery();
+	    
+	    DaoCompteur.setIterateurCompteur(new Iterateur<>(resultSet, this));
+
+	    return list;
+	}
+	
+	public  List<Compteur> findComptLogement() throws SQLException {
+		RequeteSelectCompteurLogement requete = new RequeteSelectCompteurLogement();
+		
+		List<Compteur> list = find(requete);
+	    
+	    PreparedStatement prSt = connexion.prepareStatement(requete.requete());
+	    ResultSet resultSet = prSt.executeQuery();
+	    
+	    DaoCompteur.setIterateurCompteur(new Iterateur<>(resultSet, this));
+
+	    return list;
+	}
 
 
 	@Override
@@ -57,7 +86,7 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur>{
 	@Override
 	protected Compteur creerInstance(ResultSet curseur) throws SQLException {
 		
-		java.sql.Date dateRelevé = curseur.getDate("date_Relevé");
+		java.sql.Date dateRelevé = curseur.getDate("date_Releve");
 	    String date_Relevé = new java.text.SimpleDateFormat("dd/MM/yyyy").format(dateRelevé);
 	    
 	    String id_Compteur = curseur.getString("id_Compteur");

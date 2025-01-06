@@ -59,7 +59,7 @@ public class DaoICC extends DaoModele<ICC> implements Dao<ICC>{
 	    String trimestre = curseur.getString("trimestre");
 	    
 	    String indiceString = curseur.getString("indice");
-	    int indice = Integer.parseInt(indiceString);
+	    double indice = Double.parseDouble(indiceString);
 	        
 	    return new ICC(annee, trimestre, indice);
 	}
@@ -68,6 +68,8 @@ public class DaoICC extends DaoModele<ICC> implements Dao<ICC>{
         return it;
     }
 
+	
+	
     public static void setIterateurICC(Iterateur<ICC> iterateur) {
         it = iterateur;
     }

@@ -8,7 +8,7 @@ import Modele.Charge;
 public class RequeteSelectCharge extends Requete<Charge>{
 
 	public String requete() {
-		return "Select * from charge ";
+		return "Select * from Sae_charge ";
 	}
 
     @Override

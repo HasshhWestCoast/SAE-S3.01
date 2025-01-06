@@ -1,8 +1,8 @@
 package Vue;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
+import java.sql.SQLException;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -19,27 +19,14 @@ public class FenCompteursLogement extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private GestionFenCompteursLogement gestionClicFenCompLog;
+	private JTable tabMesCompteursLogements;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenCompteursLogement frame = new FenCompteursLogement();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public FenCompteursLogement() {
+	public FenCompteursLogement() throws SQLException {
 		
 		this.gestionClicFenCompLog = new GestionFenCompteursLogement(this);
 		
@@ -47,13 +34,13 @@ public class FenCompteursLogement extends JInternalFrame {
         getContentPane().setLayout(null);
 		
 		 // JTable pour "Bien"
-        JTable tabMesCompteursLogements = new JTable();
+        tabMesCompteursLogements = new JTable();
         tabMesCompteursLogements.setModel(new DefaultTableModel(
             new Object[][] {
-                { null, null, null},
+                { null, null, null, null},
             },
             new String[] {
-                "ID Compteur", "Type Compteur", "Prix abonnement"
+                "ID Compteur", "Type Compteur", "Index", "Date relevé"
             }
         ));
         JScrollPane scrollPaneCompteursLogements = new JScrollPane(tabMesCompteursLogements);
@@ -76,20 +63,19 @@ public class FenCompteursLogement extends JInternalFrame {
         
         RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
         btnAnnuler.addActionListener(this.gestionClicFenCompLog);
-        btnAnnuler.setBounds(53, 472, 115, 21);
+        btnAnnuler.setBounds(148, 472, 104, 21);
         getContentPane().add(btnAnnuler);
         
-        RoundedButton btnAfficherRelevé = new RoundedButton("Afficher les relevés", 20);
-        btnAfficherRelevé.addActionListener(this.gestionClicFenCompLog);
-        btnAfficherRelevé.setBounds(194, 472, 182, 21);
-        getContentPane().add(btnAfficherRelevé);
-        
-        RoundedButton btnAjouterRelevé = new RoundedButton("Ajouter un relevé", 20);
-        btnAjouterRelevé.addActionListener(this.gestionClicFenCompLog);
-        btnAjouterRelevé.setBounds(400, 472, 140, 21);
-        getContentPane().add(btnAjouterRelevé);
+        RoundedButton btnCharger = new RoundedButton("Charger", 20);
+        btnCharger.addActionListener(this.gestionClicFenCompLog);
+        btnCharger.setBounds(278, 472, 104, 21);
+        getContentPane().add(btnCharger);
         
 		setBounds(100, 100, 669, 550);
 
+	}
+	
+	public JTable getTabMesCompteursLogements() {
+		return tabMesCompteursLogements;
 	}
 }

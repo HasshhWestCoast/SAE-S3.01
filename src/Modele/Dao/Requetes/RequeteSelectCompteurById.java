@@ -9,7 +9,7 @@ public class RequeteSelectCompteurById extends Requete<Compteur> {
 	   
 		@Override
 	    public String requete() {
-	        return "SELECT * FROM Ccompteur " +
+	        return "SELECT * FROM Sae_Ccompteur " +
 	               "WHERE Id_Compteur = ? ";
 	    }
 

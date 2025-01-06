@@ -8,7 +8,7 @@ import Modele.ICC;
 public class RequeteSelectICC extends Requete<ICC>{
 
 	public String requete() {
-		return "Select * from icc ";
+		return "Select * from Sae_icc ";
 	}
 
     @Override

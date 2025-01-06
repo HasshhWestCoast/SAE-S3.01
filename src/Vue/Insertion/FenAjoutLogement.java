@@ -1,7 +1,5 @@
 package Vue.Insertion;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -17,8 +15,6 @@ import Vue.RoundedButton;
 
 import javax.swing.JSeparator;
 import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class FenAjoutLogement extends JInternalFrame {
 
@@ -27,22 +23,6 @@ public class FenAjoutLogement extends JInternalFrame {
 	private JTextField textFieldIdLogement;
 	private JTextField textField;
 	private GestionFenAjoutLogement gestionFenAjoutLogement;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenAjoutLogement frame = new FenAjoutLogement();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

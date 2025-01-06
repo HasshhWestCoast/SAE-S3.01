@@ -9,7 +9,7 @@ public class RequeteSelectCompteur extends Requete<Compteur> {
 	   
 	@Override
 	 public String requete() {
-	     return "SELECT * FROM Compteur ";
+	     return "SELECT * FROM Sae_Compteur ";
 	 }
 	
 	 @Override

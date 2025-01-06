@@ -34,6 +34,11 @@ public class FenAccueil extends JFrame {
 	
 	private JTable tabMesBiens;
 	
+	private JTable tabMesFactures;
+	private JTable tabMesLocations;
+	private JTable tabMesAssurances;
+	private JTable tabMesLogements;
+
 	
     /**
      * Launch the application.
@@ -140,7 +145,7 @@ public class FenAccueil extends JFrame {
         panelAssurances = createAssurancesPanel();
         layeredPane.add(panelAssurances, "Assurances");
         
-        // Panel Facture
+        // Panel Locations
         panelLocations = createLocationsPanel();
         layeredPane.add(panelLocations, "Locations");
         
@@ -148,12 +153,12 @@ public class FenAccueil extends JFrame {
         panelFactures = createFacturesPanel();
         layeredPane.add(panelFactures, "Factures");
         
-        // Panel Facture
+        // Panel Biens
         panelBiens = createBiensPanel();
         layeredPane.add(panelBiens, "Biens");
         
         
-        // Panel Facture
+        // Panel Logements
         panelLogements = createLogementsPanel();
         layeredPane.add(panelLogements, "Logements");
 
@@ -173,7 +178,7 @@ public class FenAccueil extends JFrame {
         return panelAccueil;
     }
 
-    private JPanel createAssurancesPanel() {
+    private JPanel createAssurancesPanel() throws SQLException {
     	
     	this.gestionClicAssurances = new GestionFenAssurances(this);
 
@@ -214,12 +219,12 @@ public class FenAccueil extends JFrame {
         panelCentre.add(comboBoxIDAssurance);
 
         // Ajouter le tableau
-        JTable tabMesLocations = new JTable();
-        tabMesLocations.setModel(new DefaultTableModel(
-            new Object[][] { { null, null, null, null, null, null, null } },
-            new String[] { "Numéro police", "ID assurance", "Protection juridique", "Prime", "Quotité", "Date de début", "Date de fin" }
+        tabMesAssurances = new JTable();
+        tabMesAssurances.setModel(new DefaultTableModel(
+            new Object[][] { { null, null, null, null, null } },
+            new String[] { "Numéro police", "Montant", "Date échéance", "Entreprise", "Logement" }
         ));
-        JScrollPane scrollPane = new JScrollPane(tabMesLocations);
+        JScrollPane scrollPane = new JScrollPane(tabMesAssurances);
         scrollPane.setBounds(59, 48, 890, 407);
         scrollPane.setBorder(new LineBorder(new Color(31, 153, 88), 2));
         panelCentre.add(scrollPane);
@@ -244,7 +249,7 @@ public class FenAccueil extends JFrame {
         return panelAssurances;
     }
     
-    private JPanel createLocationsPanel() {
+    private JPanel createLocationsPanel() throws SQLException {
     	
         this.gestionClicLocation = new GestionFenLocation(this);
 
@@ -280,7 +285,7 @@ public class FenAccueil extends JFrame {
     	 comboBoxIDLocations.setBounds(54, 11, 126, 22);
     	 panelCentre.add(comboBoxIDLocations);
     	 
-    	 JTable tabMesLocations = new JTable();
+    	 tabMesLocations = new JTable();
          tabMesLocations.setModel(new DefaultTableModel(
              new Object[][] { { null, null, null, null, null } },
              new String[] { "Locataire", "Bien", "Type", "Date début", "Dernière régularisation" }
@@ -320,7 +325,7 @@ public class FenAccueil extends JFrame {
     	
     }
     
-    private JPanel createFacturesPanel() {
+    private JPanel createFacturesPanel() throws SQLException {
     	
     	this.gestionClicFacture = new GestionFenFacture(this);
 
@@ -356,7 +361,7 @@ public class FenAccueil extends JFrame {
         comboBoxIDLocations.setBounds(41, 11, 126, 22);
         panelCentre.add(comboBoxIDLocations);
 
-        JTable tabMesFactures = new JTable();
+        tabMesFactures = new JTable();
         tabMesFactures.setModel(new DefaultTableModel(
             new Object[][] {
                 { null, null, null, null, null, null, null, null, null },
@@ -377,17 +382,17 @@ public class FenAccueil extends JFrame {
         panel.setLayout(null);
         
         RoundedButton btnArchiver = new RoundedButton("Archiver", 20);
-        btnArchiver.setBounds(269, 11, 85, 23);
+        btnArchiver.setBounds(345, 11, 85, 23);
         btnArchiver.addActionListener(this.gestionClicFacture);
         panel.add(btnArchiver);
 
         RoundedButton btnInserer = new RoundedButton("Inserer", 20);
-        btnInserer.setBounds(410, 11, 80, 23);
+        btnInserer.setBounds(449, 11, 80, 23);
         btnInserer.addActionListener(this.gestionClicFacture);
         panel.add(btnInserer);
 
         RoundedButton btnModifier = new RoundedButton("Modifier", 20);
-        btnModifier.setBounds(536, 11, 96, 23);
+        btnModifier.setBounds(557, 11, 96, 23);
         btnModifier.addActionListener(this.gestionClicFacture);
         panel.add(btnModifier);
 
@@ -395,6 +400,11 @@ public class FenAccueil extends JFrame {
         btnSupprimer.setBounds(676, 11, 96, 23);
         btnSupprimer.addActionListener(this.gestionClicFacture);
         panel.add(btnSupprimer);
+        
+        RoundedButton btnCharger = new RoundedButton("Charger", 20);
+        btnCharger.addActionListener(this.gestionClicFacture);
+        btnCharger.setBounds(243, 11, 85, 23);
+        panel.add(btnCharger);
 
         return panelFactures;
     }
@@ -485,9 +495,10 @@ public class FenAccueil extends JFrame {
         return panelBiens;
     }
 
-    private JPanel createLogementsPanel() {
+    private JPanel createLogementsPanel() throws SQLException {
     	
     	this.gestionClicLogement = new GestionFenLogements(this);
+    	
     	JPanel panelLogements = new JPanel();
     	 panelLogements.setLayout(new BorderLayout(0, 0));
 
@@ -512,8 +523,8 @@ public class FenAccueil extends JFrame {
         panelCentre.setLayout(null);
 
         // JTable pour "Bien"
-        JTable tabMesBiens = new JTable();
-        tabMesBiens.setModel(new DefaultTableModel(
+        tabMesLogements = new JTable();
+        tabMesLogements.setModel(new DefaultTableModel(
             new Object[][] {
                 { null, null, null, null, null, null },
             },
@@ -521,7 +532,7 @@ public class FenAccueil extends JFrame {
                 "IDLogement", "Surface habitable", "Date acquisition", "Type Logement", "Nombre de pièces", "Num étage"
             }
         ));
-        JScrollPane scrollPaneBiens = new JScrollPane(tabMesBiens);
+        JScrollPane scrollPaneBiens = new JScrollPane(tabMesLogements);
         scrollPaneBiens.setBounds(46, 76, 636, 359);
         scrollPaneBiens.setBorder(new LineBorder(new Color(31, 153, 88), 2));
         panelCentre.add(scrollPaneBiens);
@@ -533,18 +544,23 @@ public class FenAccueil extends JFrame {
 
         RoundedButton btnArchiver = new RoundedButton("Archiver", 20);
         btnArchiver.addActionListener(this.gestionClicLogement);
-        btnArchiver.setBounds(284, 11, 85, 23);
+        btnArchiver.setBounds(242, 11, 85, 23);
         panel.add(btnArchiver);
 
         RoundedButton btnModifier = new RoundedButton("Modifier", 20);
         btnModifier.addActionListener(this.gestionClicLogement);
-        btnModifier.setBounds(418, 11, 96, 23);
+        btnModifier.setBounds(350, 11, 96, 23);
         panel.add(btnModifier);
 
         RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
         btnSupprimer.addActionListener(this.gestionClicLogement);
-        btnSupprimer.setBounds(559, 11, 96, 23);
+        btnSupprimer.setBounds(469, 11, 96, 23);
         panel.add(btnSupprimer);
+        
+        RoundedButton btnCharger = new RoundedButton("Charger", 20);
+        btnCharger.addActionListener(this.gestionClicLogement);
+        btnCharger.setBounds(134, 11, 85, 23);
+        panel.add(btnCharger);
         
         // Buttons
         RoundedButton btnAjouterLogement = new RoundedButton("Ajouter un logement", 20);
@@ -579,5 +595,21 @@ public class FenAccueil extends JFrame {
     
     public JTable getTabMesBiens() {
         return tabMesBiens;
+    }
+    
+    public JTable getTabMesFactures() {
+        return tabMesFactures;
+    }
+    
+    public JTable getTabMesLocations() {
+        return tabMesLocations;
+    }
+    
+    public JTable getTabMesAssurances() {
+    	return tabMesAssurances;
+    }
+    
+    public JTable getTabMesLogements() {
+    	return tabMesLogements;
     }
 }

@@ -9,7 +9,7 @@ import Modele.Facture;
 public class RequeteSelectFacture  extends Requete<Facture>{
 
 	public String requete() {
-		return "Select * from facture ";
+		return "Select * from Sae_facture ";
 	}
 
     @Override

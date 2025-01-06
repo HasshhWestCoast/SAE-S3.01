@@ -8,7 +8,7 @@ import Modele.Impot;
 public class RequeteSelectImpot extends Requete<Impot>{
 
 	public String requete() {
-		return "Select * from Impot ";
+		return "Select * from Sae_Impot ";
 	}
 
     @Override

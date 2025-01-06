@@ -2,7 +2,17 @@ package Controleur.Ajout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.List;
 
+import javax.swing.table.DefaultTableModel;
+
+import Modele.Entreprise;
+import Modele.Logement;
+import Modele.Dao.CictOracleDataSource;
+import Modele.Dao.DaoEntreprise;
+import Modele.Dao.DaoLogement;
+import Modele.Dao.Iterateur;
 import Vue.FenAccueil;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutAssurance;
@@ -12,9 +22,15 @@ import Vue.Insertion.FenAjoutLogement;
 public class GestionFenAjoutAssurance implements ActionListener{
 
 	private FenAjoutAssurance fenAjoutAssurance;
+	private DaoEntreprise daoEntreprise;
+	private DaoLogement daoLogement;
+
 	
-	public GestionFenAjoutAssurance(FenAjoutAssurance fenAjoutAssurance) {
+	public GestionFenAjoutAssurance(FenAjoutAssurance fenAjoutAssurance) throws SQLException {
 		this.fenAjoutAssurance = fenAjoutAssurance;
+		this.daoEntreprise = new DaoEntreprise(CictOracleDataSource.getInstance().getConnection());
+		this.daoLogement = new DaoLogement(CictOracleDataSource.getInstance().getConnection());
+
 	}
 	
 	@Override
@@ -23,7 +39,9 @@ public class GestionFenAjoutAssurance implements ActionListener{
 		String texte = ((RoundedButton) source).getText();
 		
 		FenAccueil fenAC = (FenAccueil) this.fenAjoutAssurance.getTopLevelAncestor();
-		
+		DefaultTableModel modeleTableEntreprise = (DefaultTableModel) this.fenAjoutAssurance.getTabMesEntreprise().getModel();
+		DefaultTableModel modeleTableLogement = (DefaultTableModel) this.fenAjoutAssurance.getTabMesLogements().getModel();
+
 		if (texte != null) {
 			switch (texte) {
 				case "Annuler":
@@ -53,10 +71,54 @@ public class GestionFenAjoutAssurance implements ActionListener{
 				
 				case "Charger L":
 					System.out.println("Vous CHARGER les Logements depuis Assurance !");
+					try {
+						List<Logement> mesDonnees = this.daoLogement.findAll();
+		
+						Iterateur<Logement> itL = DaoLogement.getIterateurLogement();
+						
+				        if (itL == null) {
+				            System.out.println("Itérateur non initialisé !");
+				            break;
+				        }
+				        modeleTableLogement.setRowCount(mesDonnees.size());  
+						
+						int countL = 0;
+						while(itL.hasNext() && countL < mesDonnees.size()) {	
+							Logement logement = itL.next();
+							this.ecrireLigneTableLogement(logement, countL);
+							countL++;
+						}
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}
 					break;
 					
 				case "Charger E":
 					System.out.println("Vous CHARGER les ENTREPRISE depuis Assurance !");
+					try {
+						List<Entreprise> mesDonnees = this.daoEntreprise.findAll();
+		
+						Iterateur<Entreprise> it = DaoEntreprise.getIterateurEntreprise();
+						
+				        if (it == null) {
+				            System.out.println("Itérateur non initialisé !");
+				            break;
+				        }
+				        modeleTableEntreprise.setRowCount(mesDonnees.size());  
+						
+						int count = 0;
+						while(it.hasNext() && count < mesDonnees.size()) {	
+							Entreprise entreprise = it.next();
+							this.ecrireLigneTableEntreprise(entreprise, count);
+							count++;
+						}
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}
 					break;
 					
 				default:
@@ -66,5 +128,20 @@ public class GestionFenAjoutAssurance implements ActionListener{
 			System.out.println("Source non reconnu !");
 		}
 	}
+	
+	public void ecrireLigneTableEntreprise(Entreprise entreprise, int numeroLigne) {
+		DefaultTableModel modeleTableEntreprise = (DefaultTableModel) this.fenAjoutAssurance.getTabMesEntreprise().getModel();
+
+		modeleTableEntreprise.setValueAt(entreprise.getSiret(), numeroLigne, 0);
+		modeleTableEntreprise.setValueAt(entreprise.getNom(), numeroLigne, 1);
+	}
+	
+	public void ecrireLigneTableLogement(Logement logement, int numeroLigne) {
+		DefaultTableModel modeleTableLogement = (DefaultTableModel) this.fenAjoutAssurance.getTabMesLogements().getModel();
+
+		modeleTableLogement.setValueAt(logement.getIdLogement(), numeroLigne, 0);
+		modeleTableLogement.setValueAt(logement.getDateAcquisition(), numeroLigne, 1);
+	}
+	
 
 }

@@ -1,7 +1,6 @@
 package Vue.Insertion;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -22,21 +21,7 @@ public class FenAjoutEntreprise extends JInternalFrame {
 	private JTextField textFieldIBAN;
 
 	private GestionFenAjoutEntreprise gestionClicFenAjoutEntreprise;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenAjoutEntreprise frame = new FenAjoutEntreprise();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.

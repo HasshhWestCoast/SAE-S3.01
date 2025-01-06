@@ -2,43 +2,69 @@ package Controleur.Afficher;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.List;
 
+import javax.swing.table.DefaultTableModel;
+
+import Modele.Compteur;
+import Modele.Dao.CictOracleDataSource;
+import Modele.Dao.DaoCompteur;
+import Modele.Dao.Iterateur;
 import Vue.FenCompteursLogement;
 import Vue.RoundedButton;
 
 public class GestionFenCompteursLogement implements ActionListener{
 	
 	private FenCompteursLogement fenCompLogement;
-	
-	public GestionFenCompteursLogement(FenCompteursLogement fenCompLogement) {
+	private DaoCompteur daoCompteur;
+
+	public GestionFenCompteursLogement(FenCompteursLogement fenCompLogement) throws SQLException {
 		this.fenCompLogement = fenCompLogement;
+		this.daoCompteur = new DaoCompteur(CictOracleDataSource.getInstance().getConnection());
+
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		String texte = ((RoundedButton) source).getText();
+		DefaultTableModel modeleTable = (DefaultTableModel) this.fenCompLogement.getTabMesCompteursLogements().getModel();
 
-		//FenAccueil fenAC = (FenAccueil) this.fenCompLogement.getTopLevelAncestor();
-		
 		if (texte != null) {
 			switch (texte) {
 				case "Annuler":
 					System.out.println("Vous FERMEZ la page Compteurs Logement !");
 					this.fenCompLogement.dispose();
 					break;
+				
+				case "Charger":
+					System.out.println("Vous Charger les Compteurs Logement !");
 					
-				case "Ajouter un relevé":
-					System.out.println("Vous AJOUTER UN RELEVE à un  Compteurs Logement !");
-					break;
+					List<Compteur> mesDonnees = null;
 					
-				case "Afficher les relevés":
-					System.out.println("Vous AFFICHER LES RELEVES d'un Compteur Logement !");
-				    //FenAjoutCompteur fenAjoutCompteur = new FenAjoutCompteur();
+					try {
+						mesDonnees = this.daoCompteur.findComptLogement();
+					} catch (SQLException e1) {
+						System.out.println(e1.getMessage());
+						e1.printStackTrace();
+					}
+	
+					Iterateur<Compteur> it = DaoCompteur.getIterateurCompteur();
 					
-	                //fenAC.getLayeredPane().add(fenAjoutCompteur);
-	                //fenAjoutCompteur.setVisible(true);
-	                //fenAjoutCompteur.moveToFront();
+			        if (it == null) {
+			            System.out.println("Itérateur non initialisé !");
+			            break;
+			        }
+					modeleTable.setRowCount(mesDonnees.size());  
+					
+					int count = 0;
+					while(it.hasNext() && count < mesDonnees.size()) {	
+						Compteur compteur = it.next();
+						this.ecrireLigneTable(compteur, count);
+						count++;
+					}
+	
 					break;
 					
 				default:
@@ -47,5 +73,15 @@ public class GestionFenCompteursLogement implements ActionListener{
 		}else {
 			System.out.println("Source non reconnu !");
 		}
+	}
+	
+	public void ecrireLigneTable(Compteur compteur, int numeroLigne) {
+		DefaultTableModel modeleTable = (DefaultTableModel) this.fenCompLogement.getTabMesCompteursLogements().getModel();
+
+		modeleTable.setValueAt(compteur.getIdCompteur(), numeroLigne, 0);
+		modeleTable.setValueAt(compteur.getTypeComp(), numeroLigne, 1);
+		modeleTable.setValueAt(compteur.getIndexCompteur(), numeroLigne, 2);
+		modeleTable.setValueAt(compteur.getDateRelevé(), numeroLigne, 3);
+
 	}
 }
