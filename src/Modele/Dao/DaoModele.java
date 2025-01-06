@@ -50,8 +50,10 @@ public abstract class DaoModele<T> implements Dao<T> {
     public List<T> find(Requete<T> req, String... id) throws SQLException {
         List<T> resultat = new ArrayList<>();
         try (PreparedStatement prSt = connexion.prepareStatement(req.requete())) {
-            req.parametres(prSt, id);
+            System.out.println(prSt);
+        	req.parametres(prSt, id);
             resultat = select(prSt);
+            System.out.println(resultat);
         } catch (SQLException ex) {
             throw ex;
         }

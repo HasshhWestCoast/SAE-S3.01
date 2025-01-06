@@ -41,7 +41,7 @@ BEFORE INSERT OR UPDATE ON SAE_Logement
 FOR EACH ROW
 BEGIN
    -- Vérification du type de logement et du nombre de pièces
-   IF (:NEW.type_immeuble = 'Maison' AND :NEW.nb_pieces > 10) THEN
+   IF (:NEW.type_logement = 'Maison' AND :NEW.nb_pieces > 10) THEN
       RAISE_APPLICATION_ERROR(-20003, 'Une maison ne peut pas avoir plus de 10 pièces.');
    END IF;
 
@@ -91,15 +91,15 @@ END;
 /
 
 -------------------------- DIAGNOSTIC -------------------------------------
-
 -- Déclencheur pour vérifier que la date de validité du diagnostic est ultérieure à la date actuelle
-CREATE OR REPLACE TRIGGER SAE_diagnostic_check_date
+CREATE OR REPLACE TRIGGER SAE_DIAGNOSTIC_CHECK_DATE
 BEFORE INSERT OR UPDATE ON SAE_Diagnostic
 FOR EACH ROW
 BEGIN
-   IF :NEW.date_validite <= SYSDATE THEN
-      RAISE_APPLICATION_ERROR(-20001, 'La date de validité doit être ultérieure à la date actuelle.');
-   END IF;
+    -- Vérifier si la date de validité est bien dans le futur
+    IF :NEW.date_validite <= SYSDATE THEN
+        RAISE_APPLICATION_ERROR(-20001, 'La date de validité doit être ultérieure à la date actuelle.');
+    END IF;
 END;
 /
 
