@@ -51,7 +51,6 @@ public class GestionFenBien implements ActionListener{
 					System.out.println("Vous CHARGER les donnée dans Bien !");
 					try {
 						List<Bien> mesDonnees = this.daoBien.findAll();
-		
 						Iterateur<Bien> it = DaoBien.getIterateurBien();
 						
 				        if (it == null) {
