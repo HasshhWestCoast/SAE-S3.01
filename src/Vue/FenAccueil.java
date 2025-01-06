@@ -34,8 +34,6 @@ public class FenAccueil extends JFrame {
 	
 	private JTable tabMesBiens;
 	
-
-
 	
     /**
      * Launch the application.
