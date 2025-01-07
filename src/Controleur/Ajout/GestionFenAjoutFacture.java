@@ -7,9 +7,13 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
+import Modele.Bien;
 import Modele.Entreprise;
+import Modele.Facture;
 import Modele.Dao.CictOracleDataSource;
+import Modele.Dao.DaoBien;
 import Modele.Dao.DaoEntreprise;
+import Modele.Dao.DaoFacture;
 import Modele.Dao.Iterateur;
 import Vue.FenAccueil;
 import Vue.RoundedButton;
@@ -44,6 +48,34 @@ public class GestionFenAjoutFacture implements ActionListener{
 					
 				case "Ajouter":
 					System.out.println("Vous AJOUTER une Facture !");
+					
+					try {
+						DefaultTableModel modeleTableFacture = (DefaultTableModel) fenAC.getTabMesFactures().getModel();
+
+						String IdFacture = (String) fenAjoutFacture.getTextFieldIdFacture();					
+						String DateEmission = (String) fenAjoutFacture.getTextFieldDateEmission();
+						String DatePaiement = (String) fenAjoutFacture.getTextFieldDatePaiement();
+						String ModePaiement = (String) fenAjoutFacture.getComboBoxModePaiement();
+						String NumeroDevis = (String) fenAjoutFacture.getTextFieldNumeroDevis();
+						String AcompteVerse = (String) fenAjoutFacture.getTextFieldAcompteVersé();
+						String Montant = (String) fenAjoutFacture.getTextFieldMontant();
+						String Designation = (String) fenAjoutFacture.getComboBoxDesignation();
+						String ImputableLocataire = (String) fenAjoutFacture.getcheckImputableLocataire();
+						
+						DaoFacture daoFacture = new DaoFacture(CictOracleDataSource.getInstance().getConnection());
+
+						Facture facture = new Facture(IdFacture, DateEmission, DatePaiement, ModePaiement, NumeroDevis, Designation, );
+						//daoFacture.create(facture);
+						
+						String []EngrFacture = {IdFacture, DateEmission, DatePaiement, ModePaiement, NumeroDevis, Designation};
+						modeleTableFacture.addRow(EngrFacture);
+						
+						fenAjoutFacture.dispose();
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}	
 					break;
 					
 				case "Inserer":
