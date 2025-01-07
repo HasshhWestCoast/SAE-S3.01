@@ -4,6 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
+import javax.swing.table.DefaultTableModel;
+
+import Modele.Bien;
+import Modele.Dao.CictOracleDataSource;
+import Modele.Dao.DaoBien;
 import Vue.FenAccueil;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutBien;
@@ -35,14 +40,37 @@ public class GestionFenAjoutBien implements ActionListener{
 					
 				case "Ajouter":
 					System.out.println("Vous AJOUTER un bien !");
+					try {
+						DefaultTableModel modeleTable = (DefaultTableModel) fenAC.getTabMesBiens().getModel();
+
+						String IdBien = (String) fenAjoutBien.getTextFieldIdBien();					
+						String Adresse = (String) fenAjoutBien.getTextFieldAdresse();
+						String Ville = (String) fenAjoutBien.getTextFieldVille();
+						String TypeBien = (String) fenAjoutBien.getComboBoxTypeDeBien();
+						String CodePostal = (String) fenAjoutBien.getTextFieldCodePostale();
+						String PeriodeConstruction = (String) fenAjoutBien.getTextFieldPeriodeConstruction();
+						
+						DaoBien daoBien = new DaoBien(CictOracleDataSource.getInstance().getConnection());
+
+						Bien bien = new Bien(IdBien, Adresse, Ville, TypeBien, CodePostal, PeriodeConstruction, null);
+						//daoBien.create(crn);
+						
+						String []EngrBien = {IdBien, Adresse, Ville, CodePostal, TypeBien, PeriodeConstruction};
+						modeleTable.addRow(EngrBien);
+						
+						fenAjoutBien.dispose();
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}			
 					break;
 					
 				case "Ajout Compteur":
 					System.out.println("Vous OUVREZ la page ajout compteur");
-				     FenAjoutCompteur fenAjoutCompteur = new FenAjoutCompteur();
-					
-	                
-	                fenAC.getLayeredPane().add(fenAjoutCompteur);
+				    
+					FenAjoutCompteur fenAjoutCompteur = new FenAjoutCompteur();
+					fenAC.getLayeredPane().add(fenAjoutCompteur);
 	                fenAjoutCompteur.setVisible(true);
 	                fenAjoutCompteur.moveToFront();
 	               
