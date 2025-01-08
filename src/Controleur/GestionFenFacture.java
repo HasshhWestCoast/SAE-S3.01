@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import Modele.Facture;
@@ -15,7 +18,7 @@ import Vue.FenAccueil;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutFacture;
 
-public class GestionFenFacture implements ActionListener{
+public class GestionFenFacture implements ActionListener, ListSelectionListener{
 
 	private FenAccueil fenAc;
 	private DaoFacture daoFacture;
@@ -67,23 +70,6 @@ public class GestionFenFacture implements ActionListener{
 					}
 					break;
 					
-				case "Inserer":
-					System.out.println("Vous INSERER une donnée dans Facture !");
-					
-					FenAjoutFacture fenfac = null;
-					
-					try {
-						fenfac = new FenAjoutFacture();
-					} catch (SQLException e1) {
-						System.out.println(e1.getMessage());
-						e1.printStackTrace();
-					}
-					
-					fenAc.getLayeredPane().add(fenfac);
-					fenfac.setVisible(true);
-				
-					break;
-					
 				case "Archiver":
 					System.out.println("Vous ARCHIVER une donnée prevenant de Facture !");
 					break;
@@ -110,4 +96,29 @@ public class GestionFenFacture implements ActionListener{
 		modeleTable.setValueAt(facture.getacompteVerse(), numeroLigne, 8);
 	}
 
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+
+	    if (!e.getValueIsAdjusting()) {
+	        JTable tabEntreprise = this.fenAc.getTabMesFactures();
+	        int selectedRow = tabEntreprise.getSelectedRow();
+	        
+			if (selectedRow > -1) {
+				try {
+					if (tabEntreprise == this.fenAjoutLoc.getTabMesLocataires()) {
+	                    System.out.println("Table Locataires sélectionnée");
+	                    locataire = this.daoLocataire.findById(selectedTable.getValueAt(selectedRow, 0).toString());
+					}else if (selectedTable == this.fenAjoutLoc.getTabMesBiens()) {
+	                    System.out.println("Table Biens sélectionnée");
+	                    bien = this.daoBien.findById(selectedTable.getValueAt(selectedRow, 0).toString());
+	                }else if (selectedTable == this.fenAjoutLoc.getTabMesICC()) {
+	                    System.out.println("Table ICC sélectionnée");
+	                    icc = this.daoICC.findById(selectedTable.getValueAt(selectedRow, 0).toString(), selectedTable.getValueAt(selectedRow, 1).toString());
+	                }				
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}		
+			}
+	    }
+	}
 }

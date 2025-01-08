@@ -6,7 +6,7 @@ public class Louer {
 	private Bien bien;
 	private String dateDebut;
 	private int nbMois;
-	private double loyePayer;
+	private int loyePayer;
 	private double provision_chargeMoisTTC;
 	private double cautionTTC;
 	private String bail;
@@ -14,7 +14,7 @@ public class Louer {
 	private ICC icc;
 	private double montantReelPaye;
 
-	public Louer(String dateDebut, int nbMois, double loyePayer, double provision_chargeMoisTTC, double cautionTTC, String bail, 
+	public Louer(String dateDebut, int nbMois, int loyePayer, double provision_chargeMoisTTC, double cautionTTC, String bail, 
 			String etat_lieux, double montantReelPaye, Locataire locataire,  ICC icc, Bien bien) {
 		
 		this.locataire = locataire;
@@ -46,7 +46,7 @@ public class Louer {
 		return nbMois;
 	}
 
-	public double getloyePayer() {
+	public int getloyePayer() {
 		return loyePayer;
 	}
 
