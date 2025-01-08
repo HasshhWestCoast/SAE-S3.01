@@ -14,6 +14,8 @@ import Controleur.GestionFenFacture;
 import Controleur.GestionFenLocation;
 import Controleur.GestionFenLogements;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.border.EtchedBorder;
 
 public class FenAccueil extends JFrame {
@@ -493,6 +495,7 @@ public class FenAccueil extends JFrame {
 
         // JTable pour "Bien"
         tabMesBiens = new JTable();
+        tabMesBiens.getSelectionModel().addListSelectionListener(this.gestionClicBien);
         tabMesBiens.setModel(new DefaultTableModel(
             new Object[][] {
                 { null, null, null, null, null, null },
@@ -737,15 +740,10 @@ public class FenAccueil extends JFrame {
         rndbtnChargerLocation.setBounds(743, 349, 194, 30);
         panelCentre.add(rndbtnChargerLocation);
         
-      
         
         return panelArchives;
-    	
-    	
-    	
-    	
+    		
     }
-
 
     private void switchToPanel(String panelName) {
         CardLayout layout = (CardLayout) layeredPane.getLayout();

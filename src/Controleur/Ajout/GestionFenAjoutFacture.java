@@ -70,17 +70,26 @@ public class GestionFenAjoutFacture implements ActionListener{
 						double MontantReelVerse = Double.parseDouble(MontantReelVerseString);
 						String MontantString = (String) fenAjoutFacture.getTextFieldMontant();
 						double Montant = Double.parseDouble(MontantString);
-						String ImputableLocataireString = (String) fenAjoutFacture.getcheckImputableLocataire();
+						Boolean ImputableLocataireString = (Boolean) fenAjoutFacture.getcheckImputableLocataire();
 						int ImputableLocataire;
-						if (ImputableLocataireString == null) {
+						if (ImputableLocataireString == false) {
 							ImputableLocataire = 0;
 						}else {
 							ImputableLocataire = 1;
 						}
 						String AcompteVerseString = (String) fenAjoutFacture.getTextFieldAcompteVersé();
 						double AcompteVerse = Double.parseDouble(AcompteVerseString);
-
 						
+						
+						if (this.fenAjoutFacture.getPrecedent() instanceof Bien) {
+							bien = (Bien) this.fenAjoutFacture.getPrecedent();
+						}else if(this.fenAjoutFacture.getPrecedent() instanceof Logement) {
+							logement = (Logement) this.fenAjoutFacture.getPrecedent();
+						}
+						
+						System.out.println("Test : " + this.fenAjoutFacture.getPrecedent());
+						System.out.println("bien : " + bien);
+						System.out.println("logement : " + logement);
 						DaoFacture daoFacture = new DaoFacture(CictOracleDataSource.getInstance().getConnection());
 						
 						Facture facture = new Facture(IdFacture, DateEmission, DatePaiement, ModePaiement, NumeroDevis, Designation, MontantReelVerse, Montant, ImputableLocataire, AcompteVerse, logement, bien, entreprise);

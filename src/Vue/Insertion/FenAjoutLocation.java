@@ -237,7 +237,7 @@ public class FenAjoutLocation extends JInternalFrame {
 	public JTable getTabMesICC() {
 		return tabMesICC;
 	}
-	
+
 	public String getTextFieldDateDebut() {
 		return textFieldDateDebut.getText();
 	}
@@ -258,12 +258,13 @@ public class FenAjoutLocation extends JInternalFrame {
 		return textFieldCaution.getText();
 	}
 	
-	public String getcheckLoyerPayer() {
-		return checkLoyerPayer.isSelected() ? "1" : "0";
+	public Boolean getcheckLoyerPayer() {
+		return checkLoyerPayer.isSelected();
 	}
 	
 	public JTable getSelectedTable(ListSelectionEvent e) {
 	    Object source = e.getSource();
+	    
 	    if (source == tabMesLocataires.getSelectionModel()) {
 	        return tabMesLocataires;
 	    } else if (source == tabMesBiens.getSelectionModel()) {

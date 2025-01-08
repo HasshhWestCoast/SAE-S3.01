@@ -13,7 +13,6 @@ import Vue.FenAccueil;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutBien;
 import Vue.Insertion.FenAjoutCompteur;
-import Vue.Insertion.FenAjoutFacture;
 
 public class GestionFenAjoutBien implements ActionListener{
 
@@ -73,26 +72,8 @@ public class GestionFenAjoutBien implements ActionListener{
 					fenAC.getLayeredPane().add(fenAjoutCompteur);
 	                fenAjoutCompteur.setVisible(true);
 	                fenAjoutCompteur.moveToFront();
-	               
 					break;
-				case "Ajouter des factures":
-					System.out.println("Vous ajouter des factures au logements");
-					
-					FenAjoutFacture fenAjoutFacture = null;
-					
-					try {
-						fenAjoutFacture = new FenAjoutFacture();
-					} catch (SQLException e1) {
-						System.out.println(e1.getMessage());
-						e1.printStackTrace();
-					}
-	                
-	                fenAC.getLayeredPane().add(fenAjoutFacture);
-	                fenAjoutFacture.setVisible(true);
-	                fenAjoutFacture.moveToFront();
-	               
-					
-					break;
+				
 				default:
 					System.out.println("Action non reconnu !");
 			}

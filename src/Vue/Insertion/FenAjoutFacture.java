@@ -15,6 +15,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controleur.Ajout.GestionFenAjoutFacture;
+import Modele.Bien;
 import Vue.RoundedButton;
 
 import java.awt.Color;
@@ -38,15 +39,17 @@ public class FenAjoutFacture extends JInternalFrame {
 	private GestionFenAjoutFacture gestionClicFenAjoutFacture; 
 	private JScrollPane scrollPane;
 	private JTextField textFieldAcompteVersé;
-
-
+	
+	private Object precedent;
 
 	/**
 	 * Create the frame.
+	 * @param bien 
 	 * @throws SQLException 
 	 */
-	public FenAjoutFacture() throws SQLException {
+	public FenAjoutFacture(Object precedent) throws SQLException {
 		
+		this.precedent = precedent;
 		gestionClicFenAjoutFacture = new GestionFenAjoutFacture(this);
 				
 		setBounds(50, 100, 950, 500); // Exemple de dimensions
@@ -237,12 +240,16 @@ public class FenAjoutFacture extends JInternalFrame {
 
 	}
 	
-	public String getcheckImputableLocataire(){
-	    return checkImputableLocataire.isSelected() ? "1" : "0";
+	public boolean getcheckImputableLocataire(){
+	    return checkImputableLocataire.isSelected() ;
 	}
 
 	public String getTextFieldAcompteVersé() {
 		return textFieldAcompteVersé.getText();
+	}
+
+	public Object getPrecedent() {
+		return precedent;
 	}
 
 }
