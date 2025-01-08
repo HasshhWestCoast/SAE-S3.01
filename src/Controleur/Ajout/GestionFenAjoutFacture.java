@@ -7,8 +7,11 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
+import Modele.Bien;
 import Modele.Entreprise;
 import Modele.Facture;
+
+import Modele.Logement;
 import Modele.Dao.CictOracleDataSource;
 import Modele.Dao.DaoEntreprise;
 import Modele.Dao.DaoFacture;
@@ -23,9 +26,16 @@ public class GestionFenAjoutFacture implements ActionListener{
 	private FenAjoutFacture fenAjoutFacture;
 	private DaoEntreprise daoEntreprise;
 	
+	private Logement logement;
+	private Bien bien;
+	private Entreprise entreprise;
+	
 	public GestionFenAjoutFacture(FenAjoutFacture fenAjoutFacture) throws SQLException {
 		this.fenAjoutFacture = fenAjoutFacture;
 		this.daoEntreprise = new DaoEntreprise(CictOracleDataSource.getInstance().getConnection());
+		this.logement = null;
+		this.bien = null;
+		this.entreprise = null;
 	}
 	
 	@Override
@@ -72,8 +82,8 @@ public class GestionFenAjoutFacture implements ActionListener{
 
 						
 						DaoFacture daoFacture = new DaoFacture(CictOracleDataSource.getInstance().getConnection());
-
-						Facture facture = new Facture(IdFacture, DateEmission, DatePaiement, ModePaiement, NumeroDevis, Designation, MontantReelVerse, Montant, ImputableLocataire, AcompteVerse, null, null, null);
+						
+						Facture facture = new Facture(IdFacture, DateEmission, DatePaiement, ModePaiement, NumeroDevis, Designation, MontantReelVerse, Montant, ImputableLocataire, AcompteVerse, logement, bien, entreprise);
 						//daoFacture.create(facture);
 						
 						String []EngrFacture = {IdFacture, DateEmission, DatePaiement, ModePaiement, Designation, MontantReelVerseString, MontantString, Integer.toString(ImputableLocataire), AcompteVerseString};
@@ -128,6 +138,7 @@ public class GestionFenAjoutFacture implements ActionListener{
 			System.out.println("Source non reconnu !");
 		}
 	}
+	
 	
 	public void ecrireLigneTable(Entreprise entreprise, int numeroLigne) {
 		DefaultTableModel modeleTable = (DefaultTableModel) this.fenAjoutFacture.getTabMesEntreprise().getModel();

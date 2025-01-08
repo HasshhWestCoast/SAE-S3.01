@@ -244,7 +244,6 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 				}		
 			}
 	    }
-	    
 	}
 
 

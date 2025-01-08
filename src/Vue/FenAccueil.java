@@ -446,18 +446,13 @@ public class FenAccueil extends JFrame {
         btnArchiver.addActionListener(this.gestionClicFacture);
         panel.add(btnArchiver);
 
-        RoundedButton btnInserer = new RoundedButton("Inserer", 20);
-        btnInserer.setBounds(449, 11, 80, 23);
-        btnInserer.addActionListener(this.gestionClicFacture);
-        panel.add(btnInserer);
-
         RoundedButton btnModifier = new RoundedButton("Modifier", 20);
         btnModifier.setBounds(557, 11, 96, 23);
         btnModifier.addActionListener(this.gestionClicFacture);
         panel.add(btnModifier);
 
         RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
-        btnSupprimer.setBounds(676, 11, 96, 23);
+        btnSupprimer.setBounds(451, 11, 96, 23);
         btnSupprimer.addActionListener(this.gestionClicFacture);
         panel.add(btnSupprimer);
         

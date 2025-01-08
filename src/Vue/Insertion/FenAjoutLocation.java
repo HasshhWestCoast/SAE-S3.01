@@ -259,7 +259,7 @@ public class FenAjoutLocation extends JInternalFrame {
 	}
 	
 	public String getcheckLoyerPayer() {
-		return checkLoyerPayer.getToolTipText();
+		return checkLoyerPayer.isSelected() ? "1" : "0";
 	}
 	
 	public JTable getSelectedTable(ListSelectionEvent e) {
