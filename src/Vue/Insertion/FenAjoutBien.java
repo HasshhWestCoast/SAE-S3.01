@@ -93,7 +93,7 @@ public class FenAjoutBien extends JInternalFrame {
 		comboBoxTypeDeBien.setForeground(new Color(0, 0, 0));
 		comboBoxTypeDeBien.setFont(new Font("Sylfaen", Font.PLAIN, 12));
 		comboBoxTypeDeBien.setBackground(new Color(31, 153, 88));
-		comboBoxTypeDeBien.setModel(new DefaultComboBoxModel(new String[] {"Immeuble", "Maison"}));
+		comboBoxTypeDeBien.setModel(new DefaultComboBoxModel(new String[] {"Maison", "Immeuble", "Garage"}));
 		comboBoxTypeDeBien.setToolTipText("ID Immeuble");
 		getContentPane().add(comboBoxTypeDeBien);
 		
