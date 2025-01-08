@@ -30,7 +30,7 @@ public class FenAjoutLocation extends JInternalFrame {
 	private JTable tabMesLocataires;
 	private JTable tabMesBiens;
 	private JTable tabMesICC;
-	private JCheckBox checkImputableLocataire;
+	private JCheckBox checkLoyerPayer;
 
 
 	/**
@@ -215,10 +215,10 @@ public class FenAjoutLocation extends JInternalFrame {
 		lblLoyerPayer.setBounds(510, 354, 118, 13);
 		getContentPane().add(lblLoyerPayer);
 		
-		checkImputableLocataire = new JCheckBox("OUI");
-		checkImputableLocataire.setBackground(new Color(31, 151, 83));
-		checkImputableLocataire.setBounds(510, 373, 93, 21);
-		getContentPane().add(checkImputableLocataire);
+		checkLoyerPayer = new JCheckBox("OUI");
+		checkLoyerPayer.setBackground(new Color(31, 151, 83));
+		checkLoyerPayer.setBounds(510, 373, 93, 21);
+		getContentPane().add(checkLoyerPayer);
 		
 	}
 	
@@ -254,6 +254,7 @@ public class FenAjoutLocation extends JInternalFrame {
 		return textFieldCaution.getText();
 	}
 	
-	private JCheckBox checkImputableLocataire;
-
+	public String getcheckLoyerPayer() {
+		return checkLoyerPayer.getToolTipText();
+	}
 }

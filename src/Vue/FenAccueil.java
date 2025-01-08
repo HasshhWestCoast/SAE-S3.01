@@ -13,6 +13,8 @@ import Controleur.GestionFenAssurances;
 import Controleur.GestionFenFacture;
 import Controleur.GestionFenLocation;
 import Controleur.GestionFenLogements;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
 
 public class FenAccueil extends JFrame {
 
@@ -38,6 +40,13 @@ public class FenAccueil extends JFrame {
 	private JTable tabMesLocations;
 	private JTable tabMesAssurances;
 	private JTable tabMesLogements;
+	private JTextField textFieldLoyer;
+	private JTextField textFieldProvisionSurCharges;
+	private JTextField textFieldMontantPayé;
+	private JTextField textFieldRestantDu;
+	private JTextField textFieldDateEmission;
+	private JTextField textFieldDatePaiement;
+	private JTextField textFieldCaution;
 
 	
     /**
@@ -291,7 +300,7 @@ public class FenAccueil extends JFrame {
              new String[] { "Locataire", "Bien", "Type", "Date début", "Dernière régularisation" }
          ));
          JScrollPane scrollPane = new JScrollPane(tabMesLocations);
-         scrollPane.setBounds(54, 50, 928, 418);
+         scrollPane.setBounds(54, 50, 627, 418);
          scrollPane.setBorder(new LineBorder(new Color(31, 153, 88), 2));
          panelCentre.add(scrollPane);
           
@@ -319,6 +328,48 @@ public class FenAccueil extends JFrame {
        	  btnSupprimer.addActionListener(this.gestionClicLocation);
        	  btnSupprimer.setBounds(657, 11, 96, 23);
        	  panel.add(btnSupprimer);
+       	  
+       	  textFieldLoyer = new JTextField();
+       	  textFieldLoyer.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED,new Color(31, 153, 88), new Color(160, 160, 160)), "Loyer", TitledBorder.LEADING, TitledBorder.TOP, null,new Color(31, 153, 88)));
+       	  textFieldLoyer.setBounds(713, 42, 161, 36);
+       	  panelCentre.add(textFieldLoyer);
+       	  textFieldLoyer.setColumns(10);
+       	  
+       	  textFieldProvisionSurCharges = new JTextField();
+       	  textFieldProvisionSurCharges.setColumns(10);
+       	  textFieldProvisionSurCharges.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED,new Color(31, 153, 88), new Color(160, 160, 160)), "Provision sur charges", TitledBorder.LEADING, TitledBorder.TOP, null,new Color(31, 153, 88)));
+       	  textFieldProvisionSurCharges.setBounds(713, 103, 161, 36);
+       	  panelCentre.add(textFieldProvisionSurCharges);
+       	  
+       	  textFieldMontantPayé = new JTextField();
+       	  textFieldMontantPayé.setColumns(10);
+       	  textFieldMontantPayé.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(31, 153, 88), new Color(160, 160, 160)), "Montant pay\u00E9", TitledBorder.LEADING, TitledBorder.TOP, null,new Color(31, 153, 88)));
+       	  textFieldMontantPayé.setBounds(713, 164, 161, 36);
+       	  panelCentre.add(textFieldMontantPayé);
+       	  
+       	  textFieldRestantDu = new JTextField();
+       	  textFieldRestantDu.setColumns(10);
+       	  textFieldRestantDu.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(31, 153, 88), new Color(160, 160, 160)), "Restant d\u00FB", TitledBorder.LEADING, TitledBorder.TOP, null,new Color(31, 153, 88)));
+       	  textFieldRestantDu.setBounds(713, 228, 161, 36);
+       	  panelCentre.add(textFieldRestantDu);
+       	  
+       	  textFieldDateEmission = new JTextField();
+       	  textFieldDateEmission.setColumns(10);
+       	  textFieldDateEmission.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(31, 153, 88), new Color(160, 160, 160)), "Date \u00E9mission", TitledBorder.LEADING, TitledBorder.TOP, null,new Color(31, 153, 88)));
+       	  textFieldDateEmission.setBounds(713, 292, 161, 36);
+       	  panelCentre.add(textFieldDateEmission);
+       	  
+       	  textFieldDatePaiement = new JTextField();
+       	  textFieldDatePaiement.setColumns(10);
+       	  textFieldDatePaiement.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(31, 153, 88), new Color(160, 160, 160)), "Date paiement", TitledBorder.LEADING, TitledBorder.TOP, null,new Color(31, 153, 88)));
+       	  textFieldDatePaiement.setBounds(713, 351, 161, 36);
+       	  panelCentre.add(textFieldDatePaiement);
+       	  
+       	  textFieldCaution = new JTextField();
+       	  textFieldCaution.setColumns(10);
+       	  textFieldCaution.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(31, 153, 88), new Color(160, 160, 160)), "Caution", TitledBorder.LEADING, TitledBorder.TOP, null,new Color(31, 153, 88)));
+       	  textFieldCaution.setBounds(713, 417, 161, 36);
+       	  panelCentre.add(textFieldCaution);
   	
     	 return panelLocations;
 		
