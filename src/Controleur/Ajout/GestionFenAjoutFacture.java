@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import Modele.Bien;
@@ -21,7 +24,7 @@ import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutEntreprise;
 import Vue.Insertion.FenAjoutFacture;
 
-public class GestionFenAjoutFacture implements ActionListener{
+public class GestionFenAjoutFacture implements ActionListener, ListSelectionListener{
 
 	private FenAjoutFacture fenAjoutFacture;
 	private DaoEntreprise daoEntreprise;
@@ -87,11 +90,9 @@ public class GestionFenAjoutFacture implements ActionListener{
 							logement = (Logement) this.fenAjoutFacture.getPrecedent();
 						}
 						
-						System.out.println("Test : " + this.fenAjoutFacture.getPrecedent());
-						System.out.println("bien : " + bien);
-						System.out.println("logement : " + logement);
 						DaoFacture daoFacture = new DaoFacture(CictOracleDataSource.getInstance().getConnection());
 						
+						System.out.println("entreprise : " + entreprise);
 						Facture facture = new Facture(IdFacture, DateEmission, DatePaiement, ModePaiement, NumeroDevis, Designation, MontantReelVerse, Montant, ImputableLocataire, AcompteVerse, logement, bien, entreprise);
 						//daoFacture.create(facture);
 						
@@ -156,5 +157,17 @@ public class GestionFenAjoutFacture implements ActionListener{
 		modeleTable.setValueAt(entreprise.getNom(), numeroLigne, 1);
 	}
 
-
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		JTable tabEntreprise = this.fenAjoutFacture.getTabMesEntreprise();
+		int selectedRow = tabEntreprise.getSelectedRow();
+		
+		if (selectedRow > -1) {
+			try {
+				this.entreprise = daoEntreprise.findById(tabEntreprise.getValueAt(selectedRow, 0).toString());
+			}catch (SQLException e1) {
+				e1.printStackTrace();
+			}	
+		}
+	}
 }

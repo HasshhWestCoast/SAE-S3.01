@@ -142,9 +142,7 @@ public class GestionFenBien implements ActionListener, ListSelectionListener{
 		
 		if (selectedRow > -1) {
 			try {
-				System.out.println("Table Bien sélectionnée dans Bien");
 				this.bien = daoBien.findById(tabBien.getValueAt(selectedRow, 0).toString());
-				System.out.println("bien : " +  bien);
 			}catch (SQLException e1) {
 				e1.printStackTrace();
 			}	

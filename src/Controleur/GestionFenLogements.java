@@ -148,9 +148,7 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 		
 		if (selectedRow > -1) {
 			try {
-				System.out.println("Table Logement sélectionnée dans Logement");
 				this.logement = daoLogement.findById(tabLogement.getValueAt(selectedRow, 0).toString());
-				System.out.println("logement : " +  logement);
 			}catch (SQLException e1) {
 				e1.printStackTrace();
 			}	

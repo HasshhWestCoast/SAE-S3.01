@@ -5,18 +5,11 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.swing.JTable;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-import Modele.Bien;
 import Modele.Facture;
-import Modele.Logement;
 import Modele.Dao.CictOracleDataSource;
-import Modele.Dao.DaoBien;
 import Modele.Dao.DaoFacture;
-import Modele.Dao.DaoLogement;
 import Modele.Dao.Iterateur;
 import Vue.FenAccueil;
 import Vue.RoundedButton;
