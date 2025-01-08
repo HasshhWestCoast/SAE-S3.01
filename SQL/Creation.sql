@@ -129,7 +129,7 @@ CREATE TABLE SAE_Louer(
    Id_Locataire VARCHAR2(30) CONSTRAINT SAE_fk_louer_locataire REFERENCES SAE_Locataire(Id_Locataire) NOT NULL,
    Date_debut DATE CONSTRAINT SAE_nn_louer_date_debut NOT NULL,
    nb_mois INT CONSTRAINT SAE_ck_louer_nb_mois CHECK (nb_mois > 0),
-   loyer_payer NUMBER,
+   loyer_payer NUMBER(1),
    provisions_chargesMois_TTC NUMBER,
    caution_TTC NUMBER,
    bail VARCHAR2(50),
