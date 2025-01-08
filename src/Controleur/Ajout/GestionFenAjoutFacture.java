@@ -135,7 +135,8 @@ public class GestionFenAjoutFacture implements ActionListener, ListSelectionList
 							this.ecrireLigneTable(entreprise, count);
 							count++;
 						}
-						
+				        this.fenAjoutFacture.getTabMesEntreprise().getSelectionModel().addListSelectionListener(this);
+
 					}catch (SQLException ex) {
 						System.out.println(ex.getMessage());
 						ex.printStackTrace();
@@ -157,10 +158,12 @@ public class GestionFenAjoutFacture implements ActionListener, ListSelectionList
 		modeleTable.setValueAt(entreprise.getSiret(), numeroLigne, 0);
 		modeleTable.setValueAt(entreprise.getNom(), numeroLigne, 1);
 	}
-
+	
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
+		
 		JTable tabEntreprise = this.fenAjoutFacture.getTabMesEntreprise();
+		
 		int selectedRow = tabEntreprise.getSelectedRow();
 		if (selectedRow > -1) {
 			try {

@@ -173,24 +173,19 @@ public class FenAjoutFacture extends JInternalFrame {
 		scrollPane.setBounds(645, 87, 268, 134);        
 		getContentPane().add(scrollPane);
 		
-		RoundedButton btnCharger = new RoundedButton("Charger", 20);
-		btnCharger.addActionListener(this.gestionClicFenAjoutFacture);
-		btnCharger.setBounds(656, 260, 85, 21);
-		getContentPane().add(btnCharger);
-		
 		RoundedButton btnInserer = new RoundedButton("Inserer", 20);
 		btnInserer.addActionListener(this.gestionClicFenAjoutFacture);
-		btnInserer.setBounds(804, 260, 85, 21);
+		btnInserer.setBounds(737, 239, 85, 21);
 		getContentPane().add(btnInserer);
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
 		btnAnnuler.addActionListener(this.gestionClicFenAjoutFacture);
-		btnAnnuler.setBounds(233, 388, 85, 21);
+		btnAnnuler.setBounds(323, 388, 85, 21);
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
 		btnAjouter.addActionListener(this.gestionClicFenAjoutFacture);
-		btnAjouter.setBounds(380, 388, 85, 21);
+		btnAjouter.setBounds(519, 388, 85, 21);
 		getContentPane().add(btnAjouter);
 		
 		JLabel lblAcompteVersé = new JLabel("Acompte Versé");

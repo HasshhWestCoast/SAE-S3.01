@@ -137,6 +137,8 @@ public class GestionFenBien implements ActionListener, ListSelectionListener{
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
+		System.out.println("ici 1 ?");
+
 		JTable tabBien = this.fenAc.getTabMesBiens();
 		int selectedRow = tabBien.getSelectedRow();
 		
