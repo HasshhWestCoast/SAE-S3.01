@@ -7,11 +7,9 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-import Modele.Bien;
 import Modele.Entreprise;
 import Modele.Facture;
 import Modele.Dao.CictOracleDataSource;
-import Modele.Dao.DaoBien;
 import Modele.Dao.DaoEntreprise;
 import Modele.Dao.DaoFacture;
 import Modele.Dao.Iterateur;

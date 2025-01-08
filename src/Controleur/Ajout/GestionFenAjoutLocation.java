@@ -10,10 +10,12 @@ import javax.swing.table.DefaultTableModel;
 import Modele.Bien;
 import Modele.ICC;
 import Modele.Locataire;
+import Modele.Louer;
 import Modele.Dao.CictOracleDataSource;
 import Modele.Dao.DaoBien;
 import Modele.Dao.DaoICC;
 import Modele.Dao.DaoLocataire;
+import Modele.Dao.DaoLouer;
 import Modele.Dao.Iterateur;
 import Vue.FenAccueil;
 import Vue.RoundedButton;
@@ -54,13 +56,84 @@ public class GestionFenAjoutLocation implements ActionListener{
 					System.out.println("Vous FERMEZ la page ajout Location !");
 					this.fenAjoutLoc.dispose();
 					break;
-					
+				
 				case "Ajouter":
 					System.out.println("Vous AJOUTER une Location !");
+					try {
+						DefaultTableModel modeleTable = (DefaultTableModel) fenAC.getTabMesLocations().getModel();
+
+						String DateDebut = (String) fenAjoutLoc.getTextFieldDateDebut();					
+						String NbMois = (String) fenAjoutLoc.getTextFieldNbMois();
+						String ProvisionCharge = (String) fenAjoutLoc.getTextFieldProvisionsCharge();
+						String MontantReel = (String) fenAjoutLoc.getTextFieldMontantReel();
+						String Caution = (String) fenAjoutLoc.getTextFieldCaution();
+						
+						DaoLouer daoLouer = new DaoLouer(CictOracleDataSource.getInstance().getConnection());
+
+						Louer louer = new Louer(DateDebut, Integer.parseInt(NbMois), ProvisionCharge, MontantReel, Caution, PeriodeConstruction, null);
+						//daoLouer.create(louer);
+						
+						String []EngrLocation = {IdBien, Adresse, Ville, CodePostal, TypeBien, PeriodeConstruction};
+						modeleTable.addRow(EngrLocation);
+						
+						fenAjoutLoc.dispose();
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}			
 					break;
+				
+
+				case "Charger":
+					System.out.println("Vous CHARGEZ BIENS depuis Location !");
+					List<Bien> mesDonneesBien = null;
 					
-				case "Charger L":
-					System.out.println("Vous CHARGEZ LOCATAIRES depuis Location !");
+					try {
+						mesDonneesBien = this.daoBien.findAll();
+					} catch (SQLException e1) {
+						System.out.println(e1.getMessage());
+						e1.printStackTrace();
+					}
+					
+					Iterateur<Bien> itBien = DaoBien.getIterateurBien();
+					
+			        if (itBien == null) {
+			            System.out.println("Itérateur non initialisé !");
+			            break;
+			        }
+			        modeleTableBien.setRowCount(mesDonneesBien.size());  
+					
+					int countBien = 0;
+					while(itBien.hasNext() && countBien < mesDonneesBien.size()) {	
+						Bien bien = itBien.next();
+						this.ecrireLigneTableBien(bien, countBien);
+						countBien++;
+					}
+					
+					List<ICC> mesDonneesICC = null;
+					
+					try {
+						mesDonneesICC = this.daoICC.findAll();
+					} catch (SQLException e1) {
+						System.out.println(e1.getMessage());
+						e1.printStackTrace();
+					}
+					
+					Iterateur<ICC> itICC = DaoICC.getIterateurICC();
+					
+			        if (itICC == null) {
+			            System.out.println("Itérateur non initialisé !");
+			            break;
+			        }
+			        modeleTableICC.setRowCount(mesDonneesICC.size());  
+					
+					int countICC = 0;
+					while(itICC.hasNext() && countICC < mesDonneesICC.size()) {	
+						ICC icc = itICC.next();
+						this.ecrireLigneTableICC(icc, countICC);
+						countICC++;
+					}
 					
 					List<Locataire> mesDonneesLoc = null;
 					
@@ -86,61 +159,7 @@ public class GestionFenAjoutLocation implements ActionListener{
 						count++;
 					}
 					break;
-					
-				case "Charger Bien":
-					System.out.println("Vous CHARGEZ BIENS depuis Location !");
-					List<Bien> mesDonneesBien = null;
-					
-					try {
-						mesDonneesBien = this.daoBien.findAll();
-					} catch (SQLException e1) {
-						System.out.println(e1.getMessage());
-						e1.printStackTrace();
-					}
-					
-					Iterateur<Bien> itBien = DaoBien.getIterateurBien();
-					
-			        if (itBien == null) {
-			            System.out.println("Itérateur non initialisé !");
-			            break;
-			        }
-			        modeleTableBien.setRowCount(mesDonneesBien.size());  
-					
-					int countBien = 0;
-					while(itBien.hasNext() && countBien < mesDonneesBien.size()) {	
-						Bien bien = itBien.next();
-						this.ecrireLigneTableBien(bien, countBien);
-						countBien++;
-					}
-					break;
-					
-				case "Charger ICC":
-					System.out.println("Vous CHARGEZ ICC depuis Location !");
-					List<ICC> mesDonneesICC = null;
-					
-					try {
-						mesDonneesICC = this.daoICC.findAll();
-					} catch (SQLException e1) {
-						System.out.println(e1.getMessage());
-						e1.printStackTrace();
-					}
-					
-					Iterateur<ICC> itICC = DaoICC.getIterateurICC();
-					
-			        if (itICC == null) {
-			            System.out.println("Itérateur non initialisé !");
-			            break;
-			        }
-			        modeleTableICC.setRowCount(mesDonneesICC.size());  
-					
-					int countICC = 0;
-					while(itICC.hasNext() && countICC < mesDonneesICC.size()) {	
-						ICC icc = itICC.next();
-						this.ecrireLigneTableICC(icc, countICC);
-						countICC++;
-					}
-					break;
-					
+										
 				case "Inserer L":
 					System.out.println("Vous INSERER un LOCATAIRE depuis Location !");
 				    FenAjoutLocataire fenAjoutLocataire = new FenAjoutLocataire();
