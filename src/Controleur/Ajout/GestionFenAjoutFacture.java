@@ -60,6 +60,7 @@ public class GestionFenAjoutFacture implements ActionListener, ListSelectionList
 				case "Ajouter":
 					System.out.println("Vous AJOUTER une Facture !");
 					
+					
 					try {
 						DefaultTableModel modeleTableFacture = (DefaultTableModel) fenAC.getTabMesFactures().getModel();
 

@@ -586,7 +586,7 @@ public class FenAccueil extends JFrame {
         panelLogements.add(panelCentre, BorderLayout.CENTER);
         panelCentre.setLayout(null);
 
-        // JTable pour "Bien"
+        // JTable pour "Logement"
         tabMesLogements = new JTable();
         tabMesLogements.getSelectionModel().addListSelectionListener(this.gestionClicLogement);
         tabMesLogements.setModel(new DefaultTableModel(
