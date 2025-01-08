@@ -29,6 +29,7 @@ public class FenAccueil extends JFrame {
     private JPanel panelBiens;
     private JPanel panelLogements;
     private JPanel panelArchives;
+    private JPanel panelDocuments;
     
     private JLayeredPane layeredPane;
 	private GestionFenAssurances gestionClicAssurances;
@@ -126,6 +127,7 @@ public class FenAccueil extends JFrame {
         panelMenuGauche.add(btnMesAssurances);
 
         RoundedButton btnMesDocuments = new RoundedButton("Documents", 20);
+        btnMesDocuments.addActionListener(e -> switchToPanel("Documents"));
         btnMesDocuments.setFont(new Font("Sylfaen", Font.PLAIN, 17));
         panelMenuGauche.add(btnMesDocuments);
 
@@ -181,6 +183,10 @@ public class FenAccueil extends JFrame {
         // Panel Logements
         panelArchives = createArchivesPanel();
         layeredPane.add(panelArchives, "Archives");
+        
+        panelDocuments = createDocumentPanel();
+        layeredPane.add(panelDocuments, "Documents");
+        
 
     }
 
@@ -743,6 +749,76 @@ public class FenAccueil extends JFrame {
         
         return panelArchives;
     		
+    }
+    
+    
+    private JPanel createDocumentPanel() throws SQLException {
+    	JPanel paneldocuments = new JPanel();
+		paneldocuments.setLayout(new BorderLayout(0, 0));
+
+        JPanel panelTitre = new JPanel();
+        paneldocuments.add(panelTitre, BorderLayout.NORTH);
+        panelTitre.setLayout(new BorderLayout(0, 0));
+
+        JLabel lbldocuments = new JLabel("Mes Documents");
+        lbldocuments.setHorizontalAlignment(SwingConstants.CENTER);
+        lbldocuments.setForeground(new Color(31, 153, 88));
+        lbldocuments.setFont(new Font("Sylfaen", Font.ITALIC, 28));
+        lbldocuments.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Décalage de 10px vers le bas
+        panelTitre.add(lbldocuments, BorderLayout.CENTER);
+
+        JSeparator separator = new JSeparator();
+        separator.setForeground(new Color(0, 0, 0));
+        panelTitre.add(separator, BorderLayout.SOUTH);
+
+        JPanel panelCentre = new JPanel();
+        panelCentre.setBackground(new Color(255, 255, 255));
+        paneldocuments.add(panelCentre, BorderLayout.CENTER);
+        panelCentre.setLayout(null);
+
+        JComboBox comboBoxIDdocuments = new JComboBox();
+        comboBoxIDdocuments.setForeground(new Color(255, 255, 255));
+        comboBoxIDdocuments.setBackground(new Color(31, 153, 88));
+        comboBoxIDdocuments.setToolTipText("");
+        comboBoxIDdocuments.setModel(new DefaultComboBoxModel(new String[] { "" }));
+
+        comboBoxIDdocuments.setBounds(41, 11, 126, 22);
+        panelCentre.add(comboBoxIDdocuments);
+
+        JTable tabMesdocuments = new JTable();
+        tabMesdocuments.setModel(new DefaultTableModel(
+            new Object[][] {
+                { null, null, null, null, null, null, null, null, null },
+            },
+            new String[] {
+                "Nom", "Montant", "Année"
+            }
+        ));
+        JScrollPane scrollPane = new JScrollPane(tabMesdocuments);
+        scrollPane.setBounds(41, 50, 947, 408);
+        scrollPane.setBorder(new LineBorder(new Color(31, 153, 88), 2));
+        panelCentre.add(scrollPane);
+
+        JPanel panel = new JPanel();
+        panel.setBounds(0, 501, 1024, 48);
+        panelCentre.add(panel);
+        panel.setLayout(null);
+
+        RoundedButton btnInserer = new RoundedButton("Inserer un impot", 20);
+        btnInserer.setBounds(433, 11, 80, 23);
+        panel.add(btnInserer);
+
+        RoundedButton btnGenerer = new RoundedButton("Génerer une annexe", 20);
+        btnGenerer.setBounds(591, 11, 96, 23);
+        panel.add(btnGenerer);
+        
+        RoundedButton btnCharger = new RoundedButton("Charger", 20);
+        btnCharger.setBounds(261, 11, 85, 23);
+        panel.add(btnCharger);
+
+        return paneldocuments;
+    	
+    	
     }
 
     private void switchToPanel(String panelName) {
