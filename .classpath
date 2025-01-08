@@ -11,5 +11,13 @@
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/tradc/Desktop/Cours/S3/R3.07/Ressource/ojdbc11-21.7.0.0-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Etudiant/modelio/workspace/poi-bin-5.2.3/poi-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Etudiant/modelio/workspace/poi-bin-5.2.3/poi-examples-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Etudiant/modelio/workspace/poi-bin-5.2.3/poi-excelant-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Etudiant/modelio/workspace/poi-bin-5.2.3/poi-javadoc-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Etudiant/modelio/workspace/poi-bin-5.2.3/poi-ooxml-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Etudiant/modelio/workspace/poi-bin-5.2.3/poi-ooxml-full-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Etudiant/modelio/workspace/poi-bin-5.2.3/poi-ooxml-lite-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Etudiant/modelio/workspace/poi-bin-5.2.3/poi-scratchpad-5.2.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
