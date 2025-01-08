@@ -76,7 +76,7 @@ public class DaoFacture  extends DaoModele<Facture> implements Dao<Facture>{
 	    double montant = Double.parseDouble(montantString);
 	    
 	    String imputableLocataire = curseur.getString("imputable_Locataire");
-	    double imputable_Locataire = Double.parseDouble(imputableLocataire);
+	    int imputable_Locataire = Integer.parseInt(imputableLocataire);
 	    
 	    String acompteVerse = curseur.getString("acompte_Verse");
 	    double acompte_Verse = Double.parseDouble(acompteVerse);

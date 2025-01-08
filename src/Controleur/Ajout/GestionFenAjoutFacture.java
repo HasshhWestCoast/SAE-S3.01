@@ -7,11 +7,9 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-import Modele.Bien;
 import Modele.Entreprise;
 import Modele.Facture;
 import Modele.Dao.CictOracleDataSource;
-import Modele.Dao.DaoBien;
 import Modele.Dao.DaoEntreprise;
 import Modele.Dao.DaoFacture;
 import Modele.Dao.Iterateur;
@@ -57,17 +55,28 @@ public class GestionFenAjoutFacture implements ActionListener{
 						String DatePaiement = (String) fenAjoutFacture.getTextFieldDatePaiement();
 						String ModePaiement = (String) fenAjoutFacture.getComboBoxModePaiement();
 						String NumeroDevis = (String) fenAjoutFacture.getTextFieldNumeroDevis();
-						String AcompteVerse = (String) fenAjoutFacture.getTextFieldAcompteVersé();
-						String Montant = (String) fenAjoutFacture.getTextFieldMontant();
 						String Designation = (String) fenAjoutFacture.getComboBoxDesignation();
-						String ImputableLocataire = (String) fenAjoutFacture.getcheckImputableLocataire();
+						String MontantReelVerseString = (String) fenAjoutFacture.getTextFieldMontantReelVerse();
+						double MontantReelVerse = Double.parseDouble(MontantReelVerseString);
+						String MontantString = (String) fenAjoutFacture.getTextFieldMontant();
+						double Montant = Double.parseDouble(MontantString);
+						String ImputableLocataireString = (String) fenAjoutFacture.getcheckImputableLocataire();
+						int ImputableLocataire;
+						if (ImputableLocataireString == null) {
+							ImputableLocataire = 0;
+						}else {
+							ImputableLocataire = 1;
+						}
+						String AcompteVerseString = (String) fenAjoutFacture.getTextFieldAcompteVersé();
+						double AcompteVerse = Double.parseDouble(AcompteVerseString);
+
 						
 						DaoFacture daoFacture = new DaoFacture(CictOracleDataSource.getInstance().getConnection());
 
-						Facture facture = new Facture(IdFacture, DateEmission, DatePaiement, ModePaiement, NumeroDevis, Designation, );
+						Facture facture = new Facture(IdFacture, DateEmission, DatePaiement, ModePaiement, NumeroDevis, Designation, MontantReelVerse, Montant, ImputableLocataire, AcompteVerse, null, null, null);
 						//daoFacture.create(facture);
 						
-						String []EngrFacture = {IdFacture, DateEmission, DatePaiement, ModePaiement, NumeroDevis, Designation};
+						String []EngrFacture = {IdFacture, DateEmission, DatePaiement, ModePaiement, Designation, MontantReelVerseString, MontantString, Integer.toString(ImputableLocataire), AcompteVerseString};
 						modeleTableFacture.addRow(EngrFacture);
 						
 						fenAjoutFacture.dispose();

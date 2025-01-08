@@ -81,7 +81,7 @@ public class GestionFenLocation implements ActionListener {
 					
 					int width = fenAc.getLayeredPane().getWidth();
 		            int height = fenAc.getLayeredPane().getHeight();
-		            fenAddLocation.setBounds(50, 50, width - 100, height - 50);
+		            fenAddLocation.setBounds(50, 50, width - 100, height - 15);
 					
 					fenAc.getLayeredPane().add(fenAddLocation);
 					fenAddLocation.setVisible(true);

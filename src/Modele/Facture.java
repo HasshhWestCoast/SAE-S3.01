@@ -12,14 +12,14 @@ public class Facture {
 	private String designation;
 	private double montantReelVerse;
 	private double montant;
-	private double imputableLocataire;
+	private int imputableLocataire;
 	private double acompteVerse;
 	private Logement logement;
 	private Bien bien;
 	private Entreprise entreprise;
 
 	public Facture(String IdFacture, String dateEmission, String datePaiement, String modePaiement, String numeroDevis, String designation, double montantReelVerse, 
-			double montant, double imputableLocataire, double acompteVerse, Logement logement, Bien bien, Entreprise entreprise) {
+			double montant, int imputableLocataire, double acompteVerse, Logement logement, Bien bien, Entreprise entreprise) {
 		
 		this.IdFacture = IdFacture;
 		this.dateEmission = dateEmission;
