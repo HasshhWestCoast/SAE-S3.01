@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import Modele.Bien;
@@ -17,14 +20,16 @@ import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutBien;
 import Vue.Insertion.FenAjoutFacture;
 
-public class GestionFenBien implements ActionListener{
+public class GestionFenBien implements ActionListener, ListSelectionListener{
 
 	private FenAccueil fenAc;
 	private DaoBien daoBien;
+	private Bien bien;
 	
 	public GestionFenBien(FenAccueil fenAc) throws SQLException {
 		this.fenAc = fenAc;
 		this.daoBien = new DaoBien(CictOracleDataSource.getInstance().getConnection());
+		this.bien = null;
 	}
 	
 	@Override
@@ -101,7 +106,7 @@ public class GestionFenBien implements ActionListener{
 					FenAjoutFacture fenAddFacture = null;
 					
 					try {
-						fenAddFacture = new FenAjoutFacture();
+						fenAddFacture = new FenAjoutFacture(this.bien);
 					} catch (SQLException e1) {
 						System.out.println(e1.getMessage());
 						e1.printStackTrace();
@@ -128,5 +133,22 @@ public class GestionFenBien implements ActionListener{
 		modeleTable.setValueAt(bien.getCodePostal(), numeroLigne, 3);
 		modeleTable.setValueAt(bien.getTypeBien(), numeroLigne, 4);
 		modeleTable.setValueAt(bien.getPeriodeConstruction(), numeroLigne, 5);
-	}	
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		JTable tabBien = this.fenAc.getTabMesBiens();
+		int selectedRow = tabBien.getSelectedRow();
+		
+		if (selectedRow > -1) {
+			try {
+				System.out.println("Table Bien sélectionnée dans Bien");
+				this.bien = daoBien.findById(tabBien.getValueAt(selectedRow, 0).toString());
+				System.out.println("bien : " +  bien);
+			}catch (SQLException e1) {
+				e1.printStackTrace();
+			}	
+		}
+	}
+	
 }

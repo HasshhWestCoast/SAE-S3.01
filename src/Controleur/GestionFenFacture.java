@@ -10,15 +10,18 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import Modele.Bien;
 import Modele.Facture;
+import Modele.Logement;
 import Modele.Dao.CictOracleDataSource;
+import Modele.Dao.DaoBien;
 import Modele.Dao.DaoFacture;
+import Modele.Dao.DaoLogement;
 import Modele.Dao.Iterateur;
 import Vue.FenAccueil;
 import Vue.RoundedButton;
-import Vue.Insertion.FenAjoutFacture;
 
-public class GestionFenFacture implements ActionListener, ListSelectionListener{
+public class GestionFenFacture implements ActionListener{
 
 	private FenAccueil fenAc;
 	private DaoFacture daoFacture;
@@ -94,31 +97,5 @@ public class GestionFenFacture implements ActionListener, ListSelectionListener{
 		modeleTable.setValueAt(facture.getMontant(), numeroLigne, 6);
 		modeleTable.setValueAt(facture.getImputableLocataire(), numeroLigne, 7);
 		modeleTable.setValueAt(facture.getacompteVerse(), numeroLigne, 8);
-	}
-
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-
-	    if (!e.getValueIsAdjusting()) {
-	        JTable tabEntreprise = this.fenAc.getTabMesFactures();
-	        int selectedRow = tabEntreprise.getSelectedRow();
-	        
-			if (selectedRow > -1) {
-				try {
-					if (tabEntreprise == this.fenAjoutLoc.getTabMesLocataires()) {
-	                    System.out.println("Table Locataires sélectionnée");
-	                    locataire = this.daoLocataire.findById(selectedTable.getValueAt(selectedRow, 0).toString());
-					}else if (selectedTable == this.fenAjoutLoc.getTabMesBiens()) {
-	                    System.out.println("Table Biens sélectionnée");
-	                    bien = this.daoBien.findById(selectedTable.getValueAt(selectedRow, 0).toString());
-	                }else if (selectedTable == this.fenAjoutLoc.getTabMesICC()) {
-	                    System.out.println("Table ICC sélectionnée");
-	                    icc = this.daoICC.findById(selectedTable.getValueAt(selectedRow, 0).toString(), selectedTable.getValueAt(selectedRow, 1).toString());
-	                }				
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}		
-			}
-	    }
-	}
+	}	
 }

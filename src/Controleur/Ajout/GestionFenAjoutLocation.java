@@ -60,7 +60,6 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 		DefaultTableModel modeleTableBien = (DefaultTableModel) this.fenAjoutLoc.getTabMesBiens().getModel();
 		DefaultTableModel modeleTableICC = (DefaultTableModel) this.fenAjoutLoc.getTabMesICC().getModel();
 		
-	
 		if (texte != null) {
 			switch (texte) {
 				case "Annuler":
@@ -189,9 +188,9 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 						String CautionString = (String) fenAjoutLoc.getTextFieldCaution();
 						double Caution = Double.parseDouble(CautionString);
 						
-						String LoyerPayerString = (String) fenAjoutLoc.getcheckLoyerPayer();
+						Boolean LoyerPayerString = (Boolean) fenAjoutLoc.getcheckLoyerPayer();
 						int LoyerPayer;
-						if (LoyerPayerString == null) {
+						if (LoyerPayerString == false) {
 							LoyerPayer = 0;
 						}else {
 							LoyerPayer = 1;
