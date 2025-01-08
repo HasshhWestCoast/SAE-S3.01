@@ -588,6 +588,7 @@ public class FenAccueil extends JFrame {
 
         // JTable pour "Bien"
         tabMesLogements = new JTable();
+        tabMesLogements.getSelectionModel().addListSelectionListener(this.gestionClicLogement);
         tabMesLogements.setModel(new DefaultTableModel(
             new Object[][] {
                 { null, null, null, null, null, null },
