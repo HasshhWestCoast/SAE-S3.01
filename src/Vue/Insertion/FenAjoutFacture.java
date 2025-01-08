@@ -27,7 +27,7 @@ public class FenAjoutFacture extends JInternalFrame {
 	private JTextField textFieldIdFacture;
 	private JTextField textFieldDateEmission;
 	private JTextField textFieldDatePaiement;
-	private JTextField textFieldAcompteVersé;
+	private JTextField textFieldMontantReelVerse;
 	private JTextField textFieldNuméroDevis;
 	private JTextField textFieldMontant;
 	private JTable tabMesEntreprise;
@@ -37,6 +37,7 @@ public class FenAjoutFacture extends JInternalFrame {
 	
 	private GestionFenAjoutFacture gestionClicFenAjoutFacture; 
 	private JScrollPane scrollPane;
+	private JTextField textFieldAcompteVersé;
 
 
 
@@ -100,19 +101,19 @@ public class FenAjoutFacture extends JInternalFrame {
 		getContentPane().add(textFieldDatePaiement);
 		textFieldDatePaiement.setColumns(10);
 		
-		textFieldAcompteVersé = new JTextField();
-		textFieldAcompteVersé.setBounds(347, 87, 210, 19);
-		getContentPane().add(textFieldAcompteVersé);
-		textFieldAcompteVersé.setColumns(10);
+		textFieldMontantReelVerse = new JTextField();
+		textFieldMontantReelVerse.setBounds(347, 87, 210, 19);
+		getContentPane().add(textFieldMontantReelVerse);
+		textFieldMontantReelVerse.setColumns(10);
 		
 		textFieldNuméroDevis = new JTextField();
 		textFieldNuméroDevis.setBounds(80, 323, 207, 19);
 		getContentPane().add(textFieldNuméroDevis);
 		textFieldNuméroDevis.setColumns(10);
 		
-		JLabel lblMontantVersé = new JLabel("Montant versé");
-		lblMontantVersé.setBounds(349, 68, 85, 13);
-		getContentPane().add(lblMontantVersé);
+		JLabel lblMontantReelVersé = new JLabel("Montant versé");
+		lblMontantReelVersé.setBounds(349, 68, 85, 13);
+		getContentPane().add(lblMontantReelVersé);
 		
 		comboBoxModePaiement = new JComboBox();
 		comboBoxModePaiement.setModel(new DefaultComboBoxModel(new String[] {"Virement bancaire", "Espéces"}));
@@ -128,9 +129,9 @@ public class FenAjoutFacture extends JInternalFrame {
 		comboBoxDesignation.setBounds(347, 201, 210, 21);
 		getContentPane().add(comboBoxDesignation);
 		
-		JLabel lblNewLabel = new JLabel("Montant");
-		lblNewLabel.setBounds(347, 130, 45, 13);
-		getContentPane().add(lblNewLabel);
+		JLabel lblMontant = new JLabel("Montant");
+		lblMontant.setBounds(347, 130, 45, 13);
+		getContentPane().add(lblMontant);
 		
 		textFieldMontant = new JTextField();
 		textFieldMontant.setBounds(347, 145, 210, 19);
@@ -138,12 +139,12 @@ public class FenAjoutFacture extends JInternalFrame {
 		textFieldMontant.setColumns(10);
 		
 		JLabel lblImputableLocataire = new JLabel("Imputable Locataire");
-		lblImputableLocataire.setBounds(347, 243, 118, 13);
+		lblImputableLocataire.setBounds(347, 302, 118, 13);
 		getContentPane().add(lblImputableLocataire);
 		
 		checkImputableLocataire = new JCheckBox("OUI");
 		checkImputableLocataire.setBackground(new Color(31, 151, 83));
-		checkImputableLocataire.setBounds(347, 260, 93, 21);
+		checkImputableLocataire.setBounds(347, 322, 93, 21);
 		getContentPane().add(checkImputableLocataire);
 		
 		JLabel lblTrouverEntreprise = new JLabel("Trouver Entreprise");
@@ -187,6 +188,15 @@ public class FenAjoutFacture extends JInternalFrame {
 		btnAjouter.addActionListener(this.gestionClicFenAjoutFacture);
 		btnAjouter.setBounds(380, 388, 85, 21);
 		getContentPane().add(btnAjouter);
+		
+		JLabel lblAcompteVersé = new JLabel("Acompte Versé");
+		lblAcompteVersé.setBounds(347, 243, 87, 13);
+		getContentPane().add(lblAcompteVersé);
+		
+		textFieldAcompteVersé = new JTextField();
+		textFieldAcompteVersé.setColumns(10);
+		textFieldAcompteVersé.setBounds(347, 261, 210, 19);
+		getContentPane().add(textFieldAcompteVersé);
 	}
 	
 	public JTable getTabMesEntreprise() {
@@ -205,8 +215,8 @@ public class FenAjoutFacture extends JInternalFrame {
 		return textFieldDatePaiement.getText();
 	}
 	
-	public String getTextFieldAcompteVersé() {
-		return textFieldAcompteVersé.getText();
+	public String getTextFieldMontantReelVerse() {
+		return textFieldMontantReelVerse.getText();
 	}
 	
 	public String getTextFieldNumeroDevis() {
@@ -229,6 +239,10 @@ public class FenAjoutFacture extends JInternalFrame {
 	
 	public String getcheckImputableLocataire() {
 		return checkImputableLocataire.getToolTipText();
-
 	}
+	
+	public String getTextFieldAcompteVersé() {
+		return textFieldAcompteVersé.getText();
+	}
+
 }
