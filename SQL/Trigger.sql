@@ -78,6 +78,18 @@ END;
 /
 
 -------------------------- LOUER -------------------------------------
+-- Déclencheur pour attribuer une valeur par défaut à la date de la dernière régularisation si elle est NULL lors de l'insertion
+CREATE OR REPLACE TRIGGER SAE_louer_datedr_defaut
+BEFORE INSERT ON SAE_Louer
+FOR EACH ROW
+BEGIN
+  -- Vérifier si la date de la dernière régularisation est NULL
+  IF :NEW.date_derniere_reg IS NULL THEN
+    -- Si c'est le cas, attribuer la valeur de la date de début de location à la date de la dernière régularisation
+    :NEW.date_derniere_reg := :NEW.Date_Debut;
+  END IF;
+END;
+/
 
 -- Déclencheur pour vérifier que la date de début de location n'est pas ultérieure à la date actuelle
 CREATE OR REPLACE TRIGGER SAE_louer_check_dateDebut
@@ -86,6 +98,19 @@ FOR EACH ROW
 BEGIN
    IF :NEW.Date_debut > SYSDATE THEN
       RAISE_APPLICATION_ERROR(-20001, 'La date de début de location ne peut pas être ultérieure à la date actuelle.');
+   END IF;
+END;
+/
+
+-- Déclencheur pour vérifier que la date de la dernière régularisation n'est pas ultérieure à la date actuelle lors de l'insertion ou de la mise à jour
+CREATE OR REPLACE TRIGGER SAE_louer_check_date_dern_reg
+BEFORE INSERT OR UPDATE ON Louer
+FOR EACH ROW
+BEGIN
+   -- Vérifier si la date de la dernière régularisation est postérieure à la date actuelle
+   IF :NEW.date_derniere_reg > SYSDATE THEN
+      -- Si la condition est vraie, déclencher une erreur d'application avec le code -20002
+      RAISE_APPLICATION_ERROR(-20002, 'La date de la dernière régularisation ne peut pas être ultérieure à la date actuelle.');
    END IF;
 END;
 /
@@ -125,4 +150,51 @@ BEGIN
       RAISE_APPLICATION_ERROR(-20001, 'La date de paiement ne peut pas être ultérieure à la date actuelle.');
    END IF;
 END;
+/
+
+-- Déclencheur pour vérifier que la date d'émission de la facture n'est pas ultérieure à la date de paiement lors de l'insertion ou de la mise à jour
+CREATE OR REPLACE TRIGGER facture_d_emission_p_trigger
+BEFORE INSERT OR UPDATE ON SAE_Facture
+FOR EACH ROW
+BEGIN
+   -- Vérifier si la date d'émission de la facture est postérieure à la date de paiement
+   IF :NEW.date_emission > :NEW.date_paiement THEN
+      -- Si la condition est vraie, déclencher une erreur d'application avec le code -20002
+      RAISE_APPLICATION_ERROR(-20002, 'La date d''émission ne peut pas être ultérieure à la date de paiement.');
+   END IF;
+END;
+/
+
+--------------------------COMPTEUR-------------------------------------
+-- Déclencheur pour vérifier que la date du relevé n'est pas ultérieure à la date actuelle lors de l'insertion ou de la mise à jour
+CREATE OR REPLACE TRIGGER releve_date_releve_trigger
+BEFORE INSERT OR UPDATE ON SAE_Compteur
+FOR EACH ROW
+BEGIN
+   -- Vérifier si la date du relevé est postérieure à la date actuelle
+   IF :NEW.date_releve > SYSDATE THEN
+      -- Si la condition est vraie, déclencher une erreur d'application avec le code -20001
+      RAISE_APPLICATION_ERROR(-20001, 'La date du relevé ne peut pas être ultérieure à la date actuelle.');
+   END IF;
+END;
+/
+
+------------------------- IMPOT -------------------------------------
+
+-- Déclencheur pour vérifier que l'année de l'impôt n'est pas supérieure à l'année actuelle moins un an lors de l'insertion
+CREATE OR REPLACE TRIGGER checkAnneeImpot
+BEFORE INSERT ON SAE_Impot
+FOR EACH ROW
+DECLARE
+    v_AnneeActuelle NUMBER;
+BEGIN
+    -- Obtenir l'année actuelle
+    SELECT EXTRACT(YEAR FROM SYSDATE) - 1 INTO v_AnneeActuelle FROM dual;
+
+    -- Vérifier si l'année de l'impôt est supérieure à l'année actuelle moins un an
+    IF :new.annee > v_AnneeActuelle THEN
+        -- Si la condition est vraie, annuler l'insertion en levant une exception avec le code -20001
+        RAISE_APPLICATION_ERROR(-20001, 'L''année de l''impôt ne peut pas être supérieure à l''année actuelle moins un an.');
+    END IF;
+END checkAnneeImpot;
 /
