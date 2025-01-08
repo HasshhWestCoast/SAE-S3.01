@@ -19,5 +19,11 @@
 	<classpathentry kind="lib" path="C:/Users/Etudiant/modelio/workspace/poi-bin-5.2.3/poi-ooxml-full-5.2.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Etudiant/modelio/workspace/poi-bin-5.2.3/poi-ooxml-lite-5.2.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Etudiant/modelio/workspace/poi-bin-5.2.3/poi-scratchpad-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Etudiant/modelio/workspace/commons-io-2.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Etudiant/Downloads/xmlbeans-5.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Etudiant/modelio/workspace/apache-log4j-2.24.3-bin/log4j-api-2.24.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Etudiant/modelio/workspace/apache-log4j-2.24.3-bin/log4j-core-2.24.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Etudiant/Downloads/commons-compress-1.21.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Etudiant/Downloads/commons-collections4-4.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
