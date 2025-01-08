@@ -229,18 +229,18 @@ public class FenAjoutFacture extends JInternalFrame {
 	
 
 	public String getComboBoxModePaiement() {
-		return comboBoxModePaiement.getToolTipText();
+		return (String) comboBoxModePaiement.getSelectedItem();
 	}
 	
 	public String getComboBoxDesignation() {
-		return comboBoxDesignation.getToolTipText();
+		return (String) comboBoxDesignation.getSelectedItem();
 
 	}
 	
-	public String getcheckImputableLocataire() {
-		return checkImputableLocataire.getToolTipText();
+	public String getcheckImputableLocataire(){
+	    return checkImputableLocataire.isSelected() ? "1" : "0";
 	}
-	
+
 	public String getTextFieldAcompteVersé() {
 		return textFieldAcompteVersé.getText();
 	}
