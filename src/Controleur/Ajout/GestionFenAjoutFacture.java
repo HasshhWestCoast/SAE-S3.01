@@ -162,7 +162,6 @@ public class GestionFenAjoutFacture implements ActionListener, ListSelectionList
 	public void valueChanged(ListSelectionEvent e) {
 		JTable tabEntreprise = this.fenAjoutFacture.getTabMesEntreprise();
 		int selectedRow = tabEntreprise.getSelectedRow();
-		
 		if (selectedRow > -1) {
 			try {
 				this.entreprise = daoEntreprise.findById(tabEntreprise.getValueAt(selectedRow, 0).toString());

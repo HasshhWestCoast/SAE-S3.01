@@ -163,6 +163,7 @@ public class FenAjoutFacture extends JInternalFrame {
 		getContentPane().add(separatorTrouverEntreprise);
 	
 		tabMesEntreprise = new JTable();
+		tabMesEntreprise.getSelectionModel().addListSelectionListener(this.gestionClicFenAjoutFacture);
 		tabMesEntreprise.setModel(new DefaultTableModel(
             new Object[][] { { null, null} },
             new String[] { "SIRET", "nom" }
