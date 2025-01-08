@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import Modele.Logement;
@@ -18,14 +21,16 @@ import Vue.Insertion.FenAjoutFacture;
 import Vue.Insertion.FenAjoutLogement;
 
 
-public class GestionFenLogements implements ActionListener{
+public class GestionFenLogements implements ActionListener, ListSelectionListener{
 
 	private FenAccueil fenAc;
 	private DaoLogement daoLogement;
+	private Logement logement;
 	
 	public GestionFenLogements(FenAccueil fenAc) throws SQLException {
 		this.fenAc = fenAc;
 		this.daoLogement = new DaoLogement(CictOracleDataSource.getInstance().getConnection());
+		this.logement = null;
 	}
 	
 	@Override
@@ -106,7 +111,7 @@ public class GestionFenLogements implements ActionListener{
 					FenAjoutFacture fenAddFacture = null;
 					
 					try {
-						fenAddFacture = new FenAjoutFacture();
+						fenAddFacture = new FenAjoutFacture(this.logement);
 					} catch (SQLException e1) {
 						System.out.println(e1.getMessage());
 						e1.printStackTrace();
@@ -134,6 +139,22 @@ public class GestionFenLogements implements ActionListener{
 		modeleTable.setValueAt(logement.getNbPieces(), numeroLigne, 4);
 		modeleTable.setValueAt(logement.getNumEtage(), numeroLigne, 5);
 
+	}
+	
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		JTable tabLogement = this.fenAc.getTabMesLogements();
+		int selectedRow = tabLogement.getSelectedRow();
+		
+		if (selectedRow > -1) {
+			try {
+				System.out.println("Table Logement sélectionnée dans Logement");
+				this.logement = daoLogement.findById(tabLogement.getValueAt(selectedRow, 0).toString());
+				System.out.println("logement : " +  logement);
+			}catch (SQLException e1) {
+				e1.printStackTrace();
+			}	
+		}
 	}
 
 }
