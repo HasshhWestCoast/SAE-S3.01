@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 
 import Controleur.Ajout.GestionFenAjoutLocation;
@@ -96,6 +97,7 @@ public class FenAjoutLocation extends JInternalFrame {
 		getContentPane().add(separatorTrouverBien);
 	
 		tabMesBiens = new JTable();
+		tabMesBiens.getSelectionModel().addListSelectionListener(this.gestionClicFenAjoutLoc);
 		tabMesBiens.setModel(new DefaultTableModel(
             new Object[][] { { null} },
             new String[] { "Id Bien" }
@@ -118,6 +120,7 @@ public class FenAjoutLocation extends JInternalFrame {
 		getContentPane().add(separatorTrouverLogcataire);
 		
 		tabMesLocataires = new JTable();
+		tabMesLocataires.getSelectionModel().addListSelectionListener(this.gestionClicFenAjoutLoc);
 		tabMesLocataires.setModel(new DefaultTableModel(
             new Object[][] { { null, null} },
             new String[] { "Id Locataire", "nom" }
@@ -153,6 +156,7 @@ public class FenAjoutLocation extends JInternalFrame {
 		getContentPane().add(lblTrouverICC);
 		
 		tabMesICC = new JTable();
+		tabMesICC.getSelectionModel().addListSelectionListener(this.gestionClicFenAjoutLoc);
 		tabMesICC.setModel(new DefaultTableModel(
             new Object[][] { { null, null, null} },
             new String[] { "Annee", "trimestre", "indice" }
@@ -257,4 +261,17 @@ public class FenAjoutLocation extends JInternalFrame {
 	public String getcheckLoyerPayer() {
 		return checkLoyerPayer.getToolTipText();
 	}
+	
+	public JTable getSelectedTable(ListSelectionEvent e) {
+	    Object source = e.getSource();
+	    if (source == tabMesLocataires.getSelectionModel()) {
+	        return tabMesLocataires;
+	    } else if (source == tabMesBiens.getSelectionModel()) {
+	        return tabMesBiens;
+	    } else if (source == tabMesICC.getSelectionModel()) {
+	        return tabMesICC;
+	    }
+	    return null;
+	}
+
 }
