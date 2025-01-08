@@ -26,6 +26,7 @@ public class FenAccueil extends JFrame {
     private JPanel panelFactures;
     private JPanel panelBiens;
     private JPanel panelLogements;
+    private JPanel panelArchives;
     
     private JLayeredPane layeredPane;
 	private GestionFenAssurances gestionClicAssurances;
@@ -40,6 +41,9 @@ public class FenAccueil extends JFrame {
 	private JTable tabMesLocations;
 	private JTable tabMesAssurances;
 	private JTable tabMesLogements;
+	private JTable tabFactureArchives;
+	private JTable tabLocataireArchives;
+	private JTable tabLocationArchives;
 	private JTextField textFieldLoyer;
 	private JTextField textFieldProvisionSurCharges;
 	private JTextField textFieldMontantPayé;
@@ -124,6 +128,7 @@ public class FenAccueil extends JFrame {
         panelMenuGauche.add(btnMesDocuments);
 
         RoundedButton btnMesArchives = new RoundedButton("Archives", 20);
+        btnMesArchives.addActionListener(e -> switchToPanel("Archives"));
         btnMesArchives.setFont(new Font("Sylfaen", Font.PLAIN, 17));
         panelMenuGauche.add(btnMesArchives);
         
@@ -170,6 +175,10 @@ public class FenAccueil extends JFrame {
         // Panel Logements
         panelLogements = createLogementsPanel();
         layeredPane.add(panelLogements, "Logements");
+        
+        // Panel Logements
+        panelArchives = createArchivesPanel();
+        layeredPane.add(panelArchives, "Archives");
 
     }
 
@@ -636,6 +645,110 @@ public class FenAccueil extends JFrame {
         panelCentre.add(btnAfficherCompteur);
         
         return panelLogements;
+    }
+    
+    private JPanel createArchivesPanel() throws SQLException {
+    	
+    	
+    	JPanel panelArchives = new JPanel();
+    	 panelArchives.setLayout(new BorderLayout(0, 0));
+
+        JPanel panelTitre = new JPanel();
+        panelArchives.add(panelTitre, BorderLayout.NORTH);
+        panelTitre.setLayout(new BorderLayout(0, 0));
+
+        JLabel lblFactures = new JLabel("Mes Archives ");
+        lblFactures.setHorizontalAlignment(SwingConstants.CENTER);
+        lblFactures.setForeground(new Color(31, 153, 88));
+        lblFactures.setFont(new Font("Sylfaen", Font.ITALIC, 28));
+        lblFactures.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Décalage de 10px vers le bas
+        panelTitre.add(lblFactures, BorderLayout.CENTER);
+
+        JSeparator separator = new JSeparator();
+        separator.setForeground(new Color(0, 0, 0));
+        panelTitre.add(separator, BorderLayout.SOUTH);
+
+        JPanel panelCentre = new JPanel();
+        panelCentre.setBackground(new Color(255, 255, 255));
+        panelArchives.add(panelCentre, BorderLayout.CENTER);
+        panelCentre.setLayout(null);
+
+        // JTable pour "Bien"
+        tabFactureArchives = new JTable();
+        tabFactureArchives.setModel(new DefaultTableModel(
+        	new Object[][] {
+        		{null, null, null, null, null},
+        	},
+        	new String[] {
+        		"Num\u00E9ro ", "D\u00E9signation", "Montant pay\u00E9", "Montant", "Date Emission"
+        	}
+        ));
+        JScrollPane scrollPaneFacture = new JScrollPane(tabFactureArchives);
+        scrollPaneFacture.setBounds(46, 57, 636, 93);
+        scrollPaneFacture.setBorder(new LineBorder(new Color(31, 153, 88), 2));
+        panelCentre.add(scrollPaneFacture);
+        
+        // JTable pour "Bien"
+        tabLocataireArchives = new JTable();
+        tabLocataireArchives.setModel(new DefaultTableModel(
+        	new Object[][] {
+        		{null, null, null, null, null},
+        	},
+        	new String[] {
+        		"Num\u00E9ro ", "D\u00E9signation", "Montant pay\u00E9", "Montant", "Date Emission"
+        	}
+        ));
+        
+        JScrollPane scrollPaneLocataire = new JScrollPane(tabLocataireArchives);
+        scrollPaneLocataire.setBorder(new LineBorder(new Color(31, 153, 88), 2));
+        scrollPaneLocataire.setBounds(46, 197, 636, 83);
+        panelCentre.add(scrollPaneLocataire);
+        
+        // JTable pour "Bien"
+        tabLocationArchives = new JTable();
+        tabLocationArchives.setModel(new DefaultTableModel(
+        	new Object[][] {
+        		{null, null, null, null, null},
+        	},
+        	new String[] {
+        		"Num\u00E9ro ", "D\u00E9signation", "Montant pay\u00E9", "Montant", "Date Emission"
+        	}
+        ));
+        
+        JScrollPane scrollPaneLocation = new JScrollPane(tabLocationArchives);
+        scrollPaneLocation.setBorder(new LineBorder(new Color(31, 153, 88), 2));
+        scrollPaneLocation.setBounds(46, 325, 636, 83);
+        panelCentre.add(scrollPaneLocation);
+
+        JPanel panel = new JPanel();
+        panel.setBounds(0, 501, 1024, 48);
+        panelCentre.add(panel);
+        panel.setLayout(null);
+        
+        // Buttons
+        RoundedButton btnChargerFacture = new RoundedButton("Ajouter un logement", 20);
+        btnChargerFacture.setText("Charger Facture");
+        btnChargerFacture.addActionListener(this.gestionClicLogement);
+        btnChargerFacture.setBounds(743, 96, 194, 30);
+        panelCentre.add(btnChargerFacture);
+        
+        RoundedButton btnChargerLocataire = new RoundedButton("Ajouter un logement", 20);
+        btnChargerLocataire.setText("Charger Locataire");
+        btnChargerLocataire.setBounds(743, 227, 194, 30);
+        panelCentre.add(btnChargerLocataire);
+        
+        RoundedButton rndbtnChargerLocation = new RoundedButton("Ajouter un logement", 20);
+        rndbtnChargerLocation.setText("Charger Location");
+        rndbtnChargerLocation.setBounds(743, 349, 194, 30);
+        panelCentre.add(rndbtnChargerLocation);
+        
+      
+        
+        return panelArchives;
+    	
+    	
+    	
+    	
     }
 
 

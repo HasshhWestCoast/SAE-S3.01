@@ -137,7 +137,7 @@ public class FenAjoutBien extends JInternalFrame {
 	}
 	
 	public String getComboBoxTypeDeBien() {
-		return comboBoxTypeDeBien.getToolTipText();
+		return (String) comboBoxTypeDeBien.getSelectedItem();
 	}
 	
 	public String getTextFieldCodePostale() {
