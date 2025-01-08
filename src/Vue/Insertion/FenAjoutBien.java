@@ -19,8 +19,13 @@ public class FenAjoutBien extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textFieldCodePostale;
-	private JTextField textField;
+	private JTextField textFieldPeriodeConstruction;
+	private JTextField textFieldIdBien;
+	private JTextField textAdresse;
+	private JTextField textFieldVille;
+	private JComboBox comboBoxTypeDeBien;
 	private GestionFenAjoutBien gestionClicFenAjoutBien;	
+
 
 	/**
 	 * Create the frame.
@@ -35,7 +40,7 @@ public class FenAjoutBien extends JInternalFrame {
 		lblAdresse.setBounds(82, 123, 80, 13);
 		getContentPane().add(lblAdresse);
 		
-		JTextField textAdresse = new JTextField();
+		textAdresse = new JTextField();
 		textAdresse.setBounds(80, 137, 223, 19);
 		getContentPane().add(textAdresse);
 		textAdresse.setColumns(10);
@@ -44,7 +49,7 @@ public class FenAjoutBien extends JInternalFrame {
 		lblVille.setBounds(82, 179, 94, 13);
 		getContentPane().add(lblVille);
 		
-		JTextField textFieldVille = new JTextField();
+		textFieldVille = new JTextField();
 		textFieldVille.setBounds(82, 195, 223, 19);
 		getContentPane().add(textFieldVille);
 		textFieldVille.setColumns(10);
@@ -61,7 +66,7 @@ public class FenAjoutBien extends JInternalFrame {
 		lblIdBien.setBounds(80, 68, 96, 13);
 		getContentPane().add(lblIdBien);
 		
-		JTextField textFieldIdBien = new JTextField();
+		textFieldIdBien = new JTextField();
 		textFieldIdBien.setBounds(80, 84, 223, 19);
 		getContentPane().add(textFieldIdBien);
 		textFieldIdBien.setColumns(10);
@@ -88,7 +93,7 @@ public class FenAjoutBien extends JInternalFrame {
 		separator.setBounds(93, 45, 188, 2);
 		getContentPane().add(separator);
 		
-		JComboBox comboBoxTypeDeBien = new JComboBox();
+		comboBoxTypeDeBien = new JComboBox();
 		comboBoxTypeDeBien.setBounds(82, 252, 221, 21);
 		comboBoxTypeDeBien.setForeground(new Color(0, 0, 0));
 		comboBoxTypeDeBien.setFont(new Font("Sylfaen", Font.PLAIN, 12));
@@ -112,10 +117,34 @@ public class FenAjoutBien extends JInternalFrame {
 		lblNewLabel.setBounds(82, 352, 109, 13);
 		getContentPane().add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(80, 370, 223, 19);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		textFieldPeriodeConstruction = new JTextField();
+		textFieldPeriodeConstruction.setBounds(80, 370, 223, 19);
+		getContentPane().add(textFieldPeriodeConstruction);
+		textFieldPeriodeConstruction.setColumns(10);
 		setBounds(200, 100, 423, 540);
 	}
+		
+	public String getTextFieldIdBien(){
+		return textFieldIdBien.getText();
+	}
+	
+	public String getTextFieldAdresse() {
+		return textAdresse.getText();
+	}
+	
+	public String getTextFieldVille() {
+		return textFieldVille.getText();
+	}
+	
+	public String getComboBoxTypeDeBien() {
+		return comboBoxTypeDeBien.getToolTipText();
+	}
+	
+	public String getTextFieldCodePostale() {
+		return textFieldCodePostale.getText();
+	}
+	public String getTextFieldPeriodeConstruction() {
+		return textFieldPeriodeConstruction.getText();
+	}
+
 }

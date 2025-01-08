@@ -30,10 +30,14 @@ public class FenAjoutFacture extends JInternalFrame {
 	private JTextField textFieldAcompteVersé;
 	private JTextField textFieldNuméroDevis;
 	private JTextField textFieldMontant;
+	private JTable tabMesEntreprise;
+	private JComboBox comboBoxModePaiement;
+	private JComboBox comboBoxDesignation;
+	private JCheckBox checkImputableLocataire;
 	
 	private GestionFenAjoutFacture gestionClicFenAjoutFacture; 
 	private JScrollPane scrollPane;
-	private JTable tabMesEntreprise;
+
 
 
 	/**
@@ -110,7 +114,7 @@ public class FenAjoutFacture extends JInternalFrame {
 		lblMontantVersé.setBounds(349, 68, 85, 13);
 		getContentPane().add(lblMontantVersé);
 		
-		JComboBox comboBoxModePaiement = new JComboBox();
+		comboBoxModePaiement = new JComboBox();
 		comboBoxModePaiement.setModel(new DefaultComboBoxModel(new String[] {"Virement bancaire", "Espéces"}));
 		comboBoxModePaiement.setBounds(80, 260, 207, 21);
 		getContentPane().add(comboBoxModePaiement);
@@ -119,7 +123,7 @@ public class FenAjoutFacture extends JInternalFrame {
 		lblDésignation.setBounds(347, 185, 85, 13);
 		getContentPane().add(lblDésignation);
 		
-		JComboBox comboBoxDesignation = new JComboBox();
+		comboBoxDesignation = new JComboBox();
 		comboBoxDesignation.setModel(new DefaultComboBoxModel(new String[] {"Travaux", "Eau", "Electricité", "Gaz", "Autre"}));
 		comboBoxDesignation.setBounds(347, 201, 210, 21);
 		getContentPane().add(comboBoxDesignation);
@@ -137,10 +141,10 @@ public class FenAjoutFacture extends JInternalFrame {
 		lblImputableLocataire.setBounds(347, 243, 118, 13);
 		getContentPane().add(lblImputableLocataire);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("OUI");
-		chckbxNewCheckBox.setBackground(new Color(31, 151, 83));
-		chckbxNewCheckBox.setBounds(347, 260, 93, 21);
-		getContentPane().add(chckbxNewCheckBox);
+		checkImputableLocataire = new JCheckBox("OUI");
+		checkImputableLocataire.setBackground(new Color(31, 151, 83));
+		checkImputableLocataire.setBounds(347, 260, 93, 21);
+		getContentPane().add(checkImputableLocataire);
 		
 		JLabel lblTrouverEntreprise = new JLabel("Trouver Entreprise");
 		lblTrouverEntreprise.setHorizontalAlignment(SwingConstants.CENTER);
@@ -187,5 +191,44 @@ public class FenAjoutFacture extends JInternalFrame {
 	
 	public JTable getTabMesEntreprise() {
 		return tabMesEntreprise;
+	}
+	
+	public String getTextFieldIdFacture(){
+		return textFieldIdFacture.getText();
+	}
+	
+	public String getTextFieldDateEmission() {
+		return textFieldDateEmission.getText();
+	}
+	
+	public String getTextFieldDatePaiement() {
+		return textFieldDatePaiement.getText();
+	}
+	
+	public String getTextFieldAcompteVersé() {
+		return textFieldAcompteVersé.getText();
+	}
+	
+	public String getTextFieldNumeroDevis() {
+		return textFieldNuméroDevis.getText();
+	}
+	
+	public String getTextFieldMontant() {
+		return textFieldMontant.getText();
+	}
+	
+
+	public String getComboBoxModePaiement() {
+		return comboBoxModePaiement.getToolTipText();
+	}
+	
+	public String getComboBoxDesignation() {
+		return comboBoxDesignation.getToolTipText();
+
+	}
+	
+	public String getcheckImputableLocataire() {
+		return checkImputableLocataire.getToolTipText();
+
 	}
 }
