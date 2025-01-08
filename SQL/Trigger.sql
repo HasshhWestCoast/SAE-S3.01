@@ -104,7 +104,7 @@ END;
 
 -- Déclencheur pour vérifier que la date de la dernière régularisation n'est pas ultérieure à la date actuelle lors de l'insertion ou de la mise à jour
 CREATE OR REPLACE TRIGGER SAE_louer_check_date_dern_reg
-BEFORE INSERT OR UPDATE ON Louer
+BEFORE INSERT OR UPDATE ON SAE_Louer
 FOR EACH ROW
 BEGIN
    -- Vérifier si la date de la dernière régularisation est postérieure à la date actuelle

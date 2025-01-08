@@ -80,7 +80,7 @@ CREATE TABLE SAE_Bien(
    ville VARCHAR2(50) CONSTRAINT SAE_nn_log_ville NOT NULL,
    type_bien VARCHAR2(30) CONSTRAINT SAE_nn_bien_type NOT NULL,
    codepostal CHAR(5) CONSTRAINT SAE_nn_log_cp NOT NULL,
-   periode_construction VARCHAR2(15),
+   periode_construction VARCHAR2(15) CONSTRAINT SAE_nn_p_construction NOT NULL,
    Id_Logement VARCHAR2(30) CONSTRAINT SAE_fk_bien_Logement REFERENCES SAE_Logement(Id_Logement) NOT NULL,
    CONSTRAINT SAE_un_log_adresse UNIQUE(adresse, codepostal, ville),
    CONSTRAINT SAE_ck_log_cp CHECK (REGEXP_LIKE(codepostal, '^[0-9]{5}$'))
