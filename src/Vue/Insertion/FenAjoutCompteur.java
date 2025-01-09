@@ -19,8 +19,9 @@ public class FenAjoutCompteur extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField textFieldIdCompteur;
 	private JTextField textFieldIndiceCompteur;
-	private JTextField textField;
+	private JTextField textFieldDateRelevé;
 	private GestionFenAjoutCompteur gestionFenAjoutCompteur;
+	private JComboBox comboBox;
 
 
 	/**
@@ -78,7 +79,7 @@ public class FenAjoutCompteur extends JInternalFrame {
 		lblNewLabel_1.setBounds(77, 230, 98, 13);
 		getContentPane().add(lblNewLabel_1);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Eau", "Gaz", "Electricité"}));
 		comboBox.setBounds(76, 250, 201, 21);
 		setBounds(100, 100, 388, 499);
@@ -87,16 +88,29 @@ public class FenAjoutCompteur extends JInternalFrame {
 		comboBox.setBackground(new Color(31, 153, 88));
 		getContentPane().add(comboBox);
 		
-		JLabel lblNewLabel_2 = new JLabel("Date relevé");
-		lblNewLabel_2.setBounds(77, 300, 85, 13);
-		getContentPane().add(lblNewLabel_2);
+		JLabel lblDateReleve = new JLabel("Date relevé");
+		lblDateReleve.setBounds(77, 300, 85, 13);
+		getContentPane().add(lblDateReleve);
 		
-		textField = new JTextField();
-		textField.setBounds(79, 315, 198, 19);
-		getContentPane().add(textField);
-		textField.setColumns(10);
-
-
-
+		textFieldDateRelevé = new JTextField();
+		textFieldDateRelevé.setBounds(79, 315, 198, 19);
+		getContentPane().add(textFieldDateRelevé);
+		textFieldDateRelevé.setColumns(10);
+	}
+	
+	public String getTextFieldIdCompteur() {
+		return textFieldIdCompteur.getText();
+	}
+	
+	public String  getTextFieldIndiceCompteur() {
+		return textFieldIndiceCompteur.getText();
+	}
+	
+	public String getTextFieldDateRelevé() {
+		return textFieldDateRelevé.getText();
+	}
+	
+	public String getComboBoxTypeComp() {
+		return (String) comboBox.getSelectedItem();
 	}
 }
