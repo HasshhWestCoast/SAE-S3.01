@@ -21,7 +21,7 @@ public class FenCompteursBien extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private GestionFenCompteursBien gestionClicFenCompBien;
-	private JTable tabMesBiens;
+	private JTable tabMesCompteurs;
 
 
 	/**
@@ -36,8 +36,8 @@ public class FenCompteursBien extends JInternalFrame {
         getContentPane().setLayout(null);
 		
 		 // JTable pour "Bien"
-        tabMesBiens = new JTable();
-        tabMesBiens.setModel(new DefaultTableModel(
+        tabMesCompteurs = new JTable();
+        tabMesCompteurs.setModel(new DefaultTableModel(
             new Object[][] {
                 { null, null, null, null},
             },
@@ -45,7 +45,7 @@ public class FenCompteursBien extends JInternalFrame {
                 "ID Compteur", "Type Compteur", "Index", "Date relevé"
             }
         ));
-        JScrollPane scrollPaneBiens = new JScrollPane(tabMesBiens);
+        JScrollPane scrollPaneBiens = new JScrollPane(tabMesCompteurs);
         scrollPaneBiens.setBounds(23, 77, 580, 367);
         scrollPaneBiens.setBorder(new LineBorder(new Color(31, 153, 88), 2));
         getContentPane().add(scrollPaneBiens);
@@ -77,7 +77,7 @@ public class FenCompteursBien extends JInternalFrame {
 
 	}
 	
-	public JTable getTabMesBiens() {
-		return tabMesBiens;
+	public JTable getTabMesCompteurs() {
+		return tabMesCompteurs;
 	}
 }
