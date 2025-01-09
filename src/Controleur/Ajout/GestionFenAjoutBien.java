@@ -124,7 +124,7 @@ public class GestionFenAjoutBien implements ActionListener, ListSelectionListene
 	public void valueChanged(ListSelectionEvent e) {
 		
 		JTable tabEntreprise = this.fenAjoutBien.getTabMesLogements();
-		
+		System.out.println("ICI 1");
 		int selectedRow = tabEntreprise.getSelectedRow();
 		if (selectedRow > -1) {
 			try {
