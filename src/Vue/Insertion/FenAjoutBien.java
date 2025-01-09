@@ -7,6 +7,7 @@ import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -14,6 +15,9 @@ import Controleur.Ajout.GestionFenAjoutBien;
 import Vue.RoundedButton;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JScrollPane;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class FenAjoutBien extends JInternalFrame {
 
@@ -24,7 +28,9 @@ public class FenAjoutBien extends JInternalFrame {
 	private JTextField textAdresse;
 	private JTextField textFieldVille;
 	private JComboBox comboBoxTypeDeBien;
-	private GestionFenAjoutBien gestionClicFenAjoutBien;	
+	private JTable tabMesLogements;
+	private GestionFenAjoutBien gestionClicFenAjoutBien;
+	private JScrollPane scrollPane;
 
 
 	/**
@@ -78,7 +84,7 @@ public class FenAjoutBien extends JInternalFrame {
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
 		btnAjouter.addActionListener(gestionClicFenAjoutBien);
-		btnAjouter.setBounds(218, 419, 85, 21);
+		btnAjouter.setBounds(196, 419, 85, 21);
 		getContentPane().add(btnAjouter);
 		
 		JLabel lblAjoutBien = new JLabel("Ajout Bien");
@@ -105,7 +111,7 @@ public class FenAjoutBien extends JInternalFrame {
 		RoundedButton btnAjoutCompteur = new RoundedButton("Compteur", 20);
 		btnAjoutCompteur.addActionListener(gestionClicFenAjoutBien);
 		btnAjoutCompteur.setText("Ajout Compteur");
-		btnAjoutCompteur.setBounds(124, 461, 131, 21);
+		btnAjoutCompteur.setBounds(433, 419, 131, 21);
 		getContentPane().add(btnAjoutCompteur);
 		
 		textFieldCodePostale = new JTextField();
@@ -121,7 +127,24 @@ public class FenAjoutBien extends JInternalFrame {
 		textFieldPeriodeConstruction.setBounds(80, 370, 223, 19);
 		getContentPane().add(textFieldPeriodeConstruction);
 		textFieldPeriodeConstruction.setColumns(10);
-		setBounds(200, 100, 423, 540);
+		
+		tabMesLogements = new JTable();
+		tabMesLogements.getSelectionModel().addListSelectionListener(this.gestionClicFenAjoutBien);
+		tabMesLogements.setModel(new DefaultTableModel(
+            new Object[][] { { null, null} },
+            new String[] { "Id Logement", "Date Acquisition" }
+        ));
+		
+		scrollPane = new JScrollPane(tabMesLogements);
+		scrollPane.setBorder(new LineBorder(new Color(109, 109, 109), 2));
+		scrollPane.setBounds(362, 84, 268, 134);
+		getContentPane().add(scrollPane);
+		
+		RoundedButton btnCharger = new RoundedButton("Charger", 20);
+		btnCharger.addActionListener(this.gestionClicFenAjoutBien);
+		btnCharger.setBounds(452, 234, 85, 21);
+		getContentPane().add(btnCharger);
+		setBounds(200, 100, 670, 540);
 	}
 		
 	public String getTextFieldIdBien(){
@@ -143,8 +166,12 @@ public class FenAjoutBien extends JInternalFrame {
 	public String getTextFieldCodePostale() {
 		return textFieldCodePostale.getText();
 	}
+	
 	public String getTextFieldPeriodeConstruction() {
 		return textFieldPeriodeConstruction.getText();
 	}
-
+	
+	public JTable getTabMesLogements() {
+		return tabMesLogements;
+	}
 }
