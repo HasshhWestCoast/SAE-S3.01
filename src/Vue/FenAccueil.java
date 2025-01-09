@@ -302,15 +302,6 @@ public class FenAccueil extends JFrame {
     	 panelLocations.add(panelCentre, BorderLayout.CENTER);
     	 panelCentre.setLayout(null);
     	 
-    	 JComboBox comboBoxIDLocations = new JComboBox();
-    	 comboBoxIDLocations.setForeground(new Color(255, 255, 255));
-    	 comboBoxIDLocations.setBackground(new Color(31, 153, 88));
-         comboBoxIDLocations.setToolTipText("ID Locations");
-         comboBoxIDLocations.setModel(new DefaultComboBoxModel(new String[] {"ID Locations"}));
-    	 
-    	 comboBoxIDLocations.setBounds(54, 11, 126, 22);
-    	 panelCentre.add(comboBoxIDLocations);
-    	 
     	 tabMesLocations = new JTable();
          tabMesLocations.setModel(new DefaultTableModel(
              new Object[][] { { null, null, null, null, null } },
@@ -343,9 +334,17 @@ public class FenAccueil extends JFrame {
        	  
        	  RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
        	  btnSupprimer.addActionListener(this.gestionClicLocation);
-       	  btnSupprimer.setBounds(657, 11, 96, 23);
+       	  btnSupprimer.setBounds(654, 11, 96, 23);
        	  panel.add(btnSupprimer);
        	  
+       	  
+    	  RoundedButton btnLocataire = new RoundedButton("Locataire", 20);
+    	  btnLocataire.addActionListener(this.gestionClicLocation);
+    	  btnLocataire.setBackground(new Color(33, 153, 88));
+    	  btnLocataire.setText("Informations locataire");
+    	  btnLocataire.setBounds(53, 11, 161, 23);
+    	  panelCentre.add(btnLocataire);
+    	  
        	  textFieldLoyer = new JTextField();
        	  textFieldLoyer.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED,new Color(31, 153, 88), new Color(160, 160, 160)), "Loyer", TitledBorder.LEADING, TitledBorder.TOP, null,new Color(31, 153, 88)));
        	  textFieldLoyer.setBounds(713, 42, 161, 36);
@@ -387,6 +386,7 @@ public class FenAccueil extends JFrame {
        	  textFieldCaution.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(31, 153, 88), new Color(160, 160, 160)), "Caution", TitledBorder.LEADING, TitledBorder.TOP, null,new Color(31, 153, 88)));
        	  textFieldCaution.setBounds(713, 417, 161, 36);
        	  panelCentre.add(textFieldCaution);
+       	
   	
     	 return panelLocations;
 		

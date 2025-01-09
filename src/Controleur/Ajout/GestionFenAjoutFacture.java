@@ -93,7 +93,7 @@ public class GestionFenAjoutFacture implements ActionListener, ListSelectionList
 						
 						DaoFacture daoFacture = new DaoFacture(CictOracleDataSource.getInstance().getConnection());
 						
-						System.out.println("entreprise : " + entreprise);
+						
 						Facture facture = new Facture(IdFacture, DateEmission, DatePaiement, ModePaiement, NumeroDevis, Designation, MontantReelVerse, Montant, ImputableLocataire, AcompteVerse, logement, bien, entreprise);
 						//daoFacture.create(facture);
 						

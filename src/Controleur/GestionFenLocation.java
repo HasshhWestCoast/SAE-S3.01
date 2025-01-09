@@ -12,7 +12,9 @@ import Modele.Dao.CictOracleDataSource;
 import Modele.Dao.DaoLouer;
 import Modele.Dao.Iterateur;
 import Vue.FenAccueil;
+import Vue.FenLocataire;
 import Vue.RoundedButton;
+import Vue.Insertion.FenAjoutBien;
 import Vue.Insertion.FenAjoutLocation;
 
 
@@ -89,6 +91,19 @@ public class GestionFenLocation implements ActionListener {
 					
 				case "Mise à jour":
 					System.out.println("Vous METTEZ A JOUR une donnée dans Location !");
+					break;
+					
+				case "Informations locataire":
+					System.out.println("Vous ouvrez la page informations locataire !");
+				FenLocataire fenInfoLocataire = null;
+				try {
+					fenInfoLocataire = new FenLocataire();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+					fenAc.getLayeredPane().add(fenInfoLocataire);
+					fenInfoLocataire.setVisible(true);
 					break;
 					
 				default:
