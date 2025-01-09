@@ -21,6 +21,7 @@ public class FenAjoutCompteur extends JInternalFrame {
 	private JTextField textFieldIndiceCompteur;
 	private JTextField textField;
 	private GestionFenAjoutCompteur gestionFenAjoutCompteur;
+	private JComboBox comboBox;
 
 
 	/**
@@ -78,7 +79,7 @@ public class FenAjoutCompteur extends JInternalFrame {
 		lblNewLabel_1.setBounds(77, 230, 98, 13);
 		getContentPane().add(lblNewLabel_1);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Eau", "Gaz", "Electricité"}));
 		comboBox.setBounds(76, 250, 201, 21);
 		setBounds(100, 100, 388, 499);
