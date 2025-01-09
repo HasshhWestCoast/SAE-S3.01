@@ -29,7 +29,7 @@ public class GestionFenCompteursBien implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		String texte = ((RoundedButton) source).getText();
-		DefaultTableModel modeleTable = (DefaultTableModel) this.fenCompBien.getTabMesBiens().getModel();
+		DefaultTableModel modeleTable = (DefaultTableModel) this.fenCompBien.getTabMesCompteurs().getModel();
 
 		if (texte != null) {
 			switch (texte) {
@@ -76,7 +76,7 @@ public class GestionFenCompteursBien implements ActionListener{
 	}
 	
 	public void ecrireLigneTable(Compteur compteur, int numeroLigne) {
-		DefaultTableModel modeleTable = (DefaultTableModel) this.fenCompBien.getTabMesBiens().getModel();
+		DefaultTableModel modeleTable = (DefaultTableModel) this.fenCompBien.getTabMesCompteurs().getModel();
 
 		modeleTable.setValueAt(compteur.getIdCompteur(), numeroLigne, 0);
 		modeleTable.setValueAt(compteur.getTypeComp(), numeroLigne, 1);

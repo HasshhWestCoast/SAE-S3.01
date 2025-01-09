@@ -37,7 +37,7 @@ public class GestionFenAjoutCompteur implements ActionListener{
 				case "Ajouter":
 					System.out.println("Vous AJOUTER un compteur au bien !");
 					try {
-						DefaultTableModel modeleTable = (DefaultTableModel) fenAjoutCompteur.getTab().getModel();
+						//DefaultTableModel modeleTable = (DefaultTableModel) fenAjoutCompteur.getTab().getModel();
 
 						String IdCompteur = (String) fenAjoutCompteur.getTextFieldIdCompteur();					
 						String IndiceCompteurString = (String) fenAjoutCompteur.getTextFieldIndiceCompteur();
@@ -47,11 +47,11 @@ public class GestionFenAjoutCompteur implements ActionListener{
 
 						DaoBien daoBien = new DaoBien(CictOracleDataSource.getInstance().getConnection());
 
-						Compteur compteur = new Compteur(IdCompteur, TypeCompteur, IndiceCompteur, DateRelevé, bien, immeuble);
+						//Compteur compteur = new Compteur(IdCompteur, TypeCompteur, IndiceCompteur, DateRelevé, bien, immeuble);
 						//daoBien.create(bien);
 						
 						String []EngrCompteur = {IdCompteur, TypeCompteur, String.valueOf(IndiceCompteur), DateRelevé};
-						modeleTable.addRow(EngrCompteur);
+						//modeleTable.addRow(EngrCompteur);
 						
 						fenAjoutCompteur.dispose();
 						
