@@ -149,15 +149,7 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 	                fenAjoutLocataire.setVisible(true);
 	                fenAjoutLocataire.moveToFront();
 					break;
-				
-				case "Inserer Bien":
-					System.out.println("Vous INSERER un BIEN depuis Location !");
-					FenAjoutBien fenAddBien = new FenAjoutBien();
-					fenAC.getLayeredPane().add(fenAddBien);
-					fenAddBien.setVisible(true);
-					fenAddBien.moveToFront();
-					break;
-					
+
 				case "Inserer ICC":
 					System.out.println("Vous INSERER un ICC depuis Location !");
 					FenAjoutICC fenAddICC = new FenAjoutICC();

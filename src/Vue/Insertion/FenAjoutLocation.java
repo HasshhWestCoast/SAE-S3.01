@@ -46,54 +46,54 @@ public class FenAjoutLocation extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblProvisionsCharges = new JLabel("Provisions charges");
-		lblProvisionsCharges.setBounds(510, 180, 96, 13);
+		lblProvisionsCharges.setBounds(375, 180, 96, 13);
 		getContentPane().add(lblProvisionsCharges);
 		
 		JLabel lblNbMois = new JLabel("Nombre de Mois");
-		lblNbMois.setBounds(510, 120, 85, 13);
+		lblNbMois.setBounds(375, 120, 85, 13);
 		getContentPane().add(lblNbMois);
 		
 		JLabel lblDateDebut = new JLabel("Date début");
-		lblDateDebut.setBounds(510, 60, 96, 13);
+		lblDateDebut.setBounds(375, 60, 96, 13);
 		getContentPane().add(lblDateDebut);
 		
 		JLabel lblAjoutLocations = new JLabel("Ajout Location");
 		lblAjoutLocations.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAjoutLocations.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblAjoutLocations.setBounds(541, 20, 131, 21);
+		lblAjoutLocations.setBounds(400, 20, 131, 21);
 		getContentPane().add(lblAjoutLocations);
 		
 		JSeparator separatorAjoutLocations = new JSeparator();
 		separatorAjoutLocations.setForeground(new Color(255, 255, 255));
 		separatorAjoutLocations.setBackground(new Color(31, 151, 83));
-		separatorAjoutLocations.setBounds(510, 40, 188, 2);
+		separatorAjoutLocations.setBounds(380, 38, 188, 2);
 		getContentPane().add(separatorAjoutLocations);
 		
 		textFieldDateDebut = new JTextField();
-		textFieldDateDebut.setBounds(510, 78, 207, 19);
+		textFieldDateDebut.setBounds(375, 78, 207, 19);
 		getContentPane().add(textFieldDateDebut);
 		textFieldDateDebut.setColumns(10);
 		
 		textFieldNbMois = new JTextField();
-		textFieldNbMois.setBounds(510, 136, 207, 19);
+		textFieldNbMois.setBounds(375, 136, 207, 19);
 		getContentPane().add(textFieldNbMois);
 		textFieldNbMois.setColumns(10);
 		
 		textFieldProvisionsCharge = new JTextField();
-		textFieldProvisionsCharge.setBounds(510, 198, 207, 19);
+		textFieldProvisionsCharge.setBounds(375, 198, 207, 19);
 		getContentPane().add(textFieldProvisionsCharge);
 		textFieldProvisionsCharge.setColumns(10);
 		
 		JLabel lblTrouverBien = new JLabel("Trouver Bien");
 		lblTrouverBien.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTrouverBien.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblTrouverBien.setBounds(84, 195, 131, 21);
+		lblTrouverBien.setBounds(84, 211, 131, 21);
 		getContentPane().add(lblTrouverBien);
 		
 		JSeparator separatorTrouverBien = new JSeparator();
 		separatorTrouverBien.setForeground(Color.WHITE);
 		separatorTrouverBien.setBackground(new Color(31, 151, 83));
-		separatorTrouverBien.setBounds(56, 213, 188, 2);
+		separatorTrouverBien.setBounds(56, 230, 188, 2);
 		getContentPane().add(separatorTrouverBien);
 	
 		tabMesBiens = new JTable();
@@ -104,7 +104,7 @@ public class FenAjoutLocation extends JInternalFrame {
         ));
         JScrollPane scrollPaneMesBiens = new JScrollPane(tabMesBiens);
         scrollPaneMesBiens.setBorder(new LineBorder(new Color(109, 109, 109), 2));
-		scrollPaneMesBiens.setBounds(10, 226, 306, 142);        
+		scrollPaneMesBiens.setBounds(10, 242, 306, 126);        
 		getContentPane().add(scrollPaneMesBiens);
 	
 		JLabel lblTrouverLocataire = new JLabel("Trouver Locataire");
@@ -128,25 +128,25 @@ public class FenAjoutLocation extends JInternalFrame {
 		
 		JScrollPane scrollPanemesLocataires = new JScrollPane(tabMesLocataires);
 		scrollPanemesLocataires.setBorder(new LineBorder(new Color(109, 109, 109), 2));
-		scrollPanemesLocataires.setBounds(10, 40, 306, 134);
+		scrollPanemesLocataires.setBounds(10, 40, 306, 126);
 		getContentPane().add(scrollPanemesLocataires);
 		
 		JLabel lblNewLabel = new JLabel("montant reel");
-		lblNewLabel.setBounds(510, 238, 118, 13);
+		lblNewLabel.setBounds(375, 238, 118, 13);
 		getContentPane().add(lblNewLabel);
 		
 		textFieldMontantReel = new JTextField();
-		textFieldMontantReel.setBounds(510, 252, 207, 19);
+		textFieldMontantReel.setBounds(375, 252, 207, 19);
 		getContentPane().add(textFieldMontantReel);
 		textFieldMontantReel.setColumns(10);
 		
 		JLabel lblCaution = new JLabel("caution");
-		lblCaution.setBounds(510, 296, 118, 13);
+		lblCaution.setBounds(375, 296, 118, 13);
 		getContentPane().add(lblCaution);
 		
 		textFieldCaution = new JTextField();
 		textFieldCaution.setColumns(10);
-		textFieldCaution.setBounds(510, 310, 207, 19);
+		textFieldCaution.setBounds(375, 310, 207, 19);
 		getContentPane().add(textFieldCaution);
 		
 		JLabel lblTrouverICC = new JLabel("Trouver ICC");
@@ -173,56 +173,51 @@ public class FenAjoutLocation extends JInternalFrame {
 		separatorTrouverICC.setBounds(56, 402, 188, 2);
 		getContentPane().add(separatorTrouverICC);
 		
-		RoundedButton btnInsererICC = new RoundedButton("Inserer ICC", 20);
-		btnInsererICC.addActionListener(this.gestionClicFenAjoutLoc);
-		btnInsererICC.setBounds(323, 458, 108, 21);
-		getContentPane().add(btnInsererICC);
-		
 		RoundedButton btnAjouterEtatLieux = new RoundedButton("Ajouter Etat Lieux", 20);
 		btnAjouterEtatLieux.addActionListener(this.gestionClicFenAjoutLoc);
-		btnAjouterEtatLieux.setBounds(510, 414, 207, 21);
+		btnAjouterEtatLieux.setBounds(375, 414, 207, 21);
 		btnAjouterEtatLieux.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouterEtatLieux);
 		
 		RoundedButton btnAjouterBail = new RoundedButton("Ajouter Lieux", 20);
 		btnAjouterBail.addActionListener(this.gestionClicFenAjoutLoc);
-		btnAjouterBail.setBounds(510, 445, 207, 21);
+		btnAjouterBail.setBounds(375, 445, 207, 21);
 		btnAjouterBail.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouterBail);
 		
-		RoundedButton btnInsererLocataire = new RoundedButton("Inserer L", 20);
-		btnInsererLocataire.addActionListener(this.gestionClicFenAjoutLoc);
-		btnInsererLocataire.setBounds(323, 77, 108, 21);
-		getContentPane().add(btnInsererLocataire);
-		
 		RoundedButton btnAnnulerLocation = new RoundedButton("Annuler", 20);
 		btnAnnulerLocation.addActionListener(this.gestionClicFenAjoutLoc);
-		btnAnnulerLocation.setBounds(569, 512, 85, 21);
+		btnAnnulerLocation.setBounds(453, 512, 85, 21);
 		getContentPane().add(btnAnnulerLocation);
 		
 		RoundedButton btnAjouterLocation = new RoundedButton("Ajouter", 20);
 		btnAjouterLocation.addActionListener(this.gestionClicFenAjoutLoc);
-		btnAjouterLocation.setBounds(708, 512, 85, 21);
+		btnAjouterLocation.setBounds(549, 512, 85, 21);
 		getContentPane().add(btnAjouterLocation);
 		
 		RoundedButton btnCharger = new RoundedButton("Charger", 20);
 		btnCharger.addActionListener(this.gestionClicFenAjoutLoc);
-		btnCharger.setBounds(404, 512, 112, 21);
+		btnCharger.setBounds(347, 512, 96, 21);
 		getContentPane().add(btnCharger);
 		
-		RoundedButton btnInsererBien = new RoundedButton("Inserer Bien", 20);
-		btnInsererBien.addActionListener(this.gestionClicFenAjoutLoc);
-		btnInsererBien.setBounds(326, 288, 112, 21);
-		getContentPane().add(btnInsererBien);
-		
 		JLabel lblLoyerPayer = new JLabel("Loyer Payer");
-		lblLoyerPayer.setBounds(510, 354, 118, 13);
+		lblLoyerPayer.setBounds(375, 354, 118, 13);
 		getContentPane().add(lblLoyerPayer);
+		
+		RoundedButton btnInsererICC = new RoundedButton("Inserer ICC", 20);
+		btnInsererICC.addActionListener(this.gestionClicFenAjoutLoc);
+		btnInsererICC.setBounds(107, 563, 108, 21);
+		getContentPane().add(btnInsererICC);
 		
 		checkLoyerPayer = new JCheckBox("OUI");
 		checkLoyerPayer.setBackground(new Color(31, 151, 83));
-		checkLoyerPayer.setBounds(510, 373, 93, 21);
+		checkLoyerPayer.setBounds(375, 373, 93, 21);
 		getContentPane().add(checkLoyerPayer);
+		
+		RoundedButton btnLocataire = new RoundedButton("Inserer L", 20);
+		btnLocataire.addActionListener(this.gestionClicFenAjoutLoc);
+		btnLocataire.setBounds(107, 176, 108, 21);
+		getContentPane().add(btnLocataire);
 		
 	}
 	
@@ -274,5 +269,4 @@ public class FenAjoutLocation extends JInternalFrame {
 	    }
 	    return null;
 	}
-
 }
