@@ -13,6 +13,8 @@ DROP TABLE SAE_Locataire CASCADE CONSTRAINTS;
 DROP TABLE SAE_Entreprise CASCADE CONSTRAINTS;
 DROP TABLE SAE_Impot CASCADE CONSTRAINTS;
 DROP TABLE SAE_Logement CASCADE CONSTRAINTS;
+DROP TABLE SAE_Quotite CASCADE CONSTRAINTS;
+DROP TABLE SAE_Quotter CASCADE CONSTRAINTS;
 
 -- Supprimer les séquences
 DROP SEQUENCE compteur_Impot;
@@ -23,13 +25,17 @@ CREATE SEQUENCE compteur_Impot START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE compteur_Diagnostic START WITH 1 INCREMENT BY 1;
 
 --------------------------LOGEMENT-------------------------------------
+
 CREATE TABLE SAE_Logement(
    Id_Logement VARCHAR2(30) CONSTRAINT SAE_pk_log PRIMARY KEY,
    surface_habitable NUMBER CONSTRAINT SAE_nn_bien_surface_habitable NOT NULL,
    date_acquisition DATE CONSTRAINT SAE_nn_bien_date_acq NOT NULL,
    type_logement VARCHAR2(30) CONSTRAINT SAE_nn_log_type NOT NULL,
    nb_pieces INT CONSTRAINT SAE_nn_bien_nb_pieces NOT NULL,
-   num_etage INT CONSTRAINT SAE_nn_bien_etage NOT NULL
+   num_etage INT CONSTRAINT SAE_nn_bien_etage NOT NULL,
+   garage NUMBER(1),
+   CONSTRAINT ck_garage_bol CHECK (garage IN (1,0))
+
 );
 
 --------------------------IMPOT-------------------------------------
@@ -55,22 +61,23 @@ CREATE TABLE SAE_Entreprise(
 
 --------------------------LOCATAIRE-------------------------------------
 CREATE TABLE SAE_Locataire(
-   Id_Locataire VARCHAR2(30) CONSTRAINT SAE_pk_locataire PRIMARY KEY,
-   nom VARCHAR2(30) CONSTRAINT SAE_nn_locataire_nom NOT NULL,
-   prenom VARCHAR2(30) CONSTRAINT SAE_nn_locataire_prenom NOT NULL,
-   telephone VARCHAR2(15) CONSTRAINT SAE_nn_locataire_tel NOT NULL,
-   mail VARCHAR2(50),
-   date_naissance DATE CONSTRAINT SAE_nn_locataire_dn NOT NULL,
-   quotite NUMBER CONSTRAINT SAE_nn_locataire_quotite NOT NULL,
-   CONSTRAINT SAE_ck_locataire_mail CHECK (REGEXP_LIKE(mail, '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$'))
+    Id_Locataire VARCHAR2(30) CONSTRAINT SAE_pk_locataire PRIMARY KEY,
+    nom VARCHAR2(30) CONSTRAINT SAE_nn_locataire_nom NOT NULL,
+    prenom VARCHAR2(30) CONSTRAINT SAE_nn_locataire_prenom NOT NULL,
+    telephone VARCHAR2(15) CONSTRAINT SAE_nn_locataire_tel NOT NULL,
+    mail VARCHAR2(50),
+    date_naissance DATE CONSTRAINT SAE_nn_locataire_dn NOT NULL,
+    Collocataire NUMBER(1),
+    CONSTRAINT SAE_ck_locataire_mail CHECK (REGEXP_LIKE(mail, '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$')),
+    CONSTRAINT ck_Collocatiare CHECK (Collocataire IN (1,0))
 );
 
 --------------------------ICC-------------------------------------
+
 CREATE TABLE SAE_ICC(
-   annee VARCHAR2(50),
-   trimestre VARCHAR2(50),
-   indice NUMBER CONSTRAINT SAE_nn_icc_indice NOT NULL,
-   CONSTRAINT SAE_pk_icc PRIMARY KEY (annee, trimestre)
+   indice NUMBER CONSTRAINT SAE_pk_indice PRIMARY KEY,
+   annee VARCHAR2(50) CONSTRAINT SAE_nn_Icc_annee NOT NULL,
+   trimestre VARCHAR2(50) CONSTRAINT SAE_nn_Icc_trimestre NOT NULL
 );
 
 --------------------------BIEN-------------------------------------
@@ -86,6 +93,27 @@ CREATE TABLE SAE_Bien(
    CONSTRAINT SAE_ck_log_cp CHECK (REGEXP_LIKE(codepostal, '^[0-9]{5}$'))
 );
 
+--------------------------QUOTITE-------------------------------------
+
+CREATE TABLE SAE_Quotite(
+  type_quotite VARCHAR2(50) constraint pk_quotite primary key
+);
+
+--------------------------QUOTTER-------------------------------------
+
+CREATE TABLE SAE_Quotter(
+   Id_Bien VARCHAR2(30) ,
+   type_quotite VARCHAR2(50) ,
+   pourcentage NUMBER,
+   constraint pk_quotter PRIMARY KEY(Id_Bien, type_quotite),
+   constraint fk_quotter_id_bien FOREIGN KEY(Id_Bien) REFERENCES SAE_Bien(Id_Bien),
+   constraint fk_quotter_type_quotite FOREIGN KEY(type_quotite) REFERENCES SAE_Quotite(type_quotite),
+   constraint ck_quotter_pourcentage check (pourcentage > 0 AND pourcentage <= 100),
+   constraint uu_quotter unique(Id_Bien,type_quotite,pourcentage)
+);
+
+
+
 --------------------------DIAGNOSTIC-------------------------------------
 CREATE TABLE SAE_Diagnostic(
    Id_Diagnostic VARCHAR2(50) PRIMARY KEY,
@@ -98,6 +126,7 @@ CREATE TABLE SAE_Diagnostic(
 CREATE TABLE SAE_Assurance(
    numero_police VARCHAR2(50) PRIMARY KEY,
    montant NUMBER NOT NULL,
+   Protection_juridique NUMBER ,
    date_echeance DATE NOT NULL,
    SIRET CHAR(14) CONSTRAINT SAE_fk_assurance_siret REFERENCES SAE_Entreprise(SIRET),
    Id_Logement VARCHAR2(30) CONSTRAINT SAE_fk_assurance_logement REFERENCES SAE_Logement(Id_Logement)
@@ -128,18 +157,19 @@ CREATE TABLE SAE_Louer(
    Id_Bien VARCHAR2(30) CONSTRAINT SAE_fk_louer_bien REFERENCES SAE_Bien(Id_Bien) NOT NULL,
    Id_Locataire VARCHAR2(30) CONSTRAINT SAE_fk_louer_locataire REFERENCES SAE_Locataire(Id_Locataire) NOT NULL,
    Date_debut DATE CONSTRAINT SAE_nn_louer_date_debut NOT NULL,
+   Date_Sortie DATE,
    date_derniere_reg DATE,
    nb_mois INT CONSTRAINT SAE_ck_louer_nb_mois CHECK (nb_mois > 0),
    loyer_payer NUMBER(1),
+   loyer_mens_ttc NUMBER constraint nn_louer_loyer NOT NULL,
    provisions_chargesMois_TTC NUMBER,
    caution_TTC NUMBER,
-   bail VARCHAR2(50),
-   etat_lieux VARCHAR2(50),
+   bail VARCHAR2(200) constraint nn_louer_bail NOT NULL,
+   etat_lieux VARCHAR2(200),
    montant_reel_payer NUMBER,
-   annee VARCHAR2(50),
-   trimestre VARCHAR2(50),
+   indice NUMBER,
    CONSTRAINT SAE_pk_louer PRIMARY KEY (Id_Bien, Id_Locataire, Date_debut),
-   CONSTRAINT SAE_fk_louer_icc FOREIGN KEY (annee, trimestre) REFERENCES SAE_ICC(annee, trimestre)
+   CONSTRAINT SAE_fk_louer_icc FOREIGN KEY (indice) REFERENCES SAE_ICC(indice)
 );
 
 --------------------------CHARGE-------------------------------------
