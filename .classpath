@@ -11,18 +11,5 @@
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/tradc/Desktop/Cours/S3/R3.07/Ressource/ojdbc11-21.7.0.0-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/tradc/Desktop/Cours/ProjetSae/SAE-S3.01/commons-collections4-4.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tradc/Desktop/Cours/ProjetSae/SAE-S3.01/commons-compress-1.21.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tradc/Desktop/Cours/ProjetSae/SAE-S3.01/commons-io-2.11.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tradc/Desktop/Cours/ProjetSae/SAE-S3.01/log4j-api-2.24.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tradc/Desktop/Cours/ProjetSae/SAE-S3.01/log4j-core-2.24.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tradc/Desktop/Cours/ProjetSae/SAE-S3.01/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-5.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tradc/Desktop/Cours/ProjetSae/SAE-S3.01/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-examples-5.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tradc/Desktop/Cours/ProjetSae/SAE-S3.01/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-excelant-5.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tradc/Desktop/Cours/ProjetSae/SAE-S3.01/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-javadoc-5.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tradc/Desktop/Cours/ProjetSae/SAE-S3.01/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-ooxml-5.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tradc/Desktop/Cours/ProjetSae/SAE-S3.01/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-ooxml-full-5.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tradc/Desktop/Cours/ProjetSae/SAE-S3.01/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-ooxml-lite-5.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tradc/Desktop/Cours/ProjetSae/SAE-S3.01/poi-bin-5.2.3-20220909/poi-bin-5.2.3/poi-scratchpad-5.2.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
