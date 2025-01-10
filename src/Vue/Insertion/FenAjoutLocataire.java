@@ -21,6 +21,9 @@ public class FenAjoutLocataire extends JInternalFrame {
 	private JTextField textFieldTelephone;
 	private JTextField textFieldQuotite;
 	private GestionFenAjoutLocataire gestionClicFenAjoutLocataire;
+	private JTextField textFieldIDLocataire;
+	private JTextField textNom;
+	private JTextField textFieldPrenom;
 
 
 	/**
@@ -37,7 +40,7 @@ public class FenAjoutLocataire extends JInternalFrame {
 		lblNom.setBounds(82, 123, 80, 13);
 		getContentPane().add(lblNom);
 		
-		JTextField textNom = new JTextField();
+		textNom = new JTextField();
 		textNom.setBounds(80, 137, 223, 19);
 		getContentPane().add(textNom);
 		textNom.setColumns(10);
@@ -46,7 +49,7 @@ public class FenAjoutLocataire extends JInternalFrame {
 		lblPrenom.setBounds(82, 179, 94, 13);
 		getContentPane().add(lblPrenom);
 		
-		JTextField textFieldPrenom = new JTextField();
+		textFieldPrenom = new JTextField();
 		textFieldPrenom.setBounds(82, 195, 223, 19);
 		getContentPane().add(textFieldPrenom);
 		textFieldPrenom.setColumns(10);
@@ -63,7 +66,7 @@ public class FenAjoutLocataire extends JInternalFrame {
 		lblIdLocataire.setBounds(80, 68, 96, 13);
 		getContentPane().add(lblIdLocataire);
 		
-		JTextField textFieldIDLocataire = new JTextField();
+		textFieldIDLocataire = new JTextField();
 		textFieldIDLocataire.setBounds(80, 84, 223, 19);
 		getContentPane().add(textFieldIDLocataire);
 		textFieldIDLocataire.setColumns(10);
@@ -118,5 +121,27 @@ public class FenAjoutLocataire extends JInternalFrame {
 		btnAjouter.addActionListener(this.gestionClicFenAjoutLocataire);
 		btnAjouter.setBounds(217, 468, 85, 21);
 		getContentPane().add(btnAjouter);
+	}
+	
+	public String getMail() {
+		return textFieldMail.getText();
+	}
+	public String getDateNaissance() {
+		return textFieldDateNaissance.getText();
+	}
+	public String getTelephone() {
+		return textFieldTelephone.getText();
+	}
+	public String getQuotite() {
+		return textFieldQuotite.getText();
+	}
+	public String getIDLocataire() {
+		return textFieldIDLocataire.getText();
+	}
+	public String getNom() {
+		return textNom.getText();
+	}
+	public String getPrenom() {
+		return textFieldPrenom.getText();
 	}
 }

@@ -2,7 +2,15 @@ package Controleur.Ajout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
+import javax.swing.table.DefaultTableModel;
+
+import Modele.Bien;
+import Modele.Locataire;
+import Modele.Dao.CictOracleDataSource;
+import Modele.Dao.DaoBien;
+import Modele.Dao.DaoLocataire;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutLocataire;
 
@@ -30,6 +38,30 @@ public class GestionFenAjoutLocataire implements ActionListener{
 					
 				case "Ajouter":
 					System.out.println("Vous AJOUTER une Locataire !");
+					try {
+						String IdLocataire = (String) fenAjoutLoc.getIDLocataire();					
+						String Nom = (String) fenAjoutLoc.getNom();
+						String Prenom = (String) fenAjoutLoc.getPrenom();
+						String Telephone = (String) fenAjoutLoc.getTelephone();
+						String Mail = (String) fenAjoutLoc.getMail();
+						String DateDeNaissance = (String) fenAjoutLoc.getDateNaissance();
+						String QuotiteString = (String) fenAjoutLoc.getQuotite();
+						double Quotite = Double.parseDouble(QuotiteString);
+
+						DaoLocataire daoLocataire = new DaoLocataire(CictOracleDataSource.getInstance().getConnection());
+						
+						Locataire locataire = new Locataire(IdLocataire, Nom, Prenom, Telephone, Mail, DateDeNaissance, Quotite);
+						//daoLocataire.create(locataire);
+						
+						//String []EngrLocataire = {IdBien, Adresse, Ville, CodePostal, TypeBien, PeriodeConstruction};
+						//modeleTable.addRow(EngrBien);
+						
+						fenAjoutLoc.dispose();
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}		
 					break;
 				
 				default:
