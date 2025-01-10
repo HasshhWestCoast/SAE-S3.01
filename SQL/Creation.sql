@@ -35,7 +35,6 @@ CREATE TABLE SAE_Logement(
    num_etage INT CONSTRAINT SAE_nn_bien_etage NOT NULL,
    garage NUMBER(1),
    CONSTRAINT ck_garage_bol CHECK (garage IN (1,0))
-
 );
 
 --------------------------IMPOT-------------------------------------
@@ -68,16 +67,18 @@ CREATE TABLE SAE_Locataire(
     mail VARCHAR2(50),
     date_naissance DATE CONSTRAINT SAE_nn_locataire_dn NOT NULL,
     Collocataire NUMBER(1),
-    CONSTRAINT SAE_ck_locataire_mail CHECK (REGEXP_LIKE(mail, '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$')),
+    CONSTRAINT SAE_ck_locataire_mail CHECK (REGEXP_LIKE(mail, '^[^@]+@[^@]+\.[^@]+$')),
     CONSTRAINT ck_Collocatiare CHECK (Collocataire IN (1,0))
 );
 
+
 --------------------------ICC-------------------------------------
 
-CREATE TABLE SAE_ICC(
-   indice NUMBER CONSTRAINT SAE_pk_indice PRIMARY KEY,
+CREATE TABLE SAE_ICC (
+   ICC NUMBER CONSTRAINT SAE_pk_Icc PRIMARY KEY,
    annee VARCHAR2(50) CONSTRAINT SAE_nn_Icc_annee NOT NULL,
-   trimestre VARCHAR2(50) CONSTRAINT SAE_nn_Icc_trimestre NOT NULL
+   trimestre VARCHAR2(50) CONSTRAINT SAE_nn_Icc_trimestre NOT NULL,
+   indice NUMBER CONSTRAINT SAE_nn_icc_indice NOT NULL
 );
 
 --------------------------BIEN-------------------------------------
@@ -167,9 +168,9 @@ CREATE TABLE SAE_Louer(
    bail VARCHAR2(200) constraint nn_louer_bail NOT NULL,
    etat_lieux VARCHAR2(200),
    montant_reel_payer NUMBER,
-   indice NUMBER,
+   ICC NUMBER,
    CONSTRAINT SAE_pk_louer PRIMARY KEY (Id_Bien, Id_Locataire, Date_debut),
-   CONSTRAINT SAE_fk_louer_icc FOREIGN KEY (indice) REFERENCES SAE_ICC(indice)
+   CONSTRAINT SAE_fk_louer_icc FOREIGN KEY (ICC) REFERENCES SAE_ICC(ICC)
 );
 
 --------------------------CHARGE-------------------------------------
