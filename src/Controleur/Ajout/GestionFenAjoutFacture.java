@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -58,55 +59,80 @@ public class GestionFenAjoutFacture implements ActionListener, ListSelectionList
 					break;
 					
 				case "Ajouter":
-					System.out.println("Vous AJOUTER une Facture !");
-					
-					
-					try {
-						DefaultTableModel modeleTableFacture = (DefaultTableModel) fenAC.getTabMesFactures().getModel();
+				    System.out.println("Vous AJOUTER une Facture !");
+				    
+				    // Vérification des conditions
+				    if (this.entreprise == null) {
+				        JOptionPane.showMessageDialog(
+				            this.fenAjoutFacture,
+				            "Veuillez sélectionner une entreprise !",
+				            "Erreur",
+				            JOptionPane.ERROR_MESSAGE
+				        );
+				        return;
+				    }
+				    
+				    if (this.fenAjoutFacture.getTextFieldIdFacture().isEmpty() &&
+				        this.fenAjoutFacture.getTextFieldDateEmission().isEmpty() &&
+				        this.fenAjoutFacture.getTextFieldDatePaiement().isEmpty() &&
+				        this.fenAjoutFacture.getTextFieldMontantReelVerse().isEmpty() &&
+				        this.fenAjoutFacture.getTextFieldMontant().isEmpty()) {
+				        JOptionPane.showMessageDialog(
+				            this.fenAjoutFacture,
+				            "Veuillez remplir tous les champs requis !",
+				            "Erreur",
+				            JOptionPane.ERROR_MESSAGE
+				        );
+				        return;
+				    }
+				    
+				    try {
+				        DefaultTableModel modeleTableFacture = (DefaultTableModel) fenAC.getTabMesFactures().getModel();
 
-						String IdFacture = (String) fenAjoutFacture.getTextFieldIdFacture();					
-						String DateEmission = (String) fenAjoutFacture.getTextFieldDateEmission();
-						String DatePaiement = (String) fenAjoutFacture.getTextFieldDatePaiement();
-						String ModePaiement = (String) fenAjoutFacture.getComboBoxModePaiement();
-						String NumeroDevis = (String) fenAjoutFacture.getTextFieldNumeroDevis();
-						String Designation = (String) fenAjoutFacture.getComboBoxDesignation();
-						String MontantReelVerseString = (String) fenAjoutFacture.getTextFieldMontantReelVerse();
-						double MontantReelVerse = Double.parseDouble(MontantReelVerseString);
-						String MontantString = (String) fenAjoutFacture.getTextFieldMontant();
-						double Montant = Double.parseDouble(MontantString);
-						Boolean ImputableLocataireString = (Boolean) fenAjoutFacture.getcheckImputableLocataire();
-						int ImputableLocataire;
-						if (ImputableLocataireString == false) {
-							ImputableLocataire = 0;
-						}else {
-							ImputableLocataire = 1;
-						}
-						String AcompteVerseString = (String) fenAjoutFacture.getTextFieldAcompteVersé();
-						double AcompteVerse = Double.parseDouble(AcompteVerseString);
-						
-						
-						if (this.fenAjoutFacture.getPrecedent() instanceof Bien) {
-							bien = (Bien) this.fenAjoutFacture.getPrecedent();
-						}else if(this.fenAjoutFacture.getPrecedent() instanceof Logement) {
-							logement = (Logement) this.fenAjoutFacture.getPrecedent();
-						}
-						
-						DaoFacture daoFacture = new DaoFacture(CictOracleDataSource.getInstance().getConnection());
-						
-						
-						Facture facture = new Facture(IdFacture, DateEmission, DatePaiement, ModePaiement, NumeroDevis, Designation, MontantReelVerse, Montant, ImputableLocataire, AcompteVerse, logement, bien, entreprise);
-						//daoFacture.create(facture);
-						
-						String []EngrFacture = {IdFacture, DateEmission, DatePaiement, ModePaiement, Designation, MontantReelVerseString, MontantString, Integer.toString(ImputableLocataire), AcompteVerseString};
-						modeleTableFacture.addRow(EngrFacture);
-						
-						fenAjoutFacture.dispose();
-						
-					}catch (SQLException ex) {
-						System.out.println(ex.getMessage());
-						ex.printStackTrace();
-					}	
-					break;
+				        String IdFacture = (String) fenAjoutFacture.getTextFieldIdFacture();                    
+				        String DateEmission = (String) fenAjoutFacture.getTextFieldDateEmission();
+				        String DatePaiement = (String) fenAjoutFacture.getTextFieldDatePaiement();
+				        String ModePaiement = (String) fenAjoutFacture.getComboBoxModePaiement();
+				        String NumeroDevis = (String) fenAjoutFacture.getTextFieldNumeroDevis();
+				        String Designation = (String) fenAjoutFacture.getComboBoxDesignation();
+				        String MontantReelVerseString = (String) fenAjoutFacture.getTextFieldMontantReelVerse();
+				        double MontantReelVerse = Double.parseDouble(MontantReelVerseString);
+				        String MontantString = (String) fenAjoutFacture.getTextFieldMontant();
+				        double Montant = Double.parseDouble(MontantString);
+				        Boolean ImputableLocataireString = (Boolean) fenAjoutFacture.getcheckImputableLocataire();
+				        int ImputableLocataire = ImputableLocataireString ? 1 : 0;
+				        String AcompteVerseString = (String) fenAjoutFacture.getTextFieldAcompteVersé();
+				        double AcompteVerse = Double.parseDouble(AcompteVerseString);
+				        
+				        if (this.fenAjoutFacture.getPrecedent() instanceof Bien) {
+				            bien = (Bien) this.fenAjoutFacture.getPrecedent();
+				        } else if (this.fenAjoutFacture.getPrecedent() instanceof Logement) {
+				            logement = (Logement) this.fenAjoutFacture.getPrecedent();
+				        }
+				        
+				        DaoFacture daoFacture = new DaoFacture(CictOracleDataSource.getInstance().getConnection());
+				        
+				        Facture facture = new Facture(
+				            IdFacture, DateEmission, DatePaiement, ModePaiement, NumeroDevis, 
+				            Designation, MontantReelVerse, Montant, ImputableLocataire, AcompteVerse, logement, bien, entreprise
+				        );
+				        
+				        // daoFacture.create(facture);
+				        
+				        String[] EngrFacture = {
+				            IdFacture, DateEmission, DatePaiement, ModePaiement, Designation,
+				            MontantReelVerseString, MontantString, Integer.toString(ImputableLocataire), AcompteVerseString
+				        };
+				        modeleTableFacture.addRow(EngrFacture);
+				        
+				        fenAjoutFacture.dispose();
+				        
+				    } catch (SQLException ex) {
+				        System.out.println(ex.getMessage());
+				        ex.printStackTrace();
+				    }
+				    break;
+
 					
 				case "Inserer":
 					System.out.println("Vous AJOUTER une Entreprise depuis Facture !");
