@@ -144,7 +144,7 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 										
 				case "Inserer L":
 					System.out.println("Vous INSERER un LOCATAIRE depuis Location !");
-				    FenAjoutLocataire fenAjoutLocataire = new FenAjoutLocataire();
+				    FenAjoutLocataire fenAjoutLocataire = new FenAjoutLocataire(fenAjoutLoc);
 	                fenAC.getLayeredPane().add(fenAjoutLocataire);
 	                fenAjoutLocataire.setVisible(true);
 	                fenAjoutLocataire.moveToFront();

@@ -6,10 +6,8 @@ import java.sql.SQLException;
 
 import javax.swing.table.DefaultTableModel;
 
-import Modele.Bien;
 import Modele.Locataire;
 import Modele.Dao.CictOracleDataSource;
-import Modele.Dao.DaoBien;
 import Modele.Dao.DaoLocataire;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutLocataire;
@@ -26,11 +24,12 @@ public class GestionFenAjoutLocataire implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		String texte = ((RoundedButton) source).getText();
-
-		//FenAccueil fenAC = (FenAccueil) this.fenAjoutLoc.getTopLevelAncestor();
+		
+		DefaultTableModel modeleTableLLocataire = (DefaultTableModel) fenAjoutLoc.getFenAjoutLocation().getTabMesLocataires().getModel();
 		
 		if (texte != null) {
 			switch (texte) {
+			
 				case "Annuler":
 					System.out.println("Vous FERMEZ la page ajout Locataire !");
 					this.fenAjoutLoc.dispose();
@@ -38,6 +37,7 @@ public class GestionFenAjoutLocataire implements ActionListener{
 					
 				case "Ajouter":
 					System.out.println("Vous AJOUTER une Locataire !");
+
 					try {
 						String IdLocataire = (String) fenAjoutLoc.getIDLocataire();					
 						String Nom = (String) fenAjoutLoc.getNom();
@@ -53,8 +53,8 @@ public class GestionFenAjoutLocataire implements ActionListener{
 						Locataire locataire = new Locataire(IdLocataire, Nom, Prenom, Telephone, Mail, DateDeNaissance, Quotite);
 						//daoLocataire.create(locataire);
 						
-						//String []EngrLocataire = {IdBien, Adresse, Ville, CodePostal, TypeBien, PeriodeConstruction};
-						//modeleTable.addRow(EngrBien);
+						String []EngrLocataire = {IdLocataire, Nom};
+						modeleTableLLocataire.addRow(EngrLocataire);
 						
 						fenAjoutLoc.dispose();
 						

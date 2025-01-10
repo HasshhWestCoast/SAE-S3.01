@@ -24,13 +24,15 @@ public class FenAjoutLocataire extends JInternalFrame {
 	private JTextField textFieldIDLocataire;
 	private JTextField textNom;
 	private JTextField textFieldPrenom;
+    private FenAjoutLocation fenAjoutLocation; 
 
 
 	/**
 	 * Create the frame.
 	 */
-	public FenAjoutLocataire() {
+	public FenAjoutLocataire(FenAjoutLocation fenAjoutLocation) {
 		
+		this.fenAjoutLocation = fenAjoutLocation;
 		this.gestionClicFenAjoutLocataire = new GestionFenAjoutLocataire(this);
 		
 		getContentPane().setBackground(new Color(255, 255, 255));
@@ -122,6 +124,10 @@ public class FenAjoutLocataire extends JInternalFrame {
 		btnAjouter.setBounds(217, 468, 85, 21);
 		getContentPane().add(btnAjouter);
 	}
+	
+	public FenAjoutLocation getFenAjoutLocation() {
+        return this.fenAjoutLocation;
+    }
 	
 	public String getMail() {
 		return textFieldMail.getText();
