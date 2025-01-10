@@ -81,13 +81,13 @@ public class FenAjoutAssurance extends JInternalFrame {
 		JLabel lblTrouverEntreprise = new JLabel("Trouver Entreprise");
 		lblTrouverEntreprise.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTrouverEntreprise.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblTrouverEntreprise.setBounds(80, 224, 131, 21);
+		lblTrouverEntreprise.setBounds(80, 217, 131, 21);
 		getContentPane().add(lblTrouverEntreprise);
 		
 		JSeparator separatorTrouverEntreprise = new JSeparator();
 		separatorTrouverEntreprise.setForeground(Color.WHITE);
 		separatorTrouverEntreprise.setBackground(new Color(31, 151, 83));
-		separatorTrouverEntreprise.setBounds(55, 243, 188, 2);
+		separatorTrouverEntreprise.setBounds(55, 236, 188, 2);
 		getContentPane().add(separatorTrouverEntreprise);
 	
 		tabMesEntreprise = new JTable();
@@ -98,7 +98,7 @@ public class FenAjoutAssurance extends JInternalFrame {
         ));
         JScrollPane scrollPaneEntreprise = new JScrollPane(tabMesEntreprise);
         scrollPaneEntreprise.setBorder(new LineBorder(new Color(109, 109, 109), 2));
-		scrollPaneEntreprise.setBounds(10, 255, 306, 134);        
+		scrollPaneEntreprise.setBounds(10, 248, 306, 134);        
 		getContentPane().add(scrollPaneEntreprise);
 		
 		JLabel lblTrouverLogement = new JLabel("Trouver Logement");
@@ -134,11 +134,6 @@ public class FenAjoutAssurance extends JInternalFrame {
 		btnInsererEntreprise.addActionListener(this.gestionClicFenAjoutEntreprise);
 		btnInsererEntreprise.setBounds(104, 399, 107, 21);
 		getContentPane().add(btnInsererEntreprise);
-		
-		RoundedButton btnInsererLogement = new RoundedButton("Inserer L", 20);
-		btnInsererLogement.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnInsererLogement.setBounds(102, 183, 107, 21);
-		getContentPane().add(btnInsererLogement);
 		
 		RoundedButton btnAnnulerAssurance = new RoundedButton("Annuler", 20);
 		btnAnnulerAssurance.addActionListener(this.gestionClicFenAjoutEntreprise);
