@@ -25,7 +25,7 @@ public class GestionFenAjoutLocataire implements ActionListener{
 		Object source = e.getSource();
 		String texte = ((RoundedButton) source).getText();
 		
-		DefaultTableModel modeleTableLLocataire = (DefaultTableModel) fenAjoutLoc.getFenAjoutLocation().getTabMesLocataires().getModel();
+		DefaultTableModel modeleTableLocataire = (DefaultTableModel) fenAjoutLoc.getFenAjoutLocation().getTabMesLocataires().getModel();
 		
 		if (texte != null) {
 			switch (texte) {
@@ -54,7 +54,7 @@ public class GestionFenAjoutLocataire implements ActionListener{
 						//daoLocataire.create(locataire);
 						
 						String []EngrLocataire = {IdLocataire, Nom};
-						modeleTableLLocataire.addRow(EngrLocataire);
+						modeleTableLocataire.addRow(EngrLocataire);
 						
 						fenAjoutLoc.dispose();
 						

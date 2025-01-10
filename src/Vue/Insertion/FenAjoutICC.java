@@ -19,13 +19,14 @@ public class FenAjoutICC extends JInternalFrame {
 	private JTextField textFieldTrimestre;
 	private JTextField textFieldIndice;
 	private GestionFenAjoutICC gestionClicFenAjoutICC;
-
+    private FenAjoutLocation fenAjoutLocation; 
 
 	/**
 	 * Create the frame.
 	 */
-	public FenAjoutICC() {
+	public FenAjoutICC(FenAjoutLocation fenAjoutLocation) {
 		
+		this.fenAjoutLocation = fenAjoutLocation;
 		this.gestionClicFenAjoutICC = new GestionFenAjoutICC(this);
 		
 		getContentPane().setBackground(new Color(255, 255, 255));
@@ -81,7 +82,22 @@ public class FenAjoutICC extends JInternalFrame {
 		btnAjouter.addActionListener(this.gestionClicFenAjoutICC);
 		btnAjouter.setBounds(215, 353, 85, 21);
 		getContentPane().add(btnAjouter);
-
+	}
+	
+	public FenAjoutLocation getFenAjoutLocation() {
+        return this.fenAjoutLocation;
+    }
+	
+	public String getAnnee() {
+		return textFieldAnnee.getText();
+	}
+	
+	public String getTrimestre() {
+		return textFieldTrimestre.getText();
+	}
+	
+	public String getIndice() {
+		return textFieldIndice.getText();
 	}
 
 }

@@ -152,7 +152,7 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 
 				case "Inserer ICC":
 					System.out.println("Vous INSERER un ICC depuis Location !");
-					FenAjoutICC fenAddICC = new FenAjoutICC();
+					FenAjoutICC fenAddICC = new FenAjoutICC(fenAjoutLoc);
 					fenAC.getLayeredPane().add(fenAddICC);
 					fenAddICC.setVisible(true);
 					fenAddICC.moveToFront();

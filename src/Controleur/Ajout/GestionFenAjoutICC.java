@@ -2,7 +2,15 @@ package Controleur.Ajout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
+import javax.swing.table.DefaultTableModel;
+
+import Modele.ICC;
+import Modele.Locataire;
+import Modele.Dao.CictOracleDataSource;
+import Modele.Dao.DaoICC;
+import Modele.Dao.DaoLocataire;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutICC;
 
@@ -19,10 +27,11 @@ public class GestionFenAjoutICC implements ActionListener{
 		Object source = e.getSource();
 		String texte = ((RoundedButton) source).getText();
 
-		//FenAccueil fenAC = (FenAccueil) this.fenAjoutICC.getTopLevelAncestor();
+		DefaultTableModel modeleTableIcc = (DefaultTableModel) fenAjoutICC.getFenAjoutLocation().getTabMesICC().getModel();
 		
 		if (texte != null) {
 			switch (texte) {
+				
 				case "Annuler":
 					System.out.println("Vous FERMEZ la page ajout ICC !");
 					this.fenAjoutICC.dispose();
@@ -30,6 +39,28 @@ public class GestionFenAjoutICC implements ActionListener{
 					
 				case "Ajouter":
 					System.out.println("Vous AJOUTER un ICC !");
+					
+					try {
+						String annee = (String) fenAjoutICC.getAnnee();					
+						String trimestre = (String) fenAjoutICC.getTrimestre();
+						String indiceString = (String) fenAjoutICC.getIndice();
+						double indice = Double.parseDouble(indiceString);
+
+						DaoICC daoICC = new DaoICC(CictOracleDataSource.getInstance().getConnection());
+						
+						ICC icc = new ICC(annee, trimestre, indice);
+						//daoICC.create(icc);
+						
+						String []EngrICC = {annee, trimestre, indiceString};
+						modeleTableIcc.addRow(EngrICC);
+						
+						fenAjoutICC.dispose();
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}
+					
 					break;
 				
 				default:
