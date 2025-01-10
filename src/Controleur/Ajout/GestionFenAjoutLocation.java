@@ -197,6 +197,9 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 						}
 						DaoLocataire daoLocataire = new DaoLocataire(CictOracleDataSource.getInstance().getConnection());
 						
+						System.out.println("locataire : " + locataire);
+						System.out.println("icc :" + icc);
+						System.out.println("bien : " + bien);
 						Louer louer = new Louer(DateDebut, Integer.parseInt(NbMois), LoyerPayer, ProvisionCharge, Caution, null, null, MontantReel, locataire, icc, bien);
 						//daoLouer.create(louer);
 						

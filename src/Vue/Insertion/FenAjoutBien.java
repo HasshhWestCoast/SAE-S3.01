@@ -137,13 +137,26 @@ public class FenAjoutBien extends JInternalFrame {
 		
 		scrollPane = new JScrollPane(tabMesLogements);
 		scrollPane.setBorder(new LineBorder(new Color(109, 109, 109), 2));
-		scrollPane.setBounds(362, 84, 268, 134);
+		scrollPane.setBounds(359, 80, 268, 134);
 		getContentPane().add(scrollPane);
 		
 		RoundedButton btnCharger = new RoundedButton("Charger", 20);
 		btnCharger.addActionListener(this.gestionClicFenAjoutBien);
-		btnCharger.setBounds(452, 234, 85, 21);
+		btnCharger.setBounds(450, 234, 85, 21);
 		getContentPane().add(btnCharger);
+		
+		JLabel lblMesLogement = new JLabel("Mes Logements");
+		lblMesLogement.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMesLogement.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		lblMesLogement.setBackground(Color.WHITE);
+		lblMesLogement.setBounds(376, 26, 216, 21);
+		getContentPane().add(lblMesLogement);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setForeground(Color.WHITE);
+		separator_1.setBackground(new Color(31, 151, 83));
+		separator_1.setBounds(396, 45, 183, 2);
+		getContentPane().add(separator_1);
 		setBounds(200, 100, 670, 540);
 	}
 		

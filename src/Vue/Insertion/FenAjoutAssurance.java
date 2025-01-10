@@ -81,23 +81,24 @@ public class FenAjoutAssurance extends JInternalFrame {
 		JLabel lblTrouverEntreprise = new JLabel("Trouver Entreprise");
 		lblTrouverEntreprise.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTrouverEntreprise.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblTrouverEntreprise.setBounds(80, 200, 131, 21);
+		lblTrouverEntreprise.setBounds(80, 224, 131, 21);
 		getContentPane().add(lblTrouverEntreprise);
 		
 		JSeparator separatorTrouverEntreprise = new JSeparator();
 		separatorTrouverEntreprise.setForeground(Color.WHITE);
 		separatorTrouverEntreprise.setBackground(new Color(31, 151, 83));
-		separatorTrouverEntreprise.setBounds(55, 215, 188, 2);
+		separatorTrouverEntreprise.setBounds(55, 243, 188, 2);
 		getContentPane().add(separatorTrouverEntreprise);
 	
 		tabMesEntreprise = new JTable();
+        tabMesEntreprise.getSelectionModel().addListSelectionListener(this.gestionClicFenAjoutEntreprise);
 		tabMesEntreprise.setModel(new DefaultTableModel(
             new Object[][] { { null, null} },
             new String[] { "SIRET", "nom" }
         ));
         JScrollPane scrollPaneEntreprise = new JScrollPane(tabMesEntreprise);
         scrollPaneEntreprise.setBorder(new LineBorder(new Color(109, 109, 109), 2));
-		scrollPaneEntreprise.setBounds(10, 232, 306, 134);        
+		scrollPaneEntreprise.setBounds(10, 255, 306, 134);        
 		getContentPane().add(scrollPaneEntreprise);
 		
 		JLabel lblTrouverLogement = new JLabel("Trouver Logement");
@@ -113,6 +114,7 @@ public class FenAjoutAssurance extends JInternalFrame {
 		getContentPane().add(separatorTrouverLogement);
 		
 		tabMesLogements = new JTable();
+		tabMesLogements.getSelectionModel().addListSelectionListener(this.gestionClicFenAjoutEntreprise);
 		tabMesLogements.setModel(new DefaultTableModel(
             new Object[][] { { null, null} },
             new String[] { "Id Logement", "Date Acquisition" }
@@ -123,34 +125,29 @@ public class FenAjoutAssurance extends JInternalFrame {
 		scrollPaneLogement.setBounds(10, 45, 306, 134);
 		getContentPane().add(scrollPaneLogement);
 		
-		RoundedButton btnChargerEntreprise = new RoundedButton("Charger E", 20);
+		RoundedButton btnChargerEntreprise = new RoundedButton("Charger", 20);
 		btnChargerEntreprise.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnChargerEntreprise.setBounds(326, 277, 107, 21);
+		btnChargerEntreprise.setBounds(444, 277, 96, 21);
 		getContentPane().add(btnChargerEntreprise);
 		
 		RoundedButton btnInsererEntreprise = new RoundedButton("Inserer E", 20);
 		btnInsererEntreprise.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnInsererEntreprise.setBounds(326, 315, 107, 21);
+		btnInsererEntreprise.setBounds(104, 399, 107, 21);
 		getContentPane().add(btnInsererEntreprise);
-		
-		RoundedButton btnChargerLogement = new RoundedButton("Charger L", 20);
-		btnChargerLogement.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnChargerLogement.setBounds(326, 82, 107, 21);
-		getContentPane().add(btnChargerLogement);
 		
 		RoundedButton btnInsererLogement = new RoundedButton("Inserer L", 20);
 		btnInsererLogement.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnInsererLogement.setBounds(326, 121, 107, 21);
+		btnInsererLogement.setBounds(102, 183, 107, 21);
 		getContentPane().add(btnInsererLogement);
 		
 		RoundedButton btnAnnulerAssurance = new RoundedButton("Annuler", 20);
 		btnAnnulerAssurance.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnAnnulerAssurance.setBounds(489, 277, 85, 21);
+		btnAnnulerAssurance.setBounds(562, 277, 85, 21);
 		getContentPane().add(btnAnnulerAssurance);
 		
 		RoundedButton btnAjouterAssurance = new RoundedButton("Ajouter", 20);
 		btnAjouterAssurance.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnAjouterAssurance.setBounds(613, 277, 85, 21);
+		btnAjouterAssurance.setBounds(669, 277, 85, 21);
 		getContentPane().add(btnAjouterAssurance);
 	}
 	
@@ -162,4 +159,15 @@ public class FenAjoutAssurance extends JInternalFrame {
 		return tabMesLogements;
 	}
 	
+	public String getTextFieldNumeroPolice() {
+		return textFieldNumeroPolice.getText();
+	}
+	
+	public String getTextFieldMontant() {
+		return textFieldMontant.getText();
+	}
+	
+	public String getTextFieldDateEcheance() {
+		return textFieldDateEcheance.getText();
+	}
 }

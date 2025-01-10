@@ -5,11 +5,16 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import Modele.Entreprise;
 import Modele.Logement;
+import Modele.assurance;
 import Modele.Dao.CictOracleDataSource;
+import Modele.Dao.DaoAssurance;
 import Modele.Dao.DaoEntreprise;
 import Modele.Dao.DaoLogement;
 import Modele.Dao.Iterateur;
@@ -19,17 +24,21 @@ import Vue.Insertion.FenAjoutAssurance;
 import Vue.Insertion.FenAjoutEntreprise;
 import Vue.Insertion.FenAjoutLogement;
 
-public class GestionFenAjoutAssurance implements ActionListener{
+public class GestionFenAjoutAssurance implements ActionListener, ListSelectionListener{
 
 	private FenAjoutAssurance fenAjoutAssurance;
 	private DaoEntreprise daoEntreprise;
 	private DaoLogement daoLogement;
+	private Logement logement;
+	private Entreprise entreprise;
 
 	
 	public GestionFenAjoutAssurance(FenAjoutAssurance fenAjoutAssurance) throws SQLException {
 		this.fenAjoutAssurance = fenAjoutAssurance;
 		this.daoEntreprise = new DaoEntreprise(CictOracleDataSource.getInstance().getConnection());
 		this.daoLogement = new DaoLogement(CictOracleDataSource.getInstance().getConnection());
+		this.logement = null;
+		this.entreprise = null;
 
 	}
 	
@@ -51,8 +60,29 @@ public class GestionFenAjoutAssurance implements ActionListener{
 					
 				case "Ajouter":
 					System.out.println("Vous AJOUTER une donnée à Assurance !");
+					try {
+						DefaultTableModel modeleTable = (DefaultTableModel) fenAC.getTabMesAssurances().getModel();
+
+						String NumeroPolice = (String) fenAjoutAssurance.getTextFieldNumeroPolice();					
+						String MontantString = (String) fenAjoutAssurance.getTextFieldMontant();
+						Float Montant = Float.parseFloat(MontantString);
+						String DateEcheance = (String) fenAjoutAssurance.getTextFieldDateEcheance();
+						
+						DaoAssurance daoAssurance = new DaoAssurance(CictOracleDataSource.getInstance().getConnection());
+						
+						assurance assu = new assurance(NumeroPolice, Montant, DateEcheance, logement, entreprise);
+						//daoAssurance.create(assu);
+						
+						String []EngrAssu = {NumeroPolice, MontantString, DateEcheance, entreprise.getSiret(), logement.getIdLogement()};
+						modeleTable.addRow(EngrAssu);
+						
+						fenAjoutAssurance.dispose();
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}			
 					break;
-					
 				case "Inserer L":
 					System.out.println("Vous AJOUTER un Logement depuis Assurance !");
 					FenAjoutLogement fenAddLog = new FenAjoutLogement();
@@ -69,8 +99,8 @@ public class GestionFenAjoutAssurance implements ActionListener{
 	                fenAjoutEntreprise.moveToFront();
 					break;
 				
-				case "Charger L":
-					System.out.println("Vous CHARGER les Logements depuis Assurance !");
+				case "Charger":
+					System.out.println("Vous CHARGER les Logements et Entreprise depuis Assurance !");
 					try {
 						List<Logement> mesDonnees = this.daoLogement.findAll();
 		
@@ -93,10 +123,7 @@ public class GestionFenAjoutAssurance implements ActionListener{
 						System.out.println(ex.getMessage());
 						ex.printStackTrace();
 					}
-					break;
 					
-				case "Charger E":
-					System.out.println("Vous CHARGER les ENTREPRISE depuis Assurance !");
 					try {
 						List<Entreprise> mesDonnees = this.daoEntreprise.findAll();
 		
@@ -143,5 +170,28 @@ public class GestionFenAjoutAssurance implements ActionListener{
 		modeleTableLogement.setValueAt(logement.getDateAcquisition(), numeroLigne, 1);
 	}
 	
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		
+		JTable tabEntreprise = this.fenAjoutAssurance.getTabMesEntreprise();
+		int selectedRow = tabEntreprise.getSelectedRow();
+		if (selectedRow > -1) {
+			try {
+				this.entreprise = daoEntreprise.findById(tabEntreprise.getValueAt(selectedRow, 0).toString());
+			}catch (SQLException e1) {
+				e1.printStackTrace();
+			}	
+		}
+		
+		JTable tabLogement = this.fenAjoutAssurance.getTabMesLogements();
+		int selectedRowLog = tabLogement.getSelectedRow();
+		if (selectedRowLog > -1) {
+			try {
+				this.logement = daoLogement.findById(tabLogement.getValueAt(selectedRowLog, 0).toString());
+			}catch (SQLException e1) {
+				e1.printStackTrace();
+			}	
+		}
+	}
 
 }

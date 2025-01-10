@@ -87,7 +87,8 @@ public class GestionFenAjoutBien implements ActionListener, ListSelectionListene
 						String PeriodeConstruction = (String) fenAjoutBien.getTextFieldPeriodeConstruction();
 						
 						DaoBien daoBien = new DaoBien(CictOracleDataSource.getInstance().getConnection());
-
+						
+						System.out.println("logement trouvé : " + logement);
 						Bien bien = new Bien(IdBien, Adresse, Ville, TypeBien, CodePostal, PeriodeConstruction, logement);
 						//daoBien.create(bien);
 						
@@ -122,12 +123,12 @@ public class GestionFenAjoutBien implements ActionListener, ListSelectionListene
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		
-		JTable tabEntreprise = this.fenAjoutBien.getTabMesLogements();
-		int selectedRow = tabEntreprise.getSelectedRow();
+		JTable tabLogement = this.fenAjoutBien.getTabMesLogements();
+		int selectedRow = tabLogement.getSelectedRow();
 		if (selectedRow > -1) {
 			try {
 				DaoLogement daoLogement = new DaoLogement(CictOracleDataSource.getInstance().getConnection());
-				this.logement = daoLogement.findById(tabEntreprise.getValueAt(selectedRow, 0).toString());
+				this.logement = daoLogement.findById(tabLogement.getValueAt(selectedRow, 0).toString());
 			}catch (SQLException e1) {
 				e1.printStackTrace();
 			}	
