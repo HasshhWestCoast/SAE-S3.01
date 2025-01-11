@@ -37,8 +37,7 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 	private Locataire locataire;
 	private Bien bien;
 	private ICC icc;
-
-
+	
 	
 	public GestionFenAjoutLocation(FenAjoutLocation fenAjoutLoc) throws SQLException {
 		this.fenAjoutLoc = fenAjoutLoc;
@@ -49,6 +48,7 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 		this.bien = null;
 		this.icc = null;
 	}
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

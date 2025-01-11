@@ -93,7 +93,7 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 					
 				case "Inserer E":
 					System.out.println("Vous AJOUTER une Entreprise depuis Assurance !");
-					FenAjoutEntreprise fenAjoutEntreprise = new FenAjoutEntreprise();
+					FenAjoutEntreprise fenAjoutEntreprise = new FenAjoutEntreprise(fenAjoutAssurance);
 	                fenAC.getLayeredPane().add(fenAjoutEntreprise);
 	                fenAjoutEntreprise.setVisible(true);
 	                fenAjoutEntreprise.moveToFront();

@@ -138,7 +138,7 @@ public class GestionFenAjoutFacture implements ActionListener, ListSelectionList
 					
 				case "Inserer":
 					System.out.println("Vous AJOUTER une Entreprise depuis Facture !");
-				    FenAjoutEntreprise fenAjoutEntreprise = new FenAjoutEntreprise();
+				    FenAjoutEntreprise fenAjoutEntreprise = new FenAjoutEntreprise(fenAjoutFacture);
 	                fenAC.getLayeredPane().add(fenAjoutEntreprise);
 	                fenAjoutEntreprise.setVisible(true);
 	                fenAjoutEntreprise.moveToFront();

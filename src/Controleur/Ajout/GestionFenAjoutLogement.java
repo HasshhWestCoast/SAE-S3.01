@@ -55,7 +55,7 @@ public class GestionFenAjoutLogement implements ActionListener{
 						DaoLogement daoLogement = new DaoLogement(CictOracleDataSource.getInstance().getConnection());
 						
 						Logement logement = new Logement(IdLogement, SurfaceHabitable, DateAcquisition, TypeDeLogement, NbPiece, NumEtage);
-						//daoLogement.create(bien);
+						//daoLogement.create(logement);
 						
 						String []EngrLogement = {IdLogement, SurfaceHabitableString, DateAcquisition, TypeDeLogement, NbPieceString, NumEtageString};
 						modeleTable.addRow(EngrLogement);

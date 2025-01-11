@@ -21,13 +21,17 @@ public class FenAjoutEntreprise extends JInternalFrame {
 	private JTextField textFieldIBAN;
 
 	private GestionFenAjoutEntreprise gestionClicFenAjoutEntreprise;
-
+	private JTextField textfiledSIRET;
+	private JTextField textFieldVille;
+	private JTextField textAdresse;
+	private JInternalFrame fenPrecedent;
 
 	/**
 	 * Create the frame.
 	 */
-	public FenAjoutEntreprise() {
+	public FenAjoutEntreprise(JInternalFrame fenPrecedent) {
 		
+		this.fenPrecedent = fenPrecedent;
 		this.gestionClicFenAjoutEntreprise = new GestionFenAjoutEntreprise(this);
 				
 		getContentPane().setBackground(new Color(255, 255, 255));
@@ -37,7 +41,7 @@ public class FenAjoutEntreprise extends JInternalFrame {
 		lblAdresse.setBounds(350, 68, 80, 13);
 		getContentPane().add(lblAdresse);
 		
-		JTextField textAdresse = new JTextField();
+		textAdresse = new JTextField();
 		textAdresse.setBounds(350, 84, 223, 19);
 		getContentPane().add(textAdresse);
 		textAdresse.setColumns(10);
@@ -46,7 +50,7 @@ public class FenAjoutEntreprise extends JInternalFrame {
 		lblVille.setBounds(82, 129, 94, 13);
 		getContentPane().add(lblVille);
 		
-		JTextField textFieldVille = new JTextField();
+		textFieldVille = new JTextField();
 		textFieldVille.setBounds(82, 148, 223, 19);
 		getContentPane().add(textFieldVille);
 		textFieldVille.setColumns(10);
@@ -59,7 +63,7 @@ public class FenAjoutEntreprise extends JInternalFrame {
 		lblSIRET.setBounds(80, 68, 96, 13);
 		getContentPane().add(lblSIRET);
 		
-		JTextField textfiledSIRET = new JTextField();
+		textfiledSIRET = new JTextField();
 		textfiledSIRET.setBounds(80, 84, 223, 19);
 		getContentPane().add(textfiledSIRET);
 		textfiledSIRET.setColumns(10);
@@ -128,5 +132,41 @@ public class FenAjoutEntreprise extends JInternalFrame {
 		btnAjouter.setBounds(359, 323, 85, 21);
 		getContentPane().add(btnAjouter);
 	}
+	
+	public String getCodePostal() {
+	    return textFieldCodePostal.getText();
+	}
+
+	public String getNom() {
+	    return textFieldNom.getText();
+	}
+
+	public String getTelephone() {
+	    return textFieldTelephone.getText();
+	}
+
+	public String getMail() {
+	    return textFieldMail.getText();
+	}
+
+	public String getIBAN() {
+	    return textFieldIBAN.getText();
+	}
+
+	public String getSIRET() {
+	    return textfiledSIRET.getText();
+	}
+
+	public String getVille() {
+	    return textFieldVille.getText();
+	}
+
+	public String getAdresse() {
+	    return textAdresse.getText();
+	}
+
+	public JInternalFrame getFenPrecedent() {
+        return this.fenPrecedent;
+    }
 
 }
