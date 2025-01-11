@@ -68,7 +68,7 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 	    String ID_Logement = curseur.getString("ID_Logement");
 	    
 	    String protectionJuridiqueString = curseur.getString("Protection_Juridique");
-	    int protectionJuridique = Integer.parseInt(protectionJuridiqueString);
+	    double protectionJuridique = Double.parseDouble(protectionJuridiqueString);
 	    
 	    DaoLogement daoLogement = new DaoLogement(this.connexion);
 	    Logement logement = daoLogement.findById(ID_Logement);

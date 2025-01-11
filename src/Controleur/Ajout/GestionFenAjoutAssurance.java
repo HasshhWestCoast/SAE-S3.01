@@ -62,9 +62,9 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 				case "Ajouter":
 					System.out.println("Vous AJOUTER une donnée à Assurance !");
 					
-					   if (this.fenAjoutAssurance.getTextFieldNumeroPolice().isEmpty() ||
-						        this.fenAjoutAssurance.getTextFieldMontant().isEmpty() ||
-						        this.fenAjoutAssurance.getTextFieldDateEcheance().isEmpty())
+					   if (this.fenAjoutAssurance.getNumeroPolice().isEmpty() ||
+						        this.fenAjoutAssurance.getMontant().isEmpty() ||
+						        this.fenAjoutAssurance.getDateEcheance().isEmpty())
 						    {
 						        JOptionPane.showMessageDialog(
 						            this.fenAjoutAssurance,
