@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -102,6 +103,17 @@ public class GestionFenBien implements ActionListener, ListSelectionListener{
 					
 				case "Ajouter des factures":
 					System.out.println("Vous AJOUTER DES FACTURES depuis Bien !");
+					
+					 // Vérification des conditions
+				    if (this.bien == null) {
+				        JOptionPane.showMessageDialog(
+				            this.fenAc,
+				            "Veuillez sélectionner un bien !",
+				            "Erreur",
+				            JOptionPane.ERROR_MESSAGE
+				        );
+				        return;
+				    }
 					
 					FenAjoutFacture fenAddFacture = null;
 					

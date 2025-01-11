@@ -72,11 +72,13 @@ public class GestionFenAjoutFacture implements ActionListener, ListSelectionList
 				        return;
 				    }
 				    
-				    if (this.fenAjoutFacture.getTextFieldIdFacture().isEmpty() &&
-				        this.fenAjoutFacture.getTextFieldDateEmission().isEmpty() &&
-				        this.fenAjoutFacture.getTextFieldDatePaiement().isEmpty() &&
-				        this.fenAjoutFacture.getTextFieldMontantReelVerse().isEmpty() &&
-				        this.fenAjoutFacture.getTextFieldMontant().isEmpty()) {
+				    if (this.fenAjoutFacture.getTextFieldIdFacture().isEmpty() ||
+				        this.fenAjoutFacture.getTextFieldDateEmission().isEmpty() ||
+				        this.fenAjoutFacture.getTextFieldDatePaiement().isEmpty() ||
+				        this.fenAjoutFacture.getTextFieldMontantReelVerse().isEmpty() ||
+				        this.fenAjoutFacture.getTextFieldMontant().isEmpty()||
+				    	this.fenAjoutFacture.getTextFieldNumeroDevis().isEmpty())
+				    {
 				        JOptionPane.showMessageDialog(
 				            this.fenAjoutFacture,
 				            "Veuillez remplir tous les champs requis !",
