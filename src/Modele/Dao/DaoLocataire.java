@@ -63,7 +63,8 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 	    String prenom = curseur.getString("prenom");
 	    String telephone = curseur.getString("telephone");
 	    String mail = curseur.getString("mail");
-	    String colocataire = curseur.getString("collocataire");
+	    String colocataireString = curseur.getString("collocataire");
+	    int colocataire = Integer.parseInt(colocataireString);
 	    
 	    return new Locataire(id_Locataire, nom, prenom, telephone, mail, date_Naissance, colocataire);
 	}
