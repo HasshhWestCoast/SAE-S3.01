@@ -7,7 +7,6 @@ import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -15,9 +14,6 @@ import Controleur.Ajout.GestionFenAjoutBien;
 import Vue.RoundedButton;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JScrollPane;
-import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
 
 public class FenAjoutBien extends JInternalFrame {
 

@@ -7,10 +7,8 @@ import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
 import Modele.ICC;
-import Modele.Locataire;
 import Modele.Dao.CictOracleDataSource;
 import Modele.Dao.DaoICC;
-import Modele.Dao.DaoLocataire;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutICC;
 

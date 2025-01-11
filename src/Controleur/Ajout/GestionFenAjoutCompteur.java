@@ -4,10 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import javax.swing.table.DefaultTableModel;
-
-import Modele.Bien;
-import Modele.Compteur;
 import Modele.Dao.CictOracleDataSource;
 import Modele.Dao.DaoBien;
 import Vue.RoundedButton;

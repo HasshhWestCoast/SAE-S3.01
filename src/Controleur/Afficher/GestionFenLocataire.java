@@ -3,15 +3,6 @@ package Controleur.Afficher;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.List;
-
-import javax.swing.table.DefaultTableModel;
-
-import Modele.Compteur;
-import Modele.Dao.CictOracleDataSource;
-import Modele.Dao.DaoCompteur;
-import Modele.Dao.Iterateur;
-import Vue.FenCompteursBien;
 import Vue.FenLocataire;
 import Vue.RoundedButton;
 

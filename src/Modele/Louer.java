@@ -90,6 +90,10 @@ public class Louer {
 		return loyerMensTTC;
 	}
 	
+	public String getDateDerniereRegularisation() {
+		return DateDerniereRegularisation;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(bien.getIdBien(), dateDebut, locataire.getIdLocataire());
@@ -114,10 +118,6 @@ public class Louer {
 				+ dateSortie + ", DateDerniereRegularisation=" + DateDerniereRegularisation + ", nbMois=" + nbMois + ", loyePayer=" + loyePayer + ", loyerMensTTC=" + loyerMensTTC
 				+ ", provision_chargeMoisTTC=" + provision_chargeMoisTTC + ", cautionTTC=" + cautionTTC + ", bail="
 				+ bail + ", etat_lieux=" + etat_lieux + ", icc=" + icc + ", montantReelPaye=" + montantReelPaye + "]";
-	}
-
-	public String getDateDerniereRegularisation() {
-		return DateDerniereRegularisation;
 	}
 
 }

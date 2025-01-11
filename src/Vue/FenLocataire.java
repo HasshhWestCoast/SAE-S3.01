@@ -1,7 +1,7 @@
 package Vue;
 
 import java.awt.Color;
-import java.awt.EventQueue;
+
 import java.awt.Font;
 import java.sql.SQLException;
 
@@ -15,13 +15,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Controleur.Afficher.GestionFenCompteursBien;
 import Controleur.Afficher.GestionFenLocataire;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 
 public class FenLocataire extends JInternalFrame {
 	

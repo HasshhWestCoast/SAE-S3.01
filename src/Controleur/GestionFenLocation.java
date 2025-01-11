@@ -14,7 +14,6 @@ import Modele.Dao.Iterateur;
 import Vue.FenAccueil;
 import Vue.FenLocataire;
 import Vue.RoundedButton;
-import Vue.Insertion.FenAjoutBien;
 import Vue.Insertion.FenAjoutLocation;
 
 
@@ -121,7 +120,7 @@ public class GestionFenLocation implements ActionListener {
 		modeleTable.setValueAt(louer.getBien().getIdBien(), numeroLigne, 1);
 		modeleTable.setValueAt(louer.getBien().getTypeBien(), numeroLigne, 2);		
 		modeleTable.setValueAt(louer.getDateDebut(), numeroLigne, 3);
-		modeleTable.setValueAt(null, numeroLigne, 4);
+		modeleTable.setValueAt(louer.getDateDerniereRegularisation(), numeroLigne, 4);
 
 	}
 

@@ -227,7 +227,7 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 						System.out.println("locataire : " + locataire);
 						System.out.println("icc :" + icc);
 						System.out.println("bien : " + bien);
-						Louer louer = new Louer(DateDebut, DateSortie, Integer.parseInt(NbMois), LoyerPayer, loyenMensTTC,ProvisionCharge, Caution, null, null, MontantReel, locataire, icc, bien);
+						Louer louer = new Louer(DateDebut, DateSortie, DateDebut, Integer.parseInt(NbMois), LoyerPayer, loyenMensTTC,ProvisionCharge, Caution, null, null, MontantReel, locataire, icc, bien);
 						//daoLouer.create(louer);
 						
 						String []EngrLocation = {locataire.getNom(), bien.getIdBien(), bien.getTypeBien(), DateDebut, null};

@@ -15,7 +15,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controleur.Ajout.GestionFenAjoutFacture;
-import Modele.Bien;
 import Vue.RoundedButton;
 
 import java.awt.Color;
