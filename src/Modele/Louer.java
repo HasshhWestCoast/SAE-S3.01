@@ -8,6 +8,7 @@ public class Louer {
 	private Bien bien;
 	private String dateDebut;
 	private String dateSortie;
+	private String DateDerniereRegularisation;
 	private int nbMois;
 	private int loyePayer;
 	private double loyerMensTTC;
@@ -18,11 +19,12 @@ public class Louer {
 	private ICC icc;
 	private double montantReelPaye;
 
-	public Louer(String dateDebut, String dateSortie, int nbMois, int loyePayer, double loyerMensTTC, double provision_chargeMoisTTC, double cautionTTC, String bail, 
+	public Louer(String dateDebut, String dateSortie, String DateDerniereRegularisation,int nbMois, int loyePayer, double loyerMensTTC, double provision_chargeMoisTTC, double cautionTTC, String bail, 
 			String etat_lieux, double montantReelPaye, Locataire locataire,  ICC icc, Bien bien) {
 		
 		this.locataire = locataire;
 		this.dateSortie = dateSortie;
+		this.DateDerniereRegularisation = DateDerniereRegularisation;
 		this.bien = bien;
 		this.dateDebut = dateDebut;
 		this.nbMois = nbMois;
@@ -109,9 +111,13 @@ public class Louer {
 	@Override
 	public String toString() {
 		return "Louer [locataire=" + locataire + ", bien=" + bien + ", dateDebut=" + dateDebut + ", dateSortie="
-				+ dateSortie + ", nbMois=" + nbMois + ", loyePayer=" + loyePayer + ", loyerMensTTC=" + loyerMensTTC
+				+ dateSortie + ", DateDerniereRegularisation=" + DateDerniereRegularisation + ", nbMois=" + nbMois + ", loyePayer=" + loyePayer + ", loyerMensTTC=" + loyerMensTTC
 				+ ", provision_chargeMoisTTC=" + provision_chargeMoisTTC + ", cautionTTC=" + cautionTTC + ", bail="
 				+ bail + ", etat_lieux=" + etat_lieux + ", icc=" + icc + ", montantReelPaye=" + montantReelPaye + "]";
+	}
+
+	public String getDateDerniereRegularisation() {
+		return DateDerniereRegularisation;
 	}
 
 }

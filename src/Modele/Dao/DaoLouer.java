@@ -86,7 +86,7 @@ public class DaoLouer extends DaoModele<Louer> implements Dao<Louer>{
 	    double montant_Reel_Paye = Double.parseDouble(montantReelPaye);
 	    
 	    String Id_Bien = curseur.getString("Id_Bien");
-	    
+	    String DateDerniereRegularisation = curseur.getString("Date_Derniere_Reg");
 	    DaoBien daoBien = new DaoBien(this.connexion);
 	    Bien bien = daoBien.findById(Id_Bien);
 	    
@@ -96,13 +96,12 @@ public class DaoLouer extends DaoModele<Louer> implements Dao<Louer>{
 	    Locataire locataire = daoLocataire.findById(Id_Locataire);
 	    
 	    
-	    String annee = curseur.getString("annee");
-	    String trimestre = curseur.getString("trimestre");
+	    String iccID = curseur.getString("icc");
 	    
 	    DaoICC daoICC = new DaoICC(this.connexion);
-	    ICC icc = daoICC.findById(annee, trimestre);
+	    ICC icc = daoICC.findById(iccID);
 	    
-	    return new Louer(date_Debut, date_Sortie, nb_Mois, loye_Payer, loyerMensTTC, provision_chargeMois_TTC, caution_TTC, bail, etat_lieux, montant_Reel_Paye, locataire, icc, bien);
+	    return new Louer(date_Debut, date_Sortie, DateDerniereRegularisation, nb_Mois, loye_Payer, loyerMensTTC, provision_chargeMois_TTC, caution_TTC, bail, etat_lieux, montant_Reel_Paye, locataire, icc, bien);
 	}
 	
 	public static Iterateur<Louer> getIterateurLouer() {
