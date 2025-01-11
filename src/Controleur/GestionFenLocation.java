@@ -98,7 +98,6 @@ public class GestionFenLocation implements ActionListener {
 				try {
 					fenInfoLocataire = new FenLocataire();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 					fenAc.getLayeredPane().add(fenInfoLocataire);
