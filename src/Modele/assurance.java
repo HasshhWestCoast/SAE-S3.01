@@ -7,11 +7,11 @@ public class assurance {
 	private String numeroPolice;
 	private float montant;
 	private String dateEcheance;
-	private int protectionJuridique;
+	private double protectionJuridique;
 	private Logement logement;
 	private Entreprise entreprise;
 
-	public assurance(String numeroPolice, float montant, String dateEcheance , int protectionJuridique, Logement logement, Entreprise entreprise) {
+	public assurance(String numeroPolice, float montant, String dateEcheance , double protectionJuridique, Logement logement, Entreprise entreprise) {
 		this.numeroPolice = numeroPolice;
 		this.montant = montant;
 		this.dateEcheance = dateEcheance;
@@ -60,7 +60,7 @@ public class assurance {
 		this.dateEcheance = dateEcheance;
 	}
 	
-	public int getProtectionJuridique() {
+	public double getProtectionJuridique() {
 		return protectionJuridique;
 	}
 
