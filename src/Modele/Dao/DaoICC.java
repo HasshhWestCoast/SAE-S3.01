@@ -55,13 +55,16 @@ public class DaoICC extends DaoModele<ICC> implements Dao<ICC>{
 	@Override
 	protected ICC creerInstance(ResultSet curseur) throws SQLException {
 		
+		String iccString = curseur.getString("ICC");
+	    int icc = Integer.parseInt(iccString);
+	    
 	    String annee = curseur.getString("annee");
 	    String trimestre = curseur.getString("trimestre");
 	    
 	    String indiceString = curseur.getString("indice");
 	    double indice = Double.parseDouble(indiceString);
 	        
-	    return new ICC(annee, trimestre, indice);
+	    return new ICC(icc, annee, trimestre, indice);
 	}
 	
 	public static Iterateur<ICC> getIterateurICC() {

@@ -41,6 +41,8 @@ public class GestionFenAjoutICC implements ActionListener{
 					System.out.println("Vous AJOUTER un ICC !");
 					
 					try {
+						String iccString = (String) fenAjoutICC.getIDIcc();
+						int Idicc = Integer.parseInt(iccString);
 						String annee = (String) fenAjoutICC.getAnnee();					
 						String trimestre = (String) fenAjoutICC.getTrimestre();
 						String indiceString = (String) fenAjoutICC.getIndice();
@@ -48,10 +50,10 @@ public class GestionFenAjoutICC implements ActionListener{
 
 						DaoICC daoICC = new DaoICC(CictOracleDataSource.getInstance().getConnection());
 						
-						ICC icc = new ICC(annee, trimestre, indice);
+						ICC icc = new ICC(Idicc, annee, trimestre, indice);
 						//daoICC.create(icc);
 						
-						String []EngrICC = {annee, trimestre, indiceString};
+						String []EngrICC = {iccString, annee, trimestre, indiceString};
 						modeleTableIcc.addRow(EngrICC);
 						
 						fenAjoutICC.dispose();

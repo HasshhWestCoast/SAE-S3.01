@@ -17,10 +17,10 @@ import Modele.Dao.CictOracleDataSource;
 import Modele.Dao.DaoBien;
 import Modele.Dao.DaoICC;
 import Modele.Dao.DaoLocataire;
+import Modele.Dao.DaoLouer;
 import Modele.Dao.Iterateur;
 import Vue.FenAccueil;
 import Vue.RoundedButton;
-import Vue.Insertion.FenAjoutBien;
 import Vue.Insertion.FenAjoutICC;
 import Vue.Insertion.FenAjoutLocataire;
 import Vue.Insertion.FenAjoutLocation;
@@ -171,7 +171,8 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 					try {
 						DefaultTableModel modeleTable = (DefaultTableModel) fenAC.getTabMesLocations().getModel();
 
-						String DateDebut = (String) fenAjoutLoc.getTextFieldDateDebut();					
+						String DateDebut = (String) fenAjoutLoc.getTextFieldDateDebut();
+						String DateSortie = (String) fenAjoutLoc.getTextFielDateSortie();
 						String NbMois = (String) fenAjoutLoc.getTextFieldNbMois();
 						String ProvisionChargeString = (String) fenAjoutLoc.getTextFieldProvisionsCharge();
 						double ProvisionCharge = Double.parseDouble(ProvisionChargeString);
@@ -179,6 +180,9 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 						double MontantReel = Double.parseDouble(MontantReelString);
 						String CautionString = (String) fenAjoutLoc.getTextFieldCaution();
 						double Caution = Double.parseDouble(CautionString);
+						String loyenMensTTCString = (String) fenAjoutLoc.getTextFieldLoyerMenssTTCt();
+						double loyenMensTTC = Double.parseDouble(loyenMensTTCString);
+						
 						
 						Boolean LoyerPayerString = (Boolean) fenAjoutLoc.getcheckLoyerPayer();
 						int LoyerPayer;
@@ -187,12 +191,12 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 						}else {
 							LoyerPayer = 1;
 						}
-						DaoLocataire daoLocataire = new DaoLocataire(CictOracleDataSource.getInstance().getConnection());
+						DaoLouer daoLouer = new DaoLouer(CictOracleDataSource.getInstance().getConnection());
 						
 						System.out.println("locataire : " + locataire);
 						System.out.println("icc :" + icc);
 						System.out.println("bien : " + bien);
-						Louer louer = new Louer(DateDebut, Integer.parseInt(NbMois), LoyerPayer, ProvisionCharge, Caution, null, null, MontantReel, locataire, icc, bien);
+						Louer louer = new Louer(DateDebut, DateSortie, Integer.parseInt(NbMois), LoyerPayer, loyenMensTTC,ProvisionCharge, Caution, null, null, MontantReel, locataire, icc, bien);
 						//daoLouer.create(louer);
 						
 						String []EngrLocation = {locataire.getNom(), bien.getIdBien(), bien.getTypeBien(), DateDebut, null};

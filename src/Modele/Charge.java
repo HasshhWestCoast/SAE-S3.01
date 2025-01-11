@@ -10,12 +10,12 @@ public class Charge {
     private double montantReel; 
     private String dateCharge;
     private double montantPrevisionnel;
-    private int deductible; // C'EST QUOI CA 
+    private int deductible;
     private Bien bien; 
 
     private List<Retenir> retenirList;
 
-    public Charge(String idCharge, String nom, double montantReel, double montantPrevisionnel, String dateCharge, int deductible, Bien bien) {
+    public Charge(String idCharge, String nom, double montantReel, double montantPrevisionnel, int deductible, String dateCharge, Bien bien) {
         this.idCharge = idCharge;
         this.nom = nom;
         this.montantReel = montantReel;

@@ -9,18 +9,14 @@ public class Bien {
 	private String typeBien;
 	private String codePostal;
 	private String periodeConstruction;
-	private Logement logement;
 
-	public Bien(String idBien, String adresse,String ville,String typeBien,String codePostal,String periodeConstruction,Logement logement) {
+	public Bien(String idBien, String adresse,String ville,String typeBien,String codePostal,String periodeConstruction) {
 		this.idBien = idBien;
 		this.adresse = adresse;
 		this.ville = ville;
 		this.typeBien = typeBien;
 		this.codePostal = codePostal;
 		this.periodeConstruction = periodeConstruction;
-		this.logement = logement;
-		
-		
 	}
 
 	public String getIdBien() {
@@ -71,14 +67,6 @@ public class Bien {
 		this.periodeConstruction = periodeConstruction;
 	}
 
-	public Logement getLogement() {
-		return logement;
-	}
-
-	public void setLogement(Logement logement) {
-		this.logement = logement;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(idBien);
@@ -100,7 +88,7 @@ public class Bien {
 	public String toString() {
 		return "Bien [idBien=" + idBien + ", adresse=" + adresse + ", ville="
 				+ ville + ", typeBien=" + typeBien + ", codePostal=" + codePostal + ", periodeConstruction="
-				+ periodeConstruction + ", logement=" + logement + "]";
+				+ periodeConstruction + "]";
 	}
 	
 	

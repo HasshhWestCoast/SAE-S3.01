@@ -26,6 +26,7 @@ public class FenAjoutAssurance extends JInternalFrame {
 	private GestionFenAjoutAssurance gestionClicFenAjoutEntreprise;
 	private JTable tabMesEntreprise;
 	private JTable tabMesLogements;
+	private JTextField textFieldPretectionJuridique;
 
 
 	/**
@@ -127,7 +128,7 @@ public class FenAjoutAssurance extends JInternalFrame {
 		
 		RoundedButton btnChargerEntreprise = new RoundedButton("Charger", 20);
 		btnChargerEntreprise.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnChargerEntreprise.setBounds(444, 277, 96, 21);
+		btnChargerEntreprise.setBounds(444, 303, 96, 21);
 		getContentPane().add(btnChargerEntreprise);
 		
 		RoundedButton btnInsererEntreprise = new RoundedButton("Inserer E", 20);
@@ -137,13 +138,22 @@ public class FenAjoutAssurance extends JInternalFrame {
 		
 		RoundedButton btnAnnulerAssurance = new RoundedButton("Annuler", 20);
 		btnAnnulerAssurance.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnAnnulerAssurance.setBounds(562, 277, 85, 21);
+		btnAnnulerAssurance.setBounds(564, 303, 85, 21);
 		getContentPane().add(btnAnnulerAssurance);
 		
 		RoundedButton btnAjouterAssurance = new RoundedButton("Ajouter", 20);
 		btnAjouterAssurance.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnAjouterAssurance.setBounds(669, 277, 85, 21);
+		btnAjouterAssurance.setBounds(674, 303, 85, 21);
 		getContentPane().add(btnAjouterAssurance);
+		
+		JLabel lblProtectionJuridique = new JLabel("Protection Jurdique");
+		lblProtectionJuridique.setBounds(489, 242, 139, 13);
+		getContentPane().add(lblProtectionJuridique);
+		
+		textFieldPretectionJuridique = new JTextField();
+		textFieldPretectionJuridique.setColumns(10);
+		textFieldPretectionJuridique.setBounds(489, 260, 207, 19);
+		getContentPane().add(textFieldPretectionJuridique);
 	}
 	
 	public JTable getTabMesEntreprise() {
@@ -154,15 +164,20 @@ public class FenAjoutAssurance extends JInternalFrame {
 		return tabMesLogements;
 	}
 	
-	public String getTextFieldNumeroPolice() {
+	public String getNumeroPolice() {
 		return textFieldNumeroPolice.getText();
 	}
 	
-	public String getTextFieldMontant() {
+	public String getMontant() {
 		return textFieldMontant.getText();
 	}
 	
-	public String getTextFieldDateEcheance() {
+	public String getDateEcheance() {
 		return textFieldDateEcheance.getText();
 	}
+	
+	public String getProtectionJuridique() {
+		return textFieldPretectionJuridique.getText();
+	}
+	
 }

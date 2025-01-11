@@ -20,6 +20,7 @@ public class FenAjoutICC extends JInternalFrame {
 	private JTextField textFieldIndice;
 	private GestionFenAjoutICC gestionClicFenAjoutICC;
     private FenAjoutLocation fenAjoutLocation; 
+    private JTextField textFieldIdIcc;
 
 	/**
 	 * Create the frame.
@@ -33,15 +34,15 @@ public class FenAjoutICC extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblAnnee = new JLabel("Année");
-		lblAnnee.setBounds(80, 94, 45, 13);
+		lblAnnee.setBounds(79, 142, 45, 13);
 		getContentPane().add(lblAnnee);
 		
 		JLabel lblTrimestre = new JLabel("Trimestre");
-		lblTrimestre.setBounds(80, 176, 66, 13);
+		lblTrimestre.setBounds(79, 202, 66, 13);
 		getContentPane().add(lblTrimestre);
 		
 		JLabel lblIndice = new JLabel("Indice");
-		lblIndice.setBounds(80, 256, 131, 13);
+		lblIndice.setBounds(80, 267, 131, 13);
 		getContentPane().add(lblIndice);
 		
 		JLabel lblICC = new JLabel("Ajout ICC");
@@ -57,17 +58,17 @@ public class FenAjoutICC extends JInternalFrame {
 		getContentPane().add(separator);
 		
 		textFieldAnnee = new JTextField();
-		textFieldAnnee.setBounds(77, 112, 226, 19);
+		textFieldAnnee.setBounds(79, 162, 226, 19);
 		getContentPane().add(textFieldAnnee);
 		textFieldAnnee.setColumns(10);
 		
 		textFieldTrimestre = new JTextField();
-		textFieldTrimestre.setBounds(80, 193, 223, 19);
+		textFieldTrimestre.setBounds(80, 226, 223, 19);
 		getContentPane().add(textFieldTrimestre);
 		textFieldTrimestre.setColumns(10);
 		
 		textFieldIndice = new JTextField();
-		textFieldIndice.setBounds(80, 273, 226, 19);
+		textFieldIndice.setBounds(80, 290, 226, 19);
 		getContentPane().add(textFieldIndice);
 		textFieldIndice.setColumns(10);
 		setBounds(100, 100, 423, 453);
@@ -82,6 +83,15 @@ public class FenAjoutICC extends JInternalFrame {
 		btnAjouter.addActionListener(this.gestionClicFenAjoutICC);
 		btnAjouter.setBounds(215, 353, 85, 21);
 		getContentPane().add(btnAjouter);
+		
+		JLabel lblIDIcc = new JLabel("ID icc");
+		lblIDIcc.setBounds(79, 76, 45, 13);
+		getContentPane().add(lblIDIcc);
+		
+		textFieldIdIcc = new JTextField();
+		textFieldIdIcc.setColumns(10);
+		textFieldIdIcc.setBounds(79, 99, 226, 19);
+		getContentPane().add(textFieldIdIcc);
 	}
 	
 	public FenAjoutLocation getFenAjoutLocation() {
@@ -98,6 +108,10 @@ public class FenAjoutICC extends JInternalFrame {
 	
 	public String getIndice() {
 		return textFieldIndice.getText();
+	}
+	
+	public String getIDIcc() {
+		return textFieldIdIcc.getText();
 	}
 
 }

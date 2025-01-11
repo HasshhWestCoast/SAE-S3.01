@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import Modele.Bien;
 import Modele.Logement;
 import Modele.Dao.Requetes.RequeteSelectLogement;
 import Modele.Dao.Requetes.RequeteSelectLogementById;
@@ -71,7 +72,14 @@ public class DaoLogement extends DaoModele<Logement> implements Dao<Logement>{
 	    String numEtage = curseur.getString("num_Etage");
 	    int num_Etage = Integer.parseInt(numEtage);
 	    
-	    return new Logement(idLogement, surface_Habitable, date_Acquisition, type_logement, nb_Pieces, num_Etage);
+	    String garageString = curseur.getString("garage");
+	    int garage = Integer.parseInt(garageString);
+	    
+	    String IdBien = curseur.getString("Id_bien");
+	    DaoBien daoBien = new DaoBien(this.connexion);
+	    Bien bien = daoBien.findById(IdBien);
+	    
+	    return new Logement(idLogement, surface_Habitable, date_Acquisition, type_logement, nb_Pieces, num_Etage, garage, bien);
 	}
 	
 	public static Iterateur<Logement> getIterateurLogement() {
