@@ -10,6 +10,7 @@ import Modele.Entreprise;
 import Modele.Logement;
 import Modele.assurance;
 import Modele.Dao.Requetes.RequeteSelectAssuranceById;
+import Modele.Dao.Requetes.Insert.RequeteInsertAssurance;
 import Modele.Dao.Requetes.RequeteSelectAssurance;
 
 public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>{
@@ -25,8 +26,16 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 	}
 	
 	@Override
-	public void create(assurance t) throws SQLException {		
+	public void create(assurance donnee) throws SQLException {
+	    RequeteInsertAssurance requete = new RequeteInsertAssurance();
+	    try (PreparedStatement prSt = this.connexion.prepareStatement(requete.requete())) {
+	        requete.parametres(prSt, donnee);
+	        prSt.executeUpdate();
+	    } catch (SQLException e) {
+	        throw new SQLException("Erreur lors de la création d'une assurance : " + e.getMessage(), e);
+	    }
 	}
+
 	
 	@Override
 	public void update(assurance t) throws SQLException {

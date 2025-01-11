@@ -9,6 +9,7 @@ import java.util.List;
 import Modele.Entreprise;
 import Modele.Dao.Requetes.RequeteSelectEntreprise;
 import Modele.Dao.Requetes.RequeteSelectEntrepriseById;
+import Modele.Dao.Requetes.Insert.RequeteInsertEntreprise;
 
 public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entreprise>{
 
@@ -23,8 +24,18 @@ public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entrepri
 	}
 	
 	@Override
-	public void create(Entreprise t) throws SQLException {		
+	public void create(Entreprise entreprise) throws SQLException {
+	    RequeteInsertEntreprise requete = new RequeteInsertEntreprise();
+	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	        requete.parametres(prSt, entreprise);
+	        prSt.executeUpdate();
+	        System.out.println("Entreprise ajoutée avec succès !");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de l'ajout de l'entreprise : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void update(Entreprise t) throws SQLException {

@@ -63,7 +63,7 @@ public class GestionFenAjoutEntreprise implements ActionListener{
 						DaoEntreprise daoEntreprise = new DaoEntreprise(CictOracleDataSource.getInstance().getConnection());
 						
 						Entreprise entreprise = new Entreprise(siret, nom, adresse, codepostal, ville, mail, telephone, iban);
-						//daoEntreprise.create(entreprise);
+						daoEntreprise.create(entreprise);
 						
 						String []EngrEntreprise = {siret, nom};
 						modeleTable.addRow(EngrEntreprise);

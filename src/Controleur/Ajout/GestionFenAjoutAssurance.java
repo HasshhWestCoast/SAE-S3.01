@@ -102,7 +102,7 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 						DaoAssurance daoAssurance = new DaoAssurance(CictOracleDataSource.getInstance().getConnection());
 						
 						assurance assu = new assurance(NumeroPolice, Montant, DateEcheance, PorectionJuridique, logement, entreprise);
-						//daoAssurance.create(assu);
+						daoAssurance.create(assu);
 						
 						String []EngrAssu = {NumeroPolice, MontantString, DateEcheance, entreprise.getSiret(), logement.getIdLogement()};
 						modeleTable.addRow(EngrAssu);
