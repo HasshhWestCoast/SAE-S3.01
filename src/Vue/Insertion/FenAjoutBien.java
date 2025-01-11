@@ -98,7 +98,7 @@ public class FenAjoutBien extends JInternalFrame {
 		comboBoxTypeDeBien.setForeground(new Color(0, 0, 0));
 		comboBoxTypeDeBien.setFont(new Font("Sylfaen", Font.PLAIN, 12));
 		comboBoxTypeDeBien.setBackground(new Color(31, 153, 88));
-		comboBoxTypeDeBien.setModel(new DefaultComboBoxModel(new String[] {"Maison", "Immeuble", "Garage"}));
+		comboBoxTypeDeBien.setModel(new DefaultComboBoxModel(new String[] {"Maison", "Immeuble"}));
 		comboBoxTypeDeBien.setToolTipText("ID Immeuble");
 		getContentPane().add(comboBoxTypeDeBien);
 		
@@ -114,7 +114,7 @@ public class FenAjoutBien extends JInternalFrame {
 		textFieldCodePostale.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Période construction");
-		lblNewLabel.setBounds(82, 352, 109, 13);
+		lblNewLabel.setBounds(82, 352, 157, 13);
 		getContentPane().add(lblNewLabel);
 		
 		textFieldPeriodeConstruction = new JTextField();

@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import Modele.Dao.CictOracleDataSource;
 import Modele.Dao.DaoBien;
 import Vue.RoundedButton;
@@ -32,6 +34,19 @@ public class GestionFenAjoutCompteur implements ActionListener{
 					
 				case "Ajouter":
 					System.out.println("Vous AJOUTER un compteur au bien !");
+					
+					  if (this.fenAjoutCompteur.getTextFieldIdCompteur().isEmpty() ||
+						        this.fenAjoutCompteur.getTextFieldIndiceCompteur().isEmpty() ||
+						        this.fenAjoutCompteur.getTextFieldDateRelevé().isEmpty())
+						    {
+						        JOptionPane.showMessageDialog(
+						            this.fenAjoutCompteur,
+						            "Veuillez remplir tous les champs requis !",
+						            "Erreur",
+						            JOptionPane.ERROR_MESSAGE
+						        );
+						        return;
+						    }
 					try {
 						//DefaultTableModel modeleTable = (DefaultTableModel) fenAjoutCompteur.getTab().getModel();
 

@@ -51,6 +51,16 @@ public class GestionFenBien implements ActionListener, ListSelectionListener{
 				
 				case "Archiver":
 					System.out.println("Vous ARCHIVER une donnée prevenant de Bien !");
+					 // Vérification des conditions
+				    if (this.bien == null) {
+				        JOptionPane.showMessageDialog(
+				            this.fenAc,
+				            "Veuillez sélectionner un bien a archiver !",
+				            "Erreur",
+				            JOptionPane.ERROR_MESSAGE
+				        );
+				        return;
+				    }
 					break;
 					
 				case "Charger":

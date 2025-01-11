@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -78,6 +79,33 @@ public class GestionFenAjoutLogement implements ActionListener, ListSelectionLis
 					
 				case "Ajouter":
 					System.out.println("Vous AJOUTER un logement !");
+					
+					   if (this.fenAjoutLogement.getIdLogement().isEmpty() ||
+						        this.fenAjoutLogement.getDateAcquisition().isEmpty() ||
+						        this.fenAjoutLogement.getSurfaceHabitable().isEmpty()||
+						        this.fenAjoutLogement.getSurfaceHabitable().isEmpty())
+						    {
+						        JOptionPane.showMessageDialog(
+						            this.fenAjoutLogement,
+						            "Veuillez remplir tous les champs requis !",
+						            "Erreur",
+						            JOptionPane.ERROR_MESSAGE
+						        );
+						        return;
+						    }
+					   
+						 // Vérification des conditions
+					    if (this.bien == null) {
+					        JOptionPane.showMessageDialog(
+					            this.fenAjoutLogement,
+					            "Veuillez sélectionner un bien !",
+					            "Erreur",
+					            JOptionPane.ERROR_MESSAGE
+					        );
+					        return;
+					    }
+					
+					
 					try {
 						DefaultTableModel modeleTable = (DefaultTableModel) fenAC.getTabMesLogements().getModel();
 

@@ -67,7 +67,7 @@ public class FenAjoutCompteur extends JInternalFrame {
 		textFieldIdCompteur.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Indice du Compteur");
-		lblNewLabel.setBounds(77, 164, 98, 13);
+		lblNewLabel.setBounds(77, 164, 142, 13);
 		getContentPane().add(lblNewLabel);
 		
 		textFieldIndiceCompteur = new JTextField();
@@ -76,7 +76,7 @@ public class FenAjoutCompteur extends JInternalFrame {
 		textFieldIndiceCompteur.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Type de compteur");
-		lblNewLabel_1.setBounds(77, 230, 98, 13);
+		lblNewLabel_1.setBounds(77, 230, 131, 13);
 		getContentPane().add(lblNewLabel_1);
 		
 		comboBox = new JComboBox();
