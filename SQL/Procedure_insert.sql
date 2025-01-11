@@ -15,42 +15,44 @@ CREATE OR REPLACE PROCEDURE Inserer_Logement(
     p_Date_Acquisition IN SAE_Logement.Date_Acquisition%TYPE,
     p_Type_Logement IN SAE_Logement.Type_Logement%TYPE,
     p_Nb_Pieces IN SAE_Logement.Nb_Pieces%TYPE,
-    p_Num_Etage IN SAE_Logement.Num_Etage%TYPE
+    p_Num_Etage IN SAE_Logement.Num_Etage%TYPE,
+    p_Garage IN SAE_Logement.Garage%TYPE 
 ) AS
 BEGIN
-    INSERT INTO SAE_Logement (Id_Logement, Surface_Habitable, Date_Acquisition, Type_Logement, Nb_Pieces, Num_Etage)
-    VALUES (p_Id_Logement, p_Surface_Habitable, p_Date_Acquisition, p_Type_Logement, p_Nb_Pieces, p_Num_Etage);
+    INSERT INTO SAE_Logement (Id_Logement, Surface_Habitable, Date_Acquisition, Type_Logement, Nb_Pieces, Num_Etage, Garage)
+    VALUES (p_Id_Logement, p_Surface_Habitable, p_Date_Acquisition, p_Type_Logement, p_Nb_Pieces, p_Num_Etage, p_Garage);
 END;
 /
 
 --------------------------IMPOT-------------------------------------
 CREATE OR REPLACE PROCEDURE Inserer_Impot(
     p_Id_Impot IN SAE_Impot.Id_Impot%TYPE,
-    p_impot IN SAE_Impot.Impot%TYPE,
-    p_annee IN SAE_Impot.annee%TYPE,
-)AS
+    p_montant IN SAE_Impot.montant%TYPE,
+    p_Annee IN SAE_Impot.Annee%TYPE
+) AS
 BEGIN
-    INSERT INTO SAE_Impot (Id_Impot, Impot, annee)
-    VALUES (p_Id_Impot, p_impot, p_annee);
+    INSERT INTO SAE_Impot (Id_Impot, montant, Annee)
+    VALUES (p_Id_Impot, p_montant, p_Annee);
 END;
 /
+
 
 --------------------------ENTREPRISE-------------------------------------
 CREATE OR REPLACE PROCEDURE Inserer_Entreprise(
     p_SIRET IN SAE_Entreprise.SIRET%TYPE,
-    p_nom IN SAE_Entreprise.nom%TYPE,
-    p_adresse IN SAE_Entreprise.adresse%TYPE,
-    p_code_postal IN SAE_Entreprise.code_postal%TYPE,
-    p_ville IN SAE_Entreprise.ville%TYPE,
-    p_mail IN SAE_Entreprise.mail%TYPE,
-    p_telephone IN SAE_Entreprise.telephone%TYPE,
-    p_IBAN IN SAE_Entreprise.IBAN%TYPE,
-)AS
+    p_Nom IN SAE_Entreprise.Nom%TYPE,
+    p_Adresse IN SAE_Entreprise.Adresse%TYPE,
+    p_Ville IN SAE_Entreprise.Ville%TYPE,
+    p_Mail IN SAE_Entreprise.Mail%TYPE,
+    p_Telephone IN SAE_Entreprise.Telephone%TYPE,
+    p_IBAN IN SAE_Entreprise.IBAN%TYPE
+) AS
 BEGIN
-    INSERT INTO SAE_Entreprise (SIRET, nom, adresse, code_postal, ville, mail, telephone, IBAN)
-    VALUES (p_SIRET, p_nom, p_adresse, p_code_postal, p_ville, p_mail, p_telephone, p_IBAN);
+    INSERT INTO SAE_Entreprise (SIRET, Nom, Adresse, Ville, Mail, Telephone, IBAN)
+    VALUES (p_SIRET, p_Nom, p_Adresse, p_Ville, p_Mail, p_Telephone, p_IBAN);
 END;
 /
+
 --------------------------LOCATAIRE-------------------------------------
 CREATE OR REPLACE PROCEDURE Inserer_Locataire(
     p_Id_Locataire IN SAE_Locataire.Id_Locataire%TYPE,
@@ -59,11 +61,11 @@ CREATE OR REPLACE PROCEDURE Inserer_Locataire(
     p_Telephone IN SAE_Locataire.Telephone%TYPE,
     p_Mail IN SAE_Locataire.Mail%TYPE,
     p_Date_Naissance IN SAE_Locataire.Date_Naissance%TYPE,
-    p_Quotite IN SAE_Locataire.Quotite%TYPE,
+    p_Collocataire IN SAE_Locataire.Collocataire%TYPE
 ) AS
 BEGIN
-    INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Telephone, Mail, Date_Naissance, Quotite)
-    VALUES (p_Id_Locataire, p_Nom, p_Prenom, p_Telephone, p_Mail, p_Date_Naissance, p_Quotite);
+    INSERT INTO SAE_Locataire (Id_Locataire, Nom, Prenom, Telephone, Mail, Date_Naissance, Collocataire)
+    VALUES (p_Id_Locataire, p_Nom, p_Prenom, p_Telephone, p_Mail, p_Date_Naissance, p_Collocataire);
 END;
 /
 
@@ -71,7 +73,7 @@ END;
 CREATE OR REPLACE PROCEDURE Inserer_Icc(
     p_annee IN SAE_Icc.annee%TYPE,
     p_trimestre IN SAE_Icc.trimestre%TYPE,
-    p_indice IN SAE_Icc.indice%TYPE,
+    p_indice IN SAE_Icc.indice%TYPE
 ) AS
 BEGIN 
     INSERT INTO SAE_Icc (annee, trimestre, indice)
@@ -88,7 +90,7 @@ CREATE OR REPLACE PROCEDURE Inserer_Bien(
     p_Type_Bien IN SAE_Bien.Type_Bien%TYPE,
     p_CodePostal IN SAE_Bien.CodePostal%TYPE,
     p_Periode_Construction IN SAE_Bien.Periode_Construction%TYPE,
-    p_Id_Logement IN SAE_Bien.Id_Logement%TYPE,
+    p_Id_Logement IN SAE_Bien.Id_Logement%TYPE
 ) AS
 BEGIN
     INSERT INTO SAE_Bien (Id_Bien, Adresse, Ville, Type_Bien, CodePostal, Periode_Construction, Id_Logement)
@@ -97,15 +99,15 @@ END;
 /
 
 --------------------------DIAGNOSTIC-------------------------------------
-CREATE OR REPALCE PROCEDURE Inserer_Diagnostic(
-    p_id_diagnostic IN SAE_Diagnostic.id_diagnostic%TYPE,
-    p_date_validite IN SAE_Diagnostic.date_validite%TYPE,
-    p_type_diagnostic IN SAE_Diagnostic.type_diagnostic%TYPE,
-    p_id_bien IN SAE_Diagnostic.id_bien%TYPE,
-)AS
+CREATE OR REPLACE PROCEDURE Inserer_Diagnostic(
+    p_Id_Diagnostic IN SAE_Diagnostic.Id_Diagnostic%TYPE,
+    p_Date_Validite IN SAE_Diagnostic.Date_Validite%TYPE,
+    p_Type_Diagnostic IN SAE_Diagnostic.Type_Diagnostic%TYPE,
+    p_Id_Bien IN SAE_Diagnostic.Id_Bien%TYPE
+) AS
 BEGIN
-    INSERT INTO SAE_Diagnostic (id_diagnostic, date_validite, type_diagnostic, id_bien)
-    VALUES (p_id_diagnostic, p_date_validite, p_type_diagnostic, p_id_bien);
+    INSERT INTO SAE_Diagnostic (Id_Diagnostic, Date_Validite, Type_Diagnostic, Id_Bien)
+    VALUES (p_Id_Diagnostic, p_Date_Validite, p_Type_Diagnostic, p_Id_Bien);
 END;
 /
 
@@ -145,27 +147,27 @@ BEGIN
 END;
 /
 
---------------------------LOUER-------------------------------------
-CREATE OR REPLACE PROCEDURE Inserer_Louer(
+--------------------------SAE_LOUER-------------------------------------
+CREATE OR REPLACE PROCEDURE Inserer_SAE_Louer(
     p_Id_Bien IN SAE_Louer.Id_Bien%TYPE,
     p_Id_Locataire IN SAE_Louer.Id_Locataire%TYPE,
     p_Date_Debut IN SAE_Louer.Date_Debut%TYPE,
+    p_Date_Sortie IN SAE_Louer.Date_Sortie%TYPE,
+    p_Date_Derniere_Reg IN SAE_Louer.Date_Derniere_Reg%TYPE,
     p_Nb_Mois IN SAE_Louer.Nb_Mois%TYPE,
-    p_Loyer_Payer IN SAE_Louer.Loyer_Payer%TYPE,
+    p_Loyer_Mens_TTC IN SAE_Louer.Loyer_Mens_TTC%TYPE,
     p_Provisions_ChargesMois_TTC IN SAE_Louer.Provisions_ChargesMois_TTC%TYPE,
     p_Caution_TTC IN SAE_Louer.Caution_TTC%TYPE,
     p_Bail IN SAE_Louer.Bail%TYPE,
     p_Etat_Lieux IN SAE_Louer.Etat_Lieux%TYPE,
     p_Montant_Reel_Payer IN SAE_Louer.Montant_Reel_Payer%TYPE,
-    p_Annee IN SAE_Louer.Annee%TYPE,
-    p_Trimestre IN SAE_Louer.Trimestre%TYPE
+    p_ICC IN SAE_Louer.ICC%TYPE
 ) AS
 BEGIN
-    INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_Debut, Nb_Mois, Loyer_Payer, Provisions_ChargesMois_TTC, Caution_TTC, Bail, Etat_Lieux, Montant_Reel_Payer, Annee, Trimestre)
-    VALUES (p_Id_Bien, p_Id_Locataire, p_Date_Debut, p_Nb_Mois, p_Loyer_Payer, p_Provisions_ChargesMois_TTC, p_Caution_TTC, p_Bail, p_Etat_Lieux, p_Montant_Reel_Payer, p_Annee, p_Trimestre);
+    INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_Debut, Date_Sortie, Date_Derniere_Reg, Nb_Mois, Loyer_Mens_TTC, Provisions_ChargesMois_TTC, Caution_TTC, Bail, Etat_Lieux, Montant_Reel_Payer, ICC)
+    VALUES (p_Id_Bien, p_Id_Locataire, p_Date_Debut, p_Date_Sortie, p_Date_Derniere_Reg, p_Nb_Mois, p_Loyer_Mens_TTC, p_Provisions_ChargesMois_TTC, p_Caution_TTC, p_Bail, p_Etat_Lieux, p_Montant_Reel_Payer, p_ICC);
 END;
 /
-
 --------------------------CHARGE-------------------------------------
 CREATE OR REPLACE PROCEDURE Inserer_Charge(
     p_Id_Charges IN SAE_Charge.Id_Charges%TYPE,
@@ -218,5 +220,27 @@ CREATE OR REPLACE PROCEDURE Inserer_Retient(
 BEGIN
     INSERT INTO SAE_Retient (Id_Bien, Id_Locataire, Date_Debut, Id_Charges)
     VALUES (p_Id_Bien, p_Id_Locataire, p_Date_Debut, p_Id_Charges);
+END;
+/
+
+--------------------------QUOTITE-------------------------------------
+CREATE OR REPLACE PROCEDURE Inserer_Quotite(
+    p_Type_Quotite IN SAE_Quotite.Type_Quotite%TYPE
+) AS
+BEGIN
+    INSERT INTO SAE_Quotite (Type_Quotite)
+    VALUES (p_Type_Quotite);
+END;
+/
+
+--------------------------QUOTTER-------------------------------------
+CREATE OR REPLACE PROCEDURE Inserer_Quotter(
+    p_Id_Bien IN SAE_Quotter.Id_Bien%TYPE,
+    p_Type_Quotite IN SAE_Quotter.Type_Quotite%TYPE,
+    p_Pourcentage IN SAE_Quotter.Pourcentage%TYPE
+) AS
+BEGIN
+    INSERT INTO SAE_Quotter (Id_Bien, Type_Quotite, Pourcentage)
+    VALUES (p_Id_Bien, p_Type_Quotite, p_Pourcentage);
 END;
 /
