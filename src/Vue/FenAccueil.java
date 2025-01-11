@@ -2,6 +2,8 @@ package Vue;
 
 import java.awt.*;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.YearMonth;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -54,6 +56,10 @@ public class FenAccueil extends JFrame {
 	private JTextField textFieldDateEmission;
 	private JTextField textFieldDatePaiement;
 	private JTextField textFieldCaution;
+	
+	private LocalDate currentDate;
+    private JLabel monthYearLabel;
+    private JPanel daysPanel;
 
 	
     /**
@@ -234,21 +240,242 @@ public class FenAccueil extends JFrame {
         panelDocuments = createDocumentPanel();
         layeredPane.add(panelDocuments, "Documents");
         
+        
+
+        
 
     }
 
     private JPanel createAccueilPanel() {
         JPanel panelAccueil = new JPanel();
         panelAccueil.setBackground(Color.WHITE);
-        panelAccueil.setLayout(new BorderLayout());
+        panelAccueil.setLayout(null);
 
-        JLabel lblAccueil = new JLabel("Accueil", SwingConstants.CENTER);
-        lblAccueil.setFont(new Font("Sylfaen", Font.PLAIN, 24));
-        lblAccueil.setForeground(new Color(31, 153, 88));
+        // Bandeau supérieur
+        JPanel panelTitre = new JPanel();
+        panelTitre.setBackground(new Color(240, 240, 240));
+        panelTitre.setLayout(null);
+        JLabel lblMesAssurances = new JLabel("Accueil");
+        lblMesAssurances.setBounds(159, 0, 625, 48);
+        lblMesAssurances.setHorizontalAlignment(SwingConstants.CENTER);
+        lblMesAssurances.setFont(new Font("Sylfaen", Font.BOLD, 28));
+        lblMesAssurances.setForeground(new Color(31, 153, 88));
+        lblMesAssurances.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Décalage de 10px vers le bas
+        panelTitre.add(lblMesAssurances);
 
-        panelAccueil.add(lblAccueil, BorderLayout.CENTER);
+        JSeparator separatorNord = new JSeparator();
+        separatorNord.setBounds(0, 48, 1056, 2);
+        separatorNord.setForeground(new Color(0, 0, 0));
+        panelTitre.add(separatorNord);
+
+        panelTitre.setBounds(0, 0, 1056, 50);
+        panelAccueil.add(panelTitre);
+
+        // Initialisation des éléments principaux
+        currentDate = LocalDate.now(); // Date actuelle
+
+        // Panneau supérieur avec les boutons pour naviguer entre les mois
+        JPanel headerPanel = new JPanel();
+        headerPanel.setBackground(Color.WHITE);
+        headerPanel.setBounds(43, 80, 386, 40);
+        headerPanel.setLayout(null);
+
+        // Bouton "Précédent"
+        JButton prevButton = new JButton("<");
+        prevButton.setBounds(0, 10, 50, 20);
+        prevButton.setFocusPainted(false);
+        prevButton.setBackground(new Color(31, 151, 83)); // Vert
+        prevButton.setForeground(Color.WHITE); // Texte blanc
+        prevButton.setFont(new Font("Arial", Font.BOLD, 14));
+        headerPanel.add(prevButton);
+
+        // Bouton "Suivant"
+        JButton nextButton = new JButton(">");
+        nextButton.setBounds(336, 10, 50, 20);
+        nextButton.setFocusPainted(false);
+        nextButton.setBackground(new Color(31, 151, 83)); // Vert
+        nextButton.setForeground(Color.WHITE); // Texte blanc
+        nextButton.setFont(new Font("Arial", Font.BOLD, 14));
+        headerPanel.add(nextButton);
+
+        // Label pour afficher le mois et l'année
+        monthYearLabel = new JLabel("", JLabel.CENTER);
+        monthYearLabel.setBounds(60, 10, 270, 20);
+        monthYearLabel.setFont(new Font("Arial", Font.BOLD, 13));
+        headerPanel.add(monthYearLabel);
+
+        // Ajouter le panneau supérieur au centre
+        panelAccueil.add(headerPanel);
+
+        // Panneau pour afficher les jours
+        daysPanel = new JPanel();
+        daysPanel.setBackground(Color.WHITE);
+        daysPanel.setBounds(43, 120, 386, 363);
+        daysPanel.setLayout(new GridLayout(0, 7)); // 7 colonnes pour les jours
+        daysPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Bordure noire
+        panelAccueil.add(daysPanel);
+
+        // Trait vertical
+        JSeparator separatorVertical = new JSeparator();
+        separatorVertical.setOrientation(SwingConstants.VERTICAL);
+        separatorVertical.setForeground(Color.WHITE);
+        separatorVertical.setBackground(new Color(31, 151, 83));
+        separatorVertical.setBounds(470, 63, 11, 450);
+        panelAccueil.add(separatorVertical);
+
+        // Panneau pour le premier graphique
+        JPanel graphPanel1 = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Fond du graphique
+                g2d.setColor(Color.WHITE);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+
+                // Dessiner la grille
+                g2d.setColor(Color.LIGHT_GRAY);
+                for (int i = 1; i <= 4; i++) {
+                    int y = getHeight() - 50 - i * 40;
+                    g2d.drawLine(50, y, getWidth() - 50, y);
+                }
+
+                // Dessiner les valeurs sur l'axe Y
+                g2d.setColor(Color.BLACK);
+                g2d.setFont(new Font("Arial", Font.PLAIN, 12));
+                for (int i = 0; i <= 4; i++) {
+                    int y = getHeight() - 50 - i * 40;
+                    g2d.drawString(String.valueOf(i * 1000), 20, y + 5);
+                }
+
+                // Dessiner un graphique simple
+                g2d.setColor(new Color(31, 151, 83)); // Vert
+                g2d.fillRect(100, getHeight() - 110, 80, 70); // Barre 1
+                g2d.fillRect(250, getHeight() - 150, 80, 110); // Barre 2
+                g2d.fillRect(400, getHeight() - 90, 80, 50); // Barre 3
+
+                // Ajouter les étiquettes sous les barres (axe X)
+                g2d.setColor(Color.BLACK);
+                g2d.drawString("Jan", 120, getHeight() - 20);
+                g2d.drawString("Feb", 270, getHeight() - 20);
+                g2d.drawString("Mar", 420, getHeight() - 20);
+
+                // Titre du graphique
+                g2d.setFont(new Font("Arial", Font.BOLD, 14));
+                g2d.drawString("Revenus par Mois", getWidth() / 2 - 60, 15);
+            }
+        };
+        graphPanel1.setBounds(500, 80, 500, 203);
+        graphPanel1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Bordure noire
+        graphPanel1.setBackground(Color.WHITE);
+        panelAccueil.add(graphPanel1);
+
+        // Panneau pour le deuxième graphique
+        JPanel graphPanel2 = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Fond du graphique
+                g2d.setColor(Color.WHITE);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+
+                // Dessiner la grille
+                g2d.setColor(Color.LIGHT_GRAY);
+                for (int i = 1; i <= 4; i++) {
+                    int y = getHeight() - 50 - i * 40;
+                    g2d.drawLine(50, y, getWidth() - 50, y);
+                }
+
+                // Dessiner les valeurs sur l'axe Y
+                g2d.setColor(Color.BLACK);
+                g2d.setFont(new Font("Arial", Font.PLAIN, 12));
+                for (int i = 0; i <= 4; i++) {
+                    int y = getHeight() - 50 - i * 40;
+                    g2d.drawString(String.valueOf(i * 10), 20, y + 5);
+                }
+
+                // Dessiner un graphique simple
+                g2d.setColor(new Color(31, 151, 83)); // Vert
+                g2d.fillRect(150, getHeight() - 130, 80, 90); // Barre "Occupé"
+                g2d.setColor(Color.GRAY); // Gris clair pour "Non Occupé"
+                g2d.fillRect(350, getHeight() - 170, 80, 130); // Barre "Non Occupé"
+
+                // Ajouter les étiquettes sous les barres (axe X)
+                g2d.setColor(Color.BLACK);
+                g2d.drawString("Occupé", 160, getHeight() - 20);
+                g2d.drawString("Non Occupé", 360, getHeight() - 20);
+
+
+                // Titre du graphique
+                g2d.setFont(new Font("Arial", Font.BOLD, 14));
+                g2d.drawString("Pourcentage de Biens Occupés vs Non Occupés", 60, 15);
+            }
+        };
+        graphPanel2.setBounds(500, 287, 500, 203);
+        graphPanel2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Bordure noire
+        graphPanel2.setBackground(Color.WHITE);
+        panelAccueil.add(graphPanel2);
+
+        // Gestionnaires d'événements pour les boutons de navigation
+        prevButton.addActionListener(e -> {
+            currentDate = currentDate.minusMonths(1);
+            updateCalendar();
+        });
+
+        nextButton.addActionListener(e -> {
+            currentDate = currentDate.plusMonths(1);
+            updateCalendar();
+        });
+
+        // Initialiser le calendrier
+        updateCalendar();
 
         return panelAccueil;
+    }
+
+    private void updateCalendar() {
+        YearMonth yearMonth = YearMonth.of(currentDate.getYear(), currentDate.getMonth());
+        monthYearLabel.setText(yearMonth.getMonth().name() + " " + yearMonth.getYear());
+
+        daysPanel.removeAll();
+
+        String[] daysOfWeek = {"Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"};
+        for (String day : daysOfWeek) {
+            JLabel dayLabel = new JLabel(day, JLabel.CENTER);
+            dayLabel.setFont(new Font("Arial", Font.BOLD, 12));
+            daysPanel.add(dayLabel);
+        }
+
+        LocalDate firstDayOfMonth = yearMonth.atDay(1);
+        int dayOfWeekValue = firstDayOfMonth.getDayOfWeek().getValue() % 7;
+        for (int i = 0; i < dayOfWeekValue; i++) {
+            daysPanel.add(new JLabel(""));
+        }
+
+        int daysInMonth = yearMonth.lengthOfMonth();
+        for (int day = 1; day <= daysInMonth; day++) {
+            JButton dayButton = new JButton(String.valueOf(day));
+            dayButton.setFocusPainted(false);
+            dayButton.setBackground(Color.WHITE);
+            dayButton.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+            dayButton.setFont(new Font("Arial", Font.PLAIN, 12));
+
+            if (currentDate.getDayOfMonth() == day && LocalDate.now().getMonth() == yearMonth.getMonth()
+                    && LocalDate.now().getYear() == yearMonth.getYear()) {
+                dayButton.setBackground(new Color(31, 151, 83));
+                dayButton.setForeground(Color.WHITE);
+            }
+
+            daysPanel.add(dayButton);
+        }
+
+        daysPanel.revalidate();
+        daysPanel.repaint();
     }
 
     private JPanel createAssurancesPanel() throws SQLException {
