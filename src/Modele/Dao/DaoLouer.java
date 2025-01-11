@@ -61,6 +61,9 @@ public class DaoLouer extends DaoModele<Louer> implements Dao<Louer>{
 	    java.sql.Date dateDebut = curseur.getDate("date_Debut");
 	    String date_Debut = new java.text.SimpleDateFormat("dd/MM/yyyy").format(dateDebut);
 	    
+	    java.sql.Date dateSortie = curseur.getDate("date_Sortie");
+	    String date_Sortie = new java.text.SimpleDateFormat("dd/MM/yyyy").format(dateSortie);
+	    
 	    String bail = curseur.getString("bail");
 	    String etat_lieux = curseur.getString("etat_lieux");
 	    
@@ -69,6 +72,9 @@ public class DaoLouer extends DaoModele<Louer> implements Dao<Louer>{
 	    
 	    String loyePayer = curseur.getString("loyer_payer");
 	    int loye_Payer = Integer.parseInt(loyePayer);
+	    
+	    String loyerMensTTCString = curseur.getString("loyer_mens_ttc");
+	    double loyerMensTTC = Double.parseDouble(loyerMensTTCString);
 	    
 	    String provision_chargeMoisTTC = curseur.getString("provisions_chargesMois_TTC");
 	    double provision_chargeMois_TTC = Double.parseDouble(provision_chargeMoisTTC);
@@ -96,7 +102,7 @@ public class DaoLouer extends DaoModele<Louer> implements Dao<Louer>{
 	    DaoICC daoICC = new DaoICC(this.connexion);
 	    ICC icc = daoICC.findById(annee, trimestre);
 	    
-	    return new Louer(date_Debut, nb_Mois, loye_Payer, provision_chargeMois_TTC, caution_TTC, bail, etat_lieux, montant_Reel_Paye, locataire, icc, bien);
+	    return new Louer(date_Debut, date_Sortie, nb_Mois, loye_Payer, loyerMensTTC, provision_chargeMois_TTC, caution_TTC, bail, etat_lieux, montant_Reel_Paye, locataire, icc, bien);
 	}
 	
 	public static Iterateur<Louer> getIterateurLouer() {

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import Modele.Bien;
-import Modele.Logement;
 import Modele.Dao.Requetes.RequeteSelectBien;
 import Modele.Dao.Requetes.RequeteSelectBienById;
 
@@ -64,13 +63,8 @@ public class DaoBien extends DaoModele<Bien> implements Dao<Bien> {
 	    String ville = curseur.getString("ville");
 	    String type_Bien = curseur.getString("type_Bien");
 	    String codePostal = curseur.getString("codepostal");
-
-	    String ID_Logement = curseur.getString("ID_Logement");
 	    
-	    DaoLogement daoLogement = new DaoLogement(this.connexion);
-	    Logement logement = daoLogement.findById(ID_Logement);
-
-	    return new Bien(id_Bien, adresse, ville, type_Bien, codePostal, periode_Construction, logement);
+	    return new Bien(id_Bien, adresse, ville, type_Bien, codePostal, periode_Construction);
 	}
 	
 	public static Iterateur<Bien> getIterateurBien() {

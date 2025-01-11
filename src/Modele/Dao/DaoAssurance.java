@@ -63,9 +63,12 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 	    String numero_Police = curseur.getString("numero_police");
 	    String montantString = curseur.getString("montant");
 	    float montant = Float.parseFloat(montantString);
-
+	    
 	    String SIRET = curseur.getString("SIRET");
 	    String ID_Logement = curseur.getString("ID_Logement");
+	    
+	    String protectionJuridiqueString = curseur.getString("Protection_Juridique");
+	    int protectionJuridique = Integer.parseInt(protectionJuridiqueString);
 	    
 	    DaoLogement daoLogement = new DaoLogement(this.connexion);
 	    Logement logement = daoLogement.findById(ID_Logement);
@@ -74,7 +77,7 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 	    Entreprise entreprise = daoEntreprise.findById(SIRET);
 	    
 	    
-	    return new assurance(numero_Police, montant, date_échéance, logement, entreprise );
+	    return new assurance(numero_Police, montant, date_échéance, protectionJuridique, logement, entreprise );
 	}
 	
 	public static Iterateur<assurance> getIterateurAssurance() {

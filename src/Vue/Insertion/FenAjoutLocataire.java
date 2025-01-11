@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 
 import Controleur.Ajout.GestionFenAjoutLocataire;
 import Vue.RoundedButton;
+import javax.swing.JCheckBox;
 
 public class FenAjoutLocataire extends JInternalFrame {
 
@@ -19,12 +20,12 @@ public class FenAjoutLocataire extends JInternalFrame {
 	private JTextField textFieldMail;
 	private JTextField textFieldDateNaissance;
 	private JTextField textFieldTelephone;
-	private JTextField textFieldQuotite;
 	private GestionFenAjoutLocataire gestionClicFenAjoutLocataire;
 	private JTextField textFieldIDLocataire;
 	private JTextField textNom;
 	private JTextField textFieldPrenom;
     private FenAjoutLocation fenAjoutLocation; 
+    private JCheckBox checkColocataire;
 
 
 	/**
@@ -103,15 +104,6 @@ public class FenAjoutLocataire extends JInternalFrame {
 		textFieldTelephone.setColumns(10);
 		textFieldTelephone.setBounds(82, 252, 223, 19);
 		getContentPane().add(textFieldTelephone);
-		
-		JLabel lblQuotite = new JLabel("Quotite");
-		lblQuotite.setBounds(82, 413, 109, 13);
-		getContentPane().add(lblQuotite);
-		
-		textFieldQuotite = new JTextField();
-		textFieldQuotite.setColumns(10);
-		textFieldQuotite.setBounds(80, 428, 223, 19);
-		getContentPane().add(textFieldQuotite);
 		setBounds(200, 100, 423, 540);
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
@@ -123,6 +115,15 @@ public class FenAjoutLocataire extends JInternalFrame {
 		btnAjouter.addActionListener(this.gestionClicFenAjoutLocataire);
 		btnAjouter.setBounds(217, 468, 85, 21);
 		getContentPane().add(btnAjouter);
+		
+		checkColocataire = new JCheckBox("OUI");
+		checkColocataire.setBackground(new Color(31, 151, 83));
+		checkColocataire.setBounds(82, 419, 93, 21);
+		getContentPane().add(checkColocataire);
+		
+		JLabel lblColocataire = new JLabel("Colocataire");
+		lblColocataire.setBounds(82, 400, 109, 13);
+		getContentPane().add(lblColocataire);
 	}
 	
 	public FenAjoutLocation getFenAjoutLocation() {
@@ -138,9 +139,7 @@ public class FenAjoutLocataire extends JInternalFrame {
 	public String getTelephone() {
 		return textFieldTelephone.getText();
 	}
-	public String getQuotite() {
-		return textFieldQuotite.getText();
-	}
+
 	public String getIDLocataire() {
 		return textFieldIDLocataire.getText();
 	}
@@ -149,5 +148,9 @@ public class FenAjoutLocataire extends JInternalFrame {
 	}
 	public String getPrenom() {
 		return textFieldPrenom.getText();
+	}
+	
+	public Boolean getcheckLoyerPayer() {
+		return checkColocataire.isSelected();
 	}
 }

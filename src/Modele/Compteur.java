@@ -8,15 +8,15 @@ public class Compteur {
 	private int indexCompteur;
 	private String dateRelevé;
 	private Bien bien;
-	private Logement immeuble;
+	private Logement logement;
 
-	public Compteur(String idCompteur, String typeComp, int indexCompteur, String dateRelevé, Bien bien, Logement immeuble) {
+	public Compteur(String idCompteur, String typeComp, int indexCompteur, String dateRelevé, Bien bien, Logement logement) {
 		this.idCompteur = idCompteur;
 		this.typeComp = typeComp;
 		this.indexCompteur = indexCompteur;
 		this.dateRelevé = dateRelevé;
 		this.bien = bien;
-		this.immeuble = immeuble;
+		this.logement = logement;
 	}
 
 	public String getIdCompteur() {
@@ -52,11 +52,11 @@ public class Compteur {
 	}
 
 	public Logement getImmeuble() {
-		return immeuble;
+		return logement;
 	}
 
-	public void setImmeuble(Logement immeuble) {
-		this.immeuble = immeuble;
+	public void setImmeuble(Logement logement) {
+		this.logement = logement;
 	}
 
 	public String getDateRelevé() {
@@ -87,7 +87,7 @@ public class Compteur {
 	@Override
 	public String toString() {
 		return "Compteur [idCompteur=" + idCompteur + ", typeComp=" + typeComp + ", indexCompteur=" + indexCompteur
-				+ ", dateRelevé=" + dateRelevé + ", bien=" + bien + ", immeuble=" + immeuble + "]";
+				+ ", dateRelevé=" + dateRelevé + ", bien=" + bien + ", logement=" + logement + "]";
 	}
 	
 	

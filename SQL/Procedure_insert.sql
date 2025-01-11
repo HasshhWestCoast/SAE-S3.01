@@ -8,6 +8,21 @@ Nous avons créé  ces procedures pour privilégiér l'utilisation maximale de p
 évitant ainsi d'effectuer des insertions directes via JDBC ou DAO.
 */
 
+--------------------------BIEN-------------------------------------
+CREATE OR REPLACE PROCEDURE Inserer_Bien(
+    p_Id_Bien IN SAE_Bien.Id_Bien%TYPE,
+    p_Adresse IN SAE_Bien.Adresse%TYPE,
+    p_Ville IN SAE_Bien.Ville%TYPE,
+    p_Type_Bien IN SAE_Bien.Type_Bien%TYPE,
+    p_CodePostal IN SAE_Bien.CodePostal%TYPE,
+    p_Periode_Construction IN SAE_Bien.Periode_Construction%TYPE
+) AS
+BEGIN
+    INSERT INTO SAE_Bien (Id_Bien, Adresse, Ville, Type_Bien, CodePostal, Periode_Construction)
+    VALUES (p_Id_Bien, p_Adresse, p_Ville, p_Type_Bien, p_CodePostal, p_Periode_Construction);
+END;
+/
+
 --------------------------LOGEMENT-------------------------------------
 CREATE OR REPLACE PROCEDURE Inserer_Logement(
     p_Id_Logement IN SAE_Logement.Id_Logement%TYPE,
@@ -16,11 +31,12 @@ CREATE OR REPLACE PROCEDURE Inserer_Logement(
     p_Type_Logement IN SAE_Logement.Type_Logement%TYPE,
     p_Nb_Pieces IN SAE_Logement.Nb_Pieces%TYPE,
     p_Num_Etage IN SAE_Logement.Num_Etage%TYPE,
-    p_Garage IN SAE_Logement.Garage%TYPE 
+    p_Garage IN SAE_Logement.Garage%TYPE,
+    p_Id_bien IN SAE_Logement.Id_Bien%TYPE 
 ) AS
 BEGIN
-    INSERT INTO SAE_Logement (Id_Logement, Surface_Habitable, Date_Acquisition, Type_Logement, Nb_Pieces, Num_Etage, Garage)
-    VALUES (p_Id_Logement, p_Surface_Habitable, p_Date_Acquisition, p_Type_Logement, p_Nb_Pieces, p_Num_Etage, p_Garage);
+    INSERT INTO SAE_Logement (Id_Logement, Surface_Habitable, Date_Acquisition, Type_Logement, Nb_Pieces, Num_Etage, Garage, Id_Bien)
+    VALUES (p_Id_Logement, p_Surface_Habitable, p_Date_Acquisition, p_Type_Logement, p_Nb_Pieces, p_Num_Etage, p_Garage, p_Id_bien);
 END;
 /
 
@@ -81,22 +97,6 @@ BEGIN
 END;
 /
 
-
---------------------------BIEN-------------------------------------
-CREATE OR REPLACE PROCEDURE Inserer_Bien(
-    p_Id_Bien IN SAE_Bien.Id_Bien%TYPE,
-    p_Adresse IN SAE_Bien.Adresse%TYPE,
-    p_Ville IN SAE_Bien.Ville%TYPE,
-    p_Type_Bien IN SAE_Bien.Type_Bien%TYPE,
-    p_CodePostal IN SAE_Bien.CodePostal%TYPE,
-    p_Periode_Construction IN SAE_Bien.Periode_Construction%TYPE,
-    p_Id_Logement IN SAE_Bien.Id_Logement%TYPE
-) AS
-BEGIN
-    INSERT INTO SAE_Bien (Id_Bien, Adresse, Ville, Type_Bien, CodePostal, Periode_Construction, Id_Logement)
-    VALUES (p_Id_Bien, p_Adresse, p_Ville, p_Type_Bien, p_CodePostal, p_Periode_Construction, p_Id_Logement);
-END;
-/
 
 --------------------------DIAGNOSTIC-------------------------------------
 CREATE OR REPLACE PROCEDURE Inserer_Diagnostic(

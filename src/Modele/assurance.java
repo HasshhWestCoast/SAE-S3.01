@@ -7,13 +7,15 @@ public class assurance {
 	private String numeroPolice;
 	private float montant;
 	private String dateEcheance;
+	private int protectionJuridique;
 	private Logement logement;
 	private Entreprise entreprise;
 
-	public assurance(String numeroPolice, float montant, String dateEcheance, Logement logement, Entreprise entreprise) {
+	public assurance(String numeroPolice, float montant, String dateEcheance , int protectionJuridique, Logement logement, Entreprise entreprise) {
 		this.numeroPolice = numeroPolice;
 		this.montant = montant;
 		this.dateEcheance = dateEcheance;
+		this.protectionJuridique = protectionJuridique;
 		this.logement = logement;
 		this.entreprise = entreprise;
 	}
@@ -57,6 +59,14 @@ public class assurance {
 	public void setDateEcheance(String dateEcheance) {
 		this.dateEcheance = dateEcheance;
 	}
+	
+	public int getProtectionJuridique() {
+		return protectionJuridique;
+	}
+
+	public void setProtectionJuridique(int protectionJuridique) {
+		this.protectionJuridique = protectionJuridique;
+	}
 
 	@Override
 	public int hashCode() {
@@ -77,15 +87,7 @@ public class assurance {
 
 	@Override
 	public String toString() {
-		return "assurance [numeroPolice=" + numeroPolice + ", montant=" + montant + ", dateEcheance=" + dateEcheance
-				+ ", immeuble=" + logement + ", entreprise=" + entreprise + "]";
+		return "assurance [numeroPolice=" + numeroPolice + ", montant=" + montant + ", dateEcheance=" + dateEcheance + "protectionJuridique=" + protectionJuridique
+				+ ", immeuble=" + logement + ", entreprise=" + entreprise + ", protectionJuridique=" + protectionJuridique + "]";
 	}
-	
-	
-	
-	
-
-	
-
-
 }

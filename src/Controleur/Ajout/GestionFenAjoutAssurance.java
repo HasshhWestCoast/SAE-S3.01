@@ -93,14 +93,15 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 					try {
 						DefaultTableModel modeleTable = (DefaultTableModel) fenAC.getTabMesAssurances().getModel();
 
-						String NumeroPolice = (String) fenAjoutAssurance.getTextFieldNumeroPolice();					
-						String MontantString = (String) fenAjoutAssurance.getTextFieldMontant();
+						String NumeroPolice = (String) fenAjoutAssurance.getNumeroPolice();					
+						String MontantString = (String) fenAjoutAssurance.getMontant();
 						Float Montant = Float.parseFloat(MontantString);
-						String DateEcheance = (String) fenAjoutAssurance.getTextFieldDateEcheance();
-						
+						String DateEcheance = (String) fenAjoutAssurance.getDateEcheance();
+						String PorectionJuridiqueString = (String) fenAjoutAssurance.getMontant();
+						int PorectionJuridique = Integer.parseInt(PorectionJuridiqueString);
 						DaoAssurance daoAssurance = new DaoAssurance(CictOracleDataSource.getInstance().getConnection());
 						
-						assurance assu = new assurance(NumeroPolice, Montant, DateEcheance, logement, entreprise);
+						assurance assu = new assurance(NumeroPolice, Montant, DateEcheance, PorectionJuridique, logement, entreprise);
 						//daoAssurance.create(assu);
 						
 						String []EngrAssu = {NumeroPolice, MontantString, DateEcheance, entreprise.getSiret(), logement.getIdLogement()};
@@ -123,7 +124,7 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 					
 				case "Inserer E":
 					System.out.println("Vous AJOUTER une Entreprise depuis Assurance !");
-					FenAjoutEntreprise fenAjoutEntreprise = new FenAjoutEntreprise();
+					FenAjoutEntreprise fenAjoutEntreprise = new FenAjoutEntreprise(fenAjoutAssurance);
 	                fenAC.getLayeredPane().add(fenAjoutEntreprise);
 	                fenAjoutEntreprise.setVisible(true);
 	                fenAjoutEntreprise.moveToFront();

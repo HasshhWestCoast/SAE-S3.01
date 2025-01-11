@@ -10,16 +10,16 @@ public class Locataire {
 	private String telephone;
 	private String mail;
 	private String dateNaissance;
-	private double quotite;
+	private int colocataire;
 
-	public Locataire(String idLocataire, String nom, String prenom, String telephone, String mail, String dateNaissance, double quotite) {
+	public Locataire(String idLocataire, String nom, String prenom, String telephone, String mail, String dateNaissance, int colocataire) {
 		this.idLocataire = idLocataire;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.telephone = telephone;
 		this.mail = mail;
 		this.dateNaissance = dateNaissance;
-		this.quotite = quotite;
+		this.colocataire = colocataire;
 	}
 
 	public String getIdLocataire() {
@@ -70,12 +70,12 @@ public class Locataire {
 		this.dateNaissance = dateNaissance;
 	}
 
-	public double getQuotite() {
-		return quotite;
+	public int getColocataire() {
+		return colocataire;
 	}
 
-	public void setQuotite(float quotite) {
-		this.quotite = quotite;
+	public void setQuotite(int colocataire) {
+		this.colocataire = colocataire;
 	}
 
 	@Override
@@ -98,7 +98,7 @@ public class Locataire {
 	@Override
 	public String toString() {
 		return "Locataire [idLocataire=" + idLocataire + ", nom=" + nom + ", prenom=" + prenom + ", telephone="
-				+ telephone + ", mail=" + mail + ", dateNaissance=" + dateNaissance + ", quotite=" + quotite + "]";
+				+ telephone + ", mail=" + mail + ", dateNaissance=" + dateNaissance + ", quotite=" + colocataire + "]";
 	}
 	
 	

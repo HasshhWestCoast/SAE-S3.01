@@ -28,9 +28,7 @@ public class FenAjoutBien extends JInternalFrame {
 	private JTextField textAdresse;
 	private JTextField textFieldVille;
 	private JComboBox comboBoxTypeDeBien;
-	private JTable tabMesLogements;
 	private GestionFenAjoutBien gestionClicFenAjoutBien;
-	private JScrollPane scrollPane;
 
 
 	/**
@@ -111,7 +109,7 @@ public class FenAjoutBien extends JInternalFrame {
 		RoundedButton btnAjoutCompteur = new RoundedButton("Compteur", 20);
 		btnAjoutCompteur.addActionListener(gestionClicFenAjoutBien);
 		btnAjoutCompteur.setText("Ajout Compteur");
-		btnAjoutCompteur.setBounds(433, 419, 131, 21);
+		btnAjoutCompteur.setBounds(108, 453, 131, 21);
 		getContentPane().add(btnAjoutCompteur);
 		
 		textFieldCodePostale = new JTextField();
@@ -127,37 +125,7 @@ public class FenAjoutBien extends JInternalFrame {
 		textFieldPeriodeConstruction.setBounds(80, 370, 223, 19);
 		getContentPane().add(textFieldPeriodeConstruction);
 		textFieldPeriodeConstruction.setColumns(10);
-		
-		tabMesLogements = new JTable();
-		tabMesLogements.getSelectionModel().addListSelectionListener(this.gestionClicFenAjoutBien);
-		tabMesLogements.setModel(new DefaultTableModel(
-            new Object[][] { { null, null} },
-            new String[] { "Id Logement", "Date Acquisition" }
-        ));
-		
-		scrollPane = new JScrollPane(tabMesLogements);
-		scrollPane.setBorder(new LineBorder(new Color(109, 109, 109), 2));
-		scrollPane.setBounds(359, 80, 268, 134);
-		getContentPane().add(scrollPane);
-		
-		RoundedButton btnCharger = new RoundedButton("Charger", 20);
-		btnCharger.addActionListener(this.gestionClicFenAjoutBien);
-		btnCharger.setBounds(450, 234, 85, 21);
-		getContentPane().add(btnCharger);
-		
-		JLabel lblMesLogement = new JLabel("Mes Logements");
-		lblMesLogement.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMesLogement.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblMesLogement.setBackground(Color.WHITE);
-		lblMesLogement.setBounds(376, 26, 216, 21);
-		getContentPane().add(lblMesLogement);
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setForeground(Color.WHITE);
-		separator_1.setBackground(new Color(31, 151, 83));
-		separator_1.setBounds(396, 45, 183, 2);
-		getContentPane().add(separator_1);
-		setBounds(200, 100, 670, 540);
+		setBounds(200, 100, 410, 540);
 	}
 		
 	public String getTextFieldIdBien(){
@@ -182,9 +150,5 @@ public class FenAjoutBien extends JInternalFrame {
 	
 	public String getTextFieldPeriodeConstruction() {
 		return textFieldPeriodeConstruction.getText();
-	}
-	
-	public JTable getTabMesLogements() {
-		return tabMesLogements;
 	}
 }

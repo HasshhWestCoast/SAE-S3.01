@@ -45,12 +45,17 @@ public class GestionFenAjoutLocataire implements ActionListener{
 						String Telephone = (String) fenAjoutLoc.getTelephone();
 						String Mail = (String) fenAjoutLoc.getMail();
 						String DateDeNaissance = (String) fenAjoutLoc.getDateNaissance();
-						String QuotiteString = (String) fenAjoutLoc.getQuotite();
-						double Quotite = Double.parseDouble(QuotiteString);
+						boolean ColocataireString = (boolean) fenAjoutLoc.getcheckLoyerPayer();
+						int colocataire;
+						if (ColocataireString == false) {
+							colocataire = 0;
+						}else {
+							colocataire = 1;
+						}
 
 						DaoLocataire daoLocataire = new DaoLocataire(CictOracleDataSource.getInstance().getConnection());
 						
-						Locataire locataire = new Locataire(IdLocataire, Nom, Prenom, Telephone, Mail, DateDeNaissance, Quotite);
+						Locataire locataire = new Locataire(IdLocataire, Nom, Prenom, Telephone, Mail, DateDeNaissance, colocataire);
 						//daoLocataire.create(locataire);
 						
 						String []EngrLocataire = {IdLocataire, Nom};

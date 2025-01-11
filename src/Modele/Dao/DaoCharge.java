@@ -76,7 +76,7 @@ public class DaoCharge extends DaoModele<Charge> implements Dao<Charge>{
 	    DaoBien daoBien = new DaoBien(this.connexion);
 	    Bien bien = daoBien.findById(Id_Bien);
 	    
-	    return new Charge(idCharge, nom, montant_reel, montant_previsionnel, date_Charge, deductible, bien);
+	    return new Charge(idCharge, nom, montant_reel, montant_previsionnel, deductible, date_Charge, bien);
 	}
 	
 	public static Iterateur<Charge> getIterateurCharge() {

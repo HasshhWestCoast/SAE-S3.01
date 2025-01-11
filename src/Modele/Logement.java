@@ -10,15 +10,18 @@ public class Logement {
 	private String type_logement;
 	private int nbPieces;
 	private int numEtage;
-	
+	private int garage;
+	private Bien bien;
 
-	public Logement(String idLogement,double surfaceHabitable, String dateAcquisition,String type_logement,int nbPieces, int numEtage) {
+	public Logement(String idLogement,double surfaceHabitable, String dateAcquisition,String type_logement,int nbPieces, int numEtage, int garage, Bien bien) {
 		this.idLogement = idLogement;
 		this.surfaceHabitable=surfaceHabitable;
 		this.dateAcquisition = dateAcquisition;
 		this.type_logement = type_logement;
 		this.nbPieces = nbPieces;
 		this.numEtage = numEtage;
+		this.garage = garage;
+		this.bien = bien;
 	}
 
 
@@ -81,6 +84,22 @@ public class Logement {
 		this.numEtage = numEtage;
 	}
 
+	public int getGarage() {
+		return garage;
+	}
+
+
+	public void setGarage(int garage) {
+		this.garage = garage;
+	}
+	
+	public Bien getBien() {
+		return bien;
+	}
+
+	public void setBien(Bien bien) {
+		this.bien = bien;
+	}
 
 	@Override
 	public int hashCode() {
@@ -100,17 +119,12 @@ public class Logement {
 		return Objects.equals(idLogement, other.idLogement);
 	}
 
-
 	@Override
 	public String toString() {
 		return "Logement [idLogement=" + idLogement + ", surfaceHabitable=" + surfaceHabitable + ", dateAcquisition="
 				+ dateAcquisition + ", type_logement=" + type_logement + ", nbPieces=" + nbPieces + ", numEtage="
-				+ numEtage + "]";
+				+ numEtage +  "gargae="+garage + ", bien=" + "]";
 	}
-	
-	
 
-
-	
 
 }

@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 import javax.swing.JComboBox;
 import java.awt.Font;
 
@@ -15,6 +16,11 @@ import Vue.RoundedButton;
 
 import javax.swing.JSeparator;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JScrollPane;
+import java.awt.Component;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JCheckBox;
 
 public class FenAjoutLogement extends JInternalFrame {
 
@@ -26,6 +32,9 @@ public class FenAjoutLogement extends JInternalFrame {
 	private JComboBox comboBoxTypeDeLogement;
 	private JSpinner spinnerNbPiece;
 	private JSpinner spinnerNumEtage;
+	private JTable tabMesBiens;
+	private JCheckBox checkGarage;
+
 
 	/**
 	 * Create the frame.
@@ -118,10 +127,53 @@ public class FenAjoutLogement extends JInternalFrame {
 		
 		RoundedButton btnAjouterCompteur = new RoundedButton("Ajouter un compteur", 20);
 		btnAjouterCompteur.addActionListener(gestionFenAjoutLogement);
-		btnAjouterCompteur.setBounds(110, 370, 162, 21);
+		btnAjouterCompteur.setBounds(412, 419, 162, 21);
 		getContentPane().add(btnAjouterCompteur);
-		setBounds(300, 100, 423, 507);
+		
+		JLabel lblMesBiens = new JLabel("Mes Biens");
+		lblMesBiens.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMesBiens.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		lblMesBiens.setBackground(Color.WHITE);
+		lblMesBiens.setBounds(358, 27, 216, 21);
+		getContentPane().add(lblMesBiens);
+		
+		tabMesBiens = new JTable();
+		tabMesBiens.getSelectionModel().addListSelectionListener(this.gestionFenAjoutLogement);
+		tabMesBiens.setModel(new DefaultTableModel(
+            new Object[][] { { null, null} },
+            new String[] { "Id Bien", "Type Bien" }
+        ));
+		
+		JScrollPane scrollPane = new JScrollPane(tabMesBiens);
+		scrollPane.setBorder(new LineBorder(new Color(109, 109, 109), 2));
+		scrollPane.setBounds(357, 68, 268, 134);
+		getContentPane().add(scrollPane);
+		
+		JSeparator separatorMesBiens = new JSeparator();
+		separatorMesBiens.setForeground(Color.WHITE);
+		separatorMesBiens.setBackground(new Color(31, 151, 83));
+		separatorMesBiens.setBounds(372, 45, 188, 2);
+		getContentPane().add(separatorMesBiens);
+		
+		RoundedButton btnCharger = new RoundedButton("Charger", 20);
+		btnCharger.addActionListener(gestionFenAjoutLogement);
+		btnCharger.setBounds(450, 243, 85, 21);
+		getContentPane().add(btnCharger);
+		
+		checkGarage = new JCheckBox("OUI");
+		checkGarage.setBackground(new Color(31, 151, 83));
+		checkGarage.setBounds(80, 376, 93, 21);
+		getContentPane().add(checkGarage);
+		
+		JLabel lbGarage = new JLabel("Garage");
+		lbGarage.setBounds(80, 357, 112, 13);
+		getContentPane().add(lbGarage);
+		setBounds(300, 100, 651, 507);
 
+	}
+	
+	public Boolean getcheckGarage() {
+		return checkGarage.isSelected();
 	}
 	
 	public String getDateAcquisition() {
@@ -147,5 +199,8 @@ public class FenAjoutLogement extends JInternalFrame {
 	public String getNumEtage() {
 	    return spinnerNumEtage.getValue().toString();
 	}
-
+	
+	public JTable getTabMesBiens() {
+		return tabMesBiens;
+	}
 }

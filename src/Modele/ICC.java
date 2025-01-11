@@ -4,14 +4,24 @@ import java.util.Objects;
 
 public class ICC {
 
+	private int icc;
 	private String annee;
 	private String trimestre;
 	private double indice;
 
-	public ICC(String annee, String trimestre, double indice) {
+	public ICC(int ICC, String annee, String trimestre, double indice) {
+		this.icc = ICC;
 		this.annee = annee;
 		this.trimestre = trimestre;
 		this.indice = indice;
+	}
+	
+	public int getIcc() {
+		return icc;
+	}
+
+	public void setIcc(int icc) {
+		this.icc = icc;
 	}
 
 	public String getAnnee() {
@@ -39,8 +49,13 @@ public class ICC {
 	}
 
 	@Override
+	public String toString() {
+		return "ICC [icc=" + icc + ", annee=" + annee + ", trimestre=" + trimestre + ", indice=" + indice + "]";
+	}
+
+	@Override
 	public int hashCode() {
-		return Objects.hash(annee);
+		return Objects.hash(icc);
 	}
 
 	@Override
@@ -52,16 +67,6 @@ public class ICC {
 			return false;
 		}
 		ICC other = (ICC) obj;
-		return Objects.equals(annee, other.annee);
+		return icc == other.icc;
 	}
-
-	@Override
-	public String toString() {
-		return "ICC [annee=" + annee + ", trimestre=" + trimestre + ", indice=" + indice + "]";
-	}
-	
-	
-	
-	
-
 }
