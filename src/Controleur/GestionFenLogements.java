@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -108,6 +109,17 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 					
 				case "Ajouter des factures":
 					System.out.println("Vous AJOUTER DES FACTURES depuis Logement !");
+					
+					 // Vérification des conditions
+				    if (this.logement == null) {
+				        JOptionPane.showMessageDialog(
+				            this.fenAc,
+				            "Veuillez sélectionner un logement !",
+				            "Erreur",
+				            JOptionPane.ERROR_MESSAGE
+				        );
+				        return;
+				    }
 					FenAjoutFacture fenAddFacture = null;
 					
 					try {

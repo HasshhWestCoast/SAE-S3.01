@@ -24,6 +24,8 @@ import Vue.Insertion.FenAjoutBien;
 import Vue.Insertion.FenAjoutICC;
 import Vue.Insertion.FenAjoutLocataire;
 import Vue.Insertion.FenAjoutLocation;
+
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 
@@ -168,6 +170,35 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 				
 				case "Ajouter":
 					System.out.println("Vous AJOUTER une Location !");
+					
+					   if (this.fenAjoutLoc.getTextFieldDateDebut().isEmpty() ||
+						        this.fenAjoutLoc.getTextFieldNbMois().isEmpty() ||
+						        this.fenAjoutLoc.getTextFieldProvisionsCharge().isEmpty() ||
+						        this.fenAjoutLoc.getTextFieldMontantReel().isEmpty() ||
+						        this.fenAjoutLoc.getTextFieldCaution().isEmpty())
+						    {
+						        JOptionPane.showMessageDialog(
+						            this.fenAjoutLoc,
+						            "Veuillez remplir tous les champs requis !",
+						            "Erreur",
+						            JOptionPane.ERROR_MESSAGE
+						        );
+						        return;
+						    }
+					
+					
+					 // Vérification des conditions
+				    if (this.bien == null || this.icc == null || this.locataire == null) {
+				        JOptionPane.showMessageDialog(
+				            this.fenAjoutLoc,
+				            "Veuillez sélectionner au moins un champ par tableau !",
+				            "Erreur",
+				            JOptionPane.ERROR_MESSAGE
+				        );
+				        return;
+				    }
+				    
+				 
 					try {
 						DefaultTableModel modeleTable = (DefaultTableModel) fenAC.getTabMesLocations().getModel();
 

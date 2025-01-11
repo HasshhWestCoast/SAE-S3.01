@@ -109,46 +109,93 @@ public class FenAccueil extends JFrame {
         RoundedButton btnMesBiens = new RoundedButton("Biens", 20);
         btnMesBiens.addActionListener(e -> switchToPanel("Biens"));
         btnMesBiens.setFont(new Font("Sylfaen", Font.PLAIN, 17));
+        btnMesBiens.setBackground(new Color(63, 173, 108)
+ // Un peu plus sombre
+);
         panelMenuGauche.add(btnMesBiens);
 
         RoundedButton btnMesLocations = new RoundedButton("Locations", 20);
         btnMesLocations.addActionListener(e -> switchToPanel("Locations"));
         btnMesLocations.setFont(new Font("Sylfaen", Font.PLAIN, 17));
         panelMenuGauche.add(btnMesLocations);
+        btnMesLocations.setBackground(new Color(63, 173, 108));
 
         RoundedButton btnMesFactures = new RoundedButton("Factures", 20);
         btnMesFactures.setFont(new Font("Sylfaen", Font.PLAIN, 17));
         btnMesFactures.addActionListener(e -> switchToPanel("Factures"));
         panelMenuGauche.add(btnMesFactures);
+        btnMesFactures.setBackground(new Color(63, 173, 108));
 
         RoundedButton btnMesAssurances = new RoundedButton("Assurances", 20);
         btnMesAssurances.addActionListener(e -> switchToPanel("Assurances"));
         btnMesAssurances.setFont(new Font("Sylfaen", Font.PLAIN, 17));
+        btnMesAssurances.setBackground(new Color(63, 173, 108));
         panelMenuGauche.add(btnMesAssurances);
 
         RoundedButton btnMesDocuments = new RoundedButton("Documents", 20);
         btnMesDocuments.addActionListener(e -> switchToPanel("Documents"));
         btnMesDocuments.setFont(new Font("Sylfaen", Font.PLAIN, 17));
+        btnMesDocuments.setBackground(new Color(63, 173, 108));
         panelMenuGauche.add(btnMesDocuments);
 
         RoundedButton btnMesArchives = new RoundedButton("Archives", 20);
         btnMesArchives.addActionListener(e -> switchToPanel("Archives"));
         btnMesArchives.setFont(new Font("Sylfaen", Font.PLAIN, 17));
+        btnMesArchives.setBackground((new Color(63, 173, 108)));
         panelMenuGauche.add(btnMesArchives);
         
         RoundedButton btnMesLogements = new RoundedButton("Logements", 20);
         btnMesLogements.addActionListener(e -> switchToPanel("Logements"));
         btnMesLogements.setFont(new Font("Sylfaen", Font.PLAIN, 17));
+        btnMesLogements.setBackground(new Color(63, 173, 108));
         panelMenuGauche.add( btnMesLogements);
         
 
         JPanel panelMenuDroite = new JPanel();
         panelMenuDroite.setBackground(new Color(33, 153, 88));
         panelMenu.add(panelMenuDroite, BorderLayout.EAST);
+        
+     // Chargez l'image depuis les ressources
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Image/domicile_1.png"));
+
+        // Redimensionnez l'image
+        Image image = icon.getImage(); // Récupère l'image brute
+        Image scaledImage = image.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Taille réduite à 30x30 pixels
+        ImageIcon scaledIcon = new ImageIcon(scaledImage); // Crée un nouvel ImageIcon avec l'image redimensionnée
+
+        // Créez le JLabel avec l'image redimensionnée
+        JLabel lblImageMaison = new JLabel(scaledIcon);
+
+        // Ajoutez un `MouseListener` pour rediriger vers le panneau "Accueil" en cliquant
+        lblImageMaison.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                // Redirige vers le panneau "Accueil"
+                switchToPanel("Accueil");
+            }
+
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                lblImageMaison.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); // Change le curseur au survol
+            }
+        });
+
+        // Ajoutez le JLabel au panneau
+        panelMenuDroite.add(lblImageMaison);
+
+        
+        
+
+     
 
         RoundedButton btnSeDeconnecter = new RoundedButton("Se Déconnecter", 20);
+        btnSeDeconnecter.setText("Deconnexion");
         btnSeDeconnecter.setFont(new Font("Sylfaen", Font.PLAIN, 14));
+        btnSeDeconnecter.setBackground(new Color(63, 173, 108));
         panelMenuDroite.add(btnSeDeconnecter);
+        
+    
+
 
         // LayeredPane for switching panels
         layeredPane = new JLayeredPane();
@@ -218,7 +265,7 @@ public class FenAccueil extends JFrame {
         panelTitre.setBackground(new Color(240, 240, 240));
         JLabel lblMesAssurances = new JLabel("Mes Assurances");
         lblMesAssurances.setHorizontalAlignment(SwingConstants.CENTER);
-        lblMesAssurances.setFont(new Font("Sylfaen", Font.ITALIC, 28));
+        lblMesAssurances.setFont(new Font("Sylfaen", Font.BOLD, 28));
         lblMesAssurances.setForeground(new Color(31, 153, 88));
         lblMesAssurances.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Décalage de 10px vers le bas
         panelTitre.add(lblMesAssurances, BorderLayout.CENTER);
@@ -289,7 +336,7 @@ public class FenAccueil extends JFrame {
     	 JLabel lblLocations = new JLabel("Mes Locations");
  		lblLocations.setHorizontalAlignment(SwingConstants.CENTER);
  		lblLocations.setForeground(new Color(31, 153, 88));
- 		lblLocations.setFont(new Font("Sylfaen", Font.ITALIC, 28));
+ 		lblLocations.setFont(new Font("Sylfaen", Font.BOLD, 28));
  		lblLocations.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Décalage de 10px vers le bas
  		panelTitre.add(lblLocations, BorderLayout.CENTER);
  		
@@ -407,7 +454,7 @@ public class FenAccueil extends JFrame {
         JLabel lblFactures = new JLabel("Mes Factures");
         lblFactures.setHorizontalAlignment(SwingConstants.CENTER);
         lblFactures.setForeground(new Color(31, 153, 88));
-        lblFactures.setFont(new Font("Sylfaen", Font.ITALIC, 28));
+        lblFactures.setFont(new Font("Sylfaen", Font.BOLD, 28));
         lblFactures.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Décalage de 10px vers le bas
         panelTitre.add(lblFactures, BorderLayout.CENTER);
 
@@ -486,7 +533,7 @@ public class FenAccueil extends JFrame {
         JLabel lblFactures = new JLabel("Mes Biens ");
         lblFactures.setHorizontalAlignment(SwingConstants.CENTER);
         lblFactures.setForeground(new Color(31, 153, 88));
-        lblFactures.setFont(new Font("Sylfaen", Font.ITALIC, 28));
+        lblFactures.setFont(new Font("Sylfaen", Font.BOLD, 28));
         lblFactures.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Décalage de 10px vers le bas
         panelTitre.add(lblFactures, BorderLayout.CENTER);
 
@@ -573,7 +620,7 @@ public class FenAccueil extends JFrame {
         JLabel lblFactures = new JLabel("Mes Logements ");
         lblFactures.setHorizontalAlignment(SwingConstants.CENTER);
         lblFactures.setForeground(new Color(31, 153, 88));
-        lblFactures.setFont(new Font("Sylfaen", Font.ITALIC, 28));
+        lblFactures.setFont(new Font("Sylfaen", Font.BOLD, 28));
         lblFactures.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Décalage de 10px vers le bas
         panelTitre.add(lblFactures, BorderLayout.CENTER);
 
@@ -665,7 +712,7 @@ public class FenAccueil extends JFrame {
         JLabel lblFactures = new JLabel("Mes Archives ");
         lblFactures.setHorizontalAlignment(SwingConstants.CENTER);
         lblFactures.setForeground(new Color(31, 153, 88));
-        lblFactures.setFont(new Font("Sylfaen", Font.ITALIC, 28));
+        lblFactures.setFont(new Font("Sylfaen", Font.BOLD, 28));
         lblFactures.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Décalage de 10px vers le bas
         panelTitre.add(lblFactures, BorderLayout.CENTER);
 
@@ -764,7 +811,7 @@ public class FenAccueil extends JFrame {
         JLabel lbldocuments = new JLabel("Mes Documents");
         lbldocuments.setHorizontalAlignment(SwingConstants.CENTER);
         lbldocuments.setForeground(new Color(31, 153, 88));
-        lbldocuments.setFont(new Font("Sylfaen", Font.ITALIC, 28));
+        lbldocuments.setFont(new Font("Sylfaen", Font.BOLD, 28));
         lbldocuments.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Décalage de 10px vers le bas
         panelTitre.add(lbldocuments, BorderLayout.CENTER);
 

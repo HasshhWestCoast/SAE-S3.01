@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -60,6 +61,35 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 					
 				case "Ajouter":
 					System.out.println("Vous AJOUTER une donnée à Assurance !");
+					
+					   if (this.fenAjoutAssurance.getTextFieldNumeroPolice().isEmpty() ||
+						        this.fenAjoutAssurance.getTextFieldMontant().isEmpty() ||
+						        this.fenAjoutAssurance.getTextFieldDateEcheance().isEmpty())
+						    {
+						        JOptionPane.showMessageDialog(
+						            this.fenAjoutAssurance,
+						            "Veuillez remplir tous les champs requis !",
+						            "Erreur",
+						            JOptionPane.ERROR_MESSAGE
+						        );
+						        return;
+						    }
+					
+					
+					 // Vérification des conditions
+				    if (this.entreprise == null || this.logement == null) {
+				        JOptionPane.showMessageDialog(
+				            this.fenAjoutAssurance,
+				            "Veuillez sélectionner au moins un champ par tableau !",
+				            "Erreur",
+				            JOptionPane.ERROR_MESSAGE
+				        );
+				        return;
+				    }
+				    
+				 
+					
+					
 					try {
 						DefaultTableModel modeleTable = (DefaultTableModel) fenAC.getTabMesAssurances().getModel();
 

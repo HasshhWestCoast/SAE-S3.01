@@ -29,7 +29,7 @@ public class GestionFenConnexion implements ActionListener{
 				fenCn.dispose();
 				break;
 				
-			case "Connexion":
+			case "Se connecter":
 				System.out.println("bouton connecter");
 				
 				try {

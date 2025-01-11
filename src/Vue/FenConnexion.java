@@ -77,14 +77,14 @@ public class FenConnexion extends JFrame implements ActionListener {
 		contentPane.add(UserField);
 		UserField.setColumns(10);
 		
-		RoundedButton btnConnexion = new RoundedButton("Connexion", 20);
+		RoundedButton btnConnexion = new RoundedButton("Se connecter", 20);
 		btnConnexion.addActionListener(this.gestionClicFenConnexion);
 		btnConnexion.setBackground(new Color(31, 153, 88));
 		btnConnexion.setBounds(335, 315, 132, 31);
 		contentPane.add(btnConnexion);
 
 		
-		JLabel LabelConnexion = new JLabel("Connectez-Vous !");
+		JLabel LabelConnexion = new JLabel("Connexion ");
 		LabelConnexion.setHorizontalAlignment(SwingConstants.CENTER);
 		LabelConnexion.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		LabelConnexion.setForeground(new Color(31, 153, 88));
