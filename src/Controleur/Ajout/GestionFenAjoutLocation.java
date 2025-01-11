@@ -189,6 +189,9 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 					
 					 // Vérification des conditions
 				    if (this.bien == null || this.icc == null || this.locataire == null) {
+				    	System.out.println("locataire : " + locataire);
+						System.out.println("icc :" + icc);
+						System.out.println("bien : " + bien);
 				        JOptionPane.showMessageDialog(
 				            this.fenAjoutLoc,
 				            "Veuillez sélectionner au moins un champ par tableau !",
