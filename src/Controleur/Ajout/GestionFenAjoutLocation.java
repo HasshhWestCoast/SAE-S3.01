@@ -189,9 +189,7 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 					
 					 // Vérification des conditions
 				    if (this.bien == null || this.icc == null || this.locataire == null) {
-				    	System.out.println("locataire : " + locataire);
-						System.out.println("icc :" + icc);
-						System.out.println("bien : " + bien);
+
 				        JOptionPane.showMessageDialog(
 				            this.fenAjoutLoc,
 				            "Veuillez sélectionner au moins un champ par tableau !",
@@ -226,10 +224,7 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 							LoyerPayer = 1;
 						}
 						DaoLouer daoLouer = new DaoLouer(CictOracleDataSource.getInstance().getConnection());
-						
-						System.out.println("locataire : " + locataire);
-						System.out.println("icc :" + icc);
-						System.out.println("bien : " + bien);
+
 						Louer louer = new Louer(DateDebut, DateSortie, DateDebut, Integer.parseInt(NbMois), LoyerPayer, loyenMensTTC,ProvisionCharge, Caution, null, null, MontantReel, locataire, icc, bien);
 						//daoLouer.create(louer);
 						
@@ -269,7 +264,7 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 	                    bien = this.daoBien.findById(selectedTable.getValueAt(selectedRow, 0).toString());
 	                }else if (selectedTable == this.fenAjoutLoc.getTabMesICC()) {
 	                    System.out.println("Table ICC sélectionnée");
-	                    icc = this.daoICC.findById(selectedTable.getValueAt(selectedRow, 0).toString(), selectedTable.getValueAt(selectedRow, 1).toString());
+	                    icc = this.daoICC.findById(selectedTable.getValueAt(selectedRow, 0).toString());
 	                }				
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -290,14 +285,16 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 		DefaultTableModel modeleTableBien = (DefaultTableModel) this.fenAjoutLoc.getTabMesBiens().getModel();
 
 		modeleTableBien.setValueAt(bien.getIdBien(), numeroLigne, 0);
+		modeleTableBien.setValueAt(bien.getTypeBien(), numeroLigne, 1);
 	}
 	
 	public void ecrireLigneTableICC(ICC icc, int numeroLigne) {
 		DefaultTableModel modeleTableICC = (DefaultTableModel) this.fenAjoutLoc.getTabMesICC().getModel();
 
-		modeleTableICC.setValueAt(icc.getAnnee(), numeroLigne, 0);
-		modeleTableICC.setValueAt(icc.getTrimestre(), numeroLigne, 1);
-		modeleTableICC.setValueAt(icc.getIndice(), numeroLigne, 2);
+		modeleTableICC.setValueAt(icc.getIcc(), numeroLigne, 0);
+		modeleTableICC.setValueAt(icc.getAnnee(), numeroLigne, 1);
+		modeleTableICC.setValueAt(icc.getTrimestre(), numeroLigne, 2);
+		modeleTableICC.setValueAt(icc.getIndice(), numeroLigne, 3);
 
 	}
 }

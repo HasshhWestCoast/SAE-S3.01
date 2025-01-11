@@ -101,8 +101,8 @@ public class FenAjoutLocation extends JInternalFrame {
 		tabMesBiens = new JTable();
 		tabMesBiens.getSelectionModel().addListSelectionListener(this.gestionClicFenAjoutLoc);
 		tabMesBiens.setModel(new DefaultTableModel(
-            new Object[][] { { null} },
-            new String[] { "Id Bien" }
+            new Object[][] { { null, null} },
+            new String[] { "Id Bien", "Type Bien" }
         ));
         JScrollPane scrollPaneMesBiens = new JScrollPane(tabMesBiens);
         scrollPaneMesBiens.setBorder(new LineBorder(new Color(109, 109, 109), 2));
@@ -160,8 +160,8 @@ public class FenAjoutLocation extends JInternalFrame {
 		tabMesICC = new JTable();
 		tabMesICC.getSelectionModel().addListSelectionListener(this.gestionClicFenAjoutLoc);
 		tabMesICC.setModel(new DefaultTableModel(
-            new Object[][] { { null, null, null} },
-            new String[] { "Annee", "trimestre", "indice" }
+            new Object[][] { { null, null, null, null} },
+            new String[] { "IdIcc", "Annee", "trimestre", "indice" }
         ));
 		
 		JScrollPane scrollPaneMesICC = new JScrollPane(tabMesICC);
