@@ -1,52 +1,53 @@
--- Insertion des donnÃ©es dans la table SAE_Logement
-INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, TYPE_LOGEMENT, nb_pieces, num_etage, garage)
-VALUES ('LOG001', 100, TO_DATE('2020-01-01', 'YYYY-MM-DD'), 'Appartement', 3, 1, 1);
-
-INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage)
-VALUES ('LOG002', 120, TO_DATE('2019-06-15', 'YYYY-MM-DD'), 'Maison', 4, 0, 1);
-
-INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage)
-VALUES ('LOG003', 80, TO_DATE('2018-03-10', 'YYYY-MM-DD'), 'Maison', 5, 0, 0);
-
-INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage)
-VALUES ('LOG004', 150, TO_DATE('2021-12-01', 'YYYY-MM-DD'), 'Maison', 6, 0, 1);
-
-INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage)
-VALUES ('LOG005', 200, TO_DATE('2022-05-20', 'YYYY-MM-DD'), 'Maison', 5, 0, 1);
-
-INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage)
-VALUES ('LOG006', 90, TO_DATE('2017-11-11', 'YYYY-MM-DD'), 'Appartement', 2, 1, 0);
-
-INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage)
-VALUES ('LOG007', 110, TO_DATE('2016-04-04', 'YYYY-MM-DD'), 'Maison', 4, 0, 1);
-
-INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage)
-VALUES ('LOG008', 70, TO_DATE('2015-08-15', 'YYYY-MM-DD'), 'Appartement', 2, 2, 0);
-
 -- Insertion des données dans la table SAE_Bien
-INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction, Id_Logement)
-VALUES ('BIEN001', '10 Rue du Soleil', 'Paris', 'Immeuble', '75001', '1990-2000', 'LOG001');
+INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction)
+VALUES ('BIEN001', '10 Rue du Soleil', 'Paris', 'Immeuble', '75001', '1990-2000');
 
-INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction, Id_Logement)
-VALUES ('BIEN002', '15 Avenue des Lilas', 'Lyon', 'Maison', '69002', '2000-2010', 'LOG002');
+INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction)
+VALUES ('BIEN002', '15 Avenue des Lilas', 'Lyon', 'Maison', '69002', '2000-2010');
 
-INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction, Id_Logement)
-VALUES ('BIEN003', '20 Boulevard des Roses', 'Toulouse', 'Garage', '31000', '1980-1990', 'LOG003');
+INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction)
+VALUES ('BIEN003', '20 Boulevard des Roses', 'Toulouse', 'Garage', '31000', '1980-1990');
 
-INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction, Id_Logement)
-VALUES ('BIEN004', '5 Place de l''Étoile', 'Marseille', 'Maison', '13000', '2010-2020', 'LOG004');
+INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction)
+VALUES ('BIEN004', '5 Place de l''Étoile', 'Marseille', 'Maison', '13000', '2010-2020');
 
-INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction, Id_Logement)
-VALUES ('BIEN005', '8 Rue de la Paix', 'Lille', 'Garage', '59000', '1990-2000', 'LOG005');
+INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction )
+VALUES ('BIEN005', '8 Rue de la Paix', 'Lille', 'Garage', '59000', '1990-2000' );
 
-INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction, Id_Logement)
-VALUES ('BIEN006', '12 Quai du Rhône', 'Strasbourg', 'Immeuble', '67000', '1980-1990', 'LOG006');
+INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction)
+VALUES ('BIEN006', '12 Quai du Rhône', 'Strasbourg', 'Immeuble', '67000', '1980-1990' );
 
-INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction, Id_Logement)
-VALUES ('BIEN007', '3 Allée des Pins', 'Bordeaux', 'Maison', '33000', '2000-2010', 'LOG007');
+INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction)
+VALUES ('BIEN007', '3 Allée des Pins', 'Bordeaux', 'Maison', '33000', '2000-2010');
 
-INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction, Id_Logement)
-VALUES ('BIEN008', '7 Rue des Fleurs', 'Nantes', 'Immeuble', '44000', '2010-2020', 'LOG008');
+INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction)
+VALUES ('BIEN008', '7 Rue des Fleurs', 'Nantes', 'Immeuble', '44000', '2010-2020');
+
+-- Insertion des donnÃ©es dans la table SAE_Logement
+INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, TYPE_LOGEMENT, nb_pieces, num_etage, garage, Id_Bien)
+VALUES ('LOG001', 100, TO_DATE('2020-01-01', 'YYYY-MM-DD'), 'Appartement', 3, 1, 1, 'BIEN001');
+
+INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage, Id_Bien)
+VALUES ('LOG002', 120, TO_DATE('2019-06-15', 'YYYY-MM-DD'), 'Maison', 4, 0, 1, 'BIEN002');
+
+INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage, Id_Bien)
+VALUES ('LOG003', 80, TO_DATE('2018-03-10', 'YYYY-MM-DD'), 'Maison', 5, 0, 0, 'BIEN003');
+
+INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage, Id_Bien)
+VALUES ('LOG004', 150, TO_DATE('2021-12-01', 'YYYY-MM-DD'), 'Maison', 6, 0, 1, 'BIEN004');
+
+INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage, Id_Bien)
+VALUES ('LOG005', 200, TO_DATE('2022-05-20', 'YYYY-MM-DD'), 'Maison', 5, 0, 1, 'BIEN005');
+
+INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage, Id_Bien)
+VALUES ('LOG006', 90, TO_DATE('2017-11-11', 'YYYY-MM-DD'), 'Appartement', 2, 1, 0, 'BIEN006');
+
+INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage, Id_Bien)
+VALUES ('LOG007', 110, TO_DATE('2016-04-04', 'YYYY-MM-DD'), 'Maison', 4, 0, 1, 'BIEN007');
+
+INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage, Id_Bien)
+VALUES ('LOG008', 70, TO_DATE('2015-08-15', 'YYYY-MM-DD'), 'Appartement', 2, 2, 0, 'BIEN008');
+
 
 -- Insertion des donnÃ©es dans la table SAE_Entreprise
 INSERT INTO SAE_Entreprise (SIRET, nom, adresse, codepostal, ville, mail, telephone, IBAN)

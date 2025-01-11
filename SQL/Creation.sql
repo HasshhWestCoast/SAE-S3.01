@@ -24,6 +24,18 @@ DROP SEQUENCE compteur_Diagnostic;
 CREATE SEQUENCE compteur_Impot START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE compteur_Diagnostic START WITH 1 INCREMENT BY 1;
 
+--------------------------BIEN-------------------------------------
+CREATE TABLE SAE_Bien(
+   Id_Bien VARCHAR2(30) CONSTRAINT SAE_pk_bien PRIMARY KEY,
+   adresse VARCHAR2(50) CONSTRAINT SAE_nn_log_adresse NOT NULL,
+   ville VARCHAR2(50) CONSTRAINT SAE_nn_log_ville NOT NULL,
+   type_bien VARCHAR2(30) CONSTRAINT SAE_nn_bien_type NOT NULL,
+   codepostal CHAR(5) CONSTRAINT SAE_nn_log_cp NOT NULL,
+   periode_construction VARCHAR2(15) CONSTRAINT SAE_nn_p_construction NOT NULL,
+   CONSTRAINT SAE_un_log_adresse UNIQUE(adresse, codepostal, ville),
+   CONSTRAINT SAE_ck_log_cp CHECK (REGEXP_LIKE(codepostal, '^[0-9]{5}$'))
+);
+
 --------------------------LOGEMENT-------------------------------------
 
 CREATE TABLE SAE_Logement(
@@ -34,6 +46,7 @@ CREATE TABLE SAE_Logement(
    nb_pieces INT CONSTRAINT SAE_nn_bien_nb_pieces NOT NULL,
    num_etage INT CONSTRAINT SAE_nn_bien_etage NOT NULL,
    garage NUMBER(1),
+   Id_Bien VARCHAR2(30) CONSTRAINT SAE_fk_bien_bien REFERENCES SAE_Bien(Id_Bien) NOT NULL,
    CONSTRAINT ck_garage_bol CHECK (garage IN (1,0))
 );
 
@@ -81,18 +94,7 @@ CREATE TABLE SAE_ICC (
    indice NUMBER CONSTRAINT SAE_nn_icc_indice NOT NULL
 );
 
---------------------------BIEN-------------------------------------
-CREATE TABLE SAE_Bien(
-   Id_Bien VARCHAR2(30) CONSTRAINT SAE_pk_bien PRIMARY KEY,
-   adresse VARCHAR2(50) CONSTRAINT SAE_nn_log_adresse NOT NULL,
-   ville VARCHAR2(50) CONSTRAINT SAE_nn_log_ville NOT NULL,
-   type_bien VARCHAR2(30) CONSTRAINT SAE_nn_bien_type NOT NULL,
-   codepostal CHAR(5) CONSTRAINT SAE_nn_log_cp NOT NULL,
-   periode_construction VARCHAR2(15) CONSTRAINT SAE_nn_p_construction NOT NULL,
-   Id_Logement VARCHAR2(30) CONSTRAINT SAE_fk_bien_Logement REFERENCES SAE_Logement(Id_Logement) NOT NULL,
-   CONSTRAINT SAE_un_log_adresse UNIQUE(adresse, codepostal, ville),
-   CONSTRAINT SAE_ck_log_cp CHECK (REGEXP_LIKE(codepostal, '^[0-9]{5}$'))
-);
+
 
 --------------------------QUOTITE-------------------------------------
 
