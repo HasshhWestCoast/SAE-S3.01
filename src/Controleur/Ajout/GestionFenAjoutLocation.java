@@ -175,7 +175,9 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 						        this.fenAjoutLoc.getTextFieldNbMois().isEmpty() ||
 						        this.fenAjoutLoc.getTextFieldProvisionsCharge().isEmpty() ||
 						        this.fenAjoutLoc.getTextFieldMontantReel().isEmpty() ||
-						        this.fenAjoutLoc.getTextFieldCaution().isEmpty())
+						        this.fenAjoutLoc.getTextFieldCaution().isEmpty() ||
+					   			this.fenAjoutLoc.getTextFieldBail().isEmpty() ||
+					   			this.fenAjoutLoc.getTextFieldEtatLieux().isEmpty())
 						    {
 						        JOptionPane.showMessageDialog(
 						            this.fenAjoutLoc,
@@ -214,6 +216,8 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 						double Caution = Double.parseDouble(CautionString);
 						String loyenMensTTCString = (String) fenAjoutLoc.getTextFieldLoyerMenssTTCt();
 						double loyenMensTTC = Double.parseDouble(loyenMensTTCString);
+						String bail = (String) fenAjoutLoc.getTextFieldBail();
+						String EtatLieux = (String) fenAjoutLoc.getTextFieldEtatLieux();
 						
 						
 						Boolean LoyerPayerString = (Boolean) fenAjoutLoc.getcheckLoyerPayer();
@@ -225,10 +229,10 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 						}
 						DaoLouer daoLouer = new DaoLouer(CictOracleDataSource.getInstance().getConnection());
 
-						Louer louer = new Louer(DateDebut, DateSortie, DateDebut, Integer.parseInt(NbMois), LoyerPayer, loyenMensTTC,ProvisionCharge, Caution, null, null, MontantReel, locataire, icc, bien);
-						//daoLouer.create(louer);
+						Louer louer = new Louer(DateDebut, DateSortie, DateDebut, Integer.parseInt(NbMois), LoyerPayer, loyenMensTTC,ProvisionCharge, Caution, bail, EtatLieux, MontantReel, locataire, icc, bien);
+						daoLouer.create(louer);
 						
-						String []EngrLocation = {locataire.getNom(), bien.getIdBien(), bien.getTypeBien(), DateDebut, null};
+						String []EngrLocation = {locataire.getNom(), bien.getIdBien(), bien.getTypeBien(), DateDebut, DateDebut};
 						modeleTable.addRow(EngrLocation);
 						
 						fenAjoutLoc.dispose();

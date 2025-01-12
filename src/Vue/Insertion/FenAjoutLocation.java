@@ -34,6 +34,8 @@ public class FenAjoutLocation extends JInternalFrame {
 	private JCheckBox checkLoyerPayer;
 	private JTextField textFieldDateSortie;
 	private JTextField textFieldLoyerMenssTTC;
+	private JTextField textFieldEtatLieux;
+	private JTextField textFieldBail;
 
 
 	/**
@@ -52,7 +54,7 @@ public class FenAjoutLocation extends JInternalFrame {
 		getContentPane().add(lblProvisionsCharges);
 		
 		JLabel lblNbMois = new JLabel("Nombre de Mois");
-		lblNbMois.setBounds(375, 162, 85, 13);
+		lblNbMois.setBounds(375, 162, 96, 13);
 		getContentPane().add(lblNbMois);
 		
 		JLabel lblDateDebut = new JLabel("Date début");
@@ -177,13 +179,14 @@ public class FenAjoutLocation extends JInternalFrame {
 		
 		RoundedButton btnAjouterEtatLieux = new RoundedButton("Ajouter Etat Lieux", 20);
 		btnAjouterEtatLieux.addActionListener(this.gestionClicFenAjoutLoc);
-		btnAjouterEtatLieux.setBounds(375, 488, 207, 21);
+		btnAjouterEtatLieux.setBounds(530, 488, 156, 21);
 		btnAjouterEtatLieux.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouterEtatLieux);
 		
 		RoundedButton btnAjouterBail = new RoundedButton("Ajouter Lieux", 20);
+		btnAjouterBail.setText("Ajouter Bail");
 		btnAjouterBail.addActionListener(this.gestionClicFenAjoutLoc);
-		btnAjouterBail.setBounds(375, 519, 207, 21);
+		btnAjouterBail.setBounds(530, 519, 156, 21);
 		btnAjouterBail.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouterBail);
 		
@@ -239,6 +242,16 @@ public class FenAjoutLocation extends JInternalFrame {
 		textFieldLoyerMenssTTC.setBounds(375, 402, 207, 19);
 		getContentPane().add(textFieldLoyerMenssTTC);
 		
+		textFieldEtatLieux = new JTextField();
+		textFieldEtatLieux.setColumns(10);
+		textFieldEtatLieux.setBounds(373, 489, 147, 19);
+		getContentPane().add(textFieldEtatLieux);
+		
+		textFieldBail = new JTextField();
+		textFieldBail.setColumns(10);
+		textFieldBail.setBounds(375, 520, 147, 19);
+		getContentPane().add(textFieldBail);
+		
 	}
 	
 	public JTable getTabMesLocataires() {
@@ -283,6 +296,14 @@ public class FenAjoutLocation extends JInternalFrame {
 	
 	public Boolean getcheckLoyerPayer() {
 		return checkLoyerPayer.isSelected();
+	}
+	
+	public String getTextFieldEtatLieux() {
+		return textFieldEtatLieux.getText();
+	}
+	
+	public String getTextFieldBail() {
+		return textFieldBail.getText();
 	}
 	
 	public JTable getSelectedTable(ListSelectionEvent e) {

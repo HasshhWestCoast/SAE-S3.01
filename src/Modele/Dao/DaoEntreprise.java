@@ -7,8 +7,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import Modele.Entreprise;
-import Modele.Dao.Requetes.RequeteSelectEntreprise;
-import Modele.Dao.Requetes.RequeteSelectEntrepriseById;
+import Modele.Dao.Requetes.Select.RequeteSelectEntreprise;
+import Modele.Dao.Requetes.Select.RequeteSelectEntrepriseById;
+import Modele.Dao.Requetes.Delete.RequeteDeleteEntreprise;
 import Modele.Dao.Requetes.Insert.RequeteInsertEntreprise;
 
 public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entreprise>{
@@ -20,8 +21,27 @@ public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entrepri
 	}
 
 	@Override
-	public void delete(Entreprise t) throws SQLException {		
+	public void delete(Entreprise entreprise) throws SQLException {
+	    String siret = entreprise.getSiret();
+
+	    DaoAssurance daoAssurance = new DaoAssurance(connexion);
+	    daoAssurance.deleteByEntreprise(siret);
+
+	    DaoFacture daoFacture = new DaoFacture(connexion);
+	    daoFacture.deleteByEntreprise(siret);
+
+	    RequeteDeleteEntreprise requete = new RequeteDeleteEntreprise();
+	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	        requete.parametres(prSt, entreprise);
+	        prSt.executeUpdate();
+	        System.out.println("Suppression réussie pour l'entreprise avec SIRET: " + siret);
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de la suppression de l'entreprise : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
+
 	
 	@Override
 	public void create(Entreprise entreprise) throws SQLException {

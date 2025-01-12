@@ -10,8 +10,9 @@ import Modele.Bien;
 import Modele.ICC;
 import Modele.Locataire;
 import Modele.Louer;
-import Modele.Dao.Requetes.RequeteSelectLouer;
-import Modele.Dao.Requetes.RequeteSelectLouerById;
+import Modele.Dao.Requetes.Select.RequeteSelectLouer;
+import Modele.Dao.Requetes.Select.RequeteSelectLouerById;
+import Modele.Dao.Requetes.Insert.RequeteInsertLouer;
 
 public class DaoLouer extends DaoModele<Louer> implements Dao<Louer>{
 
@@ -26,8 +27,18 @@ public class DaoLouer extends DaoModele<Louer> implements Dao<Louer>{
 	}
 	
 	@Override
-	public void create(Louer t) throws SQLException {		
+	public void create(Louer louer) throws SQLException {
+	    RequeteInsertLouer requete = new RequeteInsertLouer();
+	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	        requete.parametres(prSt, louer);
+	        prSt.executeUpdate();
+	        System.out.println("Insertion réussie pour le louer !");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de l'ajout d'une location : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void update(Louer t) throws SQLException {

@@ -133,7 +133,7 @@ public class FenAjoutAssurance extends JInternalFrame {
 		
 		RoundedButton btnInsererEntreprise = new RoundedButton("Inserer E", 20);
 		btnInsererEntreprise.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnInsererEntreprise.setBounds(104, 399, 107, 21);
+		btnInsererEntreprise.setBounds(33, 392, 107, 21);
 		getContentPane().add(btnInsererEntreprise);
 		
 		RoundedButton btnAnnulerAssurance = new RoundedButton("Annuler", 20);
@@ -154,6 +154,11 @@ public class FenAjoutAssurance extends JInternalFrame {
 		textFieldPretectionJuridique.setColumns(10);
 		textFieldPretectionJuridique.setBounds(489, 260, 207, 19);
 		getContentPane().add(textFieldPretectionJuridique);
+		
+		RoundedButton btnInsererSupprimer = new RoundedButton("Supprimer", 20);
+		btnInsererSupprimer.addActionListener(this.gestionClicFenAjoutEntreprise);
+		btnInsererSupprimer.setBounds(163, 392, 107, 21);
+		getContentPane().add(btnInsererSupprimer);
 	}
 	
 	public JTable getTabMesEntreprise() {
@@ -179,5 +184,4 @@ public class FenAjoutAssurance extends JInternalFrame {
 	public String getProtectionJuridique() {
 		return textFieldPretectionJuridique.getText();
 	}
-	
 }

@@ -1,7 +1,5 @@
 package Modele;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Charge {
@@ -13,8 +11,6 @@ public class Charge {
     private int deductible;
     private Bien bien; 
 
-    private List<Retenir> retenirList;
-
     public Charge(String idCharge, String nom, double montantReel, double montantPrevisionnel, int deductible, String dateCharge, Bien bien) {
         this.idCharge = idCharge;
         this.nom = nom;
@@ -23,7 +19,6 @@ public class Charge {
         this.montantPrevisionnel = montantPrevisionnel;
         this.deductible = deductible;
         this.bien = bien;
-        this.retenirList = new ArrayList<>();
     }
 
     public String getIdCharge() {
@@ -75,18 +70,6 @@ public class Charge {
 	public void setBien(Bien bien) {
 		this.bien = bien;
 	}
-	
-    public List<Retenir> getRetenirList() {
-        return retenirList;
-    }
-
-    public void setRetenirList(List<Retenir> retenirList) {
-        this.retenirList = retenirList;
-    }
-
-    public void addRetenir(Retenir retenir) {
-        this.retenirList.add(retenir);
-    }
 
 	public String getDateCharge() {
 		return dateCharge;
@@ -117,7 +100,7 @@ public class Charge {
 	public String toString() {
 		return "Charge [idCharge=" + idCharge + ", nom=" + nom + ", montantReel=" + montantReel + ", dateCharge="
 				+ dateCharge + ", montantPrevisionnel=" + montantPrevisionnel + ", deductible=" + deductible + ", bien="
-				+ bien + ", retenirList=" + retenirList + "]";
+				+ bien + "]";
 	}
 	
 	

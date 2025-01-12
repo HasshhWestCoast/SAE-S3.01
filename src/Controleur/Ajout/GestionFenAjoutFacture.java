@@ -57,6 +57,22 @@ public class GestionFenAjoutFacture implements ActionListener, ListSelectionList
 					System.out.println("Vous FERMEZ la page ajout Facture !");
 					this.fenAjoutFacture.dispose();
 					break;
+				
+				case "Supprimer":
+					int ligneSelectionnee = this.fenAjoutFacture.getTabMesEntreprise().getSelectedRow();
+
+					try {
+						String Siret = (String) this.fenAjoutFacture.getTabMesEntreprise().getValueAt(ligneSelectionnee, 0);
+						
+						Entreprise entreprise = this.daoEntreprise.findById(Siret);
+						this.daoEntreprise.delete(entreprise);
+						
+						modeleTable.removeRow(ligneSelectionnee);
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}
+					break;
 					
 				case "Ajouter":
 				    System.out.println("Vous AJOUTER une Facture !");
@@ -119,7 +135,7 @@ public class GestionFenAjoutFacture implements ActionListener, ListSelectionList
 				            Designation, MontantReelVerse, Montant, ImputableLocataire, AcompteVerse, logement, bien, entreprise
 				        );
 				        
-				        // daoFacture.create(facture);
+				        daoFacture.create(facture);
 				        
 				        String[] EngrFacture = {
 				            IdFacture, DateEmission, DatePaiement, ModePaiement, Designation,

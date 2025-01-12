@@ -47,6 +47,22 @@ public class GestionFenBien implements ActionListener, ListSelectionListener{
 					
 				case "Supprimer":
 					System.out.println("Vous SUPPRIMER une données dans Bien !");
+					
+					int ligneSelectionnee = this.fenAc.getTabMesBiens().getSelectedRow();
+
+					try {
+						String IdBien = (String) this.fenAc.getTabMesBiens().getValueAt(ligneSelectionnee, 0);
+						
+						Bien bien = this.daoBien.findById(IdBien);
+						
+						this.daoBien.delete(bien);
+						
+						modeleTable.removeRow(ligneSelectionnee);
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}
 					break;
 				
 				case "Archiver":

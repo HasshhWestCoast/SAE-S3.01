@@ -17,7 +17,6 @@ import Vue.RoundedButton;
 import javax.swing.JSeparator;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
-import java.awt.Component;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JCheckBox;
