@@ -9,6 +9,7 @@ import java.util.List;
 import Modele.ICC;
 import Modele.Dao.Requetes.RequeteSelectICC;
 import Modele.Dao.Requetes.RequeteSelectICCById;
+import Modele.Dao.Requetes.Insert.RequeteInsertICC;
 
 
 public class DaoICC extends DaoModele<ICC> implements Dao<ICC>{
@@ -24,8 +25,18 @@ public class DaoICC extends DaoModele<ICC> implements Dao<ICC>{
 	}
 	
 	@Override
-	public void create(ICC t) throws SQLException {		
+	public void create(ICC icc) throws SQLException {
+	    RequeteInsertICC requete = new RequeteInsertICC();
+	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	        requete.parametres(prSt, icc);
+	        prSt.executeUpdate();
+	        System.out.println("Insertion réussie pour l'ICC !");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de l'ajout d'un ICC : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void update(ICC t) throws SQLException {

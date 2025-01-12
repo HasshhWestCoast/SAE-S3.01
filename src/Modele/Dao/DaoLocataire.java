@@ -9,6 +9,7 @@ import java.util.List;
 import Modele.Locataire;
 import Modele.Dao.Requetes.RequeteSelectLocataire;
 import Modele.Dao.Requetes.RequeteSelectLocataireById;
+import Modele.Dao.Requetes.Insert.RequeteInsertLocataire;
 
 public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>{
 
@@ -23,8 +24,18 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 	}
 	
 	@Override
-	public void create(Locataire t) throws SQLException {		
+	public void create(Locataire locataire) throws SQLException {
+	    RequeteInsertLocataire requete = new RequeteInsertLocataire();
+	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	        requete.parametres(prSt, locataire);
+	        prSt.executeUpdate();
+	        System.out.println("Insertion réussie pour le locataire !");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de l'ajout du locataire : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void update(Locataire t) throws SQLException {

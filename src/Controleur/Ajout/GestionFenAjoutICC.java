@@ -49,7 +49,7 @@ public class GestionFenAjoutICC implements ActionListener{
 						DaoICC daoICC = new DaoICC(CictOracleDataSource.getInstance().getConnection());
 						
 						ICC icc = new ICC(Idicc, annee, trimestre, indice);
-						//daoICC.create(icc);
+						daoICC.create(icc);
 						
 						String []EngrICC = {iccString, annee, trimestre, indiceString};
 						modeleTableIcc.addRow(EngrICC);

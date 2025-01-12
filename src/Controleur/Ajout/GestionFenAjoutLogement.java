@@ -130,7 +130,7 @@ public class GestionFenAjoutLogement implements ActionListener, ListSelectionLis
 						
 						System.out.println("bien trouvé : " + bien);
 						Logement logement = new Logement(IdLogement, SurfaceHabitable, DateAcquisition, TypeDeLogement, NbPiece, NumEtage, garage,bien);
-						//daoLogement.create(logement);
+						daoLogement.create(logement);
 						
 						String []EngrLogement = {IdLogement, SurfaceHabitableString, DateAcquisition, TypeDeLogement, NbPieceString, NumEtageString};
 						modeleTable.addRow(EngrLogement);

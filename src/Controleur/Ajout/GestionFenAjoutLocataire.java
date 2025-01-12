@@ -56,7 +56,7 @@ public class GestionFenAjoutLocataire implements ActionListener{
 						DaoLocataire daoLocataire = new DaoLocataire(CictOracleDataSource.getInstance().getConnection());
 						
 						Locataire locataire = new Locataire(IdLocataire, Nom, Prenom, Telephone, Mail, DateDeNaissance, colocataire);
-						//daoLocataire.create(locataire);
+						daoLocataire.create(locataire);
 						
 						String []EngrLocataire = {IdLocataire, Nom};
 						modeleTableLocataire.addRow(EngrLocataire);

@@ -119,7 +119,7 @@ public class GestionFenAjoutFacture implements ActionListener, ListSelectionList
 				            Designation, MontantReelVerse, Montant, ImputableLocataire, AcompteVerse, logement, bien, entreprise
 				        );
 				        
-				        // daoFacture.create(facture);
+				        daoFacture.create(facture);
 				        
 				        String[] EngrFacture = {
 				            IdFacture, DateEmission, DatePaiement, ModePaiement, Designation,

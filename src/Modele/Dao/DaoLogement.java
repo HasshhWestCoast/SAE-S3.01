@@ -10,6 +10,7 @@ import Modele.Bien;
 import Modele.Logement;
 import Modele.Dao.Requetes.RequeteSelectLogement;
 import Modele.Dao.Requetes.RequeteSelectLogementById;
+import Modele.Dao.Requetes.Insert.RequeteInsertLogement;
 
 public class DaoLogement extends DaoModele<Logement> implements Dao<Logement>{
 
@@ -24,8 +25,18 @@ public class DaoLogement extends DaoModele<Logement> implements Dao<Logement>{
 	}
 	
 	@Override
-	public void create(Logement t) throws SQLException {		
+	public void create(Logement logement) throws SQLException {
+	    RequeteInsertLogement requete = new RequeteInsertLogement();
+	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	        requete.parametres(prSt, logement);
+	        prSt.executeUpdate();
+	        System.out.println("Insertion réussie pour le logement !");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de l'ajout d'un logement : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void update(Logement t) throws SQLException {

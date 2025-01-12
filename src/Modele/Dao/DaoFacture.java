@@ -12,6 +12,7 @@ import Modele.Facture;
 import Modele.Logement;
 import Modele.Dao.Requetes.RequeteSelectFacture;
 import Modele.Dao.Requetes.RequeteSelectFactureById;
+import Modele.Dao.Requetes.Insert.RequeteInsertFacture;
 
 public class DaoFacture  extends DaoModele<Facture> implements Dao<Facture>{
 
@@ -26,8 +27,18 @@ public class DaoFacture  extends DaoModele<Facture> implements Dao<Facture>{
 	}
 	
 	@Override
-	public void create(Facture t) throws SQLException {		
+	public void create(Facture facture) throws SQLException {
+	    RequeteInsertFacture requete = new RequeteInsertFacture();
+	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	        requete.parametres(prSt, facture);
+	        prSt.executeUpdate();
+	        System.out.println("Insertion réussie pour la facture !");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de l'ajout d'une facture : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void update(Facture t) throws SQLException {

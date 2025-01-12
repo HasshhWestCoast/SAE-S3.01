@@ -9,6 +9,7 @@ import java.util.List;
 import Modele.Impot;
 import Modele.Dao.Requetes.RequeteSelectImpot;
 import Modele.Dao.Requetes.RequeteSelectImpotById;
+import Modele.Dao.Requetes.Insert.RequeteInsertImpot;
 
 public class DaoImpot extends DaoModele<Impot> implements Dao<Impot>{
 
@@ -23,8 +24,18 @@ public class DaoImpot extends DaoModele<Impot> implements Dao<Impot>{
 	}
 	
 	@Override
-	public void create(Impot t) throws SQLException {		
+	public void create(Impot impot) throws SQLException {
+	    RequeteInsertImpot requete = new RequeteInsertImpot();
+	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	        requete.parametres(prSt, impot);
+	        prSt.executeUpdate();
+	        System.out.println("Insertion réussie pour l'impôt !");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de l'ajout d'un impôt : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void update(Impot t) throws SQLException {

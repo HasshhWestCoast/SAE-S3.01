@@ -10,6 +10,7 @@ import Modele.Bien;
 import Modele.Diagnostic;
 import Modele.Dao.Requetes.RequeteSelectDiagnostic;
 import Modele.Dao.Requetes.RequeteSelectDiagnosticById;
+import Modele.Dao.Requetes.Insert.RequeteInsertDiagnostic;
 
 
 public class DaoDiagnostic  extends DaoModele<Diagnostic> implements Dao<Diagnostic>{
@@ -25,8 +26,18 @@ public class DaoDiagnostic  extends DaoModele<Diagnostic> implements Dao<Diagnos
 	}
 	
 	@Override
-	public void create(Diagnostic t) throws SQLException {		
+	public void create(Diagnostic diagnostic) throws SQLException {
+	    RequeteInsertDiagnostic requete = new RequeteInsertDiagnostic();
+	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	        requete.parametres(prSt, diagnostic);
+	        prSt.executeUpdate();
+	        System.out.println("Insertion réussie pour le diagnostic !");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de l'ajout d'un diagnostic : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void update(Diagnostic t) throws SQLException {
