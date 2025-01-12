@@ -785,7 +785,7 @@ public class FenAccueil extends JFrame {
             }
         ));
         JScrollPane scrollPaneBiens = new JScrollPane(tabMesBiens);
-        scrollPaneBiens.setBounds(46, 60, 658, 375);
+        scrollPaneBiens.setBounds(46, 60, 708, 375);
         scrollPaneBiens.setBorder(new LineBorder(new Color(31, 153, 88), 2));
         panelCentre.add(scrollPaneBiens);
 
@@ -796,38 +796,45 @@ public class FenAccueil extends JFrame {
 
         RoundedButton btnIArchiver = new RoundedButton("Archiver", 20);
         btnIArchiver.addActionListener(this.gestionClicBien);
-        btnIArchiver.setBounds(255, 11, 85, 23);
+        btnIArchiver.setBounds(347, 11, 85, 23);
+        btnIArchiver.setBackground(new Color(33, 153, 88));
         panel.add(btnIArchiver);
 
         RoundedButton btnModifier = new RoundedButton("Modifier", 20);
         btnModifier.addActionListener(this.gestionClicBien);
-        btnModifier.setBounds(364, 11, 96, 23);
+        btnModifier.setBounds(465, 11, 96, 23);
+        btnModifier.setBackground(new Color(33, 153, 88));
         panel.add(btnModifier);
 
         RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
         btnSupprimer.addActionListener(this.gestionClicBien);
-        btnSupprimer.setBounds(480, 11, 96, 23);
+        btnSupprimer.setBounds(597, 11, 96, 23);
+        btnSupprimer.setBackground(new Color(33, 153, 88));
         panel.add(btnSupprimer);
         
         RoundedButton btnCharger = new RoundedButton("Charger", 20);
         btnCharger.addActionListener(this.gestionClicBien);
-        btnCharger.setBounds(157, 11, 85, 23);
+        btnCharger.setBounds(221, 11, 85, 23);
+        btnCharger.setBackground(new Color(33, 153, 88));
         panel.add(btnCharger);
         
         // Buttons
         RoundedButton btnAjouterUnBien = new RoundedButton("Ajouter un bien", 20);
         btnAjouterUnBien.addActionListener(this.gestionClicBien);
-        btnAjouterUnBien.setBounds(743, 198, 173, 23);
+        btnAjouterUnBien.setBounds(788, 187, 173, 23);
+        btnAjouterUnBien.setBackground(new Color(33, 153, 88));
         panelCentre.add(btnAjouterUnBien);
   
         RoundedButton btnAjouterFactures = new RoundedButton("Ajouter des factures", 20);
         btnAjouterFactures.addActionListener(this.gestionClicBien);
-        btnAjouterFactures.setBounds(743, 251, 173, 23);
+        btnAjouterFactures.setBounds(788, 240, 173, 23);
+        btnAjouterFactures.setBackground(new Color(33, 153, 88));
         panelCentre.add(btnAjouterFactures);
         
         RoundedButton btnAfficherCompteur = new RoundedButton("Afficher les compteurs", 20);
         btnAfficherCompteur.addActionListener(this.gestionClicBien);
-        btnAfficherCompteur.setBounds(743, 303, 173, 23);
+        btnAfficherCompteur.setBounds(788, 297, 173, 23);
+        btnAfficherCompteur.setBackground(new Color(33, 153, 88));
         panelCentre.add(btnAfficherCompteur);
         
         return panelBiens;

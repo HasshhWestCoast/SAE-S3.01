@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import Modele.Bien;
@@ -38,6 +39,22 @@ public class GestionFenAjoutBien implements ActionListener{
 					
 				case "Ajouter":
 					System.out.println("Vous AJOUTER un bien !");
+					
+					
+					  if (this.fenAjoutBien.getTextFieldIdBien().isEmpty() ||
+						        this.fenAjoutBien.getTextFieldAdresse().isEmpty() ||
+						        this.fenAjoutBien.getTextFieldVille().isEmpty() ||
+						        this.fenAjoutBien.getTextFieldCodePostale().isEmpty() ||
+						        this.fenAjoutBien.getTextFieldPeriodeConstruction().isEmpty())
+						    {
+						        JOptionPane.showMessageDialog(
+						            this.fenAjoutBien,
+						            "Veuillez remplir tous les champs requis !",
+						            "Erreur",
+						            JOptionPane.ERROR_MESSAGE
+						        );
+						        return;
+						    }
 					try {
 						DefaultTableModel modeleTable = (DefaultTableModel) fenAC.getTabMesBiens().getModel();
 
