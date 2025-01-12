@@ -38,6 +38,21 @@ public class GestionFenFacture implements ActionListener{
 					
 				case "Supprimer":
 					System.out.println("Vous SUPPRIMER une données dans Facture !");
+					int ligneSelectionnee = this.fenAc.getTabMesFactures().getSelectedRow();
+
+					try {
+						String IdFacture = (String) this.fenAc.getTabMesFactures().getValueAt(ligneSelectionnee, 0);
+						
+						Facture facture = this.daoFacture.findById(IdFacture);
+						
+						this.daoFacture.delete(facture);
+						
+						modeleTable.removeRow(ligneSelectionnee);
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}
 					break;
 					
 				case "Charger":
