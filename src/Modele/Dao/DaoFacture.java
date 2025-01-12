@@ -12,6 +12,7 @@ import Modele.Facture;
 import Modele.Logement;
 import Modele.Dao.Requetes.Select.RequeteSelectFacture;
 import Modele.Dao.Requetes.Select.RequeteSelectFactureById;
+import Modele.Dao.Requetes.Delete.RequeteDeleteFacture;
 import Modele.Dao.Requetes.Insert.RequeteInsertFacture;
 
 public class DaoFacture  extends DaoModele<Facture> implements Dao<Facture>{
@@ -23,8 +24,18 @@ public class DaoFacture  extends DaoModele<Facture> implements Dao<Facture>{
 	}
 
 	@Override
-	public void delete(Facture t) throws SQLException {		
+	public void delete(Facture facture) throws SQLException {
+	    RequeteDeleteFacture requete = new RequeteDeleteFacture();
+	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	        requete.parametres(prSt, facture);
+	        prSt.executeUpdate();
+	        System.out.println("Facture supprimée avec succès : " + facture.getIdFacture());
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de la suppression de la facture : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void create(Facture facture) throws SQLException {
@@ -115,16 +126,5 @@ public class DaoFacture  extends DaoModele<Facture> implements Dao<Facture>{
     public static void setIterateurFacture(Iterateur<Facture> iterateur) {
         it = iterateur;
     }
-
-	public void deleteByEntreprise(String siret) {
-		 String sql = "DELETE FROM Sae_Facture WHERE SIRET = ?";
-		    try (PreparedStatement prSt = connexion.prepareStatement(sql)) {
-		        prSt.setString(1, siret);
-		        prSt.executeUpdate();
-		        System.out.println("Suppression des facture associées à l'entreprise avec SIRET: " + siret);
-		    } catch (SQLException e) {
-		        System.err.println("Erreur lors de la suppression des assurances : " + e.getMessage());
-		    }
-	}
 }
 

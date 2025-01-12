@@ -23,7 +23,7 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 
 	@Override
 	public void delete(assurance t) throws SQLException {
-		// Fait depuis Facture Entreprise ou Logement
+		// Fait depuis Entreprise ou Logement
 	}
 	
 	@Override
@@ -97,16 +97,4 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
     public static void setIterateurAssurance(Iterateur<assurance> iterateur) {
         it = iterateur;
     }
-
-	public void deleteByEntreprise(String siret) throws SQLException {
-	    String sql = "DELETE FROM Sae_assurance WHERE SIRET = ?";
-	    try (PreparedStatement prSt = connexion.prepareStatement(sql)) {
-	        prSt.setString(1, siret);
-	        prSt.executeUpdate();
-	        System.out.println("Suppression des assurances associées à l'entreprise avec SIRET: " + siret);
-	    } catch (SQLException e) {
-	        System.err.println("Erreur lors de la suppression des assurances : " + e.getMessage());
-	        throw e;
-	    }
-	}
 }

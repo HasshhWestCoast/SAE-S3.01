@@ -9,8 +9,8 @@ import java.util.List;
 import Modele.Entreprise;
 import Modele.Dao.Requetes.Select.RequeteSelectEntreprise;
 import Modele.Dao.Requetes.Select.RequeteSelectEntrepriseById;
-import Modele.Dao.Requetes.Update.RequeteUpdateAssuranceDetachEntreprise;
 import Modele.Dao.Requetes.Update.RequeteUpdateFactureDetachEntreprise;
+import Modele.Dao.Requetes.Delete.RequeteDeleteAssuranceByEntreprise;
 import Modele.Dao.Requetes.Delete.RequeteDeleteEntreprise;
 import Modele.Dao.Requetes.Insert.RequeteInsertEntreprise;
 
@@ -32,12 +32,12 @@ public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entrepri
 	        System.out.println("Les factures liées à l'entreprise ont été détachées.");
 	    }
 
-	    // Étape 2 : Détacher les assurances associées
-	    RequeteUpdateAssuranceDetachEntreprise requeteUpdateAssurance = new RequeteUpdateAssuranceDetachEntreprise();
-	    try (PreparedStatement prStUpdateAssurance = connexion.prepareStatement(requeteUpdateAssurance.requete())) {
-	        requeteUpdateAssurance.parametres(prStUpdateAssurance, entreprise);
-	        prStUpdateAssurance.executeUpdate();
-	        System.out.println("Les assurances liées à l'entreprise ont été détachées.");
+	    // Étape 2 : Supprimer les assurances associées
+	    RequeteDeleteAssuranceByEntreprise requeteDeleteAssurance = new RequeteDeleteAssuranceByEntreprise();
+	    try (PreparedStatement prStDeleteAssurance = connexion.prepareStatement(requeteDeleteAssurance.requete())) {
+	        requeteDeleteAssurance.parametres(prStDeleteAssurance, entreprise);
+	        prStDeleteAssurance.executeUpdate();
+	        System.out.println("Les assurances liées à l'entreprise ont été supprimées.");
 	    }
 
 	    // Étape 3 : Supprimer l'entreprise
