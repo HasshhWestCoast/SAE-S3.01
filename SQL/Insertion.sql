@@ -6,13 +6,13 @@ INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_co
 VALUES ('BIEN002', '15 Avenue des Lilas', 'Lyon', 'Maison', '69002', '2000-2010');
 
 INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction)
-VALUES ('BIEN003', '20 Boulevard des Roses', 'Toulouse', 'Garage', '31000', '1980-1990');
+VALUES ('BIEN003', '20 Boulevard des Roses', 'Toulouse', 'Maison', '31000', '1980-1990');
 
 INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction)
 VALUES ('BIEN004', '5 Place de l''Étoile', 'Marseille', 'Maison', '13000', '2010-2020');
 
 INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction )
-VALUES ('BIEN005', '8 Rue de la Paix', 'Lille', 'Garage', '59000', '1990-2000' );
+VALUES ('BIEN005', '8 Rue de la Paix', 'Lille', 'Maison', '59000', '1990-2000' );
 
 INSERT INTO SAE_Bien (Id_Bien, adresse, ville, type_bien, codepostal, periode_construction)
 VALUES ('BIEN006', '12 Quai du Rhône', 'Strasbourg', 'Immeuble', '67000', '1980-1990' );
@@ -273,29 +273,29 @@ INSERT INTO SAE_ICC (ICC, annee, trimestre, indice)
 VALUES (376, '2024', 'Q4', 119.0);
 
 -- Insertion de données dans la table SAE_Louer
-INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN001', 'LOC001', TO_DATE('2023-01-01', 'YYYY-MM-DD'), TO_DATE('2023-12-01', 'YYYY-MM-DD'), NULL, 12, 150, 500, 800, 'Bail de location appartement', 'Bon état', 1800, 2130);
+INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
+VALUES ('BIEN001', 'LOC001', TO_DATE('2023-01-01', 'YYYY-MM-DD'), TO_DATE('2023-12-01', 'YYYY-MM-DD'), NULL, 12, 1, 150, 500, 800, 'Bail de location appartement', 'Bon état', 1800, 2130);
 
-INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN002', 'LOC002', TO_DATE('2023-02-01', 'YYYY-MM-DD'), TO_DATE('2025-02-01', 'YYYY-MM-DD'), NULL, 24, 200, 600, 1000, 'Bail de location maison', 'Bon état', 4800, 2130);
+INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
+VALUES ('BIEN002', 'LOC002', TO_DATE('2023-02-01', 'YYYY-MM-DD'), TO_DATE('2025-02-01', 'YYYY-MM-DD'), NULL, 24, 1, 200, 600, 1000, 'Bail de location maison', 'Bon état', 4800, 2130);
 
-INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN003', 'LOC003', TO_DATE('2023-03-01', 'YYYY-MM-DD'), TO_DATE('2024-09-01', 'YYYY-MM-DD'), NULL, 18, 120, 400, 600, 'Bail de location garage', 'Bon état', 2160, 3542);
+INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
+VALUES ('BIEN003', 'LOC003', TO_DATE('2023-03-01', 'YYYY-MM-DD'), TO_DATE('2024-09-01', 'YYYY-MM-DD'), NULL, 18, 1, 120, 400, 600, 'Bail de location garage', 'Bon état', 2160, 3542);
 
-INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN004', 'LOC004', TO_DATE('2023-04-01', 'YYYY-MM-DD'), TO_DATE('2024-04-01', 'YYYY-MM-DD'), NULL, 12, 180, 550, 1100, 'Bail de location maison', 'Bon état', 2160, 3542);
+INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
+VALUES ('BIEN004', 'LOC004', TO_DATE('2023-04-01', 'YYYY-MM-DD'), TO_DATE('2024-04-01', 'YYYY-MM-DD'), NULL, 12, 0, 180, 550, 1100, 'Bail de location maison', 'Bon état', 2160, 3542);
 
-INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN005', 'LOC005', TO_DATE('2023-05-01', 'YYYY-MM-DD'), TO_DATE('2023-11-01', 'YYYY-MM-DD'), NULL, 6, 130, 450, 750, 'Bail de location maison', 'Bon état', 780, 272);
+INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
+VALUES ('BIEN005', 'LOC005', TO_DATE('2023-05-01', 'YYYY-MM-DD'), TO_DATE('2023-11-01', 'YYYY-MM-DD'), NULL, 6, 0, 130, 450, 750, 'Bail de location maison', 'Bon état', 780, 272);
 
-INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN006', 'LOC006', TO_DATE('2023-06-01', 'YYYY-MM-DD'), TO_DATE('2024-06-01', 'YYYY-MM-DD'), NULL, 12, 150, 500, 900, 'Bail de location appartement', 'Bon état', 1800, 272);
+INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
+VALUES ('BIEN006', 'LOC006', TO_DATE('2023-06-01', 'YYYY-MM-DD'), TO_DATE('2024-06-01', 'YYYY-MM-DD'), NULL, 12, 0, 150, 500, 900, 'Bail de location appartement', 'Bon état', 1800, 272);
 
-INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN007', 'LOC007', TO_DATE('2023-07-01', 'YYYY-MM-DD'), TO_DATE('2025-07-01', 'YYYY-MM-DD'), NULL, 24, 160, 550, 950, 'Bail de location maison', 'Bon état', 3840, 2724);
+INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
+VALUES ('BIEN007', 'LOC007', TO_DATE('2023-07-01', 'YYYY-MM-DD'), TO_DATE('2025-07-01', 'YYYY-MM-DD'), NULL, 24, 0, 160, 550, 950, 'Bail de location maison', 'Bon état', 3840, 2724);
 
-INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN008', 'LOC008', TO_DATE('2023-08-01', 'YYYY-MM-DD'), TO_DATE('2024-08-01', 'YYYY-MM-DD'), NULL, 12, 180, 600, 1100, 'Bail de location appartement', 'Bon état', 2160, 2724);
+INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
+VALUES ('BIEN008', 'LOC008', TO_DATE('2023-08-01', 'YYYY-MM-DD'), TO_DATE('2024-08-01', 'YYYY-MM-DD'), NULL, 12, 0, 180, 600, 1100, 'Bail de location appartement', 'Bon état', 2160, 2724);
 
 -- Insertion de donnÃ©es dans la table SAE_Imposer
 INSERT INTO SAE_Imposer (Id_Bien, Id_Impot)

@@ -190,12 +190,21 @@ CREATE TABLE SAE_Charge(
 CREATE TABLE SAE_Compteur(
    Id_Compteur VARCHAR2(50) PRIMARY KEY,
    TypeComp VARCHAR2(50) CONSTRAINT SAE_nn_compteur_type NOT NULL,
-   indexCompteur INT,
-   date_releve DATE,
    Id_Logement VARCHAR2(30),
    Id_Bien VARCHAR2(30),
    CONSTRAINT SAE_fk_compteur_logement FOREIGN KEY(Id_Logement) REFERENCES SAE_Logement(Id_Logement),
    CONSTRAINT SAE_fk_compteur_bien FOREIGN KEY(Id_Bien) REFERENCES SAE_Bien(Id_Bien)
+);
+
+--------------------------RELEVE-------------------------------------
+
+CREATE TABLE SAE_Relevé(
+   Id_Compteur VARCHAR2(50),
+   date_relevé DATE,
+   indexCompteur INT NUMBER constraint nn_reeve_idexCom not null,
+   constraint pk_releve PRIMARY KEY(Id_Compteur, date_relevé),
+   constraint fk_releve_id_bien FOREIGN KEY(Id_Compteur) REFERENCES SAE_Compteur(Id_Compteur),
+   constraint uu_releve unique(Id_Compteur,date_relevé,indexComp)
 );
 
 --------------------------IMPOSER-------------------------------------
