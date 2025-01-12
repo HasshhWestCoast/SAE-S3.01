@@ -59,6 +59,22 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 					this.fenAjoutAssurance.dispose();
 					break;
 					
+				case "Supprimer":
+					int ligneSelectionnee = this.fenAjoutAssurance.getTabMesEntreprise().getSelectedRow();
+
+					try {
+						String Siret = (String) this.fenAjoutAssurance.getTabMesEntreprise().getValueAt(ligneSelectionnee, 0);
+						
+						Entreprise entreprise = this.daoEntreprise.findById(Siret);
+						this.daoEntreprise.delete(entreprise);
+						
+						modeleTableEntreprise.removeRow(ligneSelectionnee);
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}
+					break;
+					
 				case "Ajouter":
 					System.out.println("Vous AJOUTER une donnée à Assurance !");
 					
@@ -86,10 +102,7 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 				        );
 				        return;
 				    }
-				    
-				 
-					
-					
+
 					try {
 						DefaultTableModel modeleTable = (DefaultTableModel) fenAC.getTabMesAssurances().getModel();
 

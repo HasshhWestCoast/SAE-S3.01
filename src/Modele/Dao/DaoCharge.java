@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import Modele.Bien;
 import Modele.Charge;
-import Modele.Dao.Requetes.RequeteSelectCharge;
-import Modele.Dao.Requetes.RequeteSelectChargeById;
+import Modele.Dao.Requetes.Select.RequeteSelectCharge;
+import Modele.Dao.Requetes.Select.RequeteSelectChargeByBien;
+import Modele.Dao.Requetes.Select.RequeteSelectChargeById;
 import Modele.Dao.Requetes.Insert.RequeteInsertCharge;
 
 public class DaoCharge extends DaoModele<Charge> implements Dao<Charge>{
@@ -41,7 +43,25 @@ public class DaoCharge extends DaoModele<Charge> implements Dao<Charge>{
 	public void update(Charge t) throws SQLException {
 	}
 
-	
+	public List<Charge> findByBien(String idBien) throws SQLException {
+	    RequeteSelectChargeByBien requete = new RequeteSelectChargeByBien();
+	    DaoBien daoBien = new DaoBien(connexion);
+	   
+	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	        prSt.setString(1, idBien);
+	        ResultSet rs = prSt.executeQuery();
+	        List<Charge> charges = new ArrayList<>();
+	        
+	        while (rs.next()) {    	
+	        	java.sql.Date dateCharge = rs.getDate("date_charge");
+	    	    String date_Charge = new java.text.SimpleDateFormat("dd/MM/yyyy").format(dateCharge);
+	    	    	    	    	    	    	            
+	    	    charges.add(new Charge(rs.getString("id_charges"), rs.getString("nom"), rs.getDouble("montant_reel"), rs.getDouble("montant_previsionnel"), rs.getInt("deductible"), date_Charge, daoBien.findById(rs.getString("Id_Bien"))));
+	        }
+	        return charges;
+	    }
+	}
+
 	@Override
 	public Charge findById(String... id) throws SQLException {
 		RequeteSelectChargeById requete = new RequeteSelectChargeById();

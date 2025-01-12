@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import Modele.ICC;
-import Modele.Dao.Requetes.RequeteSelectICC;
-import Modele.Dao.Requetes.RequeteSelectICCById;
+import Modele.Dao.Requetes.Select.RequeteSelectICC;
+import Modele.Dao.Requetes.Select.RequeteSelectICCById;
 import Modele.Dao.Requetes.Insert.RequeteInsertICC;
 
 

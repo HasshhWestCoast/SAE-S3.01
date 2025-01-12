@@ -48,6 +48,21 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 					
 				case "Supprimer":
 					System.out.println("Vous SUPPRIMER une données dans Logement !");
+					int ligneSelectionnee = this.fenAc.getTabMesLogements().getSelectedRow();
+
+					try {
+						String IdLogement = (String) this.fenAc.getTabMesLogements().getValueAt(ligneSelectionnee, 0);
+						
+						Logement logement = this.daoLogement.findById(IdLogement);
+						
+						this.daoLogement.delete(logement);
+						
+						modeleTable.removeRow(ligneSelectionnee);
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}
 					break;
 				
 				case "Archiver":

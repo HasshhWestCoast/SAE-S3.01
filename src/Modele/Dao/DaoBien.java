@@ -7,8 +7,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 import Modele.Bien;
-import Modele.Dao.Requetes.RequeteSelectBien;
-import Modele.Dao.Requetes.RequeteSelectBienById;
+import Modele.Charge;
+import Modele.Facture;
+import Modele.Logement;
+import Modele.Louer;
+import Modele.Dao.Requetes.Select.RequeteSelectBien;
+import Modele.Dao.Requetes.Select.RequeteSelectBienById;
+import Modele.Dao.Requetes.Delete.RequeteDeleteBien;
 import Modele.Dao.Requetes.Insert.RequeteInsertBien;
 
 
@@ -21,8 +26,47 @@ public class DaoBien extends DaoModele<Bien> implements Dao<Bien> {
 	}
 
 	@Override
-	public void delete(Bien t) throws SQLException {		
+	public void delete(Bien bien) throws SQLException {
+	   /*
+		try {
+	        DaoCharge daoCharge = new DaoCharge(connexion);
+	        List<Charge> charges = daoCharge.findByBien(bien.getIdBien());
+	        for (Charge charge : charges) {
+	            daoCharge.delete(charge);
+	        }
+
+	        DaoLogement daoLogement = new DaoLogement(connexion);
+	        List<Logement> logements = daoLogement.findByBien(bien.getIdBien());
+	        for (Logement logement : logements) {
+	            daoLogement.delete(logement);
+	        }
+
+	        DaoFacture daoFacture = new DaoFacture(connexion);
+	        List<Facture> factures = daoFacture.findByBien(bien.getIdBien());
+	        for (Facture facture : factures) {
+	            daoFacture.delete(facture);
+	        }
+
+	        DaoLouer daoLouer = new DaoLouer(connexion);
+	        List<Louer> locations = daoLouer.findByBien(bien.getIdBien());
+	        for (Louer location : locations) {
+	            daoLouer.delete(location);
+	        }
+
+	        RequeteDeleteBien requete = new RequeteDeleteBien();
+	        try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	            requete.parametres(prSt, bien);
+	            prSt.executeUpdate();
+	            System.out.println("Suppression réussie pour le bien avec ID: " + bien.getIdBien());
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de la suppression du bien : " + e.getMessage());
+	        throw e;
+	    }
+	    */
 	}
+
+
 	
 	@Override
     public void create(Bien bien) throws SQLException {

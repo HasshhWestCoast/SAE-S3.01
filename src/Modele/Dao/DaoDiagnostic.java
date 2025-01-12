@@ -8,8 +8,8 @@ import java.util.List;
 
 import Modele.Bien;
 import Modele.Diagnostic;
-import Modele.Dao.Requetes.RequeteSelectDiagnostic;
-import Modele.Dao.Requetes.RequeteSelectDiagnosticById;
+import Modele.Dao.Requetes.Select.RequeteSelectDiagnostic;
+import Modele.Dao.Requetes.Select.RequeteSelectDiagnosticById;
 import Modele.Dao.Requetes.Insert.RequeteInsertDiagnostic;
 
 

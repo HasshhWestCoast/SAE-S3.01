@@ -9,9 +9,9 @@ import java.util.List;
 import Modele.Entreprise;
 import Modele.Logement;
 import Modele.assurance;
-import Modele.Dao.Requetes.RequeteSelectAssuranceById;
+import Modele.Dao.Requetes.Select.RequeteSelectAssuranceById;
 import Modele.Dao.Requetes.Insert.RequeteInsertAssurance;
-import Modele.Dao.Requetes.RequeteSelectAssurance;
+import Modele.Dao.Requetes.Select.RequeteSelectAssurance;
 
 public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>{
 
@@ -41,6 +41,17 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 	public void update(assurance t) throws SQLException {
 	}
 
+	public void deleteByEntreprise(String siret) throws SQLException {
+	    String sql = "DELETE FROM Sae_assurance WHERE SIRET = ?";
+	    try (PreparedStatement prSt = connexion.prepareStatement(sql)) {
+	        prSt.setString(1, siret);
+	        prSt.executeUpdate();
+	        System.out.println("Suppression des assurances associées à l'entreprise avec SIRET: " + siret);
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de la suppression des assurances : " + e.getMessage());
+	        throw e;
+	    }
+	}
 	
 	@Override
 	public assurance findById(String... id) throws SQLException {

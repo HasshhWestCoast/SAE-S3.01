@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import Modele.Locataire;
-import Modele.Dao.Requetes.RequeteSelectLocataire;
-import Modele.Dao.Requetes.RequeteSelectLocataireById;
+import Modele.Dao.Requetes.Select.RequeteSelectLocataire;
+import Modele.Dao.Requetes.Select.RequeteSelectLocataireById;
 import Modele.Dao.Requetes.Insert.RequeteInsertLocataire;
 
 public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>{

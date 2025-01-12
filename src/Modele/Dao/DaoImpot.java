@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import Modele.Impot;
-import Modele.Dao.Requetes.RequeteSelectImpot;
-import Modele.Dao.Requetes.RequeteSelectImpotById;
+import Modele.Dao.Requetes.Select.RequeteSelectImpot;
+import Modele.Dao.Requetes.Select.RequeteSelectImpotById;
 import Modele.Dao.Requetes.Insert.RequeteInsertImpot;
 
 public class DaoImpot extends DaoModele<Impot> implements Dao<Impot>{

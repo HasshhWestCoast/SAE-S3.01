@@ -10,8 +10,8 @@ import Modele.Bien;
 import Modele.Entreprise;
 import Modele.Facture;
 import Modele.Logement;
-import Modele.Dao.Requetes.RequeteSelectFacture;
-import Modele.Dao.Requetes.RequeteSelectFactureById;
+import Modele.Dao.Requetes.Select.RequeteSelectFacture;
+import Modele.Dao.Requetes.Select.RequeteSelectFactureById;
 import Modele.Dao.Requetes.Insert.RequeteInsertFacture;
 
 public class DaoFacture  extends DaoModele<Facture> implements Dao<Facture>{
@@ -115,5 +115,16 @@ public class DaoFacture  extends DaoModele<Facture> implements Dao<Facture>{
     public static void setIterateurFacture(Iterateur<Facture> iterateur) {
         it = iterateur;
     }
+
+	public void deleteByEntreprise(String siret) {
+		 String sql = "DELETE FROM Sae_Facture WHERE SIRET = ?";
+		    try (PreparedStatement prSt = connexion.prepareStatement(sql)) {
+		        prSt.setString(1, siret);
+		        prSt.executeUpdate();
+		        System.out.println("Suppression des facture associées à l'entreprise avec SIRET: " + siret);
+		    } catch (SQLException e) {
+		        System.err.println("Erreur lors de la suppression des assurances : " + e.getMessage());
+		    }
+	}
 }
 

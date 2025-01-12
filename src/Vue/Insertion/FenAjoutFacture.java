@@ -174,7 +174,7 @@ public class FenAjoutFacture extends JInternalFrame {
 		
 		RoundedButton btnInserer = new RoundedButton("Inserer", 20);
 		btnInserer.addActionListener(this.gestionClicFenAjoutFacture);
-		btnInserer.setBounds(789, 239, 85, 21);
+		btnInserer.setBounds(828, 239, 85, 21);
 		getContentPane().add(btnInserer);
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
@@ -198,8 +198,13 @@ public class FenAjoutFacture extends JInternalFrame {
 		
 		RoundedButton btnCharger = new RoundedButton("Charger", 20);
 		btnCharger.addActionListener(this.gestionClicFenAjoutFacture);
-		btnCharger.setBounds(669, 239, 85, 21);
+		btnCharger.setBounds(738, 239, 85, 21);
 		getContentPane().add(btnCharger);
+		
+		RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
+		btnSupprimer.addActionListener(this.gestionClicFenAjoutFacture);
+		btnSupprimer.setBounds(634, 239, 96, 21);
+		getContentPane().add(btnSupprimer);
 	}
 	
 	public JTable getTabMesEntreprise() {

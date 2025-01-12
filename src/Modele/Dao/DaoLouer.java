@@ -10,8 +10,8 @@ import Modele.Bien;
 import Modele.ICC;
 import Modele.Locataire;
 import Modele.Louer;
-import Modele.Dao.Requetes.RequeteSelectLouer;
-import Modele.Dao.Requetes.RequeteSelectLouerById;
+import Modele.Dao.Requetes.Select.RequeteSelectLouer;
+import Modele.Dao.Requetes.Select.RequeteSelectLouerById;
 import Modele.Dao.Requetes.Insert.RequeteInsertLouer;
 
 public class DaoLouer extends DaoModele<Louer> implements Dao<Louer>{
