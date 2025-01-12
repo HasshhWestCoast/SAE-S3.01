@@ -791,32 +791,31 @@ public class FenAccueil extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setBounds(0, 501, 1024, 48);
-        panel.setBackground(new Color(31, 153, 88));
         panelCentre.add(panel);
         panel.setLayout(null);
 
         RoundedButton btnIArchiver = new RoundedButton("Archiver", 20);
         btnIArchiver.addActionListener(this.gestionClicBien);
         btnIArchiver.setBounds(347, 11, 85, 23);
-        btnIArchiver.setBackground(new Color(63, 173, 108));
+        btnIArchiver.setBackground(new Color(33, 153, 88));
         panel.add(btnIArchiver);
 
         RoundedButton btnModifier = new RoundedButton("Modifier", 20);
         btnModifier.addActionListener(this.gestionClicBien);
         btnModifier.setBounds(465, 11, 96, 23);
-        btnModifier.setBackground(new Color(63, 173, 108));
+        btnModifier.setBackground(new Color(33, 153, 88));
         panel.add(btnModifier);
 
         RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
         btnSupprimer.addActionListener(this.gestionClicBien);
         btnSupprimer.setBounds(597, 11, 96, 23);
-        btnSupprimer.setBackground(new Color(63, 173, 108));
+        btnSupprimer.setBackground(new Color(33, 153, 88));
         panel.add(btnSupprimer);
         
         RoundedButton btnCharger = new RoundedButton("Charger", 20);
         btnCharger.addActionListener(this.gestionClicBien);
         btnCharger.setBounds(221, 11, 85, 23);
-        btnCharger.setBackground(new Color(63, 173, 108));
+        btnCharger.setBackground(new Color(33, 153, 88));
         panel.add(btnCharger);
         
         // Buttons
