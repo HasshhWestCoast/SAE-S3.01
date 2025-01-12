@@ -68,7 +68,7 @@ public class GestionFenAjoutBien implements ActionListener{
 						DaoBien daoBien = new DaoBien(CictOracleDataSource.getInstance().getConnection());
 						
 						Bien bien = new Bien(IdBien, Adresse, Ville, TypeBien, CodePostal, PeriodeConstruction);
-						//daoBien.create(bien);
+						daoBien.create(bien);
 						
 						String []EngrBien = {IdBien, Adresse, Ville, CodePostal, TypeBien, PeriodeConstruction};
 						modeleTable.addRow(EngrBien);

@@ -10,6 +10,7 @@ import Modele.Bien;
 import Modele.Charge;
 import Modele.Dao.Requetes.RequeteSelectCharge;
 import Modele.Dao.Requetes.RequeteSelectChargeById;
+import Modele.Dao.Requetes.Insert.RequeteInsertCharge;
 
 public class DaoCharge extends DaoModele<Charge> implements Dao<Charge>{
 
@@ -24,7 +25,16 @@ public class DaoCharge extends DaoModele<Charge> implements Dao<Charge>{
 	}
 	
 	@Override
-	public void create(Charge t) throws SQLException {		
+	public void create(Charge charge) throws SQLException {
+	    RequeteInsertCharge requete = new RequeteInsertCharge();
+	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	        requete.parametres(prSt, charge);
+	        prSt.executeUpdate();
+	        System.out.println("Insertion réussie pour la charge !");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de l'ajout d'une charge : " + e.getMessage());
+	        throw e;
+	    }
 	}
 	
 	@Override

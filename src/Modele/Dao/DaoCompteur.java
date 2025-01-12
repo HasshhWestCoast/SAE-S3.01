@@ -12,6 +12,7 @@ import Modele.Logement;
 import Modele.Dao.Requetes.RequeteSelectCompteur;
 import Modele.Dao.Requetes.RequeteSelectCompteurById;
 import Modele.Dao.Requetes.RequeteSelectCompteurLogement;
+import Modele.Dao.Requetes.Insert.RequeteInsertCompteur;
 import Modele.Dao.Requetes.RequeteSelectCompteurBien;
 
 public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur>{
@@ -27,8 +28,18 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur>{
 	}
 	
 	@Override
-	public void create(Compteur t) throws SQLException {		
+	public void create(Compteur compteur) throws SQLException {
+	    RequeteInsertCompteur requete = new RequeteInsertCompteur();
+	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	        requete.parametres(prSt, compteur);
+	        prSt.executeUpdate();
+	        System.out.println("Insertion réussie pour le compteur !");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de l'ajout d'un compteur : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void update(Compteur t) throws SQLException {
