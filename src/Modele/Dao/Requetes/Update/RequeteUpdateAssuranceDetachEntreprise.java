@@ -1,15 +1,15 @@
-package Modele.Dao.Requetes.Delete;
+package Modele.Dao.Requetes.Update;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import Modele.Entreprise;
 import Modele.Dao.Requetes.Requete;
 
-public class RequeteDeleteEntreprise extends Requete<Entreprise> {
+public class RequeteUpdateAssuranceDetachEntreprise extends Requete<Entreprise> {
 
     @Override
     public String requete() {
-        return "DELETE FROM Sae_entreprise WHERE SIRET = ?";
+        return "UPDATE Sae_assurance SET SIRET = NULL WHERE SIRET = ?";
     }
 
     @Override

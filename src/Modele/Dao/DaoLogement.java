@@ -10,7 +10,6 @@ import Modele.Bien;
 import Modele.Logement;
 import Modele.Dao.Requetes.Select.RequeteSelectLogement;
 import Modele.Dao.Requetes.Select.RequeteSelectLogementById;
-import Modele.Dao.Requetes.Delete.RequeteDeleteLogement;
 import Modele.Dao.Requetes.Insert.RequeteInsertLogement;
 
 public class DaoLogement extends DaoModele<Logement> implements Dao<Logement>{
@@ -23,19 +22,7 @@ public class DaoLogement extends DaoModele<Logement> implements Dao<Logement>{
 
 	@Override
 	public void delete(Logement logement) throws SQLException {
-	    DaoCompteur daoCompteur = new DaoCompteur(connexion);
-	    daoCompteur.deleteByLogement(logement.getIdLogement());
-
-	    RequeteDeleteLogement requete = new RequeteDeleteLogement();
-	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
-	        requete.parametres(prSt, logement);
-	        prSt.executeUpdate();
-	        System.out.println("Suppression réussie pour le logement avec ID : " + logement.getIdLogement());
-	    } catch (SQLException e) {
-	        System.err.println("Erreur lors de la suppression du logement avec ID : " + logement.getIdLogement());
-	        System.err.println("Erreur SQL : " + e.getMessage());
-	        throw e;
-	    }
+	   
 	}
 
 

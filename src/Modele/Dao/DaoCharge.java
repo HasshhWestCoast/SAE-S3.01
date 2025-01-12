@@ -43,24 +43,6 @@ public class DaoCharge extends DaoModele<Charge> implements Dao<Charge>{
 	public void update(Charge t) throws SQLException {
 	}
 
-	public List<Charge> findByBien(String idBien) throws SQLException {
-	    RequeteSelectChargeByBien requete = new RequeteSelectChargeByBien();
-	    DaoBien daoBien = new DaoBien(connexion);
-	   
-	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
-	        prSt.setString(1, idBien);
-	        ResultSet rs = prSt.executeQuery();
-	        List<Charge> charges = new ArrayList<>();
-	        
-	        while (rs.next()) {    	
-	        	java.sql.Date dateCharge = rs.getDate("date_charge");
-	    	    String date_Charge = new java.text.SimpleDateFormat("dd/MM/yyyy").format(dateCharge);
-	    	    	    	    	    	    	            
-	    	    charges.add(new Charge(rs.getString("id_charges"), rs.getString("nom"), rs.getDouble("montant_reel"), rs.getDouble("montant_previsionnel"), rs.getInt("deductible"), date_Charge, daoBien.findById(rs.getString("Id_Bien"))));
-	        }
-	        return charges;
-	    }
-	}
 
 	@Override
 	public Charge findById(String... id) throws SQLException {
@@ -117,5 +99,24 @@ public class DaoCharge extends DaoModele<Charge> implements Dao<Charge>{
         it = iterateur;
     }
 
+
+	public List<Charge> findByBien(String idBien) throws SQLException {
+	    RequeteSelectChargeByBien requete = new RequeteSelectChargeByBien();
+	    DaoBien daoBien = new DaoBien(connexion);
+	   
+	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+	        prSt.setString(1, idBien);
+	        ResultSet rs = prSt.executeQuery();
+	        List<Charge> charges = new ArrayList<>();
+	        
+	        while (rs.next()) {    	
+	        	java.sql.Date dateCharge = rs.getDate("date_charge");
+	    	    String date_Charge = new java.text.SimpleDateFormat("dd/MM/yyyy").format(dateCharge);
+	    	    	    	    	    	    	            
+	    	    charges.add(new Charge(rs.getString("id_charges"), rs.getString("nom"), rs.getDouble("montant_reel"), rs.getDouble("montant_previsionnel"), rs.getInt("deductible"), date_Charge, daoBien.findById(rs.getString("Id_Bien"))));
+	        }
+	        return charges;
+	    }
+	}
 }
 

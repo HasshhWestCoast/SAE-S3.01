@@ -9,6 +9,8 @@ import java.util.List;
 import Modele.Entreprise;
 import Modele.Dao.Requetes.Select.RequeteSelectEntreprise;
 import Modele.Dao.Requetes.Select.RequeteSelectEntrepriseById;
+import Modele.Dao.Requetes.Update.RequeteUpdateAssuranceDetachEntreprise;
+import Modele.Dao.Requetes.Update.RequeteUpdateFactureDetachEntreprise;
 import Modele.Dao.Requetes.Delete.RequeteDeleteEntreprise;
 import Modele.Dao.Requetes.Insert.RequeteInsertEntreprise;
 
@@ -22,19 +24,28 @@ public class DaoEntreprise extends DaoModele<Entreprise> implements Dao<Entrepri
 
 	@Override
 	public void delete(Entreprise entreprise) throws SQLException {
-	    String siret = entreprise.getSiret();
+	    // Étape 1 : Détacher les factures associées
+	    RequeteUpdateFactureDetachEntreprise requeteUpdateFacture = new RequeteUpdateFactureDetachEntreprise();
+	    try (PreparedStatement prStUpdateFacture = connexion.prepareStatement(requeteUpdateFacture.requete())) {
+	        requeteUpdateFacture.parametres(prStUpdateFacture, entreprise);
+	        prStUpdateFacture.executeUpdate();
+	        System.out.println("Les factures liées à l'entreprise ont été détachées.");
+	    }
 
-	    DaoAssurance daoAssurance = new DaoAssurance(connexion);
-	    daoAssurance.deleteByEntreprise(siret);
+	    // Étape 2 : Détacher les assurances associées
+	    RequeteUpdateAssuranceDetachEntreprise requeteUpdateAssurance = new RequeteUpdateAssuranceDetachEntreprise();
+	    try (PreparedStatement prStUpdateAssurance = connexion.prepareStatement(requeteUpdateAssurance.requete())) {
+	        requeteUpdateAssurance.parametres(prStUpdateAssurance, entreprise);
+	        prStUpdateAssurance.executeUpdate();
+	        System.out.println("Les assurances liées à l'entreprise ont été détachées.");
+	    }
 
-	    DaoFacture daoFacture = new DaoFacture(connexion);
-	    daoFacture.deleteByEntreprise(siret);
-
-	    RequeteDeleteEntreprise requete = new RequeteDeleteEntreprise();
-	    try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
-	        requete.parametres(prSt, entreprise);
-	        prSt.executeUpdate();
-	        System.out.println("Suppression réussie pour l'entreprise avec SIRET: " + siret);
+	    // Étape 3 : Supprimer l'entreprise
+	    RequeteDeleteEntreprise requeteDelete = new RequeteDeleteEntreprise();
+	    try (PreparedStatement prStDelete = connexion.prepareStatement(requeteDelete.requete())) {
+	        requeteDelete.parametres(prStDelete, entreprise);
+	        prStDelete.executeUpdate();
+	        System.out.println("L'entreprise avec SIRET: " + entreprise.getSiret() + " a été supprimée.");
 	    } catch (SQLException e) {
 	        System.err.println("Erreur lors de la suppression de l'entreprise : " + e.getMessage());
 	        throw e;
