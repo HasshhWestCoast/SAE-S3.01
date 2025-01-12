@@ -9,6 +9,7 @@ import java.util.List;
 import Modele.Bien;
 import Modele.Dao.Requetes.RequeteSelectBien;
 import Modele.Dao.Requetes.RequeteSelectBienById;
+import Modele.Dao.Requetes.Insert.RequeteInsertBien;
 
 
 public class DaoBien extends DaoModele<Bien> implements Dao<Bien> {
@@ -24,8 +25,17 @@ public class DaoBien extends DaoModele<Bien> implements Dao<Bien> {
 	}
 	
 	@Override
-	public void create(Bien t) throws SQLException {		
-	}
+    public void create(Bien bien) throws SQLException {
+        RequeteInsertBien requete = new RequeteInsertBien();
+        try (PreparedStatement prSt = connexion.prepareStatement(requete.requete())) {
+            requete.parametres(prSt, bien);
+            prSt.executeUpdate();
+            System.out.println("Insertion réussie pour le bien !");
+        } catch (SQLException e) {
+        	System.err.println("Erreur lors de l'ajout d'un bien : " + e.getMessage());
+	        throw e;
+        }
+    }
 	
 	@Override
 	public void update(Bien t) throws SQLException {

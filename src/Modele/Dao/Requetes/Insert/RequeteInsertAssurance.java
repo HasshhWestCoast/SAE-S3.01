@@ -20,7 +20,6 @@ public class RequeteInsertAssurance extends Requete<assurance> {
         prSt.setDouble(3, donnee.getProtectionJuridique());
         prSt.setString(4, donnee.getDateEcheance());
         prSt.setString(5, donnee.getEntreprise().getSiret());
-        System.out.println("ID Logement : " + donnee.getLogement().getIdLogement());
         prSt.setString(6, donnee.getLogement().getIdLogement());
     }
 }
