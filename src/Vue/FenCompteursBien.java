@@ -22,6 +22,7 @@ public class FenCompteursBien extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 	private GestionFenCompteursBien gestionClicFenCompBien;
 	private JTable tabMesCompteurs;
+	private RoundedButton btnAfficherDateReleve;
 
 
 	/**
@@ -39,10 +40,10 @@ public class FenCompteursBien extends JInternalFrame {
         tabMesCompteurs = new JTable();
         tabMesCompteurs.setModel(new DefaultTableModel(
             new Object[][] {
-                { null, null, null, null},
+                { null, null, null},
             },
             new String[] {
-                "ID Compteur", "Type Compteur", "Index", "Date relevé"
+                "ID Compteur", "Type Compteur", "Id Bien"
             }
         ));
         JScrollPane scrollPaneBiens = new JScrollPane(tabMesCompteurs);
@@ -65,13 +66,18 @@ public class FenCompteursBien extends JInternalFrame {
         
         RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
         btnAnnuler.addActionListener(this.gestionClicFenCompBien);
-        btnAnnuler.setBounds(177, 472, 96, 21);
+        btnAnnuler.setBounds(132, 472, 96, 21);
         getContentPane().add(btnAnnuler);
         
         RoundedButton btnCharger = new RoundedButton("Charger", 20);
         btnCharger.addActionListener(this.gestionClicFenCompBien);
-        btnCharger.setBounds(304, 472, 96, 21);
+        btnCharger.setBounds(254, 472, 96, 21);
         getContentPane().add(btnCharger);
+        
+        btnAfficherDateReleve = new RoundedButton("Afficher date relevé", 20);
+        btnAfficherDateReleve.addActionListener(this.gestionClicFenCompBien);
+        btnAfficherDateReleve.setBounds(380, 472, 145, 21);
+        getContentPane().add(btnAfficherDateReleve);
         
 		setBounds(100, 100, 669, 550);
 

@@ -97,15 +97,9 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur>{
 	@Override
 	protected Compteur creerInstance(ResultSet curseur) throws SQLException {
 		
-		java.sql.Date dateRelevé = curseur.getDate("date_Releve");
-	    String date_Relevé = new java.text.SimpleDateFormat("dd/MM/yyyy").format(dateRelevé);
-	    
 	    String id_Compteur = curseur.getString("id_Compteur");
 	    String typeComp = curseur.getString("typeComp");
-	    
-	    String indexCompteurString = curseur.getString("indexCompteur");
-	    int indexCompteur = Integer.parseInt(indexCompteurString);
-	    
+	    	    
 	    String ID_Logement = curseur.getString("ID_Logement");
 	    String ID_Bien = curseur.getString("ID_Bien");
 	    
@@ -116,7 +110,7 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur>{
 	    Bien bien = daoBien.findById(ID_Bien);
 	    
 	    
-	    return new Compteur(id_Compteur, typeComp, indexCompteur, date_Relevé, bien, logement);
+	    return new Compteur(id_Compteur, typeComp, bien, logement);
 	}
 	
 	public static Iterateur<Compteur> getIterateurCompteur() {

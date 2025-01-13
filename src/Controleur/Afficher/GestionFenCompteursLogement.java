@@ -38,6 +38,11 @@ public class GestionFenCompteursLogement implements ActionListener{
 					this.fenCompLogement.dispose();
 					break;
 				
+				case "Afficher date relevé":
+					System.out.println("Vous Afficher les relevé d'un compteur !");
+
+					break;
+					
 				case "Charger":
 					System.out.println("Vous Charger les Compteurs Logement !");
 					
@@ -80,8 +85,7 @@ public class GestionFenCompteursLogement implements ActionListener{
 
 		modeleTable.setValueAt(compteur.getIdCompteur(), numeroLigne, 0);
 		modeleTable.setValueAt(compteur.getTypeComp(), numeroLigne, 1);
-		modeleTable.setValueAt(compteur.getIndexCompteur(), numeroLigne, 2);
-		modeleTable.setValueAt(compteur.getDateRelevé(), numeroLigne, 3);
+		modeleTable.setValueAt(compteur.getImmeuble().getIdLogement(), numeroLigne, 2);
 
 	}
 }

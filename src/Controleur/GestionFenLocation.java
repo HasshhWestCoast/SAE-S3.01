@@ -192,15 +192,22 @@ public class GestionFenLocation implements ActionListener, ListSelectionListener
 				String DateEmission = "NA";
 				String montant_reel_payer = "NA";
 
+				double montant_du = -1;
 				if (res != null) {
 				    DatePaiement = res[0] != null ? res[0] : "NA";
 				    DateEmission = res[1] != null ? res[1] : "NA";
 				    montant_reel_payer = res[2] != null ? res[2] : "NA";
 				}
 				
+				if (!montant_reel_payer.equals("NA")) {
+				    //montant_du = // HASINA APPELE LA FONCTION BOGOSSE BBBB FATIIIIII
+			    }
+				
 				this.louer = daoLouer.findById(IdBien, IdLocataire, DateDebut);
 				
-		        fenAc.settextFieldDatePaiement(DatePaiement);		
+				fenAc.settextFieldRestantDu(montant_du != -1 ? String.valueOf(montant_du) : "NA");
+		        
+				fenAc.settextFieldDatePaiement(DatePaiement);		
 				fenAc.settextFieldCaution(String.valueOf(louer.getCautionTTC()));
 				fenAc.settextFieldDateEmission(DateEmission);
 				fenAc.settextFieldMontantPayé(montant_reel_payer);

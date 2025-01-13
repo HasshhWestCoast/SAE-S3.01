@@ -37,6 +37,11 @@ public class GestionFenCompteursBien implements ActionListener{
 					System.out.println("Vous FERMEZ la page Compteurs Bien !");
 					this.fenCompBien.dispose();
 					break;
+				
+				case "Afficher date relevé":
+					System.out.println("Vous Afficher les relevé d'un compteur !");
+
+					break;
 					
 				case "Charger":
 					System.out.println("Vous Charger les Compteurs Bien !");
@@ -80,8 +85,7 @@ public class GestionFenCompteursBien implements ActionListener{
 
 		modeleTable.setValueAt(compteur.getIdCompteur(), numeroLigne, 0);
 		modeleTable.setValueAt(compteur.getTypeComp(), numeroLigne, 1);
-		modeleTable.setValueAt(compteur.getIndexCompteur(), numeroLigne, 2);
-		modeleTable.setValueAt(compteur.getDateRelevé(), numeroLigne, 3);
+		modeleTable.setValueAt(compteur.getBien().getIdBien(), numeroLigne, 2);
 
 	}
 }

@@ -37,10 +37,10 @@ public class FenCompteursLogement extends JInternalFrame {
         tabMesCompteursLogements = new JTable();
         tabMesCompteursLogements.setModel(new DefaultTableModel(
             new Object[][] {
-                { null, null, null, null},
+                { null, null, null},
             },
             new String[] {
-                "ID Compteur", "Type Compteur", "Index", "Date relevé"
+                "ID Compteur", "Type Compteur", "Id Logement"
             }
         ));
         JScrollPane scrollPaneCompteursLogements = new JScrollPane(tabMesCompteursLogements);
@@ -70,6 +70,11 @@ public class FenCompteursLogement extends JInternalFrame {
         btnCharger.addActionListener(this.gestionClicFenCompLog);
         btnCharger.setBounds(278, 472, 104, 21);
         getContentPane().add(btnCharger);
+        
+        RoundedButton btnAfficherDateReleve = new RoundedButton("Afficher date relevé", 20);
+        btnAfficherDateReleve.addActionListener(this.gestionClicFenCompLog);
+        btnAfficherDateReleve.setBounds(402, 472, 145, 21);
+        getContentPane().add(btnAfficherDateReleve);
         
 		setBounds(100, 100, 669, 550);
 

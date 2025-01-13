@@ -5,16 +5,13 @@ import java.util.Objects;
 public class Compteur {
 	private String idCompteur;
 	private String typeComp;
-	private int indexCompteur;
-	private String dateRelevé;
 	private Bien bien;
 	private Logement logement;
 
-	public Compteur(String idCompteur, String typeComp, int indexCompteur, String dateRelevé, Bien bien, Logement logement) {
+	public Compteur(String idCompteur, String typeComp, Bien bien, Logement logement) {
 		this.idCompteur = idCompteur;
 		this.typeComp = typeComp;
-		this.indexCompteur = indexCompteur;
-		this.dateRelevé = dateRelevé;
+;
 		this.bien = bien;
 		this.logement = logement;
 	}
@@ -35,14 +32,6 @@ public class Compteur {
 		this.typeComp = typeComp;
 	}
 
-	public int getIndexCompteur() {
-		return indexCompteur;
-	}
-
-	public void setIndexCompteur(int indexCompteur) {
-		this.indexCompteur = indexCompteur;
-	}
-
 	public Bien getBien() {
 		return bien;
 	}
@@ -59,13 +48,6 @@ public class Compteur {
 		this.logement = logement;
 	}
 
-	public String getDateRelevé() {
-		return dateRelevé;
-	}
-
-	public void setDateRelevé(String dateRelevé) {
-		this.dateRelevé = dateRelevé;
-	}
 
 	@Override
 	public int hashCode() {
@@ -86,8 +68,7 @@ public class Compteur {
 
 	@Override
 	public String toString() {
-		return "Compteur [idCompteur=" + idCompteur + ", typeComp=" + typeComp + ", indexCompteur=" + indexCompteur
-				+ ", dateRelevé=" + dateRelevé + ", bien=" + bien + ", logement=" + logement + "]";
+		return "Compteur [idCompteur=" + idCompteur + ", typeComp=" + typeComp + ", bien=" + bien + ", logement=" + logement + "]";
 	}
 	
 	
