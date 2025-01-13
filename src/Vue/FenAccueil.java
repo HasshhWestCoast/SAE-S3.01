@@ -579,6 +579,7 @@ public class FenAccueil extends JFrame {
     	 panelCentre.setLayout(null);
     	 
     	 tabMesLocations = new JTable();
+    	 tabMesLocations.getSelectionModel().addListSelectionListener(this.gestionClicLocation);
          tabMesLocations.setModel(new DefaultTableModel(
              new Object[][] { { null, null, null, null, null } },
              new String[] { "Locataire", "Bien", "Type", "Date début", "Dernière régularisation" }

@@ -48,6 +48,9 @@ VALUES ('LOG007', 110, TO_DATE('2016-04-04', 'YYYY-MM-DD'), 'Maison', 4, 0, 1, '
 INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage, Id_Bien)
 VALUES ('LOG008', 70, TO_DATE('2015-08-15', 'YYYY-MM-DD'), 'Appartement', 2, 2, 0, 'BIEN008');
 
+INSERT INTO SAE_Logement (Id_Logement, surface_habitable, date_acquisition, type_logement, nb_pieces, num_etage, garage, Id_Bien)
+VALUES ('LOG009', 120, TO_DATE('2020-06-15', 'YYYY-MM-DD'), 'Appartement', 4, 2, 0, 'BIEN001');
+
 
 -- Insertion des donnÃ©es dans la table SAE_Entreprise
 INSERT INTO SAE_Entreprise (SIRET, nom, adresse, codepostal, ville, mail, telephone, IBAN)
@@ -96,6 +99,30 @@ VALUES ('FAC006', TO_DATE('2023-06-05', 'YYYY-MM-DD'), TO_DATE('2023-06-10', 'YY
 
 INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
 VALUES ('FAC007', TO_DATE('2023-07-15', 'YYYY-MM-DD'), TO_DATE('2023-07-20', 'YYYY-MM-DD'), 'Chèque', 'DEV007', 'Entretien des espaces communs', 700, 800, 0, 100, 'LOG006', NULL, '55667788990011');
+
+INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
+VALUES ('FAC008', TO_DATE('2024-01-15', 'YYYY-MM-DD'), TO_DATE('2024-01-30', 'YYYY-MM-DD'), 'Carte bancaire', 'DEV008', 'EAU', 250, 300, 1, 100, 'LOG001', 'BIEN001', '12345678901234');
+
+INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
+VALUES ('FAC009', TO_DATE('2024-07-15', 'YYYY-MM-DD'), TO_DATE('2024-07-20', 'YYYY-MM-DD'), 'Chèque', 'DEV009', 'Ordure ménagères', 50, 100, 1, 0, 'LOG001', 'BIEN001', '55667788990011');
+
+INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
+VALUES ('FAC010', TO_DATE('2024-06-15', 'YYYY-MM-DD'), TO_DATE('2024-06-20', 'YYYY-MM-DD'), 'Virement', 'DEV010', 'Loyer', 450, 500, 1, 50, 'LOG001', 'BIEN001', '55667788990011');
+
+INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
+VALUES ('FAC011', TO_DATE('2024-07-15', 'YYYY-MM-DD'), TO_DATE('2024-07-20', 'YYYY-MM-DD'), 'Chèque', 'DEV011', 'Loyer', 500, 500, 1, 0, 'LOG001', 'BIEN001', '55667788990011');
+
+INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
+VALUES ('FAC013', TO_DATE('2024-06-15', 'YYYY-MM-DD'), TO_DATE('2024-06-20', 'YYYY-MM-DD'), 'Virement', 'DEV013', 'Travaux', 300, 500, 0, 200, NULL, 'BIEN001', '56789012345678');
+
+INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
+VALUES ('FAC014', TO_DATE('2024-07-10', 'YYYY-MM-DD'), TO_DATE('2024-07-15', 'YYYY-MM-DD'), 'Espèces', 'DEV014', 'Travaux', 200, 400, 0, 200, NULL, 'BIEN001', '56789012345678');
+
+INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
+VALUES ('FAC015', TO_DATE('2024-07-20', 'YYYY-MM-DD'), TO_DATE('2024-07-25', 'YYYY-MM-DD'), 'Carte bancaire', 'DEV015', 'Travaux', 150, 300, 1, 150, 'LOG001', 'BIEN001', '56789012345678');
+
+INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
+VALUES ('FAC016', TO_DATE('2024-08-01', 'YYYY-MM-DD'), TO_DATE('2024-08-05', 'YYYY-MM-DD'), 'Chèque', 'DEV016', 'Travaux', 100, 200, 1, 100, 'LOG009', 'BIEN001', '56789012345678');
 
 -- Insertion de donnÃ©es dans la table SAE_Impot
 INSERT INTO SAE_Impot (Id_Impot, montant, annee)
@@ -172,6 +199,9 @@ VALUES ('CH007', 'Frais de gestion', 100.00, 120.00, 0, TO_DATE('2023-07-15', 'Y
 INSERT INTO SAE_Charge (Id_Charges, nom, montant_reel, montant_previsionnel, deductible, date_charge, Id_Bien)
 VALUES ('CH008', 'Assurance immeuble', 250.00, 250.00, 1, TO_DATE('2023-08-01', 'YYYY-MM-DD'), 'BIEN008');
 
+INSERT INTO SAE_Charge (Id_Charges, nom, montant_reel, montant_previsionnel, deductible, date_charge, Id_Bien)
+VALUES ('CH009', 'Ordure menagere', 50.00, 60.00, 0, TO_DATE('2024-04-05', 'YYYY-MM-DD'), 'BIEN001');
+
 -- Insertion des données dans la table SAE_Diagnostic
 INSERT INTO SAE_Diagnostic (Id_Diagnostic, date_validite, type_diagnostic, Id_Bien)
 VALUES ('DIAG001', TO_DATE('2025-07-15', 'YYYY-MM-DD'), 'Électricité', 'BIEN001');
@@ -232,6 +262,12 @@ VALUES ('COMP002', 'Eau', 'LOG001', 'BIEN001');
 INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, Id_Logement, Id_Bien)
 VALUES ('COMP003', 'Gaz', 'LOG001', 'BIEN001');
 
+INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, Id_Logement, Id_Bien)
+VALUES ('COMP009', 'Eau', 'LOG001', 'BIEN001');
+
+INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, Id_Logement, Id_Bien)
+VALUES ('COMP0010', 'Eau', 'LOG001', 'BIEN001');
+
 --INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, indexCompteur, date_releve, Id_Logement, Id_Bien)
 --VALUES ('COMP004', 'Eau', 80, TO_DATE('2023-04-01', 'YYYY-MM-DD'), 'LOG004', NULL);
 
@@ -287,6 +323,25 @@ VALUES('COMP003',TO_DATE('2023-08-01', 'YYYY-MM-DD'), 142);
 INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
 VALUES('COMP003',TO_DATE('2023-09-01', 'YYYY-MM-DD'), 147);
 
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES ('COMP001', TO_DATE('2024-01-10', 'YYYY-MM-DD'), 500);
+
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES ('COMP001', TO_DATE('2023-01-03', 'YYYY-MM-DD'), 300);
+
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES ('COMP009', TO_DATE('2024-01-15', 'YYYY-MM-DD'), 600);
+
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES ('COMP009', TO_DATE('2023-01-01', 'YYYY-MM-DD'), 400);
+
+
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES ('COMP0010', TO_DATE('2023-08-01', 'YYYY-MM-DD'), 180);
+
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES ('COMP0010', TO_DATE('2022-08-01', 'YYYY-MM-DD'), 150);
+
 -- Insertion de donnÃ©es dans la table SAE_ICC
 INSERT INTO SAE_ICC (ICC, annee, trimestre, indice)
 VALUES (2130, '2023', 'Q1', 110.5);
@@ -314,28 +369,28 @@ VALUES (376, '2024', 'Q4', 119.0);
 
 -- Insertion de données dans la table SAE_Louer
 INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN001', 'LOC001', TO_DATE('2023-01-01', 'YYYY-MM-DD'), TO_DATE('2023-12-01', 'YYYY-MM-DD'), NULL, 12, 1, 150, 500, 800, 'Bail de location appartement', 'Bon état', 1800, 2130);
+VALUES ('BIEN001', 'LOC001', TO_DATE('2023-01-01', 'YYYY-MM-DD'), TO_DATE('2024-12-01', 'YYYY-MM-DD'), TO_DATE('2023-12-01', 'YYYY-MM-DD'), 12, 1, 1200, 300, 2400, 'Bail de location appartement', 'Bon état', 10000, 2130);
 
 INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN002', 'LOC002', TO_DATE('2023-02-01', 'YYYY-MM-DD'), TO_DATE('2025-02-01', 'YYYY-MM-DD'), NULL, 24, 1, 200, 600, 1000, 'Bail de location maison', 'Bon état', 4800, 2130);
+VALUES ('BIEN002', 'LOC002', TO_DATE('2023-02-01', 'YYYY-MM-DD'), TO_DATE('2025-02-01', 'YYYY-MM-DD'), NULL, 24, 1, 1000, 250, 2000, 'Bail de location maison', 'Bon état', 24000, 2130);
 
 INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN003', 'LOC003', TO_DATE('2023-03-01', 'YYYY-MM-DD'), TO_DATE('2024-09-01', 'YYYY-MM-DD'), NULL, 18, 1, 120, 400, 600, 'Bail de location garage', 'Bon état', 2160, 3542);
+VALUES ('BIEN003', 'LOC003', TO_DATE('2023-03-01', 'YYYY-MM-DD'), TO_DATE('2024-09-01', 'YYYY-MM-DD'), NULL, 18, 1, 800, 200, 1600, 'Bail de location garage', 'Bon état', 14400, 3542);
 
 INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN004', 'LOC004', TO_DATE('2023-04-01', 'YYYY-MM-DD'), TO_DATE('2024-04-01', 'YYYY-MM-DD'), NULL, 12, 0, 180, 550, 1100, 'Bail de location maison', 'Bon état', 2160, 3542);
+VALUES ('BIEN004', 'LOC004', TO_DATE('2023-04-01', 'YYYY-MM-DD'), TO_DATE('2024-04-01', 'YYYY-MM-DD'), NULL, 12, 0, 950, 250, 1900, 'Bail de location maison', 'Bon état', 11400, 3542);
 
 INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN005', 'LOC005', TO_DATE('2023-05-01', 'YYYY-MM-DD'), TO_DATE('2023-11-01', 'YYYY-MM-DD'), NULL, 6, 0, 130, 450, 750, 'Bail de location maison', 'Bon état', 780, 272);
+VALUES ('BIEN005', 'LOC005', TO_DATE('2023-05-01', 'YYYY-MM-DD'), TO_DATE('2023-11-01', 'YYYY-MM-DD'), NULL, 6, 0, 700, 150, 1400, 'Bail de location maison', 'Bon état', 4200, 272);
 
 INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN006', 'LOC006', TO_DATE('2023-06-01', 'YYYY-MM-DD'), TO_DATE('2024-06-01', 'YYYY-MM-DD'), NULL, 12, 0, 150, 500, 900, 'Bail de location appartement', 'Bon état', 1800, 272);
+VALUES ('BIEN006', 'LOC006', TO_DATE('2023-06-01', 'YYYY-MM-DD'), TO_DATE('2024-06-01', 'YYYY-MM-DD'), NULL, 12, 0, 850, 200, 1700, 'Bail de location appartement', 'Bon état', 10200, 272);
 
 INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN007', 'LOC007', TO_DATE('2023-07-01', 'YYYY-MM-DD'), TO_DATE('2025-07-01', 'YYYY-MM-DD'), NULL, 24, 0, 160, 550, 950, 'Bail de location maison', 'Bon état', 3840, 2724);
+VALUES ('BIEN007', 'LOC007', TO_DATE('2023-07-01', 'YYYY-MM-DD'), TO_DATE('2025-07-01', 'YYYY-MM-DD'), NULL, 24, 0, 1050, 300, 2100, 'Bail de location maison', 'Bon état', 25200, 2724);
 
 INSERT INTO SAE_Louer (Id_Bien, Id_Locataire, Date_debut, Date_Sortie, date_derniere_reg, nb_mois, loyer_payer, loyer_mens_ttc, provisions_chargesMois_TTC, caution_TTC, bail, etat_lieux, montant_reel_payer, ICC)
-VALUES ('BIEN008', 'LOC008', TO_DATE('2023-08-01', 'YYYY-MM-DD'), TO_DATE('2024-08-01', 'YYYY-MM-DD'), NULL, 12, 0, 180, 600, 1100, 'Bail de location appartement', 'Bon état', 2160, 2724);
+VALUES ('BIEN008', 'LOC008', TO_DATE('2023-08-01', 'YYYY-MM-DD'), TO_DATE('2024-08-01', 'YYYY-MM-DD'), NULL, 12, 0, 1100, 300, 2200, 'Bail de location appartement', 'Bon état', 13200, 2724);
 
 -- Insertion de donnÃ©es dans la table SAE_Imposer
 INSERT INTO SAE_Imposer (Id_Bien, Id_Impot)

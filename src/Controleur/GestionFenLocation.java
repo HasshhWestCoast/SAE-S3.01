@@ -2,6 +2,8 @@ package Controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,15 +11,12 @@ import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.tools.DocumentationTool.Location;
 
-import Modele.Facture;
 import Modele.Louer;
 import Modele.Dao.CictOracleDataSource;
-import Modele.Dao.DaoFacture;
 import Modele.Dao.DaoLouer;
-import Modele.Dao.DaoModele;
 import Modele.Dao.Iterateur;
+import Modele.Dao.Requetes.Select.RequeteSelectDatePaiement;
 import Vue.FenAccueil;
 import Vue.FenLocataire;
 import Vue.RoundedButton;
@@ -29,12 +28,8 @@ public class GestionFenLocation implements ActionListener, ListSelectionListener
 	private FenAccueil fenAc;
 	private DaoLouer daoLouer;
 	private Louer louer;
-	private Facture facture;
-	private DaoFacture daoFacture;
 	
 	public GestionFenLocation(FenAccueil fenAc) throws SQLException {
-		this.facture = null;
-		this.daoFacture = new DaoFacture(CictOracleDataSource.getInstance().getConnection());
 		this.louer = null;
 		this.fenAc = fenAc;
 		this.daoLouer = new DaoLouer(CictOracleDataSource.getInstance().getConnection());
@@ -153,10 +148,35 @@ public class GestionFenLocation implements ActionListener, ListSelectionListener
 
 	}
 
+	
+	public String[] findOneByBien(String idBien) throws SQLException {
+	    RequeteSelectDatePaiement requete = new RequeteSelectDatePaiement();
+	    String[] facture = new String[3]; // Tableau pour stocker Date_Paiement, Date_Emission et montant_reel_payer
+
+	    try (PreparedStatement prSt = CictOracleDataSource.getInstance().getConnection().prepareStatement(requete.requete())) {
+	        requete.parametres(prSt, idBien);
+	        try (ResultSet rs = prSt.executeQuery()) {
+	            if (rs.next()) {
+	                facture[0] = rs.getString("Date_Paiement");
+	                facture[1] = rs.getString("Date_Emission");
+	                facture[2] = String.valueOf(rs.getDouble("montant_reel_verse"));
+	            } else {
+	                System.out.println("Aucune facture trouvée pour le bien : " + idBien);
+	                return null; 
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de la récupération de la facture pour le bien " + idBien + " : " + e.getMessage());
+	        throw e;
+	    }
+
+	    return facture;
+	}
+
+
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
 		JTable tabLocations = this.fenAc.getTabMesLocations();
 		int selectedRow = tabLocations.getSelectedRow();
 		
@@ -165,16 +185,28 @@ public class GestionFenLocation implements ActionListener, ListSelectionListener
 				String IdLocataire = (String) tabLocations.getValueAt(selectedRow, 0);
 				String IdBien = (String) tabLocations.getValueAt(selectedRow, 1);
 				String DateDebut = (String) tabLocations.getValueAt(selectedRow, 3);
-				String DatePaiement = (String) tabLocations.getValueAt(selectedRow, 3);
 
-				this.louer = daoLouer.findById(IdBien, IdLocataire, DateDebut);
-				this.facture = daoFacture.findById(DatePaiement);
+				String res[] = findOneByBien(IdBien);
 				
-				List<> resultats = find(req, id);
-		        return resultats.isEmpty() ? null : resultats.get(0);
-		        
-				fenAc.settextFieldDatePaiement(String.valueOf());
+				String DatePaiement = "NA";
+				String DateEmission = "NA";
+				String montant_reel_payer = "NA";
+
+				if (res != null) {
+				    DatePaiement = res[0] != null ? res[0] : "NA";
+				    DateEmission = res[1] != null ? res[1] : "NA";
+				    montant_reel_payer = res[2] != null ? res[2] : "NA";
+				}
+				
+				this.louer = daoLouer.findById(IdBien, IdLocataire, DateDebut);
+				
+		        fenAc.settextFieldDatePaiement(DatePaiement);		
 				fenAc.settextFieldCaution(String.valueOf(louer.getCautionTTC()));
+				fenAc.settextFieldDateEmission(DateEmission);
+				fenAc.settextFieldMontantPayé(montant_reel_payer);
+				fenAc.settextFieldProvisionSurCharges(String.valueOf(this.louer.getprovision_chargeMoisTTC()));
+				fenAc.settextFieldLoyer(String.valueOf(this.louer.getLoyerMensTTC()));
+				
 			}catch (SQLException e1) {
 				e1.printStackTrace();
 			}	
