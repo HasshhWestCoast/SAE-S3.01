@@ -126,5 +126,7 @@ public class DaoFacture  extends DaoModele<Facture> implements Dao<Facture>{
     public static void setIterateurFacture(Iterateur<Facture> iterateur) {
         it = iterateur;
     }
+    
+    
 }
 
