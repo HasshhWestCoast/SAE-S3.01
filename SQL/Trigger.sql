@@ -77,6 +77,7 @@ BEGIN
 END;
 /
 
+
 -------------------------- LOUER -------------------------------------
 -- Déclencheur pour attribuer une valeur par défaut à la date de la dernière régularisation si elle est NULL lors de l'insertion
 CREATE OR REPLACE TRIGGER SAE_louer_datedr_defaut
@@ -168,12 +169,12 @@ END;
 --------------------------COMPTEUR-------------------------------------
 -- Déclencheur pour vérifier que la date du relevé n'est pas ultérieure à la date actuelle lors de l'insertion ou de la mise à jour
 CREATE OR REPLACE TRIGGER releve_date_releve_trigger
-BEFORE INSERT OR UPDATE ON SAE_Compteur
+BEFORE INSERT OR UPDATE ON SAE_Relevé
 FOR EACH ROW
 BEGIN
    -- Vérifier si la date du relevé est postérieure à la date actuelle
-   IF :NEW.date_releve > SYSDATE THEN
-      -- Si la condition est vraie, déclencher une erreur d'application avec le code -20001
+   IF :NEW.date_relevé > SYSDATE THEN
+      -- Si la condiion est vraie, déclencher une erreur d'application avec le code -20001
       RAISE_APPLICATION_ERROR(-20001, 'La date du relevé ne peut pas être ultérieure à la date actuelle.');
    END IF;
 END;

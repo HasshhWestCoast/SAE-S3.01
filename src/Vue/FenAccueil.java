@@ -1134,4 +1134,32 @@ public class FenAccueil extends JFrame {
     public JTable getTabMesLogements() {
     	return tabMesLogements;
     }
+    
+    public void settextFieldLoyer(String x) {
+    	this.textFieldLoyer.setText(x);
+    }
+    
+    public void settextFieldProvisionSurCharges(String x) {
+    	this.textFieldProvisionSurCharges.setText(x);
+    }
+    
+    public void settextFieldMontantPayé(String x) {
+    	this.textFieldMontantPayé.setText(x);
+    }
+    
+    public void settextFieldRestantDu(String x) {
+    	this.textFieldRestantDu.setText(x);
+    }
+    
+    public void settextFieldDateEmission(String x) {
+    	this.textFieldDateEmission.setText(x);
+    }
+    
+    public void settextFieldDatePaiement(String x) {
+    	this.textFieldDatePaiement.setText(x);
+    }
+    
+    public void settextFieldCaution(String x) {
+    	this.textFieldCaution.setText(x);
+    }
 }

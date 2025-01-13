@@ -223,29 +223,69 @@ INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_ec
 VALUES ('POL008', 1000.00, 300.00, TO_DATE('2026-02-28', 'YYYY-MM-DD'), '66778899001122', 'LOG008');
 
 -- Insertion des données dans la table SAE_Compteur
-INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, indexCompteur, date_releve, Id_Logement, Id_Bien)
-VALUES ('COMP001', 'Electricité', 150, TO_DATE('2023-01-01', 'YYYY-MM-DD'), 'LOG001', 'BIEN001');
+INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, Id_Logement, Id_Bien)
+VALUES ('COMP001', 'Electricité', 'LOG001', 'BIEN001');
 
-INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, indexCompteur, date_releve, Id_Logement, Id_Bien)
-VALUES ('COMP002', 'Eau', 120, TO_DATE('2023-02-01', 'YYYY-MM-DD'), 'LOG002', NULL);
+INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, Id_Logement, Id_Bien)
+VALUES ('COMP002', 'Eau', 'LOG001', 'BIEN001');
 
-INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, indexCompteur, date_releve, Id_Logement, Id_Bien)
-VALUES ('COMP003', 'Chauffage', 300, TO_DATE('2023-03-01', 'YYYY-MM-DD'), NULL, 'BIEN003');
+INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, Id_Logement, Id_Bien)
+VALUES ('COMP003', 'Gaz', 'LOG001', 'BIEN001');
 
-INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, indexCompteur, date_releve, Id_Logement, Id_Bien)
-VALUES ('COMP004', 'Eau', 80, TO_DATE('2023-04-01', 'YYYY-MM-DD'), 'LOG004', NULL);
+--INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, indexCompteur, date_releve, Id_Logement, Id_Bien)
+--VALUES ('COMP004', 'Eau', 80, TO_DATE('2023-04-01', 'YYYY-MM-DD'), 'LOG004', NULL);
 
-INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, indexCompteur, date_releve, Id_Logement, Id_Bien)
-VALUES ('COMP005', 'Electricité', 200, TO_DATE('2023-05-01', 'YYYY-MM-DD'), NULL, 'BIEN005');
+--INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, indexCompteur, date_releve, Id_Logement, Id_Bien)
+--VALUES ('COMP005', 'Electricité', 200, TO_DATE('2023-05-01', 'YYYY-MM-DD'), NULL, 'BIEN005');
 
-INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, indexCompteur, date_releve, Id_Logement, Id_Bien)
-VALUES ('COMP006', 'Chauffage', 220, TO_DATE('2023-06-01', 'YYYY-MM-DD'), 'LOG006', NULL);
+--INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, indexCompteur, date_releve, Id_Logement, Id_Bien)
+--VALUES ('COMP006', 'Gaz', 220, TO_DATE('2023-06-01', 'YYYY-MM-DD'), 'LOG006', NULL);
 
-INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, indexCompteur, date_releve, Id_Logement, Id_Bien)
-VALUES ('COMP007', 'Eau', 100, TO_DATE('2023-07-01', 'YYYY-MM-DD'), NULL, 'BIEN007');
+--INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, indexCompteur, date_releve, Id_Logement, Id_Bien)
+--VALUES ('COMP007', 'Eau', 100, TO_DATE('2023-07-01', 'YYYY-MM-DD'), NULL, 'BIEN007');
 
-INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, indexCompteur, date_releve, Id_Logement, Id_Bien)
-VALUES ('COMP008', 'Electricité', 180, TO_DATE('2023-08-01', 'YYYY-MM-DD'), 'LOG008', NULL);
+--INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, indexCompteur, date_releve, Id_Logement, Id_Bien)
+--VALUES ('COMP008', 'Electricité', 180, TO_DATE('2023-08-01', 'YYYY-MM-DD'), 'LOG008', NULL);
+
+--Insertion de données dans la table SAE_Relevé
+--relevé Electricité pour bien 001
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES('COMP001',TO_DATE('2023-06-01', 'YYYY-MM-DD'), 200);
+
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES('COMP001',TO_DATE('2023-07-01', 'YYYY-MM-DD'), 180);
+
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES('COMP001',TO_DATE('2023-08-01', 'YYYY-MM-DD'), 190);
+
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES('COMP001',TO_DATE('2023-09-01', 'YYYY-MM-DD'), 201);
+
+--relevé eau pour bien 001
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES('COMP002',TO_DATE('2023-06-01', 'YYYY-MM-DD'), 120);
+
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES('COMP002',TO_DATE('2023-07-01', 'YYYY-MM-DD'), 115);
+
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES('COMP002',TO_DATE('2023-08-01', 'YYYY-MM-DD'), 110);
+
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES('COMP002',TO_DATE('2023-09-01', 'YYYY-MM-DD'), 122);
+
+--relevé gaz pour bien 001
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES('COMP003',TO_DATE('2023-06-01', 'YYYY-MM-DD'), 150);
+
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES('COMP003',TO_DATE('2023-07-01', 'YYYY-MM-DD'), 155);
+
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES('COMP003',TO_DATE('2023-08-01', 'YYYY-MM-DD'), 142);
+
+INSERT INTO SAE_Relevé (Id_Compteur, date_relevé, indexCompteur)
+VALUES('COMP003',TO_DATE('2023-09-01', 'YYYY-MM-DD'), 147);
 
 -- Insertion de donnÃ©es dans la table SAE_ICC
 INSERT INTO SAE_ICC (ICC, annee, trimestre, indice)
