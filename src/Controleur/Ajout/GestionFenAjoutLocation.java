@@ -160,6 +160,43 @@ public class GestionFenAjoutLocation implements ActionListener, ListSelectionLis
 					fenAddICC.moveToFront();
 					break;
 					
+				case "Supprimer L":
+					int ligneSelectionnee = this.fenAjoutLoc.getTabMesLocataires().getSelectedRow();
+
+					try {
+						String IdLocataire = (String) this.fenAjoutLoc.getTabMesLocataires().getValueAt(ligneSelectionnee, 0);
+						
+						Locataire locataire = this.daoLocataire.findById(IdLocataire);
+						
+						this.daoLocataire.delete(locataire);
+						
+						modeleTableLocataire.removeRow(ligneSelectionnee);
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}
+					break;
+					
+				case "Supprimer ICC":
+					int ligneSelectionneeIcc = this.fenAjoutLoc.getTabMesICC().getSelectedRow();
+
+					try {
+						int IdIcc = (int) this.fenAjoutLoc.getTabMesICC().getValueAt(ligneSelectionneeIcc, 0);
+						String IdIccString = Integer.toString(IdIcc);
+						
+						ICC icc = this.daoICC.findById(IdIccString);
+						
+						this.daoICC.delete(icc);
+						
+						modeleTableICC.removeRow(ligneSelectionneeIcc);
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}
+					break;
+					
 				case "Ajouter Lieux":
 					System.out.println("Vous AJOUTER LIEUX pour une Location !");
 					break;

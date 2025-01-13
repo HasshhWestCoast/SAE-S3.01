@@ -9,6 +9,9 @@ import java.util.List;
 import Modele.Locataire;
 import Modele.Dao.Requetes.Select.RequeteSelectLocataire;
 import Modele.Dao.Requetes.Select.RequeteSelectLocataireById;
+import Modele.Dao.Requetes.Delete.RequeteDeleteLocataire;
+import Modele.Dao.Requetes.Delete.RequeteDeleteLouerByLocataire;
+import Modele.Dao.Requetes.Delete.RequeteDeleteRetientByLocataire;
 import Modele.Dao.Requetes.Insert.RequeteInsertLocataire;
 
 public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>{
@@ -20,8 +23,35 @@ public class DaoLocataire extends DaoModele<Locataire> implements Dao<Locataire>
 	}
 
 	@Override
-	public void delete(Locataire t) throws SQLException {		
+	public void delete(Locataire locataire) throws SQLException {
+	    // Étape 1 : Supprimer les enregistrements associés dans Sae_retient
+	    RequeteDeleteRetientByLocataire requeteDeleteRetient = new RequeteDeleteRetientByLocataire();
+	    try (PreparedStatement prStDeleteRetient = connexion.prepareStatement(requeteDeleteRetient.requete())) {
+	        requeteDeleteRetient.parametres(prStDeleteRetient, locataire);
+	        prStDeleteRetient.executeUpdate();
+	        System.out.println("Les enregistrements liés au locataire ont été supprimés de Sae_retient.");
+	    }
+
+	    // Étape 2 : Supprimer les locations associées
+	    RequeteDeleteLouerByLocataire requeteDeleteLouer = new RequeteDeleteLouerByLocataire();
+	    try (PreparedStatement prStDeleteLouer = connexion.prepareStatement(requeteDeleteLouer.requete())) {
+	        requeteDeleteLouer.parametres(prStDeleteLouer, locataire);
+	        prStDeleteLouer.executeUpdate();
+	        System.out.println("Les locations liées au locataire ont été supprimées.");
+	    }
+
+	    // Étape 3 : Supprimer le locataire
+	    RequeteDeleteLocataire requeteDeleteLocataire = new RequeteDeleteLocataire();
+	    try (PreparedStatement prStDeleteLocataire = connexion.prepareStatement(requeteDeleteLocataire.requete())) {
+	        requeteDeleteLocataire.parametres(prStDeleteLocataire, locataire);
+	        prStDeleteLocataire.executeUpdate();
+	        System.out.println("Le locataire a été supprimé avec succès.");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de la suppression du locataire : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void create(Locataire locataire) throws SQLException {

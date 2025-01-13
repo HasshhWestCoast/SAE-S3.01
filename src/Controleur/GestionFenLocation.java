@@ -66,6 +66,23 @@ public class GestionFenLocation implements ActionListener {
 					
 				case "Supprimer":
 					System.out.println("Vous SUPPRIMER une données dans Location !");
+					int ligneSelectionnee = this.fenAc.getTabMesLocations().getSelectedRow();
+
+					try {
+						String IdLocataire = (String) this.fenAc.getTabMesLocations().getValueAt(ligneSelectionnee, 0);
+						String IdBien = (String) this.fenAc.getTabMesLocations().getValueAt(ligneSelectionnee, 1);
+						String DateDebut = (String) this.fenAc.getTabMesLocations().getValueAt(ligneSelectionnee, 3);
+
+						Louer louer = this.daoLouer.findById(IdBien, IdLocataire, DateDebut);
+						
+						this.daoLouer.delete(louer);
+						
+						modeleTable.removeRow(ligneSelectionnee);
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}
 					break;
 				
 				case "Inserer":

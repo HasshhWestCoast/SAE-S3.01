@@ -12,7 +12,6 @@ import Modele.Dao.Requetes.Select.RequeteSelectLogement;
 import Modele.Dao.Requetes.Select.RequeteSelectLogementById;
 import Modele.Dao.Requetes.Update.RequeteDetachFactureByLogement;
 import Modele.Dao.Requetes.Delete.RequeteDeleteAssuranceByLogement;
-import Modele.Dao.Requetes.Delete.RequeteDeleteCompteurByLogement;
 import Modele.Dao.Requetes.Delete.RequeteDeleteLogement;
 import Modele.Dao.Requetes.Insert.RequeteInsertLogement;
 
@@ -35,14 +34,6 @@ public class DaoLogement extends DaoModele<Logement> implements Dao<Logement>{
 		        prStDeleteAssurance.executeUpdate();
 		        System.out.println("Les assurances liées au logement ont été supprimées.");
 		    }
-
-	        // Étape 2 : Supprimer les compteurs associés
-	        RequeteDeleteCompteurByLogement requeteDeleteCompteur = new RequeteDeleteCompteurByLogement();
-	        try (PreparedStatement prSt = connexion.prepareStatement(requeteDeleteCompteur.requete())) {
-	            requeteDeleteCompteur.parametres(prSt, logement);
-	            prSt.executeUpdate();
-	            System.out.println("Compteurs supprimés pour le logement: " + logement.getIdLogement());
-	        }
 
 	        // Étape 3 : Détacher le logement des factures associées
 	        RequeteDetachFactureByLogement requeteDetachFacture = new RequeteDetachFactureByLogement();

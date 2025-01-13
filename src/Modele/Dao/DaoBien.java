@@ -7,10 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import Modele.Bien;
-import Modele.Charge;
-import Modele.Facture;
-import Modele.Logement;
-import Modele.Louer;
 import Modele.Dao.Requetes.Select.RequeteSelectBien;
 import Modele.Dao.Requetes.Select.RequeteSelectBienById;
 import Modele.Dao.Requetes.Insert.RequeteInsertBien;

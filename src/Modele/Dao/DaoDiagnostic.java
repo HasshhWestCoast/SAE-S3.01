@@ -10,6 +10,7 @@ import Modele.Bien;
 import Modele.Diagnostic;
 import Modele.Dao.Requetes.Select.RequeteSelectDiagnostic;
 import Modele.Dao.Requetes.Select.RequeteSelectDiagnosticById;
+import Modele.Dao.Requetes.Delete.RequeteDeleteDiagnostic;
 import Modele.Dao.Requetes.Insert.RequeteInsertDiagnostic;
 
 
@@ -22,8 +23,19 @@ public class DaoDiagnostic  extends DaoModele<Diagnostic> implements Dao<Diagnos
 	}
 
 	@Override
-	public void delete(Diagnostic t) throws SQLException {		
+	public void delete(Diagnostic diagnostic) throws SQLException {
+	    // Étape 1 : Supprimer le diagnostic
+	    RequeteDeleteDiagnostic requeteDeleteDiagnostic = new RequeteDeleteDiagnostic();
+	    try (PreparedStatement prStDeleteDiagnostic = connexion.prepareStatement(requeteDeleteDiagnostic.requete())) {
+	        requeteDeleteDiagnostic.parametres(prStDeleteDiagnostic, diagnostic);
+	        prStDeleteDiagnostic.executeUpdate();
+	        System.out.println("Le diagnostic a été supprimé avec succès.");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de la suppression du diagnostic : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void create(Diagnostic diagnostic) throws SQLException {

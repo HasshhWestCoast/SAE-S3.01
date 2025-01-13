@@ -12,6 +12,8 @@ import Modele.Locataire;
 import Modele.Louer;
 import Modele.Dao.Requetes.Select.RequeteSelectLouer;
 import Modele.Dao.Requetes.Select.RequeteSelectLouerById;
+import Modele.Dao.Requetes.Delete.RequeteDeleteLouer;
+import Modele.Dao.Requetes.Delete.RequeteDeleteRetientByLouer;
 import Modele.Dao.Requetes.Insert.RequeteInsertLouer;
 
 public class DaoLouer extends DaoModele<Louer> implements Dao<Louer>{
@@ -23,8 +25,30 @@ public class DaoLouer extends DaoModele<Louer> implements Dao<Louer>{
 	}
 
 	@Override
-	public void delete(Louer t) throws SQLException {		
+	public void delete(Louer louer) throws SQLException {
+	    // Étape 1 : Supprimer les enregistrements associés dans Sae_retient
+	    RequeteDeleteRetientByLouer requeteDeleteRetient = new RequeteDeleteRetientByLouer();
+	    try (PreparedStatement prStRetient = connexion.prepareStatement(requeteDeleteRetient.requete())) {
+	        requeteDeleteRetient.parametres(prStRetient, louer);
+	        prStRetient.executeUpdate();
+	        System.out.println("Les enregistrements associés dans Sae_retient ont été supprimés.");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de la suppression des enregistrements associés dans Sae_retient : " + e.getMessage());
+	        throw e;
+	    }
+
+	    // Étape 2 : Supprimer l'entrée dans Sae_louer
+	    RequeteDeleteLouer requeteDeleteLouer = new RequeteDeleteLouer();
+	    try (PreparedStatement prStLouer = connexion.prepareStatement(requeteDeleteLouer.requete())) {
+	        requeteDeleteLouer.parametres(prStLouer, louer);
+	        prStLouer.executeUpdate();
+	        System.out.println("Le loyer a été supprimé avec succès.");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de la suppression du loyer : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void create(Louer louer) throws SQLException {
