@@ -15,6 +15,8 @@ DROP TABLE SAE_Impot CASCADE CONSTRAINTS;
 DROP TABLE SAE_Logement CASCADE CONSTRAINTS;
 DROP TABLE SAE_Quotite CASCADE CONSTRAINTS;
 DROP TABLE SAE_Quotter CASCADE CONSTRAINTS;
+DROP TABLE SAE_Relevé CASCADE CONSTRAINTS;
+
 
 -- Supprimer les séquences
 DROP SEQUENCE compteur_Impot;
@@ -201,10 +203,10 @@ CREATE TABLE SAE_Compteur(
 CREATE TABLE SAE_Relevé(
    Id_Compteur VARCHAR2(50),
    date_relevé DATE,
-   indexCompteur INT NUMBER constraint nn_reeve_idexCom not null,
-   constraint pk_releve PRIMARY KEY(Id_Compteur, date_relevé),
+   indexCompteur NUMBER constraint nn_reeve_idexCom not null,
+   constraint SAE_pk_releve PRIMARY KEY(Id_Compteur, date_relevé),
    constraint fk_releve_id_bien FOREIGN KEY(Id_Compteur) REFERENCES SAE_Compteur(Id_Compteur),
-   constraint uu_releve unique(Id_Compteur,date_relevé,indexComp)
+   constraint uu_releve unique(Id_Compteur,date_relevé,indexCompteur)
 );
 
 --------------------------IMPOSER-------------------------------------
