@@ -126,17 +126,4 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur>{
     public static void setIterateurCompteur(Iterateur<Compteur> iterateur) {
         it = iterateur;
     }
-    
-    public void deleteByLogement(String idLogement) throws SQLException {
-        String sql = "DELETE FROM Sae_compteur WHERE Id_Logement = ?";
-        try (PreparedStatement prSt = connexion.prepareStatement(sql)) {
-            prSt.setString(1, idLogement);
-            prSt.executeUpdate();
-            System.out.println("Suppression des compteurs liés au logement avec ID : " + idLogement);
-        } catch (SQLException e) {
-            System.err.println("Erreur lors de la suppression des compteurs liés au logement : " + e.getMessage());
-            throw e;
-        }
-    }
-
 }

@@ -9,6 +9,8 @@ import java.util.List;
 import Modele.Impot;
 import Modele.Dao.Requetes.Select.RequeteSelectImpot;
 import Modele.Dao.Requetes.Select.RequeteSelectImpotById;
+import Modele.Dao.Requetes.Update.RequeteDetachImpotFromImposer;
+import Modele.Dao.Requetes.Delete.RequeteDeleteImpot;
 import Modele.Dao.Requetes.Insert.RequeteInsertImpot;
 
 public class DaoImpot extends DaoModele<Impot> implements Dao<Impot>{
@@ -20,8 +22,27 @@ public class DaoImpot extends DaoModele<Impot> implements Dao<Impot>{
 	}
 
 	@Override
-	public void delete(Impot t) throws SQLException {		
+	public void delete(Impot impot) throws SQLException {
+	    // Étape 1 : Mettre à jour les enregistrements associés dans Sae_Imposer
+	    RequeteDetachImpotFromImposer requeteDetachImpot = new RequeteDetachImpotFromImposer();
+	    try (PreparedStatement prStDetachImpot = connexion.prepareStatement(requeteDetachImpot.requete())) {
+	        requeteDetachImpot.parametres(prStDetachImpot, impot);
+	        prStDetachImpot.executeUpdate();
+	        System.out.println("Les enregistrements liés dans Sae_Imposer ont été détachés.");
+	    }
+
+	    // Étape 2 : Supprimer l'impôt
+	    RequeteDeleteImpot requeteDeleteImpot = new RequeteDeleteImpot();
+	    try (PreparedStatement prStDeleteImpot = connexion.prepareStatement(requeteDeleteImpot.requete())) {
+	        requeteDeleteImpot.parametres(prStDeleteImpot, impot);
+	        prStDeleteImpot.executeUpdate();
+	        System.out.println("L'impôt a été supprimé avec succès.");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de la suppression de l'impôt : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void create(Impot impot) throws SQLException {

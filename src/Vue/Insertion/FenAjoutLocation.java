@@ -36,6 +36,7 @@ public class FenAjoutLocation extends JInternalFrame {
 	private JTextField textFieldLoyerMenssTTC;
 	private JTextField textFieldEtatLieux;
 	private JTextField textFieldBail;
+	private RoundedButton btnSupprimerLoc;
 
 
 	/**
@@ -156,7 +157,7 @@ public class FenAjoutLocation extends JInternalFrame {
 		JLabel lblTrouverICC = new JLabel("Trouver ICC");
 		lblTrouverICC.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTrouverICC.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblTrouverICC.setBounds(84, 383, 131, 21);
+		lblTrouverICC.setBounds(84, 380, 131, 21);
 		getContentPane().add(lblTrouverICC);
 		
 		tabMesICC = new JTable();
@@ -168,13 +169,13 @@ public class FenAjoutLocation extends JInternalFrame {
 		
 		JScrollPane scrollPaneMesICC = new JScrollPane(tabMesICC);
 		scrollPaneMesICC.setBorder(new LineBorder(new Color(109, 109, 109), 2));
-		scrollPaneMesICC.setBounds(10, 415, 306, 142);
+		scrollPaneMesICC.setBounds(10, 410, 306, 142);
 		getContentPane().add(scrollPaneMesICC);
 		
 		JSeparator separatorTrouverICC = new JSeparator();
 		separatorTrouverICC.setForeground(Color.WHITE);
 		separatorTrouverICC.setBackground(new Color(31, 151, 83));
-		separatorTrouverICC.setBounds(56, 402, 188, 2);
+		separatorTrouverICC.setBounds(56, 398, 188, 2);
 		getContentPane().add(separatorTrouverICC);
 		
 		RoundedButton btnAjouterEtatLieux = new RoundedButton("Ajouter Etat Lieux", 20);
@@ -211,7 +212,7 @@ public class FenAjoutLocation extends JInternalFrame {
 		
 		RoundedButton btnInsererICC = new RoundedButton("Inserer ICC", 20);
 		btnInsererICC.addActionListener(this.gestionClicFenAjoutLoc);
-		btnInsererICC.setBounds(107, 563, 108, 21);
+		btnInsererICC.setBounds(25, 563, 108, 21);
 		getContentPane().add(btnInsererICC);
 		
 		checkLoyerPayer = new JCheckBox("OUI");
@@ -221,7 +222,7 @@ public class FenAjoutLocation extends JInternalFrame {
 		
 		RoundedButton btnLocataire = new RoundedButton("Inserer L", 20);
 		btnLocataire.addActionListener(this.gestionClicFenAjoutLoc);
-		btnLocataire.setBounds(107, 176, 108, 21);
+		btnLocataire.setBounds(25, 172, 108, 21);
 		getContentPane().add(btnLocataire);
 		
 		textFieldDateSortie = new JTextField();
@@ -251,6 +252,16 @@ public class FenAjoutLocation extends JInternalFrame {
 		textFieldBail.setColumns(10);
 		textFieldBail.setBounds(375, 520, 147, 19);
 		getContentPane().add(textFieldBail);
+		
+		btnSupprimerLoc = new RoundedButton("Supprimer L", 20);
+		btnSupprimerLoc.addActionListener(gestionClicFenAjoutLoc);
+		btnSupprimerLoc.setBounds(161, 172, 118, 21);
+		getContentPane().add(btnSupprimerLoc);
+		
+		RoundedButton btnSupprimerIcc = new RoundedButton("Supprimer ICC", 20);
+		btnSupprimerIcc.addActionListener(gestionClicFenAjoutLoc);
+		btnSupprimerIcc.setBounds(161, 562, 131, 21);
+		getContentPane().add(btnSupprimerIcc);
 		
 	}
 	

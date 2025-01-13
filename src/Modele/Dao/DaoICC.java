@@ -9,6 +9,8 @@ import java.util.List;
 import Modele.ICC;
 import Modele.Dao.Requetes.Select.RequeteSelectICC;
 import Modele.Dao.Requetes.Select.RequeteSelectICCById;
+import Modele.Dao.Requetes.Update.RequeteDetachLouerByIcc;
+import Modele.Dao.Requetes.Delete.RequeteDeleteIcc;
 import Modele.Dao.Requetes.Insert.RequeteInsertICC;
 
 
@@ -21,8 +23,27 @@ public class DaoICC extends DaoModele<ICC> implements Dao<ICC>{
 	}
 
 	@Override
-	public void delete(ICC t) throws SQLException {		
+	public void delete(ICC icc) throws SQLException {
+	    // Étape 1 : Détacher les locations liées à l'ICC
+	    RequeteDetachLouerByIcc requeteDetachLouer = new RequeteDetachLouerByIcc();
+	    try (PreparedStatement prStDetachLouer = connexion.prepareStatement(requeteDetachLouer.requete())) {
+	        requeteDetachLouer.parametres(prStDetachLouer, icc);
+	        prStDetachLouer.executeUpdate();
+	        System.out.println("Les locations liées à l'ICC ont été mises à jour (Id_ICC mis à NULL).");
+	    }
+
+	    // Étape 2 : Supprimer l'ICC
+	    RequeteDeleteIcc requeteDeleteIcc = new RequeteDeleteIcc();
+	    try (PreparedStatement prStDeleteIcc = connexion.prepareStatement(requeteDeleteIcc.requete())) {
+	        requeteDeleteIcc.parametres(prStDeleteIcc, icc);
+	        prStDeleteIcc.executeUpdate();
+	        System.out.println("L'ICC a été supprimé avec succès.");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de la suppression de l'ICC : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void create(ICC icc) throws SQLException {

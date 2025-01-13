@@ -12,6 +12,8 @@ import Modele.Charge;
 import Modele.Dao.Requetes.Select.RequeteSelectCharge;
 import Modele.Dao.Requetes.Select.RequeteSelectChargeByBien;
 import Modele.Dao.Requetes.Select.RequeteSelectChargeById;
+import Modele.Dao.Requetes.Update.RequeteDetachRetientByCharge;
+import Modele.Dao.Requetes.Delete.RequeteDeleteCharge;
 import Modele.Dao.Requetes.Insert.RequeteInsertCharge;
 
 public class DaoCharge extends DaoModele<Charge> implements Dao<Charge>{
@@ -23,8 +25,27 @@ public class DaoCharge extends DaoModele<Charge> implements Dao<Charge>{
 	}
 
 	@Override
-	public void delete(Charge t) throws SQLException {		
+	public void delete(Charge charge) throws SQLException {
+	    // Étape 1 : Détacher les enregistrements liés dans Sae_retient
+	    RequeteDetachRetientByCharge requeteDetachRetient = new RequeteDetachRetientByCharge();
+	    try (PreparedStatement prStDetachRetient = connexion.prepareStatement(requeteDetachRetient.requete())) {
+	        requeteDetachRetient.parametres(prStDetachRetient, charge);
+	        prStDetachRetient.executeUpdate();
+	        System.out.println("Les enregistrements liés à la charge ont été mis à jour (Id_Charges mis à NULL).");
+	    }
+
+	    // Étape 2 : Supprimer la charge
+	    RequeteDeleteCharge requeteDeleteCharge = new RequeteDeleteCharge();
+	    try (PreparedStatement prStDeleteCharge = connexion.prepareStatement(requeteDeleteCharge.requete())) {
+	        requeteDeleteCharge.parametres(prStDeleteCharge, charge);
+	        prStDeleteCharge.executeUpdate();
+	        System.out.println("La charge a été supprimée avec succès.");
+	    } catch (SQLException e) {
+	        System.err.println("Erreur lors de la suppression de la charge : " + e.getMessage());
+	        throw e;
+	    }
 	}
+
 	
 	@Override
 	public void create(Charge charge) throws SQLException {
