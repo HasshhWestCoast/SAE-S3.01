@@ -5,8 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import Modele.Compteur;
 import Modele.Quotite;
+import Modele.Dao.Requetes.Delete.RequeteDeleteQuotite;
+import Modele.Dao.Requetes.Insert.RequeteInsertQuotite;
+import Modele.Dao.Requetes.Select.RequeteSelectQuotite;
+import Modele.Dao.Requetes.Select.RequeteSelectQuotiteById;
 
 
 public class DaoQuotite extends DaoModele<Quotite> implements Dao<Quotite>{
@@ -17,6 +20,7 @@ public class DaoQuotite extends DaoModele<Quotite> implements Dao<Quotite>{
         super(connexion);
     }
 
+    
 	@Override
 	public void create(Quotite quotite) throws SQLException {
         RequeteInsertQuotite requete = new RequeteInsertQuotite();
@@ -44,11 +48,12 @@ public class DaoQuotite extends DaoModele<Quotite> implements Dao<Quotite>{
         }
     }
     
-
+    
 	@Override
 	public void update(Quotite t) throws SQLException {
 		
 	}
+
 
     @Override
     public Quotite findById(String... id) throws SQLException {

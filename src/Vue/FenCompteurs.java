@@ -33,7 +33,6 @@ public class FenCompteurs extends JInternalFrame {
 		getContentPane().setBackground(new Color(255, 255, 255));
         getContentPane().setLayout(null);
 		
-		 // JTable pour "Bien"
         tabMesCompteurs = new JTable();
         tabMesCompteurs.setModel(new DefaultTableModel(
             new Object[][] {
