@@ -68,8 +68,7 @@ public class DaoBien extends DaoModele<Bien> implements Dao<Bien> {
 	@Override
 	protected Bien creerInstance(ResultSet curseur) throws SQLException {
 		
-	    String periode_Construction = curseur.getString("periode_Construction");
-	    
+	    String periode_Construction = curseur.getString("periode_Construction");	    
 	    String id_Bien = curseur.getString("id_Bien");
 	    String adresse = curseur.getString("adresse");
 	    String ville = curseur.getString("ville");

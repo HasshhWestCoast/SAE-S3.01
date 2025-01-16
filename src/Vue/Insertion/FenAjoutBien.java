@@ -73,7 +73,7 @@ public class FenAjoutBien extends JInternalFrame {
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
 		btnAnnuler.addActionListener(gestionClicFenAjoutBien);
-		btnAnnuler.setBounds(82, 419, 85, 21);
+		btnAnnuler.setBounds(77, 419, 85, 21);
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
@@ -101,12 +101,6 @@ public class FenAjoutBien extends JInternalFrame {
 		comboBoxTypeDeBien.setModel(new DefaultComboBoxModel(new String[] {"Maison", "Immeuble"}));
 		comboBoxTypeDeBien.setToolTipText("ID Immeuble");
 		getContentPane().add(comboBoxTypeDeBien);
-		
-		RoundedButton btnAjoutCompteur = new RoundedButton("Compteur", 20);
-		btnAjoutCompteur.addActionListener(gestionClicFenAjoutBien);
-		btnAjoutCompteur.setText("Ajout Compteur");
-		btnAjoutCompteur.setBounds(108, 453, 131, 21);
-		getContentPane().add(btnAjoutCompteur);
 		
 		textFieldCodePostale = new JTextField();
 		textFieldCodePostale.setBounds(80, 311, 223, 19);

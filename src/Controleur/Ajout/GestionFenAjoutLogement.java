@@ -19,7 +19,6 @@ import Modele.Dao.DaoLogement;
 import Modele.Dao.Iterateur;
 import Vue.FenAccueil;
 import Vue.RoundedButton;
-import Vue.Insertion.FenAjoutCompteur;
 import Vue.Insertion.FenAjoutLogement;
 
 
@@ -142,15 +141,7 @@ public class GestionFenAjoutLogement implements ActionListener, ListSelectionLis
 					}
 
 					break;
-					
-				case "Ajouter un compteur":
-					System.out.println("Vous OUVREZ la page ajout compteur");
-				     FenAjoutCompteur fenAjoutCompteur = new FenAjoutCompteur();
-					
-	                fenAC.getLayeredPane().add(fenAjoutCompteur);
-	                fenAjoutCompteur.setVisible(true);
-	                fenAjoutCompteur.moveToFront();
-					break;
+
 				default:
 					System.out.println("Action non reconnu !");
 			}

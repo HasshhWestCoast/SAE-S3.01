@@ -13,7 +13,6 @@ import Modele.Dao.DaoBien;
 import Vue.FenAccueil;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutBien;
-import Vue.Insertion.FenAjoutCompteur;
 
 public class GestionFenAjoutBien implements ActionListener{
 
@@ -79,15 +78,6 @@ public class GestionFenAjoutBien implements ActionListener{
 						System.out.println(ex.getMessage());
 						ex.printStackTrace();
 					}			
-					break;
-					
-				case "Ajout Compteur":
-					System.out.println("Vous OUVREZ la page ajout compteur");
-				    
-					FenAjoutCompteur fenAjoutCompteur = new FenAjoutCompteur();
-					fenAC.getLayeredPane().add(fenAjoutCompteur);
-	                fenAjoutCompteur.setVisible(true);
-	                fenAjoutCompteur.moveToFront();
 					break;
 				
 				default:

@@ -16,7 +16,7 @@ import Modele.Dao.CictOracleDataSource;
 import Modele.Dao.DaoLogement;
 import Modele.Dao.Iterateur;
 import Vue.FenAccueil;
-import Vue.FenCompteursLogement;
+import Vue.FenCompteurs;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutFacture;
 import Vue.Insertion.FenAjoutLogement;
@@ -102,10 +102,10 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 				case "Afficher les compteurs":
 					System.out.println("Vous AFFICHER LES COMPTEURS depuis Logement !");
 				
-					FenCompteursLogement fenCompMesLogements = null;
+					FenCompteurs fenCompMesLogements = null;
 					
 					try {
-						fenCompMesLogements = new FenCompteursLogement();
+						fenCompMesLogements = new FenCompteurs();
 					} catch (SQLException e1) {
 						System.out.println(e1.getMessage());
 						e1.printStackTrace();

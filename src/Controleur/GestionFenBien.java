@@ -16,7 +16,7 @@ import Modele.Dao.CictOracleDataSource;
 import Modele.Dao.DaoBien;
 import Modele.Dao.Iterateur;
 import Vue.FenAccueil;
-import Vue.FenCompteursBien;
+import Vue.FenCompteurs;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutBien;
 import Vue.Insertion.FenAjoutFacture;
@@ -107,17 +107,17 @@ public class GestionFenBien implements ActionListener, ListSelectionListener{
 				case "Afficher les compteurs":
 					System.out.println("Vous AFFICHER LES COMPTEURS depuis Bien !");
 					
-					FenCompteursBien fenCompMesBien = null;
+					FenCompteurs fenCompMesBien = null;	
 					
 					try {
-						fenCompMesBien = new FenCompteursBien();
+						fenCompMesBien = new FenCompteurs();
 					} catch (SQLException e1) {
 						System.out.println(e1.getMessage());
 						e1.printStackTrace();
 					}
 					
-					fenAc.getLayeredPane().add(fenCompMesBien);
-					fenCompMesBien.setVisible(true);
+					fenAc.getLayeredPane().add(fenCompMesBien);					
+					fenCompMesBien.setVisible(true);				
 					break;
 					
 				case "Ajouter un bien":
@@ -141,8 +141,7 @@ public class GestionFenBien implements ActionListener, ListSelectionListener{
 				        return;
 				    }
 					
-					FenAjoutFacture fenAddFacture = null;
-					
+					FenAjoutFacture fenAddFacture = null;				
 					try {
 						fenAddFacture = new FenAjoutFacture(this.bien);
 					} catch (SQLException e1) {
@@ -186,5 +185,4 @@ public class GestionFenBien implements ActionListener, ListSelectionListener{
 			}	
 		}
 	}
-	
 }
