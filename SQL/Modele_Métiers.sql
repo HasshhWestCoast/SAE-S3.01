@@ -1,3 +1,6 @@
+
+------------- CONSOMMATION D'UN COMPTEUR POUR UN BIEN DONNÉ ---------------
+-- Fonction pour calculer la consommation entre deux relevés pour un compteur donné
 CREATE OR REPLACE FUNCTION CalculerConsommation(
     p_Id_Compteur IN SAE_Compteur.Id_Compteur%TYPE
 ) RETURN NUMBER
@@ -69,6 +72,10 @@ END;
 /
 
 
+------- CALCULE DU PRIX DE LA PARTIE VARIABLE D'UN COMPTEUR EN FONCTION DE SON TYPE -----------
+-- Fonction pour calculer le coût variable de la consommation en fonction du type de compteur
+-- La consommation multipliée par le prix du m3 
+
 CREATE OR REPLACE FUNCTION CalculerPartieVariableConso(
     p_Id_Compteur IN SAE_Compteur.Id_Compteur%TYPE
 ) RETURN NUMBER
@@ -135,7 +142,8 @@ BEGIN
 END;
 /
 
-
+--------A COMMENTER -------
+---------- MANOLO ----------
 CREATE OR REPLACE FUNCTION CalculerPrixConsoLogement_SP(
     p_Input IN VARCHAR2
 ) RETURN NUMBER
@@ -285,6 +293,9 @@ BEGIN
 END;
 /
 
+--------A COMMENTER -------
+---------- MANOLO ----------
+
 CREATE OR REPLACE FUNCTION CalculerConsoBien_SP(
     p_Input IN VARCHAR2
 ) RETURN NUMBER
@@ -357,6 +368,9 @@ BEGIN
 END;
 /
 
+--------A COMMENTER -------
+---------- MANOLO ----------
+
 CREATE OR REPLACE FUNCTION CalculChargesReellesTotal(
     p_Id_Bien IN SAE_Bien.Id_Bien%TYPE DEFAULT NULL
 ) RETURN NUMBER
@@ -409,6 +423,9 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Le total des charges réelles pour un bien : ' || v_TotalConsommation);
 END;
 /
+
+--------A COMMENTER -------
+---------- MANOLO ----------
 
 CREATE OR REPLACE FUNCTION CalculerTotalChargesCompletes(
     p_Id_Bien IN SAE_Bien.Id_Bien%TYPE
@@ -503,6 +520,9 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Le total pour les provisions est : ' || v_result);
 END;
 /
+-- SOMMES TOTAL ORDURES MENAGERES ---
+-- Fonction pour calculer le total des charges réelles liées aux ordures ménagères pour un bien loué spécifié
+-- Elle récupère la somme des montants des factures émises entre la date de la dernière régularisation et la date actuelle
 
 CREATE OR REPLACE FUNCTION CalcultotalOrduresMenageres (
     p_Id_Bien IN SAE_Louer.Id_Bien%TYPE
@@ -599,6 +619,12 @@ BEGIN
 END;
 /
 
+
+--------------------------------------------
+------------- CALCUL TRAVAUX ---------------
+--------------------------------------------
+-- Fonction pour calculer la somme totale des travaux pour un bien spécifié et son immeuble associé
+-- recupere total travaux emis pour un Bien puis retourne la somme 
 set serveroutput on
 CREATE OR REPLACE FUNCTION CalculTravauxBienImmeuble(
     p_Id_Bien IN SAE_Bien.Id_Bien%TYPE
@@ -648,6 +674,11 @@ BEGIN
 END;
 /
 
+---------------------------------------------------------
+------------- CALCUL TRAVAUX IMPUTABLES ---------------
+---------------------------------------------------------
+-- Fonction pour calculer la somme totale des travaux imputables au locataire pour un bien spécifié
+-- recupere le total des travaux realiser sur le bien puis retourne la somme 
 CREATE OR REPLACE FUNCTION CalculTravauxImputableLoca(
     p_Id_Bien IN SAE_Bien.Id_Bien%TYPE
 ) RETURN NUMBER 
@@ -689,6 +720,8 @@ EXCEPTION
 END;
 /
 
+--------A COMMENTER -------
+---------- MANOLO ----------
 
 CREATE OR REPLACE FUNCTION CalculerReguCharges_SP(
     p_Input IN VARCHAR2
@@ -754,6 +787,12 @@ END;
 /
 
 
+----------------------------------------------
+---------- SOLDE DE TOUT COMPTE --------------
+----------------------------------------------
+-- Fonction pour calculer le solde de tout compte pour un locataire et un bien spécifiés
+-- prend en compte les charges réelles, les provision , les travaux imputable , la caution 
+-- pour determiner le solde final apres regularisation 
 
 CREATE OR REPLACE FUNCTION CalculerSoldeToutCompte_SP(
     p_Input IN VARCHAR2
