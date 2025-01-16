@@ -16,8 +16,6 @@ import Controleur.GestionFenFacture;
 import Controleur.GestionFenLocation;
 import Controleur.GestionFenLogements;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.border.EtchedBorder;
 
 public class FenAccueil extends JFrame {

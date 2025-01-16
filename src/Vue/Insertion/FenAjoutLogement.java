@@ -124,11 +124,6 @@ public class FenAjoutLogement extends JInternalFrame {
 		getContentPane().add(textFieldSurfaceHabitable);
 		textFieldSurfaceHabitable.setColumns(10);
 		
-		RoundedButton btnAjouterCompteur = new RoundedButton("Ajouter un compteur", 20);
-		btnAjouterCompteur.addActionListener(gestionFenAjoutLogement);
-		btnAjouterCompteur.setBounds(412, 419, 162, 21);
-		getContentPane().add(btnAjouterCompteur);
-		
 		JLabel lblMesBiens = new JLabel("Mes Biens");
 		lblMesBiens.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMesBiens.setFont(new Font("Sylfaen", Font.PLAIN, 16));
@@ -156,7 +151,7 @@ public class FenAjoutLogement extends JInternalFrame {
 		
 		RoundedButton btnCharger = new RoundedButton("Charger", 20);
 		btnCharger.addActionListener(gestionFenAjoutLogement);
-		btnCharger.setBounds(450, 243, 85, 21);
+		btnCharger.setBounds(450, 212, 85, 21);
 		getContentPane().add(btnCharger);
 		
 		checkGarage = new JCheckBox("OUI");
@@ -167,7 +162,7 @@ public class FenAjoutLogement extends JInternalFrame {
 		JLabel lbGarage = new JLabel("Garage");
 		lbGarage.setBounds(80, 357, 112, 13);
 		getContentPane().add(lbGarage);
-		setBounds(300, 100, 651, 507);
+		setBounds(300, 100, 686, 507);
 
 	}
 	
