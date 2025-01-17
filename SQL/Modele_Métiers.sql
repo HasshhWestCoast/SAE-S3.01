@@ -1,4 +1,3 @@
-
 ------------- CONSOMMATION D'UN COMPTEUR POUR UN BIEN DONNÉ ---------------
 -- Fonction pour calculer la consommation entre deux relevés pour un compteur donné
 CREATE OR REPLACE FUNCTION CalculerConsommation(
@@ -142,8 +141,9 @@ BEGIN
 END;
 /
 
---------A COMMENTER -------
----------- MANOLO ----------
+-- Fonction CalculerPrixConsoLogement_SP
+-- Cette fonction calcule le prix total de la consommation d'un logement spécifique en fonction du compteur associé.
+-- Elle utilise une chaîne d'entrée contenant l'ID du logement et du compteur.
 CREATE OR REPLACE FUNCTION CalculerPrixConsoLogement_SP(
     p_Input IN VARCHAR2
 ) RETURN NUMBER
@@ -293,9 +293,9 @@ BEGIN
 END;
 /
 
---------A COMMENTER -------
----------- MANOLO ----------
-
+-- Fonction CalculerConsoBien_SP
+-- Cette fonction calcule la consommation pour un compteur spécifique associé à un bien.
+-- Elle déduit la consommation à partir des relevés et applique un coût en fonction du type de compteur.
 CREATE OR REPLACE FUNCTION CalculerConsoBien_SP(
     p_Input IN VARCHAR2
 ) RETURN NUMBER
@@ -368,9 +368,10 @@ BEGIN
 END;
 /
 
---------A COMMENTER -------
----------- MANOLO ----------
-
+-- Fonction CalculChargesReellesTotal
+-- Cette fonction calcule le total des consommations réelles associées à un bien spécifique.
+-- Elle récupère tous les compteurs liés au bien, calcule la consommation pour chacun d'eux 
+-- en utilisant la fonction CalculerPartieVariableConso, puis retourne la somme totale de ces consommations.
 CREATE OR REPLACE FUNCTION CalculChargesReellesTotal(
     p_Id_Bien IN SAE_Bien.Id_Bien%TYPE DEFAULT NULL
 ) RETURN NUMBER
@@ -424,9 +425,13 @@ BEGIN
 END;
 /
 
---------A COMMENTER -------
----------- MANOLO ----------
 
+-- Fonction CalculerTotalChargesCompletes
+-- Cette fonction calcule le total des charges complètes pour un bien spécifique.
+-- Elle additionne :
+-- 1. Les charges liées aux compteurs (eau, électricité, gaz) calculées via la fonction CalculChargesReellesTotal.
+-- 2. Les charges hors compteurs (issues de la table SAE_Charge) excluant les consommations des compteurs.
+-- Le résultat est la somme de ces deux catégories de charges.
 CREATE OR REPLACE FUNCTION CalculerTotalChargesCompletes(
     p_Id_Bien IN SAE_Bien.Id_Bien%TYPE
 ) RETURN NUMBER
@@ -480,7 +485,10 @@ BEGIN
 END;
 /
 
-
+-- Fonction CalculTotalProvisions
+-- Cette fonction calcule le total des provisions pour un bien donné.
+-- Elle multiplie la durée en mois entre la date actuelle et la date de la dernière régularisation (ou la date actuelle par défaut si aucune date n'est définie) par les provisions mensuelles.
+-- Le résultat est la somme des provisions calculées pour le bien spécifié.
 CREATE OR REPLACE FUNCTION CalculTotalProvisions (
     p_Id_Bien IN SAE_Louer.Id_Bien%TYPE
 ) RETURN NUMBER
@@ -520,10 +528,10 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Le total pour les provisions est : ' || v_result);
 END;
 /
+
 -- SOMMES TOTAL ORDURES MENAGERES ---
 -- Fonction pour calculer le total des charges réelles liées aux ordures ménagères pour un bien loué spécifié
 -- Elle récupère la somme des montants des factures émises entre la date de la dernière régularisation et la date actuelle
-
 CREATE OR REPLACE FUNCTION CalcultotalOrduresMenageres (
     p_Id_Bien IN SAE_Louer.Id_Bien%TYPE
 ) RETURN NUMBER
@@ -567,6 +575,11 @@ BEGIN
 END;
 /
 
+-- Fonction CalculDuLoyer
+-- Cette fonction calcule la dette locative restante pour un bien donné.
+-- Elle détermine la différence entre le total des loyers facturés et le total des loyers effectivement payés.
+-- Les calculs prennent en compte uniquement les factures de loyer émises entre la date de la dernière régularisation et la date actuelle.
+-- Le résultat est la somme des loyers dus pour le bien spécifié.
 CREATE OR REPLACE FUNCTION CalculDuLoyer (
     p_Id_Bien IN SAE_Louer.Id_Bien%TYPE
 ) RETURN NUMBER
@@ -720,9 +733,9 @@ EXCEPTION
 END;
 /
 
---------A COMMENTER -------
----------- MANOLO ----------
-
+-- Fonction CalculerReguCharges_SP
+-- Cette fonction calcule la régularisation des charges pour un locataire d'un bien spécifique.
+-- Elle prend en compte les charges réelles, les provisions et les loyers restants.
 CREATE OR REPLACE FUNCTION CalculerReguCharges_SP(
     p_Input IN VARCHAR2
 ) RETURN NUMBER
