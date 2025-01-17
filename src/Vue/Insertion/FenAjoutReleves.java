@@ -1,12 +1,16 @@
 package Vue.Insertion;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.sql.SQLException;
+
 import javax.swing.SwingConstants;
+
+import Controleur.Ajout.GestionFenAjoutReleve;
+import Modele.Compteur;
+
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import Vue.RoundedButton;
@@ -18,36 +22,25 @@ public class FenAjoutReleves extends JInternalFrame {
 	private JTextField textFieldIndex;
 	private RoundedButton btnAnnuler;
 	private RoundedButton btnAjouter;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenAjoutReleves frame = new FenAjoutReleves();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private Compteur compteur;
+	private GestionFenAjoutReleve gestionFenAjoutReleve;
+	
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public FenAjoutReleves() {
+	public FenAjoutReleves(Compteur compteur) throws SQLException {
+		this.compteur = compteur;
+		this.gestionFenAjoutReleve = new GestionFenAjoutReleve(this);
 		setBackground(new Color(255, 255, 255));
 		setBounds(100, 100, 384, 281);
 		getContentPane().setLayout(null);
 		
-		JLabel lblAjoutLocataire = new JLabel("Ajout Locataire");
-		lblAjoutLocataire.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAjoutLocataire.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblAjoutLocataire.setBounds(116, 10, 131, 21);
-		getContentPane().add(lblAjoutLocataire);
+		JLabel lblAjoutReleve = new JLabel("Ajout Relevé");
+		lblAjoutReleve.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAjoutReleve.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		lblAjoutReleve.setBounds(116, 10, 131, 21);
+		getContentPane().add(lblAjoutReleve);
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(Color.WHITE);
@@ -74,12 +67,26 @@ public class FenAjoutReleves extends JInternalFrame {
 		getContentPane().add(textFieldIndex);
 		
 		btnAnnuler = new RoundedButton("Annuler", 20);
+		btnAnnuler.addActionListener(this.gestionFenAjoutReleve);
 		btnAnnuler.setBounds(75, 179, 85, 21);
 		getContentPane().add(btnAnnuler);
 		
 		btnAjouter = new RoundedButton("Ajouter", 20);
+		btnAjouter.addActionListener(this.gestionFenAjoutReleve);
 		btnAjouter.setBounds(210, 179, 85, 21);
 		getContentPane().add(btnAjouter);
 
+	}
+	
+	public String getDateReleves() {
+		return textFieldDateReleves.getText();
+	}
+	
+	public String getIndex() {
+		return textFieldIndex.getText();
+	}
+
+	public Compteur getCompteur() {
+		return compteur;
 	}
 }

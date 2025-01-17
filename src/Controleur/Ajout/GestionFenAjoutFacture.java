@@ -92,8 +92,7 @@ public class GestionFenAjoutFacture implements ActionListener, ListSelectionList
 				        this.fenAjoutFacture.getTextFieldDateEmission().isEmpty() ||
 				        this.fenAjoutFacture.getTextFieldDatePaiement().isEmpty() ||
 				        this.fenAjoutFacture.getTextFieldMontantReelVerse().isEmpty() ||
-				        this.fenAjoutFacture.getTextFieldMontant().isEmpty()||
-				    	this.fenAjoutFacture.getTextFieldNumeroDevis().isEmpty())
+				        this.fenAjoutFacture.getTextFieldMontant().isEmpty())
 				    {
 				        JOptionPane.showMessageDialog(
 				            this.fenAjoutFacture,

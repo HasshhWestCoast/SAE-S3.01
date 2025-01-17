@@ -1,15 +1,17 @@
 package Vue;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import java.awt.Color;
 import javax.swing.JScrollPane;
-import java.awt.Component;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+
+import Controleur.GestionFenMesReleves;
+
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.sql.SQLException;
+
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
@@ -18,27 +20,15 @@ public class FenMesReleves extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTable tabMesReleves;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenMesReleves frame = new FenMesReleves();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private GestionFenMesReleves gestionFenMesReleves;
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public FenMesReleves() {
+	public FenMesReleves() throws SQLException {
+		
+		this.gestionFenMesReleves = new GestionFenMesReleves(this);
+		
 		setBackground(new Color(255, 255, 255));
 		setBounds(100, 100, 675, 549);
 		getContentPane().setLayout(null);
@@ -73,17 +63,23 @@ public class FenMesReleves extends JInternalFrame {
 		getContentPane().add(separator);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
+		btnAjouter.addActionListener(this.gestionFenMesReleves);
 		btnAjouter.setBounds(250, 455, 104, 21);
 		getContentPane().add(btnAjouter);
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
+		btnAnnuler.addActionListener(this.gestionFenMesReleves);
 		btnAnnuler.setBounds(112, 455, 104, 21);
 		getContentPane().add(btnAnnuler);
 		
-		RoundedButton btnSupprimer = new RoundedButton("Ajouter", 20);
-		btnSupprimer.setText("Supprimer");
+		RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
+		btnSupprimer.addActionListener(this.gestionFenMesReleves);
 		btnSupprimer.setBounds(379, 455, 129, 21);
 		getContentPane().add(btnSupprimer);
 
+	}
+	
+	public JTable getTabMesReleves() {
+		return tabMesReleves;
 	}
 }

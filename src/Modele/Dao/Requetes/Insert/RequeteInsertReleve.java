@@ -10,7 +10,7 @@ public class RequeteInsertReleve extends Requete<Releve> {
 
     @Override
     public String requete() {
-        return "INSERT INTO SAE_RELEVÉ (date_releve, indexCompteur, Id_Compteur) VALUES (?, ?, ?)";
+        return "INSERT INTO SAE_RELEVÉ (date_RELEVÉ, indexCompteur, Id_Compteur) VALUES (?, ?, ?)";
     }
 
     @Override

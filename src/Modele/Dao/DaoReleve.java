@@ -11,6 +11,7 @@ import Modele.Dao.Requetes.Insert.RequeteInsertReleve;
 import Modele.Dao.Requetes.Delete.RequeteDeleteReleve;
 import Modele.Dao.Requetes.Select.RequeteSelectReleve;
 import Modele.Dao.Requetes.Select.RequeteSelectReleveById;
+import Modele.Dao.Requetes.Select.RequeteSelectReleveByIdCompteur;
 
 public class DaoReleve extends DaoModele<Releve> implements Dao<Releve> {
 
@@ -57,6 +58,15 @@ public class DaoReleve extends DaoModele<Releve> implements Dao<Releve> {
         return super.findById(requete, id);
     }
 
+    public List<Releve> findAllById(String... id) throws SQLException {
+        RequeteSelectReleveByIdCompteur requete = new RequeteSelectReleveByIdCompteur();
+        PreparedStatement prSt = connexion.prepareStatement(requete.requete());
+        requete.parametres(prSt, id); 
+        List<Releve> list = select(prSt);
+        return list;
+    }
+
+    
     @Override
     public List<Releve> findAll() throws SQLException {
     	RequeteSelectReleve requete = new RequeteSelectReleve();

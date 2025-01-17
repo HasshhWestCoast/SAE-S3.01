@@ -21,7 +21,6 @@ public class FenCompteurs extends JInternalFrame {
 	private GestionFenCompteurs gestionClicFenCompLog;
 	private JTable tabMesCompteurs;
 
-
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
@@ -34,6 +33,7 @@ public class FenCompteurs extends JInternalFrame {
         getContentPane().setLayout(null);
 		
         tabMesCompteurs = new JTable();
+        tabMesCompteurs.getSelectionModel().addListSelectionListener(this.gestionClicFenCompLog);
         tabMesCompteurs.setModel(new DefaultTableModel(
             new Object[][] {
                 { null, null, null, null},
@@ -87,4 +87,5 @@ public class FenCompteurs extends JInternalFrame {
 	public JTable gettabMesCompteurs() {
 		return tabMesCompteurs;
 	}
+
 }
