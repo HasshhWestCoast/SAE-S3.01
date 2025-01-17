@@ -108,13 +108,13 @@ END;
 
 --------------------------QUOTTER-------------------------------------
 CREATE OR REPLACE PROCEDURE Inserer_Quotter(
-    p_Id_Bien IN SAE_Quotter.Id_Bien%TYPE,
+    p_Id_Logement IN SAE_Quotter.Id_Logement%TYPE,
     p_Type_Quotite IN SAE_Quotter.Type_Quotite%TYPE,
     p_Pourcentage IN SAE_Quotter.Pourcentage%TYPE
 ) AS
 BEGIN
-    INSERT INTO SAE_Quotter (Id_Bien, Type_Quotite, Pourcentage)
-    VALUES (p_Id_Bien, p_Type_Quotite, p_Pourcentage);
+    INSERT INTO SAE_Quotter (Id_Logement, Type_Quotite, Pourcentage)
+    VALUES (p_Id_Logement, p_Type_Quotite, p_Pourcentage);
 END;
 /
 
@@ -139,11 +139,12 @@ CREATE OR REPLACE PROCEDURE Inserer_Assurance(
     p_Protection_juridique IN SAE_Assurance.Protection_juridique%TYPE,
     p_Date_Echeance IN SAE_Assurance.Date_Echeance%TYPE,
     p_SIRET IN SAE_Assurance.SIRET%TYPE,
+    p_Id_Bien IN SAE_Assurance.Id_Bien%TYPE,
     p_Id_Logement IN SAE_Assurance.Id_Logement%TYPE
 ) AS
 BEGIN
-    INSERT INTO SAE_Assurance (Numero_Police, Montant, Date_Echeance, SIRET, Id_Logement)
-    VALUES (p_Numero_Police, p_Montant, p_Date_Echeance, p_SIRET, p_Id_Logement);
+    INSERT INTO SAE_Assurance (Numero_Police, Montant, Date_Echeance, SIRET, Id_Bien, Id_Logement)
+    VALUES (p_Numero_Police, p_Montant, p_Date_Echeance, p_SIRET, p_Id_Bien, p_Id_Logement);
 END;
 /
 

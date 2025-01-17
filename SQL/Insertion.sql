@@ -80,7 +80,7 @@ VALUES ('66778899001122', 'Entreprise Theta', '8 Avenue des Fleurs', '44000', 'N
 
 -- Exemples d'insertion dans SAE_Facture avec des SIRET valides et des Id_Facture uniques
 INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
-VALUES ('FAC001', TO_DATE('2023-01-15', 'YYYY-MM-DD'), TO_DATE('2023-01-30', 'YYYY-MM-DD'), 'Carte bancaire', 'DEV001', 'Location Appartement', 1000, 1200, 1, 300, 'LOG001', NULL, '12345678901234');
+VALUES ('FAC001', TO_DATE('2023-01-15', 'YYYY-MM-DD'), TO_DATE('2023-01-30', 'YYYY-MM-DD'), 'Carte bancaire', 'DEV001', 'Location Appartement', 1000, 1200, 1, 300, 'LOG001', 'BIEN007', '12345678901234');
 
 INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
 VALUES ('FAC002', TO_DATE('2023-02-05', 'YYYY-MM-DD'), TO_DATE('2023-02-10', 'YYYY-MM-DD'), 'Virement', 'DEV002', 'Réparation chaudière', 500, 600, 0, 100, NULL, 'BIEN002', '56789012345678');
@@ -89,7 +89,7 @@ INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement
 VALUES ('FAC003', TO_DATE('2023-03-01', 'YYYY-MM-DD'), TO_DATE('2023-03-10', 'YYYY-MM-DD'), 'Chèque', 'DEV003', 'Entretien annuel', 1200, 1300, 1, 200, 'LOG003', 'BIEN003', '98765432109876');
 
 INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
-VALUES ('FAC004', TO_DATE('2023-04-20', 'YYYY-MM-DD'), TO_DATE('2023-04-25', 'YYYY-MM-DD'), 'Espèces', 'DEV004', 'Réparation plomberie', 800, 950, 1, 150, 'LOG004', NULL, '45678901234567');
+VALUES ('FAC004', TO_DATE('2023-04-20', 'YYYY-MM-DD'), TO_DATE('2023-04-25', 'YYYY-MM-DD'), 'Espèces', 'DEV004', 'Réparation plomberie', 800, 950, 1, 150, 'LOG004', 'BIEN008', '45678901234567');
 
 INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
 VALUES ('FAC005', TO_DATE('2023-05-10', 'YYYY-MM-DD'), TO_DATE('2023-05-15', 'YYYY-MM-DD'), 'Virement', 'DEV005', 'Service de nettoyage', 600, 700, 0, 100, NULL, 'BIEN004', '11223344556677');
@@ -98,7 +98,7 @@ INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement
 VALUES ('FAC006', TO_DATE('2023-06-05', 'YYYY-MM-DD'), TO_DATE('2023-06-10', 'YYYY-MM-DD'), 'Carte bancaire', 'DEV006', 'Frais d''assurance', 450, 500, 1, 50, 'LOG005', 'BIEN005', '88990011223344');
 
 INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
-VALUES ('FAC007', TO_DATE('2023-07-15', 'YYYY-MM-DD'), TO_DATE('2023-07-20', 'YYYY-MM-DD'), 'Chèque', 'DEV007', 'Entretien des espaces communs', 700, 800, 0, 100, 'LOG006', NULL, '55667788990011');
+VALUES ('FAC007', TO_DATE('2023-07-15', 'YYYY-MM-DD'), TO_DATE('2023-07-20', 'YYYY-MM-DD'), 'Chèque', 'DEV007', 'Entretien des espaces communs', 700, 800, 0, 100, 'LOG006', 'BIEN007', '55667788990011');
 
 INSERT INTO SAE_Facture (Id_Facture, date_emission, date_paiement, mode_paiement, numero_devis, designation, montant_reel_verse, montant, imputable_locataire, acompte_verse, Id_Logement, Id_Bien, SIRET)
 VALUES ('FAC008', TO_DATE('2024-01-15', 'YYYY-MM-DD'), TO_DATE('2024-01-30', 'YYYY-MM-DD'), 'Carte bancaire', 'DEV008', 'EAU', 250, 300, 1, 100, 'LOG001', 'BIEN001', '12345678901234');
@@ -228,29 +228,29 @@ INSERT INTO SAE_Diagnostic (Id_Diagnostic, date_validite, type_diagnostic, Id_Bi
 VALUES ('DIAG008', TO_DATE('2025-08-10', 'YYYY-MM-DD'), 'Électricité', 'BIEN008');
 
 -- Insertion des donnÃ©es dans la table SAE_Assurance
-INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_echeance, SIRET, Id_Logement)
-VALUES ('POL001', 500.00, 0.00, TO_DATE('2025-01-15', 'YYYY-MM-DD'), '12345678901234', 'LOG001');
+INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_echeance, SIRET, Id_Bien, Id_Logement)
+VALUES ('POL001', 500.00, 0.00, TO_DATE('2025-01-15', 'YYYY-MM-DD'), '12345678901234', 'BIEN001', 'LOG001');
 
-INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_echeance, SIRET, Id_Logement)
-VALUES ('POL002', 750.50, 128.50, TO_DATE('2025-06-30', 'YYYY-MM-DD'), '56789012345678', 'LOG002');
+INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_echeance, SIRET, Id_Bien, Id_Logement)
+VALUES ('POL002', 750.50, 128.50, TO_DATE('2025-06-30', 'YYYY-MM-DD'), '56789012345678', 'BIEN001','LOG002');
 
-INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique,  date_echeance, SIRET, Id_Logement)
-VALUES ('POL003', 1200.00, 1200.70, TO_DATE('2026-03-20', 'YYYY-MM-DD'), '98765432109876', 'LOG003');
+INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique,  date_echeance, SIRET, Id_Bien, Id_Logement)
+VALUES ('POL003', 1200.00, 1200.70, TO_DATE('2026-03-20', 'YYYY-MM-DD'), '98765432109876', 'BIEN001', 'LOG003');
 
-INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_echeance, SIRET, Id_Logement)
-VALUES ('POL004', 300.00, 300.00, TO_DATE('2025-11-10', 'YYYY-MM-DD'), '45678901234567', 'LOG004');
+INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_echeance, SIRET, Id_Bien, Id_Logement)
+VALUES ('POL004', 300.00, 300.00, TO_DATE('2025-11-10', 'YYYY-MM-DD'), '45678901234567', 'BIEN001','LOG004');
 
-INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_echeance, SIRET, Id_Logement)
-VALUES ('POL005', 450.00, 300.00, TO_DATE('2025-07-05', 'YYYY-MM-DD'), '11223344556677', 'LOG005');
+INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_echeance, SIRET, Id_Bien, Id_Logement)
+VALUES ('POL005', 450.00, 300.00, TO_DATE('2025-07-05', 'YYYY-MM-DD'), '11223344556677', 'BIEN001','LOG005');
 
-INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_echeance, SIRET, Id_Logement)
-VALUES ('POL006', 650.75, 300.00, TO_DATE('2025-12-01', 'YYYY-MM-DD'), '88990011223344', 'LOG006');
+INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_echeance, SIRET, Id_Bien, Id_Logement)
+VALUES ('POL006', 650.75, 300.00, TO_DATE('2025-12-01', 'YYYY-MM-DD'), '88990011223344', 'BIEN001','LOG006');
 
-INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_echeance, SIRET, Id_Logement)
-VALUES ('POL007', 800.00, 300.00, TO_DATE('2025-09-15', 'YYYY-MM-DD'), '55667788990011', 'LOG007');
+INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_echeance, SIRET, Id_Bien, Id_Logement)
+VALUES ('POL007', 800.00, 300.00, TO_DATE('2025-09-15', 'YYYY-MM-DD'), '55667788990011', 'BIEN001','LOG007');
 
-INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_echeance, SIRET, Id_Logement)
-VALUES ('POL008', 1000.00, 300.00, TO_DATE('2026-02-28', 'YYYY-MM-DD'), '66778899001122', 'LOG008');
+INSERT INTO SAE_Assurance (numero_police, montant, Protection_juridique, date_echeance, SIRET, Id_Bien, Id_Logement)
+VALUES ('POL008', 1000.00, 300.00, TO_DATE('2026-02-28', 'YYYY-MM-DD'), '66778899001122', 'BIEN001','LOG008');
 
 -- Insertion des données dans la table SAE_Compteur
 INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, Id_Logement, Id_Bien)
@@ -470,34 +470,34 @@ VALUES ('Sécurité');
 
 -- Insertion de donnÃ©es dans la table SAE_Quotter
 
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN001', 'Énergie', 50);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN001', 'Eau', 25);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN001', 'Maintenance', 25);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG001', 'Énergie', 50);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG001', 'Eau', 25);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG001', 'Maintenance', 25);
 
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN002', 'Énergie', 40);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN002', 'Eau', 30);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN002', 'Maintenance', 30);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG002', 'Énergie', 40);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG002', 'Eau', 30);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG002', 'Maintenance', 30);
 
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN003', 'Énergie', 60);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN003', 'Eau', 20);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN003', 'Maintenance', 20);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG003', 'Énergie', 60);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG003', 'Eau', 20);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG003', 'Maintenance', 20);
 
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN004', 'Énergie', 50);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN004', 'Eau', 20);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN004', 'Gardiennage', 30);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG004', 'Énergie', 50);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG004', 'Eau', 20);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG004', 'Gardiennage', 30);
 
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN005', 'Énergie', 70);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN005', 'Eau', 10);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN005', 'Assainissement', 20);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG005', 'Énergie', 70);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG005', 'Eau', 10);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG005', 'Assainissement', 20);
 
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN006', 'Énergie', 50);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN006', 'Eau', 25);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN006', 'Sécurité', 25);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG006', 'Énergie', 50);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG006', 'Eau', 25);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG006', 'Sécurité', 25);
 
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN007', 'Énergie', 60);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN007', 'Eau', 30);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN007', 'Espaces verts', 10);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG007', 'Énergie', 60);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG007', 'Eau', 30);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG007', 'Espaces verts', 10);
 
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN008', 'Énergie', 50);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN008', 'Eau', 30);
-INSERT INTO SAE_Quotter (Id_Bien, type_quotite, pourcentage) VALUES ('BIEN008', 'Ascenseur', 20);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG008', 'Énergie', 50);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG008', 'Eau', 30);
+INSERT INTO SAE_Quotter (Id_Logement, type_quotite, pourcentage) VALUES ('LOG008', 'Ascenseur', 20);
