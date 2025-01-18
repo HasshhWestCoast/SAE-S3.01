@@ -113,10 +113,6 @@ public class GestionFenLocation implements ActionListener, ListSelectionListener
 					fenAddLocation.setVisible(true);
 					break;
 					
-				case "Mise à jour":
-					System.out.println("Vous METTEZ A JOUR une donnée dans Location !");
-					break;
-					
 				case "Informations locataire":
 					System.out.println("Vous ouvrez la page informations locataire !");
 				FenLocataire fenInfoLocataire = null;
