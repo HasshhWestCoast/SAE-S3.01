@@ -134,7 +134,7 @@ CREATE TABLE SAE_Assurance(
    Protection_juridique NUMBER ,
    date_echeance DATE NOT NULL,
    SIRET CHAR(14) CONSTRAINT SAE_fk_assurance_siret REFERENCES SAE_Entreprise(SIRET),
-   Id_Bien VARCHAR2(30) CONSTRAINT SAE_fk_assurance_Bien REFERENCES SAE_Bien(Id_Bien) NOT NULL,
+   Id_Bien VARCHAR2(30) CONSTRAINT SAE_fk_assurance_Bien REFERENCES SAE_Bien(Id_Bien),
    Id_Logement VARCHAR2(30) CONSTRAINT SAE_fk_assurance_logement REFERENCES SAE_Logement(Id_Logement)
 );
 
