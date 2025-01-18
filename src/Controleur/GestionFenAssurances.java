@@ -97,6 +97,8 @@ public class GestionFenAssurances implements ActionListener{
 		modeleTable.setValueAt(ass.getDateEcheance(), numeroLigne, 2);		
 		modeleTable.setValueAt(ass.getEntreprise().getSiret(), numeroLigne, 3);
 		modeleTable.setValueAt(ass.getLogement().getIdLogement(), numeroLigne, 4);
+		modeleTable.setValueAt(ass.getBien().getIdBien(), numeroLigne, 5);
+
 	}
 
 }

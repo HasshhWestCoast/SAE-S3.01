@@ -9,8 +9,8 @@ public class RequeteInsertAssurance extends Requete<assurance> {
 
     @Override
     public String requete() {
-        return "INSERT INTO Sae_assurance (numero_Police, montant, Protection_juridique, date_echeance, siret, id_Logement) " +
-               "VALUES (?, ?, ?, ?, ?, ?)";
+        return "INSERT INTO Sae_assurance (numero_Police, montant, Protection_juridique, date_echeance, siret, id_Logement, id_Bien) " +
+               "VALUES (?, ?, ?, ?, ?, ?, ?)";
     }
 
     @Override
@@ -21,5 +21,7 @@ public class RequeteInsertAssurance extends Requete<assurance> {
         prSt.setString(4, donnee.getDateEcheance());
         prSt.setString(5, donnee.getEntreprise().getSiret()) ;
         prSt.setString(6, donnee.getLogement().getIdLogement());
+        prSt.setString(7, donnee.getBien().getIdBien());
+
     }
 }

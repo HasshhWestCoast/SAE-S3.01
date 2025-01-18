@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import Modele.Bien;
 import Modele.Entreprise;
 import Modele.Logement;
 import Modele.assurance;
@@ -76,6 +77,8 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 	    
 	    String SIRET = curseur.getString("SIRET");
 	    String ID_Logement = curseur.getString("ID_Logement");
+	    String ID_Bien = curseur.getString("ID_Bien");
+
 	    
 	    String protectionJuridiqueString = curseur.getString("Protection_Juridique");
 	    double protectionJuridique = Double.parseDouble(protectionJuridiqueString);
@@ -86,8 +89,9 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 	    DaoEntreprise daoEntreprise = new DaoEntreprise(this.connexion);
 	    Entreprise entreprise = daoEntreprise.findById(SIRET);
 	    
+	    Bien bien = new DaoBien(this.connexion).findById(ID_Bien);
 	    
-	    return new assurance(numero_Police, montant, date_échéance, protectionJuridique, logement, entreprise );
+	    return new assurance(numero_Police, montant, date_échéance, protectionJuridique, logement, entreprise, bien);
 	}
 	
 	public static Iterateur<assurance> getIterateurAssurance() {

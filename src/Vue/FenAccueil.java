@@ -519,8 +519,8 @@ public class FenAccueil extends JFrame {
         // Ajouter le tableau
         tabMesAssurances = new JTable();
         tabMesAssurances.setModel(new DefaultTableModel(
-            new Object[][] { { null, null, null, null, null } },
-            new String[] { "Numéro police", "Montant", "Date échéance", "Entreprise", "Logement" }
+            new Object[][] { { null, null, null, null, null, null } },
+            new String[] { "Numéro police", "Montant", "Date échéance", "Entreprise", "Logement", "Bien" }
         ));
         JScrollPane scrollPane = new JScrollPane(tabMesAssurances);
         scrollPane.setBounds(59, 48, 890, 407);

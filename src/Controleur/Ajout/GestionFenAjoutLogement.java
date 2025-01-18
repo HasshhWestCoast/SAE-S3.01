@@ -82,7 +82,9 @@ public class GestionFenAjoutLogement implements ActionListener, ListSelectionLis
 					   if (this.fenAjoutLogement.getIdLogement().isEmpty() ||
 						        this.fenAjoutLogement.getDateAcquisition().isEmpty() ||
 						        this.fenAjoutLogement.getSurfaceHabitable().isEmpty()||
-						        this.fenAjoutLogement.getSurfaceHabitable().isEmpty())
+						        this.fenAjoutLogement.getSurfaceHabitable().isEmpty() || 
+						        this.fenAjoutLogement.getPourcentage().isEmpty() ||
+						        this.fenAjoutLogement.getQuotite().isEmpty())
 						    {
 						        JOptionPane.showMessageDialog(
 						            this.fenAjoutLogement,
@@ -133,6 +135,7 @@ public class GestionFenAjoutLogement implements ActionListener, ListSelectionLis
 						
 						String []EngrLogement = {IdLogement, SurfaceHabitableString, DateAcquisition, TypeDeLogement, NbPieceString, NumEtageString};
 						modeleTable.addRow(EngrLogement);
+						
 						
 						fenAjoutLogement.dispose();
 					} catch (Exception ex) {

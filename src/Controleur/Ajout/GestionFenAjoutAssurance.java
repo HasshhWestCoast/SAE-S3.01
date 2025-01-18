@@ -11,11 +11,13 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import Modele.Bien;
 import Modele.Entreprise;
 import Modele.Logement;
 import Modele.assurance;
 import Modele.Dao.CictOracleDataSource;
 import Modele.Dao.DaoAssurance;
+import Modele.Dao.DaoBien;
 import Modele.Dao.DaoEntreprise;
 import Modele.Dao.DaoLogement;
 import Modele.Dao.Iterateur;
@@ -30,17 +32,20 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 	private FenAjoutAssurance fenAjoutAssurance;
 	private DaoEntreprise daoEntreprise;
 	private DaoLogement daoLogement;
+	private DaoBien daoBien;
 	private Logement logement;
 	private Entreprise entreprise;
+	private Bien bien;
 
 	
 	public GestionFenAjoutAssurance(FenAjoutAssurance fenAjoutAssurance) throws SQLException {
 		this.fenAjoutAssurance = fenAjoutAssurance;
 		this.daoEntreprise = new DaoEntreprise(CictOracleDataSource.getInstance().getConnection());
 		this.daoLogement = new DaoLogement(CictOracleDataSource.getInstance().getConnection());
+		this.daoBien = new DaoBien(CictOracleDataSource.getInstance().getConnection());
 		this.logement = null;
 		this.entreprise = null;
-
+		this.bien = null;
 	}
 	
 	@Override
@@ -51,6 +56,8 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 		FenAccueil fenAC = (FenAccueil) this.fenAjoutAssurance.getTopLevelAncestor();
 		DefaultTableModel modeleTableEntreprise = (DefaultTableModel) this.fenAjoutAssurance.getTabMesEntreprise().getModel();
 		DefaultTableModel modeleTableLogement = (DefaultTableModel) this.fenAjoutAssurance.getTabMesLogements().getModel();
+		DefaultTableModel modeleTableBien = (DefaultTableModel) this.fenAjoutAssurance.getTabMesBiens().getModel();
+
 
 		if (texte != null) {
 			switch (texte) {
@@ -93,10 +100,10 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 					
 					
 					 // Vérification des conditions
-				    if (this.entreprise == null || this.logement == null) {
+				    if (this.entreprise == null || (this.logement == null && this.bien == null)) {
 				        JOptionPane.showMessageDialog(
 				            this.fenAjoutAssurance,
-				            "Veuillez sélectionner au moins un champ par tableau !",
+				            "Veuillez sélectionner une entreprise et au moins un logement ou bien !",
 				            "Erreur",
 				            JOptionPane.ERROR_MESSAGE
 				        );
@@ -112,9 +119,10 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 						String DateEcheance = (String) fenAjoutAssurance.getDateEcheance();
 						String PorectionJuridiqueString = (String) fenAjoutAssurance.getMontant();
 						int PorectionJuridique = Integer.parseInt(PorectionJuridiqueString);
+						
 						DaoAssurance daoAssurance = new DaoAssurance(CictOracleDataSource.getInstance().getConnection());
 						
-						assurance assu = new assurance(NumeroPolice, Montant, DateEcheance, PorectionJuridique, logement, entreprise);
+						assurance assu = new assurance(NumeroPolice, Montant, DateEcheance, PorectionJuridique, logement, entreprise, bien);
 						daoAssurance.create(assu);
 						
 						String []EngrAssu = {NumeroPolice, MontantString, DateEcheance, entreprise.getSiret(), logement.getIdLogement()};
@@ -190,6 +198,29 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 						System.out.println(ex.getMessage());
 						ex.printStackTrace();
 					}
+					
+					try {
+						List<Bien> mesBiens = this.daoBien.findAll();
+		
+						Iterateur<Bien> itB = DaoBien.getIterateurBien();
+						
+				        if (itB == null) {
+				            System.out.println("Itérateur non initialisé !");
+				            break;
+				        }
+				        modeleTableBien.setRowCount(mesBiens.size());  
+						
+						int count = 0;
+						while(itB.hasNext() && count < mesBiens.size()) {	
+							Bien bien = itB.next();
+							this.ecrireLigneTableBien(bien, count);
+							count++;
+						}
+						
+					}catch (SQLException ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+					}
 					break;
 					
 				default:
@@ -214,6 +245,13 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 		modeleTableLogement.setValueAt(logement.getDateAcquisition(), numeroLigne, 1);
 	}
 	
+	public void ecrireLigneTableBien(Bien bien, int numeroLigne) {
+		DefaultTableModel modeleTableBien = (DefaultTableModel) this.fenAjoutAssurance.getTabMesBiens().getModel();
+
+		modeleTableBien.setValueAt(bien.getIdBien(), numeroLigne, 0);
+		modeleTableBien.setValueAt(bien.getVille(), numeroLigne, 1);
+	}
+	
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		
@@ -232,6 +270,16 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 		if (selectedRowLog > -1) {
 			try {
 				this.logement = daoLogement.findById(tabLogement.getValueAt(selectedRowLog, 0).toString());
+			}catch (SQLException e1) {
+				e1.printStackTrace();
+			}	
+		}
+		
+		JTable tabBien = this.fenAjoutAssurance.getTabMesBiens();
+		int selectedRowBien = tabBien.getSelectedRow();
+		if (selectedRowBien > -1) {
+			try {
+				this.bien = daoBien.findById(tabBien.getValueAt(selectedRowBien, 0).toString());
 			}catch (SQLException e1) {
 				e1.printStackTrace();
 			}	
