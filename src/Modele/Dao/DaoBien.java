@@ -9,16 +9,19 @@ import java.util.List;
 import Modele.Bien;
 import Modele.Dao.Requetes.Select.RequeteSelectBien;
 import Modele.Dao.Requetes.Select.RequeteSelectBienById;
-import Modele.Dao.Requetes.Update.RequeteUpdateFactureDetachBien;
+import Modele.Dao.Requetes.Delete.RequeteDeleteAssuranceByBien;
 import Modele.Dao.Requetes.Delete.RequeteDeleteAssuranceByLogementFromBien;
 import Modele.Dao.Requetes.Delete.RequeteDeleteBien;
 import Modele.Dao.Requetes.Delete.RequeteDeleteChargeByBien;
 import Modele.Dao.Requetes.Delete.RequeteDeleteCompteurByBien;
 import Modele.Dao.Requetes.Delete.RequeteDeleteDiagnosticByBien;
+import Modele.Dao.Requetes.Delete.RequeteDeleteFactureByBien;
 import Modele.Dao.Requetes.Delete.RequeteDeleteImposerByBien;
 import Modele.Dao.Requetes.Delete.RequeteDeleteLogementByBien;
 import Modele.Dao.Requetes.Delete.RequeteDeleteLouerByBien;
+import Modele.Dao.Requetes.Delete.RequeteDeleteQuotterByLogementFromBien;
 import Modele.Dao.Requetes.Delete.RequeteDeleteReleveByCompteurFromBien;
+import Modele.Dao.Requetes.Delete.RequeteDeleteRetientByCharge;
 import Modele.Dao.Requetes.Insert.RequeteInsertBien;
 
 
@@ -53,11 +56,20 @@ public class DaoBien extends DaoModele<Bien> implements Dao<Bien> {
 	        prSt.executeUpdate();
 	    }
 
-	    // Étape 2 : Détacher les factures
-	    RequeteUpdateFactureDetachBien detachFactureRequete = new RequeteUpdateFactureDetachBien();
-	    try (PreparedStatement prSt = connexion.prepareStatement(detachFactureRequete.requete())) {
-	        detachFactureRequete.parametres(prSt, bien);
+	    // Étape 2 : Supprimer les factures associées au bien
+	    RequeteDeleteFactureByBien deleteFactureRequete = new RequeteDeleteFactureByBien();
+	    try (PreparedStatement prSt = connexion.prepareStatement(deleteFactureRequete.requete())) {
+	        deleteFactureRequete.parametres(prSt, bien);
 	        prSt.executeUpdate();
+	        System.out.println("Les factures liées au bien ont été supprimées.");
+	    }
+
+	 // Étape 2.5 : Supprimer les "retient" liés aux charges associées au bien
+	    RequeteDeleteRetientByCharge deleteRetientRequete = new RequeteDeleteRetientByCharge();
+	    try (PreparedStatement prSt = connexion.prepareStatement(deleteRetientRequete.requete())) {
+	        deleteRetientRequete.parametres(prSt, bien);
+	        prSt.executeUpdate();
+	        System.out.println("Les 'retient' liés aux charges du bien ont été supprimés.");
 	    }
 
 	    // Étape 3 : Supprimer les charges
@@ -101,14 +113,29 @@ public class DaoBien extends DaoModele<Bien> implements Dao<Bien> {
 	        prSt.executeUpdate();
 	    }
 
-	    // Étape 8 : Supprimer les logements associés au bien
+	 // Étape 8 : Supprimer les `Quotter` liés aux logements associés au bien
+	    RequeteDeleteQuotterByLogementFromBien deleteQuotterRequete = new RequeteDeleteQuotterByLogementFromBien();
+	    try (PreparedStatement prSt = connexion.prepareStatement(deleteQuotterRequete.requete())) {
+	        deleteQuotterRequete.parametres(prSt, bien);
+	        prSt.executeUpdate();
+	    }
+	    
+	    // Étape 9 : Supprimer les logements associés au bien
 	    RequeteDeleteLogementByBien deleteLogementRequete = new RequeteDeleteLogementByBien();
 	    try (PreparedStatement prSt = connexion.prepareStatement(deleteLogementRequete.requete())) {
 	        deleteLogementRequete.parametres(prSt, bien);
 	        prSt.executeUpdate();
 	    }
 	    
-	    // Étape 9 : Supprimer le bien
+	    // Étape 8 : Supprimer les assurances liées au bien
+	    RequeteDeleteAssuranceByBien deleteAssuranceRequete1 = new RequeteDeleteAssuranceByBien();
+	    try (PreparedStatement prSt = connexion.prepareStatement(deleteAssuranceRequete1.requete())) {
+	        deleteAssuranceRequete1.parametres(prSt, bien);
+	        prSt.executeUpdate();
+	        System.out.println("Les assurances liées au bien ont été supprimées.");
+	    }
+	    
+	    // Étape 10 : Supprimer le bien
 	    RequeteDeleteBien deleteBienRequete = new RequeteDeleteBien();
 	    try (PreparedStatement prSt = connexion.prepareStatement(deleteBienRequete.requete())) {
 	        deleteBienRequete.parametres(prSt, bien);

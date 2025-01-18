@@ -10,7 +10,7 @@ public class RequeteDeleteChargeByBien extends Requete<Bien>{
 
 	 @Override
 	    public String requete() {
-	        return "DELETE FROM Sae_Charges WHERE Id_Bien = ?";
+	        return "DELETE FROM Sae_Charge WHERE Id_Bien = ?";
 	    }
 
 	    @Override

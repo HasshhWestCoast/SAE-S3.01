@@ -1,15 +1,15 @@
-package Modele.Dao.Requetes.Update;
+package Modele.Dao.Requetes.Delete;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import Modele.Bien;
 import Modele.Dao.Requetes.Requete;
 
-public class RequeteUpdateFactureDetachBien extends Requete<Bien> {
+public class RequeteDeleteAssuranceByBien extends Requete<Bien> {
 
     @Override
     public String requete() {
-        return "UPDATE Sae_Facture SET Id_Bien = NULL WHERE Id_Bien = ?";
+        return "DELETE FROM Sae_assurance WHERE Id_Bien = ?";
     }
 
     @Override

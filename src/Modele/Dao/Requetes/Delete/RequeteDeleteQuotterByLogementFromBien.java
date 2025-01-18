@@ -2,15 +2,15 @@ package Modele.Dao.Requetes.Delete;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import Modele.Bien;
 import Modele.Dao.Requetes.Requete;
 
-public class RequeteDeleteReleveByCompteurFromBien extends Requete<Bien> {
+public class RequeteDeleteQuotterByLogementFromBien extends Requete<Bien> {
 
     @Override
     public String requete() {
-        return "DELETE FROM SAE_RELEVÉ WHERE Id_Compteur IN (SELECT Id_Compteur FROM Sae_compteur WHERE Id_Bien = ?)";
+        return "DELETE FROM Sae_Quotter " +
+               "WHERE Id_Logement IN (SELECT Id_Logement FROM Sae_Logement WHERE Id_Bien = ?)";
     }
 
     @Override
