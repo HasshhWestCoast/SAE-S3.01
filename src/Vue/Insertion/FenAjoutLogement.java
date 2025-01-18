@@ -229,7 +229,7 @@ public class FenAjoutLogement extends JInternalFrame {
 	    return textFieldPourcentage.getText();
 	}
 	
-	public String getQuotite() {
+	public String getTypeQuotite() {
 	    return textFieldTypeQuotite.getText();
 	}
 }

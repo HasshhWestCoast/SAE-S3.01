@@ -125,8 +125,12 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 						assurance assu = new assurance(NumeroPolice, Montant, DateEcheance, PorectionJuridique, logement, entreprise, bien);
 						daoAssurance.create(assu);
 						
-						String []EngrAssu = {NumeroPolice, MontantString, DateEcheance, entreprise.getSiret(), logement.getIdLogement()};
+						String logementId = (logement != null) ? logement.getIdLogement() : "NA"; 
+						String bienId = (bien != null) ? bien.getIdBien() : "NA";
+
+						String[] EngrAssu = {NumeroPolice, MontantString, DateEcheance, entreprise.getSiret(), logementId, bienId};
 						modeleTable.addRow(EngrAssu);
+
 						
 						fenAjoutAssurance.dispose();
 						

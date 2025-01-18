@@ -4,21 +4,21 @@ import java.util.Objects;
 
 public class Quotter {
 
-	private Logement logemenet;
+	private Logement logement;
 	private Quotite quotite;
 	private int pourcentage;
 	
-	public Quotter(int pourcentage, Logement logemenet, Quotite quotite) {
+	public Quotter(int pourcentage, Logement logement, Quotite quotite) {
 		this.pourcentage = pourcentage;
-		this.logemenet = logemenet;
+		this.logement = logement;
 		this.quotite = quotite;
 	}
 
-	public Logement getLogemenet() {
-		return logemenet;
+	public Logement getLogement() {
+		return logement;
 	}
-	public void setLogemenet(Logement logemenet) {
-		this.logemenet = logemenet;
+	public void setLogement(Logement logement) {
+		this.logement = logement;
 	}
 	public Quotite getQuotite() {
 		return quotite;
@@ -35,7 +35,7 @@ public class Quotter {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(logemenet.getIdLogement(), pourcentage, quotite.getTypeQuotite());
+		return Objects.hash(logement.getIdLogement(), pourcentage, quotite.getTypeQuotite());
 	}
 
 	@Override
@@ -47,13 +47,13 @@ public class Quotter {
 			return false;
 		}
 		Quotter other = (Quotter) obj;
-		return Objects.equals(logemenet.getIdLogement(), other.logemenet.getIdLogement()) && pourcentage == other.pourcentage
+		return Objects.equals(logement.getIdLogement(), other.logement.getIdLogement()) && pourcentage == other.pourcentage
 				&& Objects.equals(quotite.getTypeQuotite(), other.quotite.getTypeQuotite());
 	}
 	
 	@Override
 	public String toString() {
-		return "Quotter [logemenet=" + logemenet + ", quotite=" + quotite + ", pourcentage=" + pourcentage + "]";
+		return "Quotter [logemenet=" + logement + ", quotite=" + quotite + ", pourcentage=" + pourcentage + "]";
 	}
 
 }

@@ -9,11 +9,10 @@ import java.util.List;
 import Modele.Logement;
 import Modele.Quotite;
 import Modele.Quotter;
-import Modele.Releve;
-import Modele.Dao.Requetes.Delete.RequeteDeleteReleve;
-import Modele.Dao.Requetes.Insert.RequeteInsertCharge;
-import Modele.Dao.Requetes.Select.RequeteSelectReleve;
-import Modele.Dao.Requetes.Select.RequeteSelectReleveById;
+import Modele.Dao.Requetes.Delete.RequeteDeleteQuotter;
+import Modele.Dao.Requetes.Insert.RequeteInsertQuotter;
+import Modele.Dao.Requetes.Select.RequeteSelectQuotter;
+import Modele.Dao.Requetes.Select.RequeteSelectQuotterById;
 
 public class DaoQuotter extends DaoModele<Quotter> implements Dao<Quotter> {
 
