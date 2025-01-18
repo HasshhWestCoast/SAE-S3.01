@@ -14,20 +14,13 @@ import Vue.FenAccueil;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutAssurance;
 
-/**
- * La classe <code>GestionFenAssurances</code> gère toutes les actions de 
- */
 public class GestionFenAssurances implements ActionListener {
 
-    // Référence à la fenêtre principale de l'application
     private FenAccueil fenAc;
     
-    // Accès à l'objet DAO pour les opérations CRUD sur la table Assurance
     private DaoAssurance daoAssurance;
 
-    /**
-     * Constructeur de la classe GestionFenAssurances.
-     */
+
     public GestionFenAssurances(FenAccueil fenAc) throws SQLException {
         // On récupère la référence à la FenAccueil
         this.fenAc = fenAc;
