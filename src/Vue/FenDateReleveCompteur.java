@@ -13,11 +13,13 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenDateReleveCompteur extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
-	private RoundedButton btnAjouter;
+	private RoundedButton btnSupprimer;
 	private RoundedButton btnAnnuler;
 	private JTable tabMesDatesReleves;
 
@@ -61,7 +63,7 @@ public class FenDateReleveCompteur extends JInternalFrame {
 		scrollPaneCompteursLogements.setBounds(21, 79, 580, 367);
 		getContentPane().add(scrollPaneCompteursLogements);
 		
-		JLabel lblMesDateReleve = new JLabel("Mes Dates Releves Logements");
+		JLabel lblMesDateReleve = new JLabel("Mes Dates Releves");
 		lblMesDateReleve.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMesDateReleve.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		lblMesDateReleve.setBackground(Color.WHITE);
@@ -75,12 +77,22 @@ public class FenDateReleveCompteur extends JInternalFrame {
 		getContentPane().add(separator);
 		
 		btnAnnuler = new RoundedButton("Annuler", 20);
-		btnAnnuler.setBounds(176, 474, 104, 21);
+		btnAnnuler.setBounds(111, 474, 104, 21);
 		getContentPane().add(btnAnnuler);
 		
-		btnAjouter = new RoundedButton("Charger", 20);
-		btnAjouter.setBounds(344, 474, 104, 21);
-		getContentPane().add(btnAjouter);
+		btnSupprimer = new RoundedButton("Charger", 20);
+		btnSupprimer.setText("Supprimer");
+		btnSupprimer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSupprimer.setBounds(247, 474, 104, 21);
+		getContentPane().add(btnSupprimer);
+		
+		RoundedButton rndbtnAjouter = new RoundedButton("Charger", 20);
+		rndbtnAjouter.setText("Ajouter");
+		rndbtnAjouter.setBounds(371, 474, 104, 21);
+		getContentPane().add(rndbtnAjouter);
 
 	}
 	

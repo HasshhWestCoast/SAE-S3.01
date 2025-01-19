@@ -32,9 +32,6 @@ public class GestionFenFacture implements ActionListener{
 		
 		if (texte != null) {
 			switch (texte) {
-				case "Modifier":
-					System.out.println("Vous MODIFIER une donnée dans Facture !");
-					break;
 					
 				case "Supprimer":
 					System.out.println("Vous SUPPRIMER une données dans Facture !");

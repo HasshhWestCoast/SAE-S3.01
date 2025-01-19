@@ -20,6 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JCheckBox;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
 
 public class FenAjoutLogement extends JInternalFrame {
 
@@ -33,6 +35,8 @@ public class FenAjoutLogement extends JInternalFrame {
 	private JSpinner spinnerNumEtage;
 	private JTable tabMesBiens;
 	private JCheckBox checkGarage;
+	private JTextField textFieldPourcentage;
+	private JTextField textFieldTypeQuotite;
 
 
 	/**
@@ -81,14 +85,12 @@ public class FenAjoutLogement extends JInternalFrame {
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
 		btnAnnuler.addActionListener(gestionFenAjoutLogement);
-		btnAnnuler.setBounds(80, 419, 85, 21);
+		btnAnnuler.setBounds(218, 419, 85, 21);
 		getContentPane().add(btnAnnuler);
-		
-	
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
 		btnAjouter.addActionListener(gestionFenAjoutLogement);
-		btnAjouter.setBounds(209, 419, 85, 21);
+		btnAjouter.setBounds(366, 419, 85, 21);
 		getContentPane().add(btnAjouter);
 		
 		JLabel lblNewLabel_1 = new JLabel("Ajout Logement");
@@ -124,11 +126,6 @@ public class FenAjoutLogement extends JInternalFrame {
 		getContentPane().add(textFieldSurfaceHabitable);
 		textFieldSurfaceHabitable.setColumns(10);
 		
-		RoundedButton btnAjouterCompteur = new RoundedButton("Ajouter un compteur", 20);
-		btnAjouterCompteur.addActionListener(gestionFenAjoutLogement);
-		btnAjouterCompteur.setBounds(412, 419, 162, 21);
-		getContentPane().add(btnAjouterCompteur);
-		
 		JLabel lblMesBiens = new JLabel("Mes Biens");
 		lblMesBiens.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMesBiens.setFont(new Font("Sylfaen", Font.PLAIN, 16));
@@ -156,7 +153,7 @@ public class FenAjoutLogement extends JInternalFrame {
 		
 		RoundedButton btnCharger = new RoundedButton("Charger", 20);
 		btnCharger.addActionListener(gestionFenAjoutLogement);
-		btnCharger.setBounds(450, 243, 85, 21);
+		btnCharger.setBounds(450, 212, 85, 21);
 		getContentPane().add(btnCharger);
 		
 		checkGarage = new JCheckBox("OUI");
@@ -167,7 +164,32 @@ public class FenAjoutLogement extends JInternalFrame {
 		JLabel lbGarage = new JLabel("Garage");
 		lbGarage.setBounds(80, 357, 112, 13);
 		getContentPane().add(lbGarage);
-		setBounds(300, 100, 651, 507);
+		
+		textFieldPourcentage = new JTextField();
+		textFieldPourcentage.setColumns(10);
+		textFieldPourcentage.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED,new Color(31, 153, 88), new Color(160, 160, 160)), "Pourcentage"
+				+ "", TitledBorder.LEADING, TitledBorder.TOP, null,new Color(31, 153, 88)));
+		textFieldPourcentage.setBounds(399, 286, 161, 36);
+		getContentPane().add(textFieldPourcentage);
+		
+		JSeparator separatorQuotite = new JSeparator();
+		separatorQuotite.setForeground(Color.WHITE);
+		separatorQuotite.setBackground(new Color(31, 151, 83));
+		separatorQuotite.setBounds(386, 278, 188, 2);
+		getContentPane().add(separatorQuotite);
+		
+		JLabel lblAjoutQuotite = new JLabel("Ajout Quotite");
+		lblAjoutQuotite.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAjoutQuotite.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		lblAjoutQuotite.setBounds(417, 259, 131, 21);
+		getContentPane().add(lblAjoutQuotite);
+		
+		textFieldTypeQuotite = new JTextField();
+		textFieldTypeQuotite.setColumns(10);
+		textFieldTypeQuotite.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED,new Color(31, 153, 88), new Color(160, 160, 160)), "Type Quotite", TitledBorder.LEADING, TitledBorder.TOP, null,new Color(31, 153, 88)));
+		textFieldTypeQuotite.setBounds(399, 332, 161, 36);
+		getContentPane().add(textFieldTypeQuotite);
+		setBounds(300, 100, 686, 507);
 
 	}
 	
@@ -201,5 +223,13 @@ public class FenAjoutLogement extends JInternalFrame {
 	
 	public JTable getTabMesBiens() {
 		return tabMesBiens;
+	}
+	
+	public String getPourcentage() {
+	    return textFieldPourcentage.getText();
+	}
+	
+	public String getTypeQuotite() {
+	    return textFieldTypeQuotite.getText();
 	}
 }

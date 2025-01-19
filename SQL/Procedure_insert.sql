@@ -1,11 +1,9 @@
 /*
-Étant donné que nous avons mis en place toutes les vérifications des paramètres de chaque table avec 
-des contraintes telles que NOT NULL, CHECK, UNIQUE, etc., nous avons décidé de ne pas reproduire ces 
-mêmes vérifications dans les procédures d'insertion. Par conséquent, ces procédures d'insertion effectuent 
-l'insertion dans la base de données sans aucune vérification supplémentaire.
+Fichier : Procedure_insert.sql
 
-Nous avons créé  ces procedures pour privilégiér l'utilisation maximale de procédures PL/SQL, 
-évitant ainsi d'effectuer des insertions directes via JDBC ou DAO.
+Description : Ce fichier contient des procédures d'insertion pour la base de données.
+Chaque procédure est conçue pour insérer des données dans une table spécifique, en supposant que
+les contraintes (NOT NULL, CHECK, etc.) sont déjà définies dans la base.
 */
 
 --------------------------BIEN-------------------------------------
@@ -58,6 +56,7 @@ CREATE OR REPLACE PROCEDURE Inserer_Entreprise(
     p_SIRET IN SAE_Entreprise.SIRET%TYPE,
     p_Nom IN SAE_Entreprise.Nom%TYPE,
     p_Adresse IN SAE_Entreprise.Adresse%TYPE,
+    p_codePostal IN SAE_Entreprise.codePostal%TYPE,
     p_Ville IN SAE_Entreprise.Ville%TYPE,
     p_Mail IN SAE_Entreprise.Mail%TYPE,
     p_Telephone IN SAE_Entreprise.Telephone%TYPE,
@@ -97,6 +96,28 @@ BEGIN
 END;
 /
 
+--------------------------QUOTITE-------------------------------------
+CREATE OR REPLACE PROCEDURE Inserer_Quotite(
+    p_Type_Quotite IN SAE_Quotite.Type_Quotite%TYPE
+) AS
+BEGIN
+    INSERT INTO SAE_Quotite (Type_Quotite)
+    VALUES (p_Type_Quotite);
+END;
+/
+
+--------------------------QUOTTER-------------------------------------
+CREATE OR REPLACE PROCEDURE Inserer_Quotter(
+    p_Id_Logement IN SAE_Quotter.Id_Logement%TYPE,
+    p_Type_Quotite IN SAE_Quotter.Type_Quotite%TYPE,
+    p_Pourcentage IN SAE_Quotter.Pourcentage%TYPE
+) AS
+BEGIN
+    INSERT INTO SAE_Quotter (Id_Logement, Type_Quotite, Pourcentage)
+    VALUES (p_Id_Logement, p_Type_Quotite, p_Pourcentage);
+END;
+/
+
 
 --------------------------DIAGNOSTIC-------------------------------------
 CREATE OR REPLACE PROCEDURE Inserer_Diagnostic(
@@ -115,13 +136,15 @@ END;
 CREATE OR REPLACE PROCEDURE Inserer_Assurance(
     p_Numero_Police IN SAE_Assurance.Numero_Police%TYPE,
     p_Montant IN SAE_Assurance.Montant%TYPE,
+    p_Protection_juridique IN SAE_Assurance.Protection_juridique%TYPE,
     p_Date_Echeance IN SAE_Assurance.Date_Echeance%TYPE,
     p_SIRET IN SAE_Assurance.SIRET%TYPE,
+    p_Id_Bien IN SAE_Assurance.Id_Bien%TYPE,
     p_Id_Logement IN SAE_Assurance.Id_Logement%TYPE
 ) AS
 BEGIN
-    INSERT INTO SAE_Assurance (Numero_Police, Montant, Date_Echeance, SIRET, Id_Logement)
-    VALUES (p_Numero_Police, p_Montant, p_Date_Echeance, p_SIRET, p_Id_Logement);
+    INSERT INTO SAE_Assurance (Numero_Police, Montant, Date_Echeance, SIRET, Id_Bien, Id_Logement)
+    VALUES (p_Numero_Police, p_Montant, p_Date_Echeance, p_SIRET, p_Id_Bien, p_Id_Logement);
 END;
 /
 
@@ -155,6 +178,7 @@ CREATE OR REPLACE PROCEDURE Inserer_SAE_Louer(
     p_Date_Sortie IN SAE_Louer.Date_Sortie%TYPE,
     p_Date_Derniere_Reg IN SAE_Louer.Date_Derniere_Reg%TYPE,
     p_Nb_Mois IN SAE_Louer.Nb_Mois%TYPE,
+    p_loyer_payer IN SAE_Louer.loyer_payer%TYPE,
     p_Loyer_Mens_TTC IN SAE_Louer.Loyer_Mens_TTC%TYPE,
     p_Provisions_ChargesMois_TTC IN SAE_Louer.Provisions_ChargesMois_TTC%TYPE,
     p_Caution_TTC IN SAE_Louer.Caution_TTC%TYPE,
@@ -188,15 +212,25 @@ END;
 CREATE OR REPLACE PROCEDURE Inserer_Compteur(
     p_Id_Compteur IN SAE_Compteur.Id_Compteur%TYPE,
     p_TypeComp IN SAE_Compteur.TypeComp%TYPE,
-    p_IndexCompteur IN SAE_Compteur.IndexCompteur%TYPE,
-    p_Date_Releve IN SAE_Compteur.Date_Releve%TYPE,
     p_Id_Logement IN SAE_Compteur.Id_Logement%TYPE,
     p_Id_Bien IN SAE_Compteur.Id_Bien%TYPE
 ) AS
 BEGIN
-    INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, IndexCompteur, Date_Releve, Id_Logement, Id_Bien)
-    VALUES (p_Id_Compteur, p_TypeComp, p_IndexCompteur, p_Date_Releve, p_Id_Logement, p_Id_Bien);
+    INSERT INTO SAE_Compteur (Id_Compteur, TypeComp, Id_Logement, Id_Bien)
+    VALUES (p_Id_Compteur, p_TypeComp, p_Id_Logement, p_Id_Bien);
 END;
+/
+
+--------------------------RELEVE-------------------------------------
+CREATE OR REPLACE PROCEDURE Inserer_Relevé(
+    p_Id_Compteur IN SAE_Relevé.Id_Compteur%TYPE,
+    p_Date_Relevé IN SAE_Relevé.Date_Relevé%TYPE,
+    p_IndexCompteur IN SAE_Relevé.IndexCompteur%TYPE
+) AS
+BEGIN
+    INSERT INTO SAE_Relevé (Id_Compteur, Date_Relevé, IndexCompteur)
+    VALUES (p_Id_Compteur, p_Date_Relevé, p_IndexCompteur);
+END ;
 /
 
 --------------------------IMPOSER-------------------------------------
@@ -223,24 +257,4 @@ BEGIN
 END;
 /
 
---------------------------QUOTITE-------------------------------------
-CREATE OR REPLACE PROCEDURE Inserer_Quotite(
-    p_Type_Quotite IN SAE_Quotite.Type_Quotite%TYPE
-) AS
-BEGIN
-    INSERT INTO SAE_Quotite (Type_Quotite)
-    VALUES (p_Type_Quotite);
-END;
-/
 
---------------------------QUOTTER-------------------------------------
-CREATE OR REPLACE PROCEDURE Inserer_Quotter(
-    p_Id_Bien IN SAE_Quotter.Id_Bien%TYPE,
-    p_Type_Quotite IN SAE_Quotter.Type_Quotite%TYPE,
-    p_Pourcentage IN SAE_Quotter.Pourcentage%TYPE
-) AS
-BEGIN
-    INSERT INTO SAE_Quotter (Id_Bien, Type_Quotite, Pourcentage)
-    VALUES (p_Id_Bien, p_Type_Quotite, p_Pourcentage);
-END;
-/

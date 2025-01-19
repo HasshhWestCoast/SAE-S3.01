@@ -10,14 +10,16 @@ public class assurance {
 	private double protectionJuridique;
 	private Logement logement;
 	private Entreprise entreprise;
+	private Bien bien;
 
-	public assurance(String numeroPolice, float montant, String dateEcheance , double protectionJuridique, Logement logement, Entreprise entreprise) {
+	public assurance(String numeroPolice, float montant, String dateEcheance , double protectionJuridique, Logement logement, Entreprise entreprise, Bien bien) {
 		this.numeroPolice = numeroPolice;
 		this.montant = montant;
 		this.dateEcheance = dateEcheance;
 		this.protectionJuridique = protectionJuridique;
 		this.logement = logement;
 		this.entreprise = entreprise;
+		this.bien = bien;
 	}
 
 	public Entreprise getEntreprise() {
@@ -67,6 +69,14 @@ public class assurance {
 	public void setProtectionJuridique(int protectionJuridique) {
 		this.protectionJuridique = protectionJuridique;
 	}
+	
+	public Bien getBien() {
+		return bien;
+	}
+
+	public void setBien(Bien bien) {
+		this.bien = bien;
+	}
 
 	@Override
 	public int hashCode() {
@@ -88,6 +98,8 @@ public class assurance {
 	@Override
 	public String toString() {
 		return "assurance [numeroPolice=" + numeroPolice + ", montant=" + montant + ", dateEcheance=" + dateEcheance + "protectionJuridique=" + protectionJuridique
-				+ ", immeuble=" + logement + ", entreprise=" + entreprise + ", protectionJuridique=" + protectionJuridique + "]";
+				+ ", immeuble=" + logement + ", entreprise=" + entreprise   + ", bien=" + bien + ", protectionJuridique=" + protectionJuridique + "]";
 	}
+
+
 }

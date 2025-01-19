@@ -13,13 +13,16 @@ import javax.swing.table.DefaultTableModel;
 
 import Modele.Bien;
 import Modele.Logement;
+import Modele.Quotite;
+import Modele.Quotter;
 import Modele.Dao.CictOracleDataSource;
 import Modele.Dao.DaoBien;
 import Modele.Dao.DaoLogement;
+import Modele.Dao.DaoQuotite;
+import Modele.Dao.DaoQuotter;
 import Modele.Dao.Iterateur;
 import Vue.FenAccueil;
 import Vue.RoundedButton;
-import Vue.Insertion.FenAjoutCompteur;
 import Vue.Insertion.FenAjoutLogement;
 
 
@@ -83,7 +86,9 @@ public class GestionFenAjoutLogement implements ActionListener, ListSelectionLis
 					   if (this.fenAjoutLogement.getIdLogement().isEmpty() ||
 						        this.fenAjoutLogement.getDateAcquisition().isEmpty() ||
 						        this.fenAjoutLogement.getSurfaceHabitable().isEmpty()||
-						        this.fenAjoutLogement.getSurfaceHabitable().isEmpty())
+						        this.fenAjoutLogement.getSurfaceHabitable().isEmpty() || 
+						        this.fenAjoutLogement.getPourcentage().isEmpty() ||
+						        this.fenAjoutLogement.getTypeQuotite().isEmpty())
 						    {
 						        JOptionPane.showMessageDialog(
 						            this.fenAjoutLogement,
@@ -127,13 +132,22 @@ public class GestionFenAjoutLogement implements ActionListener, ListSelectionLis
 							garage = 1;
 						}
 						DaoLogement daoLogement = new DaoLogement(CictOracleDataSource.getInstance().getConnection());
-						
-						System.out.println("bien trouvé : " + bien);
 						Logement logement = new Logement(IdLogement, SurfaceHabitable, DateAcquisition, TypeDeLogement, NbPiece, NumEtage, garage,bien);
 						daoLogement.create(logement);
 						
 						String []EngrLogement = {IdLogement, SurfaceHabitableString, DateAcquisition, TypeDeLogement, NbPieceString, NumEtageString};
 						modeleTable.addRow(EngrLogement);
+
+						String pourcentageString = (String) fenAjoutLogement.getPourcentage();
+						String typeQuotite = (String) fenAjoutLogement.getTypeQuotite();
+						
+						DaoQuotite daoQuotite = new DaoQuotite(CictOracleDataSource.getInstance().getConnection());
+						Quotite quotite = new Quotite(typeQuotite);
+						daoQuotite.create(quotite);
+						
+						DaoQuotter daoQuotter = new DaoQuotter(CictOracleDataSource.getInstance().getConnection());
+						Quotter quotter = new Quotter(Integer.parseInt(pourcentageString), logement, quotite);
+						daoQuotter.create(quotter);
 						
 						fenAjoutLogement.dispose();
 					} catch (Exception ex) {
@@ -142,15 +156,7 @@ public class GestionFenAjoutLogement implements ActionListener, ListSelectionLis
 					}
 
 					break;
-					
-				case "Ajouter un compteur":
-					System.out.println("Vous OUVREZ la page ajout compteur");
-				     FenAjoutCompteur fenAjoutCompteur = new FenAjoutCompteur();
-					
-	                fenAC.getLayeredPane().add(fenAjoutCompteur);
-	                fenAjoutCompteur.setVisible(true);
-	                fenAjoutCompteur.moveToFront();
-					break;
+
 				default:
 					System.out.println("Action non reconnu !");
 			}

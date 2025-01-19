@@ -107,14 +107,14 @@ CREATE TABLE SAE_Quotite(
 --------------------------QUOTTER-------------------------------------
 
 CREATE TABLE SAE_Quotter(
-   Id_Bien VARCHAR2(30) ,
+   Id_Logement VARCHAR2(30) ,
    type_quotite VARCHAR2(50) ,
    pourcentage NUMBER,
-   constraint pk_quotter PRIMARY KEY(Id_Bien, type_quotite),
-   constraint fk_quotter_id_bien FOREIGN KEY(Id_Bien) REFERENCES SAE_Bien(Id_Bien),
+   constraint pk_quotter PRIMARY KEY(Id_Logement, type_quotite),
+   constraint fk_quotter_id_logement FOREIGN KEY(Id_Logement) REFERENCES SAE_Logement(Id_Logement),
    constraint fk_quotter_type_quotite FOREIGN KEY(type_quotite) REFERENCES SAE_Quotite(type_quotite),
    constraint ck_quotter_pourcentage check (pourcentage > 0 AND pourcentage <= 100),
-   constraint uu_quotter unique(Id_Bien,type_quotite,pourcentage)
+   constraint uu_quotter unique(Id_Logement,type_quotite,pourcentage)
 );
 
 
@@ -134,6 +134,7 @@ CREATE TABLE SAE_Assurance(
    Protection_juridique NUMBER ,
    date_echeance DATE NOT NULL,
    SIRET CHAR(14) CONSTRAINT SAE_fk_assurance_siret REFERENCES SAE_Entreprise(SIRET),
+   Id_Bien VARCHAR2(30) CONSTRAINT SAE_fk_assurance_Bien REFERENCES SAE_Bien(Id_Bien),
    Id_Logement VARCHAR2(30) CONSTRAINT SAE_fk_assurance_logement REFERENCES SAE_Logement(Id_Logement)
 );
 
@@ -150,7 +151,7 @@ CREATE TABLE SAE_Facture(
    imputable_locataire NUMBER(1) CONSTRAINT SAE_ck_facture_imputable_loc CHECK (imputable_locataire IN (0, 1)),
    acompte_verse NUMBER,
    Id_Logement VARCHAR2(30),
-   Id_Bien VARCHAR2(30),
+   Id_Bien VARCHAR2(30) CONSTRAINT SAE_nn_Facture_Bien NOT NULL,
    SIRET CHAR(14),
    CONSTRAINT SAE_fk_facture_Logement FOREIGN KEY(Id_Logement) REFERENCES SAE_Logement(Id_Logement),
    CONSTRAINT SAE_fk_facture_bien FOREIGN KEY(Id_Bien) REFERENCES SAE_Bien(Id_Bien),
@@ -192,8 +193,8 @@ CREATE TABLE SAE_Charge(
 CREATE TABLE SAE_Compteur(
    Id_Compteur VARCHAR2(50) PRIMARY KEY,
    TypeComp VARCHAR2(50) CONSTRAINT SAE_nn_compteur_type NOT NULL,
-   Id_Logement VARCHAR2(30),
-   Id_Bien VARCHAR2(30),
+   Id_Logement VARCHAR2(30) ,
+   Id_Bien VARCHAR2(30) CONSTRAINT SAE_nn_compteur_Bien NOT NULL,
    CONSTRAINT SAE_fk_compteur_logement FOREIGN KEY(Id_Logement) REFERENCES SAE_Logement(Id_Logement),
    CONSTRAINT SAE_fk_compteur_bien FOREIGN KEY(Id_Bien) REFERENCES SAE_Bien(Id_Bien)
 );

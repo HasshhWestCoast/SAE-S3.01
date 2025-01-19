@@ -1,3 +1,5 @@
+------------- CONSOMMATION D'UN COMPTEUR POUR UN BIEN DONNÉ ---------------
+-- Fonction pour calculer la consommation entre deux relevés pour un compteur donné
 CREATE OR REPLACE FUNCTION CalculerConsommation(
     p_Id_Compteur IN SAE_Compteur.Id_Compteur%TYPE
 ) RETURN NUMBER
@@ -69,6 +71,10 @@ END;
 /
 
 
+------- CALCULE DU PRIX DE LA PARTIE VARIABLE D'UN COMPTEUR EN FONCTION DE SON TYPE -----------
+-- Fonction pour calculer le coût variable de la consommation en fonction du type de compteur
+-- La consommation multipliée par le prix du m3 
+
 CREATE OR REPLACE FUNCTION CalculerPartieVariableConso(
     p_Id_Compteur IN SAE_Compteur.Id_Compteur%TYPE
 ) RETURN NUMBER
@@ -135,28 +141,32 @@ BEGIN
 END;
 /
 
-
-CREATE OR REPLACE FUNCTION CalculerPrixConsoLogement(
-    p_Id_Logement IN SAE_Compteur.Id_Logement%TYPE,
-    p_Id_Compteur IN SAE_Compteur.Id_Compteur%TYPE
+-- Fonction CalculerPrixConsoLogement_SP
+-- Cette fonction calcule le prix total de la consommation d'un logement spécifique en fonction du compteur associé.
+-- Elle utilise une chaîne d'entrée contenant l'ID du logement et du compteur.
+CREATE OR REPLACE FUNCTION CalculerPrixConsoLogement_SP(
+    p_Input IN VARCHAR2
 ) RETURN NUMBER
 IS
+    -- Variables pour stocker les paramètres extraits
+    v_Id_Logement SAE_Compteur.Id_Logement%TYPE;
+    v_Id_Compteur SAE_Compteur.Id_Compteur%TYPE;
     -- Variable pour stocker le prix total de la consommation
     v_PrixTotal NUMBER := 0;
     -- Variable pour stocker la partie variable de la consommation
     v_PartieVariable NUMBER := 0;
 BEGIN
-    -- Vérifier les entrées
-    IF p_Id_Logement IS NULL OR p_Id_Compteur IS NULL THEN
-        RAISE_APPLICATION_ERROR(-20001, 'ID du logement ou du compteur non fourni.');
-    END IF;
+    -- Extraire les paramètres de l'entrée unique
+    SELECT SUBSTR(p_Input, 1, INSTR(p_Input, ',') - 1),
+           SUBSTR(p_Input, INSTR(p_Input, ',') + 1)
+    INTO v_Id_Logement, v_Id_Compteur
+    FROM DUAL;
 
-    -- Afficher les paramètres pour le débogage
-    DBMS_OUTPUT.PUT_LINE('ID Logement : ' || p_Id_Logement);
-    DBMS_OUTPUT.PUT_LINE('ID Compteur : ' || p_Id_Compteur);
+    DBMS_OUTPUT.PUT_LINE('ID Logement : ' || v_Id_Logement);
+    DBMS_OUTPUT.PUT_LINE('ID Compteur : ' || v_Id_Compteur);
 
     -- Récupérer la partie variable de la consommation via CalculerPartieVariableConso
-    v_PartieVariable := CalculerPartieVariableConso(p_Id_Compteur);
+    v_PartieVariable := CalculerPartieVariableConso(v_Id_Compteur);
 
     -- Vérifier si la partie variable est valide
     IF v_PartieVariable IS NULL THEN
@@ -166,39 +176,25 @@ BEGIN
     -- Assigner la partie variable calculée au prix total
     v_PrixTotal := v_PartieVariable;
 
-    -- Afficher le prix total calculé
     DBMS_OUTPUT.PUT_LINE('Prix total de la consommation : ' || v_PrixTotal);
 
     -- Retourner le prix total
     RETURN v_PrixTotal;
 
 EXCEPTION
-    WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('Aucune donnée trouvée pour le compteur : ' || p_Id_Compteur);
-        RETURN 0;
-    WHEN VALUE_ERROR THEN
-        DBMS_OUTPUT.PUT_LINE('Erreur de type ou valeur invalide.');
-        RETURN NULL;
     WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Erreur inattendue : ' || SQLERRM);
+        DBMS_OUTPUT.PUT_LINE('Erreur : ' || SQLERRM);
         RETURN NULL;
 END;
 /
 
-
-set serveroutput on 
+set serveroutput on
 DECLARE
-    v_PrixTotal NUMBER;
+    v_Input VARCHAR2(100) := 'LOG001,COMP001';
+    v_Result NUMBER;
 BEGIN
-    -- Exemple de test avec un logement et un compteur existants
-    v_PrixTotal := CalculerPrixConsoLogement('LOG002', 'COMP002');
-
-    -- Afficher le résultat
-    IF v_PrixTotal IS NOT NULL THEN
-        DBMS_OUTPUT.PUT_LINE('Prix total de la consommation pour le logement : ' || v_PrixTotal);
-    ELSE
-        DBMS_OUTPUT.PUT_LINE('Erreur lors du calcul.');
-    END IF;
+    v_Result := CalculerPrixConsoLogement_SP(v_Input);
+    DBMS_OUTPUT.PUT_LINE('Prix total de la consommation pour le logement : ' || v_Result);
 END;
 /
 
@@ -297,71 +293,85 @@ BEGIN
 END;
 /
 
-CREATE OR REPLACE FUNCTION CalculerConsoBien(
-    p_Id_Bien IN SAE_Compteur.Id_Bien%TYPE,
-    p_Id_Compteur IN SAE_Compteur.Id_Compteur%TYPE
+-- Fonction CalculerConsoBien_SP
+-- Cette fonction calcule la consommation pour un compteur spécifique associé à un bien.
+-- Elle déduit la consommation à partir des relevés et applique un coût en fonction du type de compteur.
+CREATE OR REPLACE FUNCTION CalculerConsoBien_SP(
+    p_Input IN VARCHAR2
 ) RETURN NUMBER
 IS
     -- Déclaration des variables
-    v_Id_Bien_compteur SAE_Compteur.Id_Bien%TYPE;
-    v_Id_Logement_compteur SAE_Compteur.Id_Logement%TYPE;
+    v_Id_Bien SAE_Compteur.Id_Bien%TYPE;
+    v_Id_Compteur SAE_Compteur.Id_Compteur%TYPE;
+    v_NouvelIndice NUMBER := 0;
+    v_AncienIndice NUMBER := 0;
+    v_Consommation NUMBER := 0;
+    v_Result NUMBER := 0;
 BEGIN
-    -- Vérifier si le compteur est lié à un bien spécifique
-    SELECT Id_Bien
-    INTO v_Id_Bien_compteur
-    FROM SAE_Compteur
-    WHERE Id_Compteur = p_Id_Compteur;
+    -- Extraction des paramètres depuis l'entrée unique
+    v_Id_Bien := SUBSTR(p_Input, 1, INSTR(p_Input, ',') - 1);
+    v_Id_Compteur := SUBSTR(p_Input, INSTR(p_Input, ',') + 1);
 
-    -- Vérifier si le compteur est lié à un logement
-    SELECT Id_Logement
-    INTO v_Id_Logement_compteur
-    FROM SAE_Compteur
-    WHERE Id_Compteur = p_Id_Compteur;
+    -- Vérifier si le compteur est lié au bien spécifié
+    SELECT MAX(indexCompteur) INTO v_NouvelIndice
+    FROM SAE_Relevé r
+    WHERE r.Id_Compteur = v_Id_Compteur;
 
-    -- Gérer le cas où le compteur n'est lié ni à un bien ni à un logement
-    IF v_Id_Bien_compteur IS NULL AND v_Id_Logement_compteur IS NULL THEN
-        RAISE_APPLICATION_ERROR(-20012, 'Le compteur spécifié n''est lié ni à un bien ni à un logement.');
+    SELECT MAX(indexCompteur) INTO v_AncienIndice
+    FROM SAE_Relevé r
+    WHERE r.Id_Compteur = v_Id_Compteur
+      AND r.date_relevé < (SELECT MAX(date_relevé) FROM SAE_Relevé WHERE Id_Compteur = v_Id_Compteur);
+
+    -- Calculer la consommation
+    IF v_AncienIndice IS NOT NULL THEN
+        v_Consommation := v_NouvelIndice - v_AncienIndice;
+    ELSE
+        v_Consommation := 0;
     END IF;
 
-    -- Si le compteur est propre (lié à un bien spécifique)
-    IF v_Id_Bien_compteur IS NOT NULL THEN
-        -- Appeler la fonction PrixConsoLogement
-        RETURN CalculerPrixConsoLogement(p_Id_Bien, p_Id_Compteur);
+    -- Vérifier le type du compteur et calculer les coûts
+    SELECT CASE
+            WHEN TypeComp = 'Electricité' THEN v_Consommation * 0.2516
+            WHEN TypeComp = 'Eau' THEN v_Consommation * 4.34
+            WHEN TypeComp = 'Gaz' THEN v_Consommation * 1.025
+            ELSE 0
+        END
+    INTO v_Result
+    FROM SAE_Compteur
+    WHERE Id_Compteur = v_Id_Compteur;
 
-    -- Si le compteur est général (lié à un logement ou immeuble)
-    ELSIF v_Id_Logement_compteur IS NOT NULL THEN
-        -- Appeler la fonction PrixConsoLogementQuotite
-        RETURN PrixConsoLogementQuotite(p_Id_Bien, p_Id_Compteur);
-    END IF;
-
-    -- Gérer les autres exceptions
-    RAISE_APPLICATION_ERROR(-20007, 'Erreur lors du calcul de la consommation.');
+    RETURN v_Result;
 
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
-        -- Gérer le cas où aucune donnée trouvée pour le compteur spécifié
-        RETURN 0; -- Retourner 0 si aucune donnée trouvée
+        DBMS_OUTPUT.PUT_LINE('Aucune donnée trouvée pour le compteur.');
+        RETURN 0;
     WHEN OTHERS THEN
-        -- Gérer les autres exceptions en affichant le message d'erreur d'origine
-        RAISE_APPLICATION_ERROR(-20009, 'Une erreur s''est produite : ' || SQLERRM);
-        RETURN NULL;
+        RAISE_APPLICATION_ERROR(-20004, 'Erreur inattendue : ' || SQLERRM);
 END;
 /
 
+set serveroutput on
 DECLARE
-    v_PrixConsommation NUMBER(15, 2);
+    v_Input VARCHAR2(100) := 'BIEN001,COMP001'; -- ID Bien et ID Compteur, séparés par une virgule
+    v_Result NUMBER; -- Variable pour stocker le résultat
 BEGIN
-    -- Appeler la fonction CalculerConsoBien
-    v_PrixConsommation := CalculerConsoBien('BIEN001', 'COMP001');
+    -- Appel de la fonction avec l'entrée unique
+    v_Result := CalculerConsoBien_SP(v_Input);
 
-    IF v_PrixConsommation IS NOT NULL THEN
-        DBMS_OUTPUT.PUT_LINE('CalculerConsoBien : ' || v_PrixConsommation);
+    -- Affichage du résultat
+    IF v_Result IS NOT NULL THEN
+        DBMS_OUTPUT.PUT_LINE('Prix de la consommation pour le bien : ' || v_Result);
     ELSE
-        DBMS_OUTPUT.PUT_LINE('Erreur');
+        DBMS_OUTPUT.PUT_LINE('Erreur lors du calcul.');
     END IF;
 END;
 /
 
+-- Fonction CalculChargesReellesTotal
+-- Cette fonction calcule le total des consommations réelles associées à un bien spécifique.
+-- Elle récupère tous les compteurs liés au bien, calcule la consommation pour chacun d'eux 
+-- en utilisant la fonction CalculerPartieVariableConso, puis retourne la somme totale de ces consommations.
 CREATE OR REPLACE FUNCTION CalculChargesReellesTotal(
     p_Id_Bien IN SAE_Bien.Id_Bien%TYPE DEFAULT NULL
 ) RETURN NUMBER
@@ -415,6 +425,13 @@ BEGIN
 END;
 /
 
+
+-- Fonction CalculerTotalChargesCompletes
+-- Cette fonction calcule le total des charges complètes pour un bien spécifique.
+-- Elle additionne :
+-- 1. Les charges liées aux compteurs (eau, électricité, gaz) calculées via la fonction CalculChargesReellesTotal.
+-- 2. Les charges hors compteurs (issues de la table SAE_Charge) excluant les consommations des compteurs.
+-- Le résultat est la somme de ces deux catégories de charges.
 CREATE OR REPLACE FUNCTION CalculerTotalChargesCompletes(
     p_Id_Bien IN SAE_Bien.Id_Bien%TYPE
 ) RETURN NUMBER
@@ -468,7 +485,10 @@ BEGIN
 END;
 /
 
-
+-- Fonction CalculTotalProvisions
+-- Cette fonction calcule le total des provisions pour un bien donné.
+-- Elle multiplie la durée en mois entre la date actuelle et la date de la dernière régularisation (ou la date actuelle par défaut si aucune date n'est définie) par les provisions mensuelles.
+-- Le résultat est la somme des provisions calculées pour le bien spécifié.
 CREATE OR REPLACE FUNCTION CalculTotalProvisions (
     p_Id_Bien IN SAE_Louer.Id_Bien%TYPE
 ) RETURN NUMBER
@@ -509,6 +529,9 @@ BEGIN
 END;
 /
 
+-- SOMMES TOTAL ORDURES MENAGERES ---
+-- Fonction pour calculer le total des charges réelles liées aux ordures ménagères pour un bien loué spécifié
+-- Elle récupère la somme des montants des factures émises entre la date de la dernière régularisation et la date actuelle
 CREATE OR REPLACE FUNCTION CalcultotalOrduresMenageres (
     p_Id_Bien IN SAE_Louer.Id_Bien%TYPE
 ) RETURN NUMBER
@@ -552,6 +575,11 @@ BEGIN
 END;
 /
 
+-- Fonction CalculDuLoyer
+-- Cette fonction calcule la dette locative restante pour un bien donné.
+-- Elle détermine la différence entre le total des loyers facturés et le total des loyers effectivement payés.
+-- Les calculs prennent en compte uniquement les factures de loyer émises entre la date de la dernière régularisation et la date actuelle.
+-- Le résultat est la somme des loyers dus pour le bien spécifié.
 CREATE OR REPLACE FUNCTION CalculDuLoyer (
     p_Id_Bien IN SAE_Louer.Id_Bien%TYPE
 ) RETURN NUMBER
@@ -604,6 +632,12 @@ BEGIN
 END;
 /
 
+
+--------------------------------------------
+------------- CALCUL TRAVAUX ---------------
+--------------------------------------------
+-- Fonction pour calculer la somme totale des travaux pour un bien spécifié et son immeuble associé
+-- recupere total travaux emis pour un Bien puis retourne la somme 
 set serveroutput on
 CREATE OR REPLACE FUNCTION CalculTravauxBienImmeuble(
     p_Id_Bien IN SAE_Bien.Id_Bien%TYPE
@@ -653,6 +687,11 @@ BEGIN
 END;
 /
 
+---------------------------------------------------------
+------------- CALCUL TRAVAUX IMPUTABLES ---------------
+---------------------------------------------------------
+-- Fonction pour calculer la somme totale des travaux imputables au locataire pour un bien spécifié
+-- recupere le total des travaux realiser sur le bien puis retourne la somme 
 CREATE OR REPLACE FUNCTION CalculTravauxImputableLoca(
     p_Id_Bien IN SAE_Bien.Id_Bien%TYPE
 ) RETURN NUMBER 
@@ -694,44 +733,138 @@ EXCEPTION
 END;
 /
 
+-- Fonction CalculerReguCharges_SP
+-- Cette fonction calcule la régularisation des charges pour un locataire d'un bien spécifique.
+-- Elle prend en compte les charges réelles, les provisions et les loyers restants.
+CREATE OR REPLACE FUNCTION CalculerReguCharges_SP(
+    p_Input IN VARCHAR2
+) RETURN NUMBER
+IS
+    -- Déclaration des variables
+    v_Id_Bien SAE_Louer.Id_Bien%TYPE;
+    v_Id_Locataire SAE_Louer.Id_Locataire%TYPE;
+    v_Date_Debut DATE;
+    v_ChargesReelles NUMBER := 0;
+    v_Provisions NUMBER := 0;
+    v_RestantLoyer NUMBER := 0;
+    v_SoldeApres NUMBER := 0;
+BEGIN
+    -- Extraction des paramètres depuis l'entrée unique
+    v_Id_Bien := SUBSTR(p_Input, 1, INSTR(p_Input, ',') - 1);
+    v_Id_Locataire := SUBSTR(p_Input, INSTR(p_Input, ',') + 1, INSTR(p_Input, ',', INSTR(p_Input, ',') + 1) - INSTR(p_Input, ',') - 1);
+    v_Date_Debut := TO_DATE(SUBSTR(p_Input, INSTR(p_Input, ',', INSTR(p_Input, ',') + 1) + 1), 'YYYY-MM-DD');
 
-CREATE OR REPLACE FUNCTION CalculerRegularisationCharges (
-    p_Id_Bien IN SAE_Louer.Id_Bien%TYPE,
-    p_Id_Locataire IN SAE_Louer.Id_Locataire%TYPE,
-    p_Date_Debut IN SAE_Louer.Date_Debut%TYPE
+    v_ChargesReelles := CalculerTotalChargesCompletes(v_Id_Bien);
+    DBMS_OUTPUT.PUT_LINE('v_ChargesReelles : ' || v_ChargesReelles);
+
+    v_Provisions := CalculTotalProvisions(v_Id_Bien);
+    DBMS_OUTPUT.PUT_LINE('v_Provisions : ' || v_Provisions);
+
+    v_RestantLoyer := CalculDuLoyer(v_Id_Bien);
+    DBMS_OUTPUT.PUT_LINE('v_RestantLoyer : ' || v_RestantLoyer);
+
+    -- Calculer le solde après régularisation
+    v_SoldeApres := v_ChargesReelles + v_RestantLoyer - v_Provisions;
+    DBMS_OUTPUT.PUT_LINE('v_SoldeApres : ' || v_SoldeApres);
+
+
+    -- Retourner le solde après régularisation
+    RETURN v_SoldeApres;
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        -- Gérer l'absence de données
+        DBMS_OUTPUT.PUT_LINE('Aucune donnée trouvée.');
+        RETURN 0;
+    WHEN OTHERS THEN
+        -- Gérer toutes les autres exceptions
+        RAISE_APPLICATION_ERROR(-20007, 'Erreur inattendue : ' || SQLERRM);
+END;
+/
+
+set serveroutput on
+DECLARE
+    v_Input VARCHAR2(100) := 'BIEN001,LOC001,2023-01-01'; -- ID Bien, ID Locataire, Date Début, séparés par des virgules
+    v_Result NUMBER; -- Variable pour stocker le résultat
+BEGIN
+    -- Appel de la fonction avec l'entrée unique
+    v_Result := CalculerReguCharges_SP(v_Input);
+
+    -- Affichage du résultat
+    IF v_Result IS NOT NULL THEN
+        DBMS_OUTPUT.PUT_LINE('Total des charges régularisées : ' || v_Result);
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Erreur lors du calcul.');
+    END IF;
+END;
+/
+
+
+----------------------------------------------
+---------- SOLDE DE TOUT COMPTE --------------
+----------------------------------------------
+-- Fonction pour calculer le solde de tout compte pour un locataire et un bien spécifiés
+-- prend en compte les charges réelles, les provision , les travaux imputable , la caution 
+-- pour determiner le solde final apres regularisation 
+
+CREATE OR REPLACE FUNCTION CalculerSoldeToutCompte_SP(
+    p_Input IN VARCHAR2
 ) RETURN NUMBER
 IS
     -- Déclaration des variables locales
-    v_charges_reelles NUMBER := 0;       -- Variable pour stocker le total des charges réelles
-    v_provisions NUMBER := 0;            -- Variable pour stocker le total des provisions
-    v_solde_apres NUMBER := 0;           -- Variable pour stocker le solde après régularisation
-    v_restantLoyer NUMBER := 0;       -- Variable pour stocker le total des dettes de loyers
-
+    v_Id_Bien SAE_Louer.Id_Bien%TYPE;
+    v_Id_Locataire SAE_Louer.Id_Locataire%TYPE;
+    v_Date_Debut DATE;
+    v_ChargesReelles NUMBER := 0;        -- Total des charges réelles
+    v_Provisions NUMBER := 0;            -- Total des provisions
+    v_TravauxImputables NUMBER := 0;     -- Total des travaux imputables
+    v_SoldeFinal NUMBER := 0;            -- Solde après régularisation
+    v_Caution NUMBER := 0;               -- Caution associée au bien
+    v_RestantLoyer NUMBER := 0;          -- Total des dettes de loyers
+    v_OrduresMenageres NUMBER := 0;      -- Total des charges 'Ordures ménagères'
+    v_TotalCharges NUMBER := 0;          -- Total des charges réelles
 BEGIN
-    -- Calculer les charges réelles pour le bien
-    v_charges_reelles := CalcultotalOrduresMenageres(p_Id_Bien) + CalculerTotalChargesCompletes(p_Id_Bien);
-    DBMS_OUTPUT.PUT_LINE('v_charges_reelles : ' || v_charges_reelles);
+    -- Extraction des paramètres depuis l'entrée unique
+    v_Id_Bien := SUBSTR(p_Input, 1, INSTR(p_Input, ',') - 1);
+    v_Id_Locataire := SUBSTR(p_Input, INSTR(p_Input, ',') + 1, INSTR(p_Input, ',', INSTR(p_Input, ',') + 1) - INSTR(p_Input, ',') - 1);
+    v_Date_Debut := TO_DATE(SUBSTR(p_Input, INSTR(p_Input, ',', INSTR(p_Input, ',') + 1) + 1), 'YYYY-MM-DD');
 
-    -- Calculer les provisions pour le bien
-    v_provisions := CalculTotalProvisions(p_Id_Bien);
-    DBMS_OUTPUT.PUT_LINE('v_provisions : ' || v_provisions);
+    -- Récupérer la caution associée au bien
+    SELECT caution_TTC
+    INTO v_Caution
+    FROM SAE_Louer
+    WHERE Id_Bien = v_Id_Bien
+      AND Date_Debut = v_Date_Debut
+      AND Id_Locataire = v_Id_Locataire;
 
-    -- Calculer les dettes de loyers pour le locataire
-    v_restantLoyer := CalculDuLoyer(p_Id_Bien);
-    DBMS_OUTPUT.PUT_LINE('v_restantLoyer : ' || v_restantLoyer);
+    DBMS_OUTPUT.PUT_LINE('v_Caution : ' || v_Caution);
 
-    -- Calculer le solde après régularisation
-    v_solde_apres := v_charges_reelles + v_restantLoyer - v_provisions;
+    -- Appel des fonctions pour obtenir les valeurs nécessaires
+    v_OrduresMenageres := CalcultotalOrduresMenageres(v_Id_Bien);
+    DBMS_OUTPUT.PUT_LINE('v_OrduresMenageres : ' || v_OrduresMenageres);
 
-    -- Mettre à jour la date de dernière régularisation dans Louer
-    UPDATE SAE_Louer
-    SET date_derniere_reg = SYSDATE
-    WHERE Id_Bien = p_Id_Bien
-      AND Date_Debut = p_Date_Debut
-      AND Id_Locataire = p_Id_Locataire;
+    v_TotalCharges := CalculerTotalChargesCompletes(v_Id_Bien);
+    DBMS_OUTPUT.PUT_LINE('v_TotalCharges : ' || v_TotalCharges);
 
-    -- Retourner le solde après régularisation
-    RETURN v_solde_apres;
+    v_ChargesReelles := v_OrduresMenageres + v_TotalCharges;
+    DBMS_OUTPUT.PUT_LINE('v_ChargesReelles : ' || v_ChargesReelles);
+
+    v_Provisions := CalculTotalProvisions(v_Id_Bien);
+    DBMS_OUTPUT.PUT_LINE('v_Provisions : ' || v_Provisions);
+
+    v_TravauxImputables := CalculTravauxImputableLoca(v_Id_Bien);
+    DBMS_OUTPUT.PUT_LINE('v_TravauxImputables : ' || v_TravauxImputables);
+
+    v_RestantLoyer := CalculDuLoyer(v_Id_Bien);
+    DBMS_OUTPUT.PUT_LINE('v_RestantLoyer : ' || v_RestantLoyer);
+
+    -- Calculer le solde final après régularisation
+    v_SoldeFinal := v_Provisions - v_ChargesReelles + v_Caution - v_TravauxImputables - v_RestantLoyer;
+    DBMS_OUTPUT.PUT_LINE('v_SoldeFinal : ' || v_SoldeFinal);
+
+
+    -- Retourner le solde final après régularisation
+    RETURN v_SoldeFinal;
 
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
@@ -741,105 +874,23 @@ EXCEPTION
     WHEN OTHERS THEN
         -- Gérer toutes les autres exceptions
         RAISE_APPLICATION_ERROR(-20003, 'Erreur inattendue : ' || SQLERRM);
-END CalculerRegularisationCharges;
-/
-
-set serveroutput on
-DECLARE
-    v_result NUMBER;
-BEGIN
-    -- Appel de la fonction avec un ID de bien spécifique, un locataire et une date de début
-    v_result := CalculerRegularisationCharges('BIEN001', 'LOC001', TO_DATE('2024-03-14', 'YYYY-MM-DD'));
-
-    -- Affichage du résultat
-    DBMS_OUTPUT.PUT_LINE('Total des charges régularisées : ' || v_result);
 END;
 /
 
 
-SET SERVEROUTPUT ON
-CREATE OR REPLACE FUNCTION CalculerSoldeDeToutCompte (
-    p_Id_Bien IN SAE_Louer.Id_Bien%TYPE,
-    p_Id_Locataire IN SAE_Louer.Id_Locataire%TYPE,
-    p_Date_Debut IN SAE_Louer.Date_Debut%TYPE
-) RETURN NUMBER
-IS
-    -- Déclaration des variables locales
-    v_chargesReelles NUMBER := 0;        -- Variable pour stocker le total des charges réelles
-    v_provisions NUMBER := 0;            -- Variable pour stocker le total des provisions
-    v_travauxImputables NUMBER := 0;     -- Variable pour stocker le total des travaux imputables
-    v_soldeFinal NUMBER := 0;            -- Variable pour stocker le solde après régularisation
-    v_caution NUMBER := 0;               -- Variable pour stocker la caution associée au bien
-    v_restantLoyer NUMBER := 0;          -- Variable pour stocker le total des dettes de loyers
-    v_OrduresMenageres NUMBER := 0;      -- Variable pour stocker le total des charges 'Ordures ménagères'
-    v_totalCharges NUMBER := 0;          -- Variable pour stocker le total des charges réelles
-
-BEGIN
-    -- Récupérer la caution associée au bien
-    SELECT caution_TTC 
-    INTO v_caution
-    FROM SAE_Louer
-    WHERE Id_Bien = p_Id_Bien
-      AND Date_Debut = p_Date_Debut
-      AND Id_Locataire = p_Id_Locataire;
-
-    DBMS_OUTPUT.PUT_LINE('v_caution : ' || v_caution);
-
-    -- Calculer les charges réelles pour le locataire
-    v_OrduresMenageres := CalculTotalOrduresMenageres(p_Id_Bien);
-    DBMS_OUTPUT.PUT_LINE('v_OrduresMenageres : ' || v_OrduresMenageres);
-
-    v_totalCharges := CalculerTotalChargesCompletes(p_Id_Bien);
-    DBMS_OUTPUT.PUT_LINE('v_totalCharges : ' || v_totalCharges);
-
-    v_chargesReelles := v_OrduresMenageres + v_totalCharges;
-    DBMS_OUTPUT.PUT_LINE('v_chargesReelles : ' || v_chargesReelles);
-
-    -- Calculer les provisions pour le locataire
-    v_provisions := CalculTotalProvisions(p_Id_Bien);
-    DBMS_OUTPUT.PUT_LINE('v_provisions : ' || v_provisions);
-
-    -- Calculer les travaux imputables au locataire
-    v_travauxImputables := CalculTravauxImputableLoca(p_Id_Bien);
-    DBMS_OUTPUT.PUT_LINE('v_travauxImputables : ' || v_travauxImputables);
-
-    -- Calculer les dettes de loyers pour le locataire
-    v_restantLoyer := CalculDuLoyer(p_Id_Bien);
-    DBMS_OUTPUT.PUT_LINE('v_restantLoyer : ' || v_restantLoyer);
-
-    -- Calculer le solde final après régularisation
-    v_soldeFinal := v_provisions - v_chargesReelles + v_caution - v_travauxImputables - v_restantLoyer;
-    DBMS_OUTPUT.PUT_LINE('v_soldeFinal : ' || v_soldeFinal);
-    
-    -- Mettre à jour la date de dernière régularisation dans Louer
-    UPDATE SAE_Louer
-    SET date_derniere_reg = SYSDATE
-    WHERE Id_Bien = p_Id_Bien
-      AND Date_Debut = p_Date_Debut
-      AND Id_Locataire = p_Id_Locataire;
-
-    -- Retourner le solde final après régularisation
-    RETURN v_soldeFinal;
-
-EXCEPTION
-    WHEN NO_DATA_FOUND THEN
-        -- Gérer l'absence de données
-        DBMS_OUTPUT.PUT_LINE('Aucune donnée trouvée');
-        RETURN 0;
-    WHEN OTHERS THEN
-        -- Gérer toutes les autres exceptions
-        RAISE_APPLICATION_ERROR(-20003, 'Erreur inattendue : ' || SQLERRM);
-END CalculerSoldeDeToutCompte;
-/
-
-
+set serveroutput on
 DECLARE
-    v_result NUMBER;
+    v_Input VARCHAR2(100) := 'BIEN001,LOC001,2023-01-01'; -- ID Bien, ID Locataire, Date Début, séparés par des virgules
+    v_Result NUMBER; -- Variable pour stocker le résultat
 BEGIN
-    -- Appel de la fonction avec un ID de bien spécifique, un locataire et une date de début
-    v_result := CalculerSoldeDeToutCompte('BIEN001', 'LOC001', TO_DATE('2023-01-1', 'YYYY-MM-DD'));
+    -- Appel de la fonction avec l'entrée unique
+    v_Result := CalculerSoldeToutCompte_SP(v_Input);
 
     -- Affichage du résultat
-    DBMS_OUTPUT.PUT_LINE('CalculerSoldeDeToutCompte : ' || v_result);
+    IF v_Result IS NOT NULL THEN
+        DBMS_OUTPUT.PUT_LINE('Solde de tout compte : ' || v_Result);
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Erreur lors du calcul.');
+    END IF;
 END;
 /

@@ -5,13 +5,14 @@ import java.util.Objects;
 public class Quotite {
 
 	private String typeQuotite;
-	private int pourcentage;
-;
-	public Quotite(String typeQuotite, int pourcentage) {
+
+	public Quotite(String typeQuotite) {
 		this.typeQuotite = typeQuotite;
-		this.pourcentage = pourcentage;
 	}
 
+	public String getTypeQuotite() {
+		return this.typeQuotite;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -28,7 +29,7 @@ public class Quotite {
 
 	@Override
 	public String toString() {
-		return "Quotite [typeQuotite=" + typeQuotite + ", pourcentage=" + pourcentage + "]";
+		return "Quotite [typeQuotite=" + typeQuotite + "]";
 	}	
 	
 

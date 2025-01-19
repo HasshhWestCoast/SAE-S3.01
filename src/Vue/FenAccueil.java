@@ -16,8 +16,6 @@ import Controleur.GestionFenFacture;
 import Controleur.GestionFenLocation;
 import Controleur.GestionFenLogements;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.border.EtchedBorder;
 
 public class FenAccueil extends JFrame {
@@ -521,8 +519,8 @@ public class FenAccueil extends JFrame {
         // Ajouter le tableau
         tabMesAssurances = new JTable();
         tabMesAssurances.setModel(new DefaultTableModel(
-            new Object[][] { { null, null, null, null, null } },
-            new String[] { "Numéro police", "Montant", "Date échéance", "Entreprise", "Logement" }
+            new Object[][] { { null, null, null, null, null, null } },
+            new String[] { "Numéro police", "Montant", "Date échéance", "Entreprise", "Logement", "Bien" }
         ));
         JScrollPane scrollPane = new JScrollPane(tabMesAssurances);
         scrollPane.setBounds(59, 48, 890, 407);
@@ -606,15 +604,9 @@ public class FenAccueil extends JFrame {
        	  btnInserer.setBackground(new Color(31, 153, 88));
        	  panel.add(btnInserer);
        	  
-       	  RoundedButton btnMiseAJour = new RoundedButton("Mise à jour", 20);
-       	  btnMiseAJour.addActionListener(this.gestionClicLocation);
-       	  btnMiseAJour.setBounds(528, 11, 96, 23);
-       	  btnMiseAJour.setBackground(new Color(31, 153, 88));
-       	  panel.add(btnMiseAJour);
-       	  
        	  RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
        	  btnSupprimer.addActionListener(this.gestionClicLocation);
-       	  btnSupprimer.setBounds(668, 11, 96, 23);
+       	  btnSupprimer.setBounds(524, 11, 96, 23);
        	  btnSupprimer.setBackground(new Color(31, 153, 88));
        	  panel.add(btnSupprimer);
        	  
@@ -727,12 +719,6 @@ public class FenAccueil extends JFrame {
         btnArchiver.setBackground(new Color(31, 153, 88));
         panel.add(btnArchiver);
 
-        RoundedButton btnModifier = new RoundedButton("Modifier", 20);
-        btnModifier.setBounds(673, 11, 96, 23);
-        btnModifier.addActionListener(this.gestionClicFacture);
-        btnModifier.setBackground(new Color(31, 153, 88));
-        panel.add(btnModifier);
-
         RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
         btnSupprimer.setBounds(531, 11, 96, 23);
         btnSupprimer.addActionListener(this.gestionClicFacture);
@@ -802,15 +788,9 @@ public class FenAccueil extends JFrame {
         btnIArchiver.setBackground(new Color(33, 153, 88));
         panel.add(btnIArchiver);
 
-        RoundedButton btnModifier = new RoundedButton("Modifier", 20);
-        btnModifier.addActionListener(this.gestionClicBien);
-        btnModifier.setBounds(478, 11, 96, 23);
-        btnModifier.setBackground(new Color(33, 153, 88));
-        panel.add(btnModifier);
-
         RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
         btnSupprimer.addActionListener(this.gestionClicBien);
-        btnSupprimer.setBounds(618, 11, 96, 23);
+        btnSupprimer.setBounds(472, 11, 96, 23);
         btnSupprimer.setBackground(new Color(33, 153, 88));
         panel.add(btnSupprimer);
         
@@ -901,12 +881,6 @@ public class FenAccueil extends JFrame {
         btnModifier.setBounds(490, 11, 96, 23);
         btnModifier.setBackground(new Color(31, 153, 88));
         panel.add(btnModifier);
-
-        RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
-        btnSupprimer.addActionListener(this.gestionClicLogement);
-        btnSupprimer.setBounds(623, 11, 96, 23);
-        btnSupprimer.setBackground(new Color(31, 153, 88));
-        panel.add(btnSupprimer);
         
         RoundedButton btnCharger = new RoundedButton("Charger", 20);
         btnCharger.addActionListener(this.gestionClicLogement);
@@ -1092,12 +1066,12 @@ public class FenAccueil extends JFrame {
         panel.setLayout(null);
 
         RoundedButton btnInserer = new RoundedButton("Inserer un impot", 20);
-        btnInserer.setBounds(433, 11, 80, 23);
+        btnInserer.setBounds(392, 11, 159, 23);
         btnInserer.setBackground((new Color(31, 153, 88)));
         panel.add(btnInserer);
 
         RoundedButton btnGenerer = new RoundedButton("Génerer une annexe", 20);
-        btnGenerer.setBounds(591, 11, 96, 23);
+        btnGenerer.setBounds(591, 11, 159, 23);
         btnGenerer.setBackground((new Color(31, 153, 88)));
         panel.add(btnGenerer);
         
