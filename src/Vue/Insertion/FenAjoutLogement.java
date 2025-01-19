@@ -86,11 +86,13 @@ public class FenAjoutLogement extends JInternalFrame {
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
 		btnAnnuler.addActionListener(gestionFenAjoutLogement);
 		btnAnnuler.setBounds(218, 419, 85, 21);
+		btnAnnuler.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
 		btnAjouter.addActionListener(gestionFenAjoutLogement);
 		btnAjouter.setBounds(366, 419, 85, 21);
+		btnAjouter.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouter);
 		
 		JLabel lblNewLabel_1 = new JLabel("Ajout Logement");
@@ -154,6 +156,7 @@ public class FenAjoutLogement extends JInternalFrame {
 		RoundedButton btnCharger = new RoundedButton("Charger", 20);
 		btnCharger.addActionListener(gestionFenAjoutLogement);
 		btnCharger.setBounds(450, 212, 85, 21);
+		btnCharger.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnCharger);
 		
 		checkGarage = new JCheckBox("OUI");

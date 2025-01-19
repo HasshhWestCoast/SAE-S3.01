@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -111,7 +112,7 @@ public class GestionFenLocation implements ActionListener, ListSelectionListener
 					
 					int width = fenAc.getLayeredPane().getWidth();
 		            int height = fenAc.getLayeredPane().getHeight();
-		            fenAddLocation.setBounds(50, 50, width - 100, height - 15);
+		            fenAddLocation.setBounds(50, 10, width - 100, height - 15);
 					
 					fenAc.getLayeredPane().add(fenAddLocation);
 					fenAddLocation.setVisible(true);
@@ -120,6 +121,19 @@ public class GestionFenLocation implements ActionListener, ListSelectionListener
 				case "Informations locataire":
 				    System.out.println("Vous ouvrez la page informations locataire !");
 				    FenInfosLocataire fenInfoLocataire = null;
+				    
+				    if (this.louer == null) {
+                        JOptionPane.showMessageDialog(
+                            this.fenAc,
+                            "Veuillez sélectionner un locataire !",
+                            "Erreur",
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                        return;
+                    }
+				    
+				    
+				    
 				    try {
 				        fenInfoLocataire = new FenInfosLocataire();
 
