@@ -77,11 +77,13 @@ public class FenAjoutICC extends JInternalFrame {
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
 		btnAnnuler.addActionListener(this.gestionClicFenAjoutICC);
 		btnAnnuler.setBounds(80, 353, 85, 21);
+		btnAnnuler.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
 		btnAjouter.addActionListener(this.gestionClicFenAjoutICC);
 		btnAjouter.setBounds(215, 353, 85, 21);
+		btnAjouter.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouter);
 		
 		JLabel lblIDIcc = new JLabel("ID icc");

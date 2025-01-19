@@ -63,21 +63,25 @@ public class FenCompteurs extends JInternalFrame {
         RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
         btnAnnuler.addActionListener(this.gestionClicFenCompLog);
         btnAnnuler.setBounds(161, 472, 104, 21);
+        btnAnnuler.setBackground(new Color(31, 151, 83));
         getContentPane().add(btnAnnuler);
         
         RoundedButton btnAfficherDateReleve = new RoundedButton("Afficher date relevé", 20);
         btnAfficherDateReleve.addActionListener(this.gestionClicFenCompLog);
         btnAfficherDateReleve.setBounds(556, 472, 158, 21);
+        btnAfficherDateReleve.setBackground(new Color(31, 151, 83));
         getContentPane().add(btnAfficherDateReleve);
         
         RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
         btnAjouter.addActionListener(this.gestionClicFenCompLog);
         btnAjouter.setBounds(275, 472, 104, 21);
+        btnAjouter.setBackground(new Color(31, 151, 83));
         getContentPane().add(btnAjouter);
         
         RoundedButton rndbtnCharger = new RoundedButton("Charger", 20);
         rndbtnCharger.addActionListener(this.gestionClicFenCompLog);
         rndbtnCharger.setBounds(443, 472, 104, 21);
+        rndbtnCharger.setBackground(new Color(31, 151, 83));
         getContentPane().add(rndbtnCharger);
         
 		setBounds(100, 100, 911, 626);

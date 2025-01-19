@@ -506,16 +506,6 @@ public class FenAccueil extends JFrame {
         panelAssurances.add(panelCentre, BorderLayout.CENTER);
         panelCentre.setLayout(null);
 
-        // Ajouter la JComboBox en haut
-        JComboBox comboBoxIDAssurance = new JComboBox();
-        comboBoxIDAssurance.setBounds(59, 11, 148, 26);
-        comboBoxIDAssurance.setForeground(new Color(255, 255, 255));
-        comboBoxIDAssurance.setFont(new Font("Sylfaen", Font.PLAIN, 14));
-        comboBoxIDAssurance.setBackground(new Color(31, 153, 88));
-        comboBoxIDAssurance.setModel(new DefaultComboBoxModel(new String[] { "ID Assurance" }));
-        comboBoxIDAssurance.setToolTipText("ID Assurance");
-        panelCentre.add(comboBoxIDAssurance);
-
         // Ajouter le tableau
         tabMesAssurances = new JTable();
         tabMesAssurances.setModel(new DefaultTableModel(
