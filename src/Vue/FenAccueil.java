@@ -790,7 +790,7 @@ public class FenAccueil extends JFrame {
 
         RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
         btnSupprimer.addActionListener(this.gestionClicBien);
-        btnSupprimer.setBounds(472, 11, 96, 23);
+        btnSupprimer.setBounds(486, 11, 96, 23);
         btnSupprimer.setBackground(new Color(33, 153, 88));
         panel.add(btnSupprimer);
         
@@ -799,6 +799,12 @@ public class FenAccueil extends JFrame {
         btnCharger.setBounds(229, 11, 85, 23);
         btnCharger.setBackground(new Color(33, 153, 88));
         panel.add(btnCharger);
+        
+        RoundedButton btnModifier = new RoundedButton("Modifier", 20);
+        btnModifier.addActionListener(this.gestionClicBien);
+        btnModifier.setBackground(new Color(31, 153, 88));
+        btnModifier.setBounds(623, 11, 96, 23);
+        panel.add(btnModifier);
         
         // Buttons
         RoundedButton btnAjouterUnBien = new RoundedButton("Ajouter un bien", 20);
@@ -881,6 +887,12 @@ public class FenAccueil extends JFrame {
         btnModifier.setBounds(490, 11, 96, 23);
         btnModifier.setBackground(new Color(31, 153, 88));
         panel.add(btnModifier);
+
+        RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
+        btnSupprimer.addActionListener(this.gestionClicLogement);
+        btnSupprimer.setBounds(623, 11, 96, 23);
+        btnSupprimer.setBackground(new Color(31, 153, 88));
+        panel.add(btnSupprimer);
         
         RoundedButton btnCharger = new RoundedButton("Charger", 20);
         btnCharger.addActionListener(this.gestionClicLogement);

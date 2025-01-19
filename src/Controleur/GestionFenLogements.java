@@ -42,9 +42,6 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 		
 		if (texte != null) {
 			switch (texte) {
-				case "Modifier":
-					System.out.println("Vous MODIFIER une donnée dans Logement !");
-					break;
 					
 				case "Supprimer":
 					System.out.println("Vous SUPPRIMER une données dans Logement !");
@@ -181,5 +178,7 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 			}	
 		}
 	}
+	
+
 
 }
