@@ -144,8 +144,6 @@ public class DaoTest {
 
         
         // Étape 11 : Ajouter un ICC
-         
-         
         ICC icc = new ICC(77, "2024", "q555", 200);   
         daoICC.create(icc);
         
@@ -161,6 +159,104 @@ public class DaoTest {
     	Louer fetchedLouer = daoLouer.findById(fetchedBien.getIdBien(), fetchedLocataire.getIdLocataire(), "01/01/2025");
     	assertNotNull(fetchedLouer);
 		
+    }
+
+    @Test
+    public void testDeleteAndFindAllDaos() throws SQLException {
+        // Étape 1 : Supprimer la location
+        Louer fetchedLouer = daoLouer.findById("TestBIEN001", "TestLOCATAIRE001", "01/01/2025");
+        if (fetchedLouer != null) {
+            daoLouer.delete(fetchedLouer);
+            Louer deletedLouer = daoLouer.findById("TestBIEN001", "TestLOCATAIRE001", "01/01/2025");
+            Assert.assertNull(deletedLouer);
+        }
+
+        // Étape 2 : Supprimer le relevé
+        Releve fetchedReleve = daoReleve.findById("15/01/2025", "TestCOMPTEUR001");
+        if (fetchedReleve != null) {
+            daoReleve.delete(fetchedReleve);
+            Releve deletedReleve = daoReleve.findById("15/01/2025", "TestCOMPTEUR001");
+            Assert.assertNull(deletedReleve);
+        }
+
+        // Étape 3 : Supprimer le compteur
+        Compteur fetchedCompteur = daoCompteur.findById("TestCOMPTEUR001");
+        if (fetchedCompteur != null) {
+            daoCompteur.delete(fetchedCompteur);
+            Compteur deletedCompteur = daoCompteur.findById("TestCOMPTEUR001");
+            assertNull(deletedCompteur);
+        }
+
+        // Étape 4 : Supprimer l'assurance
+        assurance fetchedAssurance = daoAssurance.findById("TestASSURANCE001");
+        if (fetchedAssurance != null) {
+            daoAssurance.delete(fetchedAssurance);
+            assurance deletedAssurance = daoAssurance.findById("TestASSURANCE001");
+            Assert.assertNull(deletedAssurance);
+        }
+
+        // Étape 5 : Supprimer la facture
+        Facture fetchedFacture = daoFacture.findById("TestFACTURE001");
+        if (fetchedFacture != null) {
+            daoFacture.delete(fetchedFacture);
+            Facture deletedFacture = daoFacture.findById("TestFACTURE001");
+            Assert.assertNull(deletedFacture);
+        }
+
+        // Étape 6 : Supprimer la quotte
+        Quotter fetchedQuotter = daoQuotter.findById("TestLOGEMENT001", "TestQUOTITE001");
+        if (fetchedQuotter != null) {
+            daoQuotter.delete(fetchedQuotter);
+            Quotter deletedQuotter = daoQuotter.findById("TestLOGEMENT001", "TestQUOTITE001");
+            Assert.assertNull(deletedQuotter);
+        }
+
+        Quotite fetchedQuotite = daoQuotite.findById("TestQUOTITE001");
+        if (fetchedQuotite != null) {
+            daoQuotite.delete(fetchedQuotite);
+            Quotite deletedQuotite = daoQuotite.findById("TestQUOTITE001");
+            Assert.assertNull(deletedQuotite);
+        }
+
+        // Étape 7 : Supprimer le logement
+        Logement fetchedLogement = daoLogement.findById("TestLOGEMENT001");
+        if (fetchedLogement != null) {
+            daoLogement.delete(fetchedLogement);
+            Logement deletedLogement = daoLogement.findById("TestLOGEMENT001");
+            Assert.assertNull(deletedLogement);
+        }
+
+        // Étape 8 : Supprimer le locataire
+        Locataire fetchedLocataire = daoLocataire.findById("TestLOCATAIRE001");
+        if (fetchedLocataire != null) {
+            daoLocataire.delete(fetchedLocataire);
+            Locataire deletedLocataire = daoLocataire.findById("TestLOCATAIRE001");
+            Assert.assertNull(deletedLocataire);
+        }
+
+        // Étape 9 : Supprimer l'entreprise
+        Entreprise fetchedEntreprise = daoEntreprise.findById("00001111222233");
+        if (fetchedEntreprise != null) {
+            daoEntreprise.delete(fetchedEntreprise);
+            Entreprise deletedEntreprise = daoEntreprise.findById("00001111222233");
+            Assert.assertNull(deletedEntreprise);
+        }
+
+        // Étape 10 : Supprimer le bien
+        Bien fetchedBien = daoBien.findById("TestBIEN001");
+        if (fetchedBien != null) {
+            daoBien.delete(fetchedBien);
+            Bien deletedBien = daoBien.findById("TestBIEN001");
+            Assert.assertNull(deletedBien);
+        }
+        
+     // Étape 11 : Supprimer un icc
+        ICC fetchedICC = daoICC.findById("77");
+        if (fetchedICC != null) {
+            daoICC.delete(fetchedICC);
+            ICC deletedIcc = daoICC.findById("77");
+            Assert.assertNull(deletedIcc);
+        }
     }
 
     @AfterClass

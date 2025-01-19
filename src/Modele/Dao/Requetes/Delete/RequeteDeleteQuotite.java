@@ -10,7 +10,7 @@ public class RequeteDeleteQuotite extends Requete<Quotite> {
 
     @Override
     public String requete() {
-        return "DELETE FROM Quotite WHERE type_quotite = ?";
+        return "DELETE FROM sae_Quotite WHERE type_quotite = ?";
     }
 
     @Override

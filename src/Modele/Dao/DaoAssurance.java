@@ -11,6 +11,7 @@ import Modele.Entreprise;
 import Modele.Logement;
 import Modele.assurance;
 import Modele.Dao.Requetes.Select.RequeteSelectAssuranceById;
+import Modele.Dao.Requetes.Delete.RequeteDeleteAssurance;
 import Modele.Dao.Requetes.Insert.RequeteInsertAssurance;
 import Modele.Dao.Requetes.Select.RequeteSelectAssurance;
 
@@ -24,7 +25,13 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 
 	@Override
 	public void delete(assurance t) throws SQLException {
-		// Fait depuis Entreprise ou Logement
+		// Étape 3 : Supprimer l'assurance elle-même
+	    RequeteDeleteAssurance requeteDeleteAssurance = new RequeteDeleteAssurance();
+	    try (PreparedStatement prSt = connexion.prepareStatement(requeteDeleteAssurance.requete())) {
+	        requeteDeleteAssurance.parametres(prSt, t);
+	        prSt.executeUpdate();
+	        System.out.println("Assurance supprimée : " + t.getNuméroPolice());
+	    }
 	}
 	
 	@Override
