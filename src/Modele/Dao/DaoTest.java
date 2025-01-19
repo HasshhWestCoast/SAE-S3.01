@@ -11,6 +11,11 @@ import java.sql.SQLException;
 public class DaoTest {
 
     private static Connection connexion;
+    private DaoLouer daoLouer;
+    private DaoICC daoICC;
+    private DaoReleve daoReleve;
+    private DaoQuotite daoQuotite;
+    private DaoQuotter daoQuotter;
     private DaoEntreprise daoEntreprise;
     private DaoLogement daoLogement;
     private DaoFacture daoFacture;
@@ -28,6 +33,11 @@ public class DaoTest {
 
     @Before
     public void setUp() {
+    	daoLouer = new DaoLouer(connexion);
+    	daoICC = new DaoICC(connexion);
+    	daoReleve = new DaoReleve(connexion);
+    	daoQuotter = new DaoQuotter(connexion);
+    	daoQuotite = new DaoQuotite(connexion);
     	daoEntreprise = new DaoEntreprise(connexion);
         daoLogement = new DaoLogement(connexion);
         daoFacture = new DaoFacture(connexion);
@@ -49,6 +59,7 @@ public class DaoTest {
         Assert.assertNotNull(fetchedBien);
         Assert.assertEquals("Adresse Test", fetchedBien.getAdresse());
 
+        
         // Étape 2 : Insérer un Logement avec relation 1,1 avec Bien
         Logement logement = new Logement("TestLOGEMENT001", 85.0, "15/01/2025", "Appartement", 
         		4, 3, 0, bien);
@@ -58,6 +69,7 @@ public class DaoTest {
         Assert.assertNotNull(fetchedLogement);
         Assert.assertEquals(85.0, fetchedLogement.getSurfaceHabitable(), 0);
 
+        
         // Étape 3 : Insérer un Locataire 
         Locataire locataire = new Locataire("TestLOCATAIRE001", "Jean", "Dupont", "0102030405", 
         		"jean.dupont@test.com", "01/01/1990", 0);
@@ -68,10 +80,11 @@ public class DaoTest {
         Assert.assertEquals("Jean", fetchedLocataire.getNom());
         
         
-     // Étape 4 : Ajouter une Entreprise 
-       Entreprise entreprise = new Entreprise("00001111222233", "TestNom001", "Rue Du Test", "31100", 
+        // Étape 4 : Ajouter une Entreprise 
+        Entreprise entreprise = new Entreprise("00001111222233", "TestNom001", "Rue Du Test", "31100", 
        		"ToulouseTest", "test.test@test.test", "0752066530", "IBAN TEST FR 0000 00000 0000");
-       daoEntreprise.create(entreprise);
+          daoEntreprise.create(entreprise);
+        
         Entreprise fetchedEntreprise = daoEntreprise.findById("00001111222233");
         assertEquals("00001111222233", fetchedEntreprise.getSiret());
         assertNotNull(fetchedEntreprise);
@@ -96,46 +109,58 @@ public class DaoTest {
         Assert.assertNotNull(fetchedAssurance);
         Assert.assertEquals(300.0, fetchedAssurance.getMontant(), 0);
         
+        
         // Étape 7 : Insérer un Compteur relié au Logement et Bien crée
         Compteur compteur = new Compteur("TestCOMPTEUR001", "Électricité", fetchedBien, fetchedLogement);
         daoCompteur.create(compteur);
         
         Compteur fetchedCompteur = daoCompteur.findById("TestCOMPTEUR001");
         Assert.assertNotNull(fetchedCompteur);
-        Assert.assertEquals("TestCOMPTEUR001", fetchedCompteur.getIdCompteur());
+        Assert.assertEquals("TestCOMPTEUR001", fetchedCompteur.getIdCompteur());    
         
-        /*
+        
         // Étape 8 : Ajouter une Quotite
         Quotite quotite = new Quotite("TestQUOTITE001");
         daoQuotite.create(quotite);
-        assertNotNull(daoQuotite.findById("TestQUOTITE001"));
+        
+        Quotite fetchedQuotite = daoQuotite.findById("TestQUOTITE001");
+        assertNotNull(fetchedQuotite);
 
+        
         // Étape 9 : Ajouter un Quotter
-        Quotter quotter = new Quotter(50, logement, quotite);
+        Quotter quotter = new Quotter(50, fetchedLogement, fetchedQuotite);
         daoQuotter.create(quotter);
-        assertNotNull(daoQuotter.findById("TestLOGEMENT001", "TestQUOTITE001"));
-
+        
+        Quotter fetchedQuotter = daoQuotter.findById(fetchedLogement.getIdLogement(), fetchedQuotite.getTypeQuotite());
+        assertNotNull(fetchedQuotter);
+        
+        
         // Étape 10 : Ajouter un Releve
-        Compteur compteur = new Compteur("TestCOMPTEUR001", "Électricité", bien, logement);
-        daoCompteur.create(compteur);
-        Releve releve = new Releve("15/01/2025", 123.45, compteur);
+        Releve releve = new Releve("15/01/2025", 123, fetchedCompteur);
         daoReleve.create(releve);
-        assertNotNull(daoReleve.findById("15/01/2025", "TestCOMPTEUR001"));
+        
+        Releve fetchedreleve = daoReleve.findById(releve.getDateReleve(), fetchedCompteur.getIdCompteur());
+        assertNotNull(fetchedreleve);
 
+        
         // Étape 11 : Ajouter un ICC
-        ICC icc = new ICC("TestICC001", "Description ICC", "01/01/2025", 10.0, compteur);
+         
+         
+        ICC icc = new ICC(77, "2024", "q555", 200);   
         daoICC.create(icc);
-        assertNotNull(daoICC.findById("TestICC001"));
+        
+        ICC fetchedIcc = daoICC.findById(String.valueOf(77)); 
+        assertNotNull(fetchedIcc);
         
         // Étape 12 : Créer une location associée
-    	Louer louer = new Louer("01/02/2025", "01/02/2026", "01/12/2025", 12, 1, 1500.0, 
-            200.0, 1500.0, "BailTest002", "ÉtatLieuTest002", 1700.0, fetchedLocataire, fetchedICC, fetchedBien);
-    	daoLouer.create(louer)
+    	Louer louer = new Louer("01/01/2025", "01/02/2026", "01/12/2025", 12, 1, 1500.0, 
+            200.0, 1500.0, "BailTest002", "ÉtatLieuTest002", 1700.0, fetchedLocataire, fetchedIcc, fetchedBien);
+    	daoLouer.create(louer);
     	
     	// Vérification de l'insertion de la location
-    	Louer fetchedLouer = daoLouer.findById("TestLOCATAIRE002", "TestBIEN002", "01/02/2025");
-    	Assert.assertNotNull(fetchedLouer);
-		*/
+    	Louer fetchedLouer = daoLouer.findById(fetchedBien.getIdBien(), fetchedLocataire.getIdLocataire(), "01/01/2025");
+    	assertNotNull(fetchedLouer);
+		
     }
 
     @AfterClass
