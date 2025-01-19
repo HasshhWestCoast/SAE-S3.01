@@ -21,14 +21,28 @@ import Vue.RoundedButton;
  */
 public class GestionFenFacture implements ActionListener {
 
+<<<<<<< HEAD
     private FenAccueil fenAc;
     private DaoFacture daoFacture;
+=======
+
+    private FenAccueil fenAc;
+    private DaoFacture daoFacture;
+    
+    
+
+
+>>>>>>> a43f2634ae2650b4917f92ef739461c5ed542616
 	
 	public GestionFenFacture(FenAccueil fenAc) throws SQLException {
 		this.fenAc = fenAc;
 		this.daoFacture = new DaoFacture(CictOracleDataSource.getInstance().getConnection());
 	}
 	
+<<<<<<< HEAD
+=======
+
+>>>>>>> a43f2634ae2650b4917f92ef739461c5ed542616
     /**
      * Gère les actions déclenchées par les boutons liés aux factures.
      */
