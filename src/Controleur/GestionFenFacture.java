@@ -21,8 +21,31 @@ import Vue.RoundedButton;
  */
 public class GestionFenFacture implements ActionListener {
 
+<<<<<<< HEAD
     private FenAccueil fenAc;
     private DaoFacture daoFacture;
+=======
+	private FenAccueil fenAc;
+	private DaoFacture daoFacture;
+	
+	public GestionFenFacture(FenAccueil fenAc) throws SQLException {
+		this.fenAc = fenAc;
+		this.daoFacture = new DaoFacture(CictOracleDataSource.getInstance().getConnection());
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
+		String texte = ((RoundedButton) source).getText();
+		DefaultTableModel modeleTable = (DefaultTableModel) this.fenAc.getTabMesFactures().getModel();
+		
+		if (texte != null) {
+			switch (texte) {
+					
+				case "Supprimer":
+					System.out.println("Vous SUPPRIMER une données dans Facture !");
+					int ligneSelectionnee = this.fenAc.getTabMesFactures().getSelectedRow();
+>>>>>>> fcf3da19645e1eb5630c06fc8338a57aae483751
 
     /**
      * Initialise le contrôleur avec la fenêtre d'accueil et le DAO Facture.
