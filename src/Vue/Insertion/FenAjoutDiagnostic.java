@@ -1,7 +1,5 @@
 package Vue.Insertion;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -10,6 +8,10 @@ import javax.swing.JSeparator;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+
+import Controleur.Ajout.GestionFenAjoutDiagnostic;
+import Modele.Bien;
+
 import javax.swing.border.EtchedBorder;
 import Vue.RoundedButton;
 
@@ -19,27 +21,16 @@ public class FenAjoutDiagnostic extends JInternalFrame {
 	private JTextField textFieldIdDiagnostic;
 	private JTextField textFieldType;
 	private JTextField textFieldDate;
+	private GestionFenAjoutDiagnostic gestionFenAjoutDiagnostic;
+	private Bien precedent;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FenAjoutDiagnostic frame = new FenAjoutDiagnostic();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public FenAjoutDiagnostic() {
+	public FenAjoutDiagnostic(Bien precedent) {
+		this.precedent = precedent;
+		this.gestionFenAjoutDiagnostic = new GestionFenAjoutDiagnostic(this);
 		getContentPane().setBackground(new Color(255, 255, 255));
 		setBounds(100, 100, 411, 341);
 		getContentPane().setLayout(null);
@@ -75,12 +66,32 @@ public class FenAjoutDiagnostic extends JInternalFrame {
 		getContentPane().add(textFieldType);
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
+		btnAnnuler.setBackground(new Color(33, 153, 88));
+		btnAnnuler.addActionListener(gestionFenAjoutDiagnostic);
 		btnAnnuler.setBounds(95, 262, 85, 21);
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
+		btnAjouter.setBackground(new Color(33, 153, 88));
+		btnAjouter.addActionListener(gestionFenAjoutDiagnostic);
 		btnAjouter.setBounds(209, 262, 85, 21);
 		getContentPane().add(btnAjouter);
 
+	}
+	
+	public String getIdDiagnostic() {
+		return textFieldIdDiagnostic.getText();
+	}
+	
+	public String getType() {
+		return textFieldType.getText();
+	}
+	
+	public String getDate() {
+		return textFieldDate.getText();
+	}
+	
+	public Bien getPrecedent() {
+		return precedent;
 	}
 }

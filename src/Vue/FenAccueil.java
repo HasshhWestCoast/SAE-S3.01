@@ -815,6 +815,12 @@ public class FenAccueil extends JFrame {
         btnAfficherCompteur.setBackground(new Color(33, 153, 88));
         panelCentre.add(btnAfficherCompteur);
         
+        RoundedButton btnAjouterDiagnostic = new RoundedButton("Ajouter un diagnostic", 20);
+        btnAjouterDiagnostic.addActionListener(this.gestionClicBien);
+        btnAjouterDiagnostic.setBackground(new Color(31, 153, 88));
+        btnAjouterDiagnostic.setBounds(788, 138, 173, 23);
+        panelCentre.add(btnAjouterDiagnostic);
+        
         return panelBiens;
     }
 
@@ -896,12 +902,6 @@ public class FenAccueil extends JFrame {
         btnAjouterLogement.setBounds(728, 182, 173, 23);
         btnAjouterLogement.setBackground(new Color(31, 153, 88));
         panelCentre.add(btnAjouterLogement);
-  
-        RoundedButton btnAjouterDiagnostic = new RoundedButton("Ajouter un diagnostic", 20);
-        btnAjouterDiagnostic.addActionListener(this.gestionClicLogement);
-        btnAjouterDiagnostic.setBounds(728, 228, 173, 23);
-        btnAjouterDiagnostic.setBackground(new Color(31, 153, 88));
-        panelCentre.add(btnAjouterDiagnostic);
         
         RoundedButton btnAjouterFactures = new RoundedButton("Ajouter des factures", 20);
         btnAjouterFactures.addActionListener(this.gestionClicLogement);
@@ -912,7 +912,7 @@ public class FenAccueil extends JFrame {
         
         RoundedButton btnAfficherCompteur = new RoundedButton("Afficher les compteurs", 20);
         btnAfficherCompteur.addActionListener(this.gestionClicLogement);
-        btnAfficherCompteur.setBounds(728, 325, 173, 23);
+        btnAfficherCompteur.setBounds(728, 231, 173, 23);
         btnAfficherCompteur.setBackground(new Color(31, 153, 88));
         panelCentre.add(btnAfficherCompteur);
         

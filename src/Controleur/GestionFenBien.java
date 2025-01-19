@@ -18,6 +18,7 @@ import Vue.FenAccueil;
 import Vue.FenCompteurs;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutBien;
+import Vue.Insertion.FenAjoutDiagnostic;
 import Vue.Insertion.FenAjoutFacture;
 
 public class GestionFenBien implements ActionListener, ListSelectionListener {
@@ -154,7 +155,26 @@ public class GestionFenBien implements ActionListener, ListSelectionListener {
                     fenAc.getLayeredPane().add(fenAddFacture);
                     fenAddFacture.setVisible(true);
                     break;
+                
+                case "Ajouter un diagnostic":
+                	System.out.println("Vous AFFICHER LES COMPTEURS depuis Bien !");
+                	if (this.bien == null) {
+                        JOptionPane.showMessageDialog(
+                            this.fenAc,
+                            "Veuillez sélectionner un bien !",
+                            "Erreur",
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                        return;
+                    }
+                	FenAjoutDiagnostic fenAddDiag = null;
+                   
+                	fenAddDiag = new FenAjoutDiagnostic(this.bien);
                     
+                    fenAc.getLayeredPane().add(fenAddDiag);
+                    fenAddDiag.setVisible(true);
+                	break;
+                	
                 default:
                     System.out.println("Action non reconnu !");
             }
