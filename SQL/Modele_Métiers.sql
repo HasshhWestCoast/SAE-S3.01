@@ -587,14 +587,21 @@ IS
     v_totalLoyerReels NUMBER := 0;
     v_totalLoyerPayes NUMBER := 0;
 BEGIN
+    -- Débogage : Afficher l'ID du bien
+    DBMS_OUTPUT.PUT_LINE('Calcul en cours pour le bien : ' || p_Id_Bien);
+
     -- Calcul du total des loyers réels pour le bien spécifié
     SELECT NVL(SUM(f.montant), 0)
     INTO v_totalLoyerReels
     FROM SAE_Facture f
     INNER JOIN SAE_Louer l ON f.Id_Bien = l.Id_Bien
     WHERE l.Id_Bien = p_Id_Bien
-      AND f.date_emission BETWEEN l.date_derniere_reg AND SYSDATE
+      AND f.date_emission >= NVL(l.date_derniere_reg, TO_DATE('1900-01-01', 'YYYY-MM-DD'))
+      AND f.date_emission <= SYSDATE
       AND f.designation = 'Loyer';
+
+    -- Debugging : Total loyers réels
+    DBMS_OUTPUT.PUT_LINE('Total loyers réels : ' || v_totalLoyerReels);
 
     -- Calcul du total des loyers payés pour le bien spécifié
     SELECT NVL(SUM(f.montant_reel_verse), 0)
@@ -602,81 +609,26 @@ BEGIN
     FROM SAE_Facture f
     INNER JOIN SAE_Louer l ON f.Id_Bien = l.Id_Bien
     WHERE l.Id_Bien = p_Id_Bien
-      AND f.date_emission BETWEEN l.date_derniere_reg AND SYSDATE
+      AND f.date_emission >= NVL(l.date_derniere_reg, TO_DATE('1900-01-01', 'YYYY-MM-DD'))
+      AND f.date_emission <= SYSDATE
       AND f.designation = 'Loyer';
+
+    -- Debugging : Total loyers payés
+    DBMS_OUTPUT.PUT_LINE('Total loyers payés : ' || v_totalLoyerPayes);
 
     -- Calcul et retour du montant restant dû
     RETURN v_totalLoyerReels - v_totalLoyerPayes;
 
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
-        -- Gérer le cas où aucune donnée n'est trouvée
         DBMS_OUTPUT.PUT_LINE('Aucune donnée trouvée pour le bien spécifié.');
         RETURN 0;
     WHEN OTHERS THEN
-        -- Gérer les autres exceptions
-        RAISE_APPLICATION_ERROR(-20001, 'Une erreur s''est produite : ' || SQLERRM);
+        RAISE_APPLICATION_ERROR(-20001, 'Une erreur est survenue : ' || SQLERRM);
         RETURN NULL;
 END CalculDuLoyer;
 /
 
-set serveroutput on
-DECLARE
-    v_result NUMBER;
-BEGIN
-    -- Appel de la fonction restantDuLoyers avec un ID de bien spécifique
-    v_result := CalculDuLoyer('BIEN001');
-    
-    -- Affichage du résultat
-    DBMS_OUTPUT.PUT_LINE('Il reste à payer : ' || v_result);
-END;
-/
-
-
---------------------------------------------
-------------- CALCUL TRAVAUX ---------------
---------------------------------------------
--- Fonction pour calculer la somme totale des travaux pour un bien spécifié et son immeuble associé
--- recupere total travaux emis pour un Bien puis retourne la somme 
-set serveroutput on
-CREATE OR REPLACE FUNCTION CalculTravauxBienImmeuble(
-    p_Id_Bien IN SAE_Bien.Id_Bien%TYPE
-) RETURN NUMBER 
-IS 
-    v_total_bien NUMBER := 0;       -- Initialisation de la somme des travaux pour le bien
-    v_total_immeuble NUMBER := 0;   -- Initialisation de la somme des travaux pour l'immeuble
-BEGIN 
-    -- Calculer la somme des travaux pour le bien (excluant les logements)
-    SELECT COALESCE(SUM(f.montant), 0)
-    INTO v_total_bien
-    FROM SAE_Facture f
-    WHERE f.Id_Bien = p_Id_Bien
-      AND f.Id_Logement IS NULL  -- Exclure les logements
-      AND f.designation = 'Travaux';
-
-    DBMS_OUTPUT.PUT_LINE('Somme des travaux pour le bien (hors logements) : ' || v_total_bien);
-
-    -- Calculer la somme des travaux pour les logements liés au bien
-    SELECT COALESCE(SUM(f.montant), 0)
-    INTO v_total_immeuble
-    FROM SAE_Facture f
-    WHERE f.Id_Bien = p_Id_Bien
-      AND f.Id_Logement IS NOT NULL  -- Inclure uniquement les logements
-      AND f.designation = 'Travaux';
-
-    DBMS_OUTPUT.PUT_LINE('Somme des travaux pour les logements : ' || v_total_immeuble);
-
-    -- Retourner la somme totale des travaux
-    RETURN v_total_bien + v_total_immeuble;
-
-EXCEPTION
-    WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('Aucune donnée trouvée pour le bien spécifié.');
-        RETURN 0;
-    WHEN OTHERS THEN
-        RAISE_APPLICATION_ERROR(-20001, 'Une erreur s''est produite : ' || SQLERRM);
-END;
-/
 
 DECLARE
     v_result NUMBER;
