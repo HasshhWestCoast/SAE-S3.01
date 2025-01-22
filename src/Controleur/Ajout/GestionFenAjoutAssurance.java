@@ -100,10 +100,10 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 					
 					
 					 // Vérification des conditions
-				    if (this.entreprise == null || (this.logement == null && this.bien == null)) {
+				    if (this.entreprise == null) {
 				        JOptionPane.showMessageDialog(
 				            this.fenAjoutAssurance,
-				            "Veuillez sélectionner une entreprise et au moins un logement ou bien !",
+				            "Veuillez sélectionner une entreprise !",
 				            "Erreur",
 				            JOptionPane.ERROR_MESSAGE
 				        );
@@ -118,7 +118,7 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 						Float Montant = Float.parseFloat(MontantString);
 						String DateEcheance = (String) fenAjoutAssurance.getDateEcheance();
 						String PorectionJuridiqueString = (String) fenAjoutAssurance.getMontant();
-						int PorectionJuridique = Integer.parseInt(PorectionJuridiqueString);
+						Double PorectionJuridique = Double.parseDouble(PorectionJuridiqueString);
 						
 						DaoAssurance daoAssurance = new DaoAssurance(CictOracleDataSource.getInstance().getConnection());
 						

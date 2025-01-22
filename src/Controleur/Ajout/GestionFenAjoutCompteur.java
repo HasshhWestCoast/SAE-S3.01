@@ -65,15 +65,6 @@ public class GestionFenAjoutCompteur implements ActionListener, ListSelectionLis
 				        return;
 				    }
 					
-					if (this.bien == null || this.logement == null) {
-				        JOptionPane.showMessageDialog(
-				            this.fenAjoutCompteur,
-				            "Veuillez sélectionner au moins un des deux tableaux !",
-				            "Erreur",
-				            JOptionPane.ERROR_MESSAGE
-				        );
-				        return;
-				    }
 					
 				    try {
 						String IdCompteur = (String) fenAjoutCompteur.getTextFieldIdCompteur();					

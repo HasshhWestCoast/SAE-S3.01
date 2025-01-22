@@ -33,7 +33,10 @@ public class GestionFenAjoutReleve implements ActionListener{
 				case "Ajouter":
 					System.out.println("Vous AJOUTER un compteur au bien !");
 					
+<<<<<<< HEAD
 					
+=======
+>>>>>>> c1f09023258610508133b9bf01bcd162c66afc9e
 				    try {
 						String DateReleve = (String) fenAddReleves.getDateReleves();					
 						String IndexString = (String) fenAddReleves.getIndex();

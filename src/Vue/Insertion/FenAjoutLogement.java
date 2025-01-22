@@ -70,7 +70,7 @@ public class FenAjoutLogement extends JInternalFrame {
 		comboBoxTypeDeLogement.setForeground(new Color(0, 0, 0));
 		comboBoxTypeDeLogement.setFont(new Font("Sylfaen", Font.PLAIN, 12));
 		comboBoxTypeDeLogement.setBackground(new Color(31, 153, 88));
-		comboBoxTypeDeLogement.setModel(new DefaultComboBoxModel(new String[] {"Appartement", "Maison"}));
+		comboBoxTypeDeLogement.setModel(new DefaultComboBoxModel(new String[] {"Appartement", "Autre"}));
 		comboBoxTypeDeLogement.setToolTipText("ID Immeuble");
 		getContentPane().add(comboBoxTypeDeLogement);
 		

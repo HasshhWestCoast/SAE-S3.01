@@ -125,6 +125,7 @@ public class CreerRapport {
         modele.close();
         document.close();
     }
+<<<<<<< HEAD
     
     public static void genererRapportSoldeToutCompte(List<SoldeToutCompte> soldes) throws IOException {
         // Charger le modèle vide pour le document Word
@@ -230,6 +231,8 @@ public class CreerRapport {
 
     
     
+=======
+>>>>>>> c1f09023258610508133b9bf01bcd162c66afc9e
 
     
     

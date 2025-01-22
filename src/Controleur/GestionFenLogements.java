@@ -20,7 +20,11 @@ import Vue.FenCompteurs;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutFacture;
 import Vue.Insertion.FenAjoutLogement;
+<<<<<<< HEAD
 import Vue.Insertion.FenAjoutQuotite;
+=======
+import rapport.CreerRapport;
+>>>>>>> c1f09023258610508133b9bf01bcd162c66afc9e
 
 
 public class GestionFenLogements implements ActionListener, ListSelectionListener{
@@ -62,6 +66,29 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 						ex.printStackTrace();
 					}
 					break;
+					
+				case "Générer un word":
+				    System.out.println("Vous générez un rapport des Logements !");
+				    try {
+				        List<Logement> logements = daoLogement.findAll(); // Récupérer les logements depuis le DAO
+				        CreerRapport.genererRapportLogement(logements); // Appeler la méthode pour générer le rapport
+				        JOptionPane.showMessageDialog(
+				            this.fenAc,
+				            "Rapport des logements généré avec succès !",
+				            "Succès",
+				            JOptionPane.INFORMATION_MESSAGE
+				        );
+				    } catch (Exception ex) {
+				        ex.printStackTrace();
+				        JOptionPane.showMessageDialog(
+				            this.fenAc,
+				            "Erreur lors de la génération du rapport des logements.",
+				            "Erreur",
+				            JOptionPane.ERROR_MESSAGE
+				        );
+				    }
+				    break;
+
 				
 				case "Archiver":
 					System.out.println("Vous ARCHIVER une donnée prevenant de Logement !");

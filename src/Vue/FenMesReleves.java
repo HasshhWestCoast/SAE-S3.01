@@ -28,7 +28,11 @@ public class FenMesReleves extends JInternalFrame {
 	 * @throws SQLException 
 	 */
 	public FenMesReleves(Compteur compteur) throws SQLException {
+<<<<<<< HEAD
 		this.compteur = compteur;
+=======
+		this.compteur= compteur;
+>>>>>>> c1f09023258610508133b9bf01bcd162c66afc9e
 		this.gestionFenMesReleves = new GestionFenMesReleves(this);
 		
 		setBackground(new Color(255, 255, 255));
