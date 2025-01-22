@@ -151,11 +151,5 @@ public class GestionFenMesReleves implements ActionListener {
         }
     }
 
-
-
-    /**
-     * Récupère le compteur actuel associé au relevé sélectionné.
-     */
-
    
 }

@@ -28,12 +28,25 @@ import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutLocation;
 
 
+/**
+ * Contrôleur pour la gestion de la fenêtre de location.
+ * Implémente ActionListener pour gérer les actions utilisateur
+ * et ListSelectionListener pour gérer les changements de sélection.
+ */
+
 public class GestionFenLocation implements ActionListener, ListSelectionListener {
 
 	private FenAccueil fenAc;
 	private DaoLouer daoLouer;
 	private Louer louer;
 	
+	
+	/**
+     * Constructeur de la classe.
+     *
+     * @param fenAc Fenêtre d'accueil à laquelle ce contrôleur est associé.
+     * @throws SQLException En cas d'erreur de connexion à la base de données.
+     */
 	public GestionFenLocation(FenAccueil fenAc) throws SQLException {
 		this.louer = null;
 		this.fenAc = fenAc;
@@ -52,6 +65,7 @@ public class GestionFenLocation implements ActionListener, ListSelectionListener
 		if (texte != null) {
 			switch (texte) {
 				case "Charger":
+                    // Charge les données de location dans le tableau
 					System.out.println("Vous Charger les donnée dans Location !");
 					try {
 						List<Louer> mesDonnees = this.daoLouer.findAll();
@@ -64,6 +78,7 @@ public class GestionFenLocation implements ActionListener, ListSelectionListener
 				        }
 						modeleTable.setRowCount(mesDonnees.size());  
 						
+                        // Parcourt les données et les insère dans le tableau
 						int count = 0;
 						while(it.hasNext() && count < mesDonnees.size()) {	
 							Louer louer = it.next();
@@ -78,6 +93,7 @@ public class GestionFenLocation implements ActionListener, ListSelectionListener
 					break;
 					
 				case "Supprimer":
+                    // Supprime une location sélectionnée dans le tableau
 					System.out.println("Vous SUPPRIMER une données dans Location !");
 					int ligneSelectionnee = this.fenAc.getTabMesLocations().getSelectedRow();
 
@@ -99,6 +115,7 @@ public class GestionFenLocation implements ActionListener, ListSelectionListener
 					break;
 				
 				case "Inserer":
+                    // Ouvre la fenêtre d'insertion d'une nouvelle location
 					System.out.println("Vous INSERER une donnée dans Location !");
 					
 					FenAjoutLocation fenAddLocation = null;

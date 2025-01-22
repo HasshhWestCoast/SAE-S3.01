@@ -28,16 +28,27 @@ import Vue.FenAccueil;
 import Vue.RoundedButton;
 import rapport.CreerRapport;
 
+/**
+ * Classe contrôleur pour gérer les actions liées aux informations des locataires.
+ */
 public class GestionFenLocataire implements ActionListener {
 
     private FenInfosLocataire fenLocataire;
 
+    /**
+     * Constructeur pour initialiser le contrôleur avec la fenêtre des locataires.
+     * @param fenLocataire Fenêtre d'informations des locataires.
+     * @throws SQLException En cas de problème de connexion avec la base de données.
+     */
     public GestionFenLocataire(FenInfosLocataire fenLocataire) throws SQLException {
         this.fenLocataire = fenLocataire;
     }
     
- 
-
+    
+    /**
+     * Gère les actions effectuées sur la fenêtre.
+     * @param e L'événement associé à une action utilisateur.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();

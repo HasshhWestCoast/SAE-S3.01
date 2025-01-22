@@ -25,7 +25,11 @@ import Vue.Insertion.FenAjoutQuotite;
 
 import rapport.CreerRapport;
 
-
+/**
+ * Classe contrôleur pour gérer les actions liées aux logements dans l'application.
+ * Implémente ActionListener pour écouter les actions des boutons et ListSelectionListener
+ * pour surveiller les changements de sélection dans la table.
+ */
 
 public class GestionFenLogements implements ActionListener, ListSelectionListener{
 
@@ -33,12 +37,24 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 	private DaoLogement daoLogement;
 	private Logement logement;
 	
+	/**
+     * Constructeur.
+     *
+     * @param fenAc La fenêtre d'accueil associée à ce contrôleur.
+     * @throws SQLException En cas de problème de connexion avec la base de données.
+     */
 	public GestionFenLogements(FenAccueil fenAc) throws SQLException {
 		this.fenAc = fenAc;
 		this.daoLogement = new DaoLogement(CictOracleDataSource.getInstance().getConnection());
 		this.logement = null;
 	}
 	
+	
+	 /**
+     * Gère les actions déclenchées par les boutons de l'interface utilisateur.
+     *
+     * @param e L'événement associé à l'action utilisateur.
+     */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
@@ -49,6 +65,7 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 			switch (texte) {
 					
 				case "Supprimer":
+                    // Supprime un logement sélectionné dans le tableau
 					System.out.println("Vous SUPPRIMER une données dans Logement !");
 					int ligneSelectionnee = this.fenAc.getTabMesLogements().getSelectedRow();
 
@@ -99,6 +116,7 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 					break;
 					
 				case "Charger":
+                    // Charge les données des logements dans le tableau
 					System.out.println("Vous CHARGER les données dans Logement !");
 					try {
 						List<Logement> mesDonnees = this.daoLogement.findAll();
@@ -202,6 +220,13 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 		}
 	}
 	
+    /**
+     * Insère les données d'un logement dans une ligne du tableau.
+     *
+     * @param logement Le logement à insérer.
+     * @param numeroLigne Le numéro de la ligne où insérer les données.
+     */
+	
 	public void ecrireLigneTable(Logement logement, int numeroLigne) {
 		DefaultTableModel modeleTable = (DefaultTableModel) this.fenAc.getTabMesLogements().getModel();
 
@@ -213,6 +238,12 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 		modeleTable.setValueAt(logement.getNumEtage(), numeroLigne, 5);
 
 	}
+	
+    /**
+     * Gère les changements de sélection dans le tableau des logements.
+     *
+     * @param e L'événement de changement de sélection.
+     */
 	
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
