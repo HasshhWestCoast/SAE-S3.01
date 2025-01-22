@@ -177,19 +177,17 @@ public class FenInfosLocataire extends JInternalFrame {
         textFieldDateNaissance.setBounds(29, 292, 194, 41);
         getContentPane().add(textFieldDateNaissance);
         
-<<<<<<< HEAD
+
         RoundedButton btnAnnuler_1 = new RoundedButton("Annuler", 20);
         btnAnnuler_1.setText("Modifier");
         btnAnnuler_1.setBackground(new Color(31, 153, 88));
         btnAnnuler_1.setBounds(597, 468, 96, 21);
         getContentPane().add(btnAnnuler_1);
-=======
         RoundedButton btnArchiver = new RoundedButton("Annuler", 20);
         btnArchiver.setText("Archiver");
         btnArchiver.setBackground(new Color(31, 153, 88));
         btnArchiver.setBounds(622, 468, 96, 21);
         getContentPane().add(btnArchiver);
->>>>>>> c1f09023258610508133b9bf01bcd162c66afc9e
         
         RoundedButton rndbtnWordRegularisation = new RoundedButton("Word Regularisation des charges", 20);
         rndbtnWordRegularisation.addActionListener(this.gestionFenLocataire);

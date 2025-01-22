@@ -20,11 +20,11 @@ import Vue.FenCompteurs;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutFacture;
 import Vue.Insertion.FenAjoutLogement;
-<<<<<<< HEAD
+
 import Vue.Insertion.FenAjoutQuotite;
-=======
+
 import rapport.CreerRapport;
->>>>>>> c1f09023258610508133b9bf01bcd162c66afc9e
+
 
 
 public class GestionFenLogements implements ActionListener, ListSelectionListener{

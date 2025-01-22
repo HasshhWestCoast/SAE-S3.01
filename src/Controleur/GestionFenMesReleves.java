@@ -33,11 +33,11 @@ public class GestionFenMesReleves implements ActionListener {
      */
     public GestionFenMesReleves(FenMesReleves fenMesReleve) throws SQLException {
         this.fenMesReleve = fenMesReleve;
-<<<<<<< HEAD
+
         this.compteur = fenMesReleve.getMonCompteur();
-=======
+
         this.compteur = this.fenMesReleve.getMonCompteur();
->>>>>>> c1f09023258610508133b9bf01bcd162c66afc9e
+
         this.daoReleve = new DaoReleve(CictOracleDataSource.getInstance().getConnection());
     }
 
@@ -53,36 +53,14 @@ public class GestionFenMesReleves implements ActionListener {
 
         if (texte != null) {
             switch (texte) {
+            
+             	case "Ajouter":
+             		// Ouvre la fenêtre pour ajouter un nouveau relevé
+             		System.out.println("Vous ouvrez AJOUTER RELEVE dans MesReleves !");
+             		try {
+             			// Récupère le compteur actuel associé au relevé
+             			if (this.fenMesReleve.getMonCompteur() == null) {
 
-<<<<<<< HEAD
-                case "Ajouter":
-                    // Ouvre la fenêtre pour ajouter un nouveau relevé
-                    System.out.println("Vous ouvrez AJOUTER RELEVE dans MesReleves !");
-                    try {
-                        // Récupère le compteur actuel associé au relevé
-                        if (this.fenMesReleve.getMonCompteur() == null) {
-                            JOptionPane.showMessageDialog(
-                                fenMesReleve,
-                                "Aucun compteur associé non trouvé.",
-                                "Erreur",
-                                JOptionPane.ERROR_MESSAGE
-                            );
-                            break;
-                        }
-                        // Ouvre la fenêtre d'ajout de relevé avec le compteur sélectionné
-                        FenAjoutReleves fenAddReleve = new FenAjoutReleves(this.compteur);
-                        fenMesReleve.getLayeredPane().add(fenAddReleve);
-                        fenAddReleve.setVisible(true);
-                        break; // Important pour éviter le fall-through
-                    } catch (Exception e2) {
-=======
-            case "Ajouter":
-                // Ouvre la fenêtre pour ajouter un nouveau relevé
-                System.out.println("Vous ouvrez AJOUTER RELEVE dans MesReleves !");
-                try {
-                    // Récupère le compteur actuel associé au relevé
-                    if (this.fenMesReleve.getMonCompteur() == null) {
->>>>>>> c1f09023258610508133b9bf01bcd162c66afc9e
                         JOptionPane.showMessageDialog(
                             fenMesReleve,
                             "Aucun compteur associé non trouvé.",
@@ -172,12 +150,12 @@ public class GestionFenMesReleves implements ActionListener {
             System.out.println("Source non reconnue !");
         }
     }
-<<<<<<< HEAD
-=======
+
+
 
     /**
      * Récupère le compteur actuel associé au relevé sélectionné.
      */
->>>>>>> c1f09023258610508133b9bf01bcd162c66afc9e
+
    
 }
