@@ -854,6 +854,12 @@ public class FenAccueil extends JFrame {
         btnGenererWord.setBounds(46, 11, 162, 23);
         panelCentre.add(btnGenererWord);
         
+        RoundedButton rndbtnAjouterUneCharge = new RoundedButton("Ajouter une charge", 20);
+        rndbtnAjouterUneCharge.addActionListener(gestionClicBien);
+        rndbtnAjouterUneCharge.setBackground(new Color(33, 153, 88));
+        rndbtnAjouterUneCharge.setBounds(788, 343, 173, 23);
+        panelCentre.add(rndbtnAjouterUneCharge);
+        
         return panelBiens;
     }
 
