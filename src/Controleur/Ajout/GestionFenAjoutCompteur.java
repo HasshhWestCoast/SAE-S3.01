@@ -83,7 +83,7 @@ public class GestionFenAjoutCompteur implements ActionListener, ListSelectionLis
 					}			
 					break;
 					
-				case "Charger":
+				case "Charger les tableaux":
 					System.out.println("Vous CHARGER les Logements et Bien depuis AJOUT Compteur !");
 					DefaultTableModel modeleTableLogement = (DefaultTableModel) this.fenAjoutCompteur.getTabMesLogements().getModel();
 					DefaultTableModel modeleTableBien = (DefaultTableModel) this.fenAjoutCompteur.getTabMesBiens().getModel();

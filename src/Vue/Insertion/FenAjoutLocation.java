@@ -34,8 +34,6 @@ public class FenAjoutLocation extends JInternalFrame {
 	private JCheckBox checkLoyerPayer;
 	private JTextField textFieldDateSortie;
 	private JTextField textFieldLoyerMenssTTC;
-	private JTextField textFieldEtatLieux;
-	private JTextField textFieldBail;
 	private RoundedButton btnSupprimerLoc;
 
 
@@ -178,34 +176,21 @@ public class FenAjoutLocation extends JInternalFrame {
 		separatorTrouverICC.setBounds(56, 398, 188, 2);
 		getContentPane().add(separatorTrouverICC);
 		
-		RoundedButton btnAjouterEtatLieux = new RoundedButton("Ajouter Etat Lieux", 20);
-		btnAjouterEtatLieux.addActionListener(this.gestionClicFenAjoutLoc);
-		btnAjouterEtatLieux.setBounds(568, 488, 156, 21);
-		btnAjouterEtatLieux.setBackground(new Color(31, 151, 83));
-		getContentPane().add(btnAjouterEtatLieux);
-		
-		RoundedButton btnAjouterBail = new RoundedButton("Ajouter Lieux", 20);
-		btnAjouterBail.setText("Ajouter Bail");
-		btnAjouterBail.addActionListener(this.gestionClicFenAjoutLoc);
-		btnAjouterBail.setBounds(568, 520, 156, 21);
-		btnAjouterBail.setBackground(new Color(31, 151, 83));
-		getContentPane().add(btnAjouterBail);
-		
 		RoundedButton btnAnnulerLocation = new RoundedButton("Annuler", 20);
 		btnAnnulerLocation.addActionListener(this.gestionClicFenAjoutLoc);
-		btnAnnulerLocation.setBounds(457, 563, 85, 21);
+		btnAnnulerLocation.setBounds(483, 563, 85, 21);
 		btnAnnulerLocation.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAnnulerLocation);
 		
 		RoundedButton btnAjouterLocation = new RoundedButton("Ajouter", 20);
 		btnAjouterLocation.addActionListener(this.gestionClicFenAjoutLoc);
-		btnAjouterLocation.setBounds(553, 563, 85, 21);
+		btnAjouterLocation.setBounds(581, 563, 85, 21);
 		btnAjouterLocation.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouterLocation);
 		
 		RoundedButton btnCharger = new RoundedButton("Charger", 20);
 		btnCharger.addActionListener(this.gestionClicFenAjoutLoc);
-		btnCharger.setBounds(347, 563, 96, 21);
+		btnCharger.setBounds(377, 563, 96, 21);
 		btnCharger.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnCharger);
 		
@@ -247,16 +232,6 @@ public class FenAjoutLocation extends JInternalFrame {
 		textFieldLoyerMenssTTC.setColumns(10);
 		textFieldLoyerMenssTTC.setBounds(395, 409, 207, 19);
 		getContentPane().add(textFieldLoyerMenssTTC);
-		
-		textFieldEtatLieux = new JTextField();
-		textFieldEtatLieux.setColumns(10);
-		textFieldEtatLieux.setBounds(397, 488, 147, 19);
-		getContentPane().add(textFieldEtatLieux);
-		
-		textFieldBail = new JTextField();
-		textFieldBail.setColumns(10);
-		textFieldBail.setBounds(397, 520, 147, 19);
-		getContentPane().add(textFieldBail);
 		
 		btnSupprimerLoc = new RoundedButton("Supprimer L", 20);
 		btnSupprimerLoc.addActionListener(gestionClicFenAjoutLoc);

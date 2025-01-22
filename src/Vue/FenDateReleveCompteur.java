@@ -78,10 +78,12 @@ public class FenDateReleveCompteur extends JInternalFrame {
 		
 		btnAnnuler = new RoundedButton("Annuler", 20);
 		btnAnnuler.setBounds(111, 474, 104, 21);
+		btnAnnuler.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAnnuler);
 		
 		btnSupprimer = new RoundedButton("Charger", 20);
 		btnSupprimer.setText("Supprimer");
+		btnSupprimer.setBackground(new Color(31, 151, 83));
 		btnSupprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -92,6 +94,7 @@ public class FenDateReleveCompteur extends JInternalFrame {
 		RoundedButton rndbtnAjouter = new RoundedButton("Charger", 20);
 		rndbtnAjouter.setText("Ajouter");
 		rndbtnAjouter.setBounds(371, 474, 104, 21);
+		rndbtnAjouter.setBackground(new Color(31, 151, 83));
 		getContentPane().add(rndbtnAjouter);
 
 	}

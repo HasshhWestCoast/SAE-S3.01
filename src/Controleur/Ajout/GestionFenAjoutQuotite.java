@@ -33,7 +33,7 @@ public class GestionFenAjoutQuotite implements ActionListener{
         if (texte != null) {   	
             switch (texte) {
 	            case "Annuler":
-					System.out.println("Vous FERMEZ la page ajout Facture !");
+					System.out.println("Vous FERMEZ la page ajout Quotite !");
 					this.fenAddQuot.dispose();
 					break;
 					

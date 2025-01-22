@@ -44,13 +44,13 @@ public class FenAjoutAssurance extends JInternalFrame {
 		JLabel lblTrouverEntreprise = new JLabel("Trouver Entreprise");
 		lblTrouverEntreprise.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTrouverEntreprise.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblTrouverEntreprise.setBounds(55, 33, 131, 21);
+		lblTrouverEntreprise.setBounds(71, 11, 131, 21);
 		getContentPane().add(lblTrouverEntreprise);
 		
 		JSeparator separatorTrouverEntreprise = new JSeparator();
 		separatorTrouverEntreprise.setForeground(Color.WHITE);
 		separatorTrouverEntreprise.setBackground(new Color(31, 151, 83));
-		separatorTrouverEntreprise.setBounds(33, 45, 188, 2);
+		separatorTrouverEntreprise.setBounds(36, 33, 188, 2);
 		getContentPane().add(separatorTrouverEntreprise);
 	
 		tabMesEntreprise = new JTable();
@@ -61,19 +61,19 @@ public class FenAjoutAssurance extends JInternalFrame {
         ));
         JScrollPane scrollPaneEntreprise = new JScrollPane(tabMesEntreprise);
         scrollPaneEntreprise.setBorder(new LineBorder(new Color(109, 109, 109), 2));
-		scrollPaneEntreprise.setBounds(10, 57, 306, 134);        
+		scrollPaneEntreprise.setBounds(10, 60, 306, 134);        
 		getContentPane().add(scrollPaneEntreprise);
 		
 		JLabel lblTrouverLogement = new JLabel("Trouver Logement");
 		lblTrouverLogement.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTrouverLogement.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblTrouverLogement.setBounds(669, 208, 131, 21);
+		lblTrouverLogement.setBounds(684, 234, 131, 21);
 		getContentPane().add(lblTrouverLogement);
 		
 		JSeparator separatorTrouverLogement = new JSeparator();
 		separatorTrouverLogement.setForeground(Color.WHITE);
 		separatorTrouverLogement.setBackground(new Color(31, 151, 83));
-		separatorTrouverLogement.setBounds(653, 227, 188, 2);
+		separatorTrouverLogement.setBounds(653, 253, 188, 2);
 		getContentPane().add(separatorTrouverLogement);
 		
 		tabMesLogements = new JTable();
@@ -85,44 +85,50 @@ public class FenAjoutAssurance extends JInternalFrame {
 		
 		JScrollPane scrollPaneLogement = new JScrollPane(tabMesLogements);
 		scrollPaneLogement.setBorder(new LineBorder(new Color(109, 109, 109), 2));
-		scrollPaneLogement.setBounds(579, 245, 306, 134);
+		scrollPaneLogement.setBounds(579, 279, 306, 134);
 		getContentPane().add(scrollPaneLogement);
 		
 		RoundedButton btnChargerEntreprise = new RoundedButton("Charger", 20);
+		btnChargerEntreprise.setText("Charger les tableaux");
 		btnChargerEntreprise.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnChargerEntreprise.setBounds(105, 358, 96, 21);
+		btnChargerEntreprise.setBounds(633, 41, 182, 21);
+		btnChargerEntreprise.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnChargerEntreprise);
 		
 		RoundedButton btnInsererEntreprise = new RoundedButton("Inserer E", 20);
 		btnInsererEntreprise.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnInsererEntreprise.setBounds(169, 201, 107, 21);
+		btnInsererEntreprise.setBounds(176, 225, 107, 21);
+		btnInsererEntreprise.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnInsererEntreprise);
 		
 		RoundedButton btnAnnulerAssurance = new RoundedButton("Annuler", 20);
 		btnAnnulerAssurance.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnAnnulerAssurance.setBounds(341, 358, 85, 21);
+		btnAnnulerAssurance.setBounds(334, 390, 85, 21);
+		btnAnnulerAssurance.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAnnulerAssurance);
 		
 		RoundedButton btnAjouterAssurance = new RoundedButton("Ajouter", 20);
 		btnAjouterAssurance.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnAjouterAssurance.setBounds(456, 358, 85, 21);
+		btnAjouterAssurance.setBounds(449, 390, 85, 21);
+		btnAjouterAssurance.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouterAssurance);
 		
 		RoundedButton btnInsererSupprimer = new RoundedButton("Supprimer", 20);
 		btnInsererSupprimer.addActionListener(this.gestionClicFenAjoutEntreprise);
-		btnInsererSupprimer.setBounds(33, 201, 107, 21);
+		btnInsererSupprimer.setBounds(36, 225, 107, 21);
+		btnInsererSupprimer.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnInsererSupprimer);
 		
 		JLabel lblAjoutAssurance = new JLabel("Ajout Assurance");
 		lblAjoutAssurance.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAjoutAssurance.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblAjoutAssurance.setBounds(410, 14, 131, 21);
+		lblAjoutAssurance.setBounds(383, 11, 131, 21);
 		getContentPane().add(lblAjoutAssurance);
 		
 		JSeparator separatorAjoutAssurance = new JSeparator();
 		separatorAjoutAssurance.setForeground(Color.WHITE);
 		separatorAjoutAssurance.setBackground(new Color(31, 151, 83));
-		separatorAjoutAssurance.setBounds(384, 33, 188, 2);
+		separatorAjoutAssurance.setBounds(365, 33, 188, 2);
 		getContentPane().add(separatorAjoutAssurance);
 		
 		textFieldNumeroPolice = new JTextField();
@@ -170,19 +176,19 @@ public class FenAjoutAssurance extends JInternalFrame {
 		
 		JScrollPane scrollPaneBien = new JScrollPane(tabMesBiens);
 		scrollPaneBien.setBorder(new LineBorder(new Color(109, 109, 109), 2));
-		scrollPaneBien.setBounds(579, 57, 306, 134);
+		scrollPaneBien.setBounds(579, 84, 306, 134);
 		getContentPane().add(scrollPaneBien);
 		
 		JLabel lblTrouverBien = new JLabel("Trouver Bien");
 		lblTrouverBien.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTrouverBien.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblTrouverBien.setBounds(669, 26, 131, 21);
+		lblTrouverBien.setBounds(653, 11, 131, 21);
 		getContentPane().add(lblTrouverBien);
 		
 		JSeparator separatorTrouverBien = new JSeparator();
 		separatorTrouverBien.setForeground(Color.WHITE);
 		separatorTrouverBien.setBackground(new Color(31, 151, 83));
-		separatorTrouverBien.setBounds(653, 45, 188, 2);
+		separatorTrouverBien.setBounds(633, 30, 188, 2);
 		getContentPane().add(separatorTrouverBien);
 	}
 	

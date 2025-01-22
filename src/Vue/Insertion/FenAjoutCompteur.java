@@ -44,11 +44,13 @@ public class FenAjoutCompteur extends JInternalFrame {
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
 		btnAnnuler.addActionListener(gestionFenAjoutCompteur);
 		btnAnnuler.setBounds(394, 347, 85, 21);
+		btnAnnuler.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
 		btnAjouter.addActionListener(gestionFenAjoutCompteur);
 		btnAjouter.setBounds(535, 347, 85, 21);
+		btnAjouter.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouter);
 		
 		JLabel lblCompteur = new JLabel("Ajout Compteur");
@@ -135,8 +137,10 @@ public class FenAjoutCompteur extends JInternalFrame {
 		getContentPane().add(separatorTrouverBien);
 		
 		RoundedButton rndbtnCharger = new RoundedButton("Charger", 20);
+		rndbtnCharger.setText("Charger les tableaux");
 		rndbtnCharger.addActionListener(gestionFenAjoutCompteur);
-		rndbtnCharger.setBounds(394, 239, 85, 21);
+		rndbtnCharger.setBounds(394, 233, 212, 21);
+		rndbtnCharger.setBackground(new Color(31, 151, 83));
 		getContentPane().add(rndbtnCharger);
 	}
 	

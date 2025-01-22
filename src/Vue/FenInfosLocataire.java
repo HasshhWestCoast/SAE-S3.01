@@ -72,12 +72,12 @@ public class FenInfosLocataire extends JInternalFrame {
         separator.setBackground(new Color(31, 151, 83));
         getContentPane().add(separator);
         
-        RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
-        btnAnnuler.addActionListener(this.gestionFenLocataire);
-        btnAnnuler.setText("Annuler");
-        btnAnnuler.setBackground(new Color(31, 153, 88));
-        btnAnnuler.setBounds(443, 468, 96, 21);
-        getContentPane().add(btnAnnuler);
+        RoundedButton btnSortir = new RoundedButton("Annuler", 20);
+        btnSortir.addActionListener(this.gestionFenLocataire);
+        btnSortir.setText("Sortir");
+        btnSortir.setBackground(new Color(31, 153, 88));
+        btnSortir.setBounds(562, 468, 108, 21);
+        getContentPane().add(btnSortir);
         
         RoundedButton btnCharger = new RoundedButton("Charger", 20);
         btnCharger.setText("Retour");
@@ -105,29 +105,17 @@ public class FenInfosLocataire extends JInternalFrame {
         RoundedButton btn_solde_tout_compte = new RoundedButton("Solde tout compte ", 20);
         btn_solde_tout_compte.addActionListener(this.gestionFenLocataire);
         btn_solde_tout_compte.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_solde_tout_compte.setBounds(608, 291, 247, 21);
+        btn_solde_tout_compte.setBounds(621, 292, 247, 21);
         btn_solde_tout_compte.setBackground(new Color(31, 151, 83));
         getContentPane().add(btn_solde_tout_compte);
-        
-        JLabel lblSiVotreReste = new JLabel("si votre reste est positif, alors vous devez de l'argent a votre locataire. sinon, il vous doit de l'argent.");
-        lblSiVotreReste.setBounds(324, 189, 570, 13);
-        getContentPane().add(lblSiVotreReste);
-        
-        JLabel lblSiVotreReste_2 = new JLabel("si votre reste est négatif, alors votre locataire vous doit de l'argent. sinon, vous lui en devez.");
-        lblSiVotreReste_2.setBounds(324, 396, 570, 13);
-        getContentPane().add(lblSiVotreReste_2);
         
         RoundedButton btnRegularisation = new RoundedButton("Charger", 20);
         btnRegularisation.addActionListener(this.gestionFenLocataire);
         btnRegularisation.setText("Régularisation des charges");
         btnRegularisation.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btnRegularisation.setBackground(new Color(31, 153, 88));
-        btnRegularisation.setBounds(597, 65, 247, 21);
+        btnRegularisation.setBounds(635, 65, 247, 21);
         getContentPane().add(btnRegularisation);
-        
-        JLabel lblSiVotreReste_2_1 = new JLabel("Départ de votre locataire :");
-        lblSiVotreReste_2_1.setBounds(549, 268, 128, 13);
-        getContentPane().add(lblSiVotreReste_2_1);
         
         JSeparator separatorVertical = new JSeparator();
         separatorVertical.setOrientation(SwingConstants.VERTICAL);
@@ -177,25 +165,15 @@ public class FenInfosLocataire extends JInternalFrame {
         textFieldDateNaissance.setBounds(29, 292, 194, 41);
         getContentPane().add(textFieldDateNaissance);
         
-
-        RoundedButton btnAnnuler_1 = new RoundedButton("Annuler", 20);
-        btnAnnuler_1.setText("Modifier");
-        btnAnnuler_1.setBackground(new Color(31, 153, 88));
-        btnAnnuler_1.setBounds(597, 468, 96, 21);
-        getContentPane().add(btnAnnuler_1);
-        RoundedButton btnArchiver = new RoundedButton("Annuler", 20);
-        btnArchiver.setText("Archiver");
-        btnArchiver.setBackground(new Color(31, 153, 88));
-        btnArchiver.setBounds(622, 468, 96, 21);
-        getContentPane().add(btnArchiver);
-        
         RoundedButton rndbtnWordRegularisation = new RoundedButton("Word Regularisation des charges", 20);
+        rndbtnWordRegularisation.setText("Générer word");
         rndbtnWordRegularisation.addActionListener(this.gestionFenLocataire);
         rndbtnWordRegularisation.setBackground(new Color(31, 153, 88));
         rndbtnWordRegularisation.setBounds(309, 67, 247, 21); // Ajustez la taille si nécessaire
         getContentPane().add(rndbtnWordRegularisation);
 
         RoundedButton btnWordSoldeToutCompte = new RoundedButton("Word solde tout compte", 20);
+        btnWordSoldeToutCompte.setText("Générer word");
         btnWordSoldeToutCompte.addActionListener(this.gestionFenLocataire);
         btnWordSoldeToutCompte.setBackground(new Color(31, 153, 88));
         btnWordSoldeToutCompte.setBounds(322, 293, 247, 21); // Ajustez la taille si nécessaire

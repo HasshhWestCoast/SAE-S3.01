@@ -152,13 +152,13 @@ public class FenAjoutFacture extends JInternalFrame {
 		JLabel lblTrouverEntreprise = new JLabel("Trouver Entreprise");
 		lblTrouverEntreprise.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTrouverEntreprise.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblTrouverEntreprise.setBounds(672, 27, 131, 21);
+		lblTrouverEntreprise.setBounds(714, 26, 131, 21);
 		getContentPane().add(lblTrouverEntreprise);
 		
 		JSeparator separatorTrouverEntreprise = new JSeparator();
 		separatorTrouverEntreprise.setForeground(Color.WHITE);
 		separatorTrouverEntreprise.setBackground(new Color(31, 151, 83));
-		separatorTrouverEntreprise.setBounds(645, 45, 188, 2);
+		separatorTrouverEntreprise.setBounds(688, 45, 188, 2);
 		getContentPane().add(separatorTrouverEntreprise);
 	
 		tabMesEntreprise = new JTable();
@@ -169,24 +169,24 @@ public class FenAjoutFacture extends JInternalFrame {
         ));
         scrollPane = new JScrollPane(tabMesEntreprise);
         scrollPane.setBorder(new LineBorder(new Color(109, 109, 109), 2));
-		scrollPane.setBounds(645, 87, 268, 134);        
+		scrollPane.setBounds(645, 100, 268, 134);        
 		getContentPane().add(scrollPane);
 		
 		RoundedButton btnInserer = new RoundedButton("Inserer", 20);
 		btnInserer.addActionListener(this.gestionClicFenAjoutFacture);
-		btnInserer.setBounds(800, 239, 85, 21);
+		btnInserer.setBounds(797, 260, 85, 21);
 		btnInserer.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnInserer);
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
 		btnAnnuler.addActionListener(this.gestionClicFenAjoutFacture);
-		btnAnnuler.setBounds(124, 388, 85, 21);
+		btnAnnuler.setBounds(202, 388, 85, 21);
 		btnAnnuler.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
 		btnAjouter.addActionListener(this.gestionClicFenAjoutFacture);
-		btnAjouter.setBounds(249, 388, 85, 21);
+		btnAjouter.setBounds(349, 388, 85, 21);
 		btnAjouter.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouter);
 		
@@ -201,13 +201,13 @@ public class FenAjoutFacture extends JInternalFrame {
 		
 		RoundedButton btnCharger = new RoundedButton("Charger", 20);
 		btnCharger.addActionListener(this.gestionClicFenAjoutFacture);
-		btnCharger.setBounds(367, 388, 85, 21);
+		btnCharger.setBounds(737, 64, 85, 21);
 		btnCharger.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnCharger);
 		
 		RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
 		btnSupprimer.addActionListener(this.gestionClicFenAjoutFacture);
-		btnSupprimer.setBounds(672, 239, 96, 21);
+		btnSupprimer.setBounds(672, 260, 96, 21);
 		btnSupprimer.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnSupprimer);
 	}

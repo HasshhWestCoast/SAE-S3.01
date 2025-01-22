@@ -69,16 +69,19 @@ public class FenMesReleves extends JInternalFrame {
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
 		btnAjouter.addActionListener(this.gestionFenMesReleves);
 		btnAjouter.setBounds(250, 455, 104, 21);
+		btnAjouter.setBackground(new Color(31, 153, 88));
 		getContentPane().add(btnAjouter);
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
 		btnAnnuler.addActionListener(this.gestionFenMesReleves);
 		btnAnnuler.setBounds(112, 455, 104, 21);
+		btnAnnuler.setBackground(new Color(31, 153, 88));
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
 		btnSupprimer.addActionListener(this.gestionFenMesReleves);
 		btnSupprimer.setBounds(379, 455, 129, 21);
+		btnSupprimer.setBackground(new Color(31, 153, 88));
 		getContentPane().add(btnSupprimer);
 
 	}

@@ -1123,14 +1123,6 @@ public class FenAccueil extends JFrame {
         btnCharger.addActionListener(this.gestionFenDocument);
         btnCharger.setBackground((new Color(31, 153, 88)));
         panel.add(btnCharger);
-        
-        JComboBox comboBoxChoixDocument = new JComboBox();
-        comboBoxChoixDocument.setToolTipText("Choisir un document\r\nLoyer.xslx");
-        comboBoxChoixDocument.setForeground(Color.white);
-        comboBoxChoixDocument.setFont(new Font("Sylfaen", Font.PLAIN, 12));
-        comboBoxChoixDocument.setBackground(new Color(31, 153, 88));
-        comboBoxChoixDocument.setBounds(41, 18, 221, 21);
-        panelCentre.add(comboBoxChoixDocument);
 
         return paneldocuments;
     	

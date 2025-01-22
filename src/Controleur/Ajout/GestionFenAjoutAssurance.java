@@ -155,7 +155,7 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
 	                fenAjoutEntreprise.moveToFront();
 					break;
 				
-				case "Charger":
+				case "Charger les tableaux":
 					System.out.println("Vous CHARGER les Logements et Entreprise depuis Assurance !");
 					try {
 						List<Logement> mesDonnees = this.daoLogement.findAll();

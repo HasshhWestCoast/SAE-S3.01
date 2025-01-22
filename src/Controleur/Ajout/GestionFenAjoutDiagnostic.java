@@ -30,12 +30,12 @@ public class GestionFenAjoutDiagnostic  implements ActionListener{
         if (texte != null) {   	
             switch (texte) {
 	            case "Annuler":
-					System.out.println("Vous FERMEZ la page ajout Facture !");
+					System.out.println("Vous FERMEZ la page ajout diagnostic!");
 					this.fenAddDiag.dispose();
 					break;
 					
 	            case "Ajouter":
-					System.out.println("Vous Ajouter la page ajout Facture !");
+					System.out.println("Vous Ajouter un diagnostic a un bie, !");
 					
 					if (this.fenAddDiag.getDate().isEmpty() ||
 					        this.fenAddDiag.getType().isEmpty() ||
