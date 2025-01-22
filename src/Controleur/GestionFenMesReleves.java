@@ -36,7 +36,7 @@ public class GestionFenMesReleves implements ActionListener {
      */
     public GestionFenMesReleves(FenMesReleves fenMesReleve) throws SQLException {
         this.fenMesReleve = fenMesReleve;
-        this.compteur = null;
+        this.compteur = this.fenMesReleve.getMonCompteur();
         this.daoReleve = new DaoReleve(CictOracleDataSource.getInstance().getConnection());
         this.daoCompteur = new DaoCompteur(CictOracleDataSource.getInstance().getConnection());
     }
@@ -54,36 +54,36 @@ public class GestionFenMesReleves implements ActionListener {
         if (texte != null) {
             switch (texte) {
 
-                case "Ajouter":
-                    // Ouvre la fenêtre pour ajouter un nouveau relevé
-                    System.out.println("Vous ouvrez AJOUTER RELEVE dans MesReleves !");
-                    try {
-                        // Récupère le compteur actuel associé au relevé
-                        this.compteur = this.CompteurActuelle();
-                        if (this.compteur == null) {
-                            JOptionPane.showMessageDialog(
-                                fenMesReleve,
-                                "Aucun compteur associé trouvé.",
-                                "Erreur",
-                                JOptionPane.ERROR_MESSAGE
-                            );
-                            break;
-                        }
-                        // Ouvre la fenêtre d'ajout de relevé avec le compteur sélectionné
-                        FenAjoutReleves fenAddReleve = new FenAjoutReleves(this.compteur);
-                        fenMesReleve.getLayeredPane().add(fenAddReleve);
-                        fenAddReleve.setVisible(true);
-                        break; // Important pour éviter le fall-through
-                    } catch (Exception e2) {
+            case "Ajouter":
+                // Ouvre la fenêtre pour ajouter un nouveau relevé
+                System.out.println("Vous ouvrez AJOUTER RELEVE dans MesReleves !");
+                try {
+                    // Récupère le compteur actuel associé au relevé
+                    if (this.fenMesReleve.getMonCompteur() == null) {
                         JOptionPane.showMessageDialog(
                             fenMesReleve,
-                            "Erreur lors de l'ouverture de la fenêtre d'ajout : " + e2.getMessage(),
+                            "Aucun compteur associé non trouvé.",
                             "Erreur",
                             JOptionPane.ERROR_MESSAGE
                         );
-                        e2.printStackTrace();
                         break;
                     }
+                    // Ouvre la fenêtre d'ajout de relevé avec le compteur sélectionné
+                    FenAjoutReleves fenAddReleve = new FenAjoutReleves(this.compteur);
+                    fenMesReleve.getLayeredPane().add(fenAddReleve);
+                    fenAddReleve.setVisible(true);
+                    break; // Important pour éviter le fall-through
+                } catch (Exception e2) {
+                    JOptionPane.showMessageDialog(
+                        fenMesReleve,
+                        "Erreur lors de l'ouverture de la fenêtre d'ajout : " + e2.getMessage(),
+                        "Erreur",
+                        JOptionPane.ERROR_MESSAGE
+                    );
+                    e2.printStackTrace();
+                    break;
+                }
+                    
 
                 case "Supprimer":
                     // Supprime le relevé sélectionné dans le tableau
@@ -153,39 +153,5 @@ public class GestionFenMesReleves implements ActionListener {
     /**
      * Récupère le compteur actuel associé au relevé sélectionné.
      */
-    public Compteur CompteurActuelle() {
-        JTable tabReleves = this.fenMesReleve.getTabMesReleves();
-        if (tabReleves.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(
-                fenMesReleve,
-                "Aucun relevé disponible.",
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE
-            );
-            return null;
-        }
-        try {
-            // Suppose que le compteur est identifié par la première colonne
-            String idCompteur = tabReleves.getValueAt(0, 0).toString();
-            Compteur compt = daoCompteur.findById(idCompteur);
-            if (compt == null) {
-                JOptionPane.showMessageDialog(
-                    fenMesReleve,
-                    "Compteur non trouvé pour l'ID : " + idCompteur,
-                    "Erreur",
-                    JOptionPane.ERROR_MESSAGE
-                );
-            }
-            return compt;
-        } catch (SQLException e1) {
-            JOptionPane.showMessageDialog(
-                fenMesReleve,
-                "Erreur lors de la récupération du compteur : " + e1.getMessage(),
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE
-            );
-            e1.printStackTrace();
-            return null;
-        }
-    }
+   
 }

@@ -61,21 +61,15 @@ public class GestionFenCompteurs implements ActionListener, ListSelectionListene
 				    }	
 	
 					try {	
-						FenMesReleves fenMesReleve = new FenMesReleves();
+						FenMesReleves fenMesReleve = new FenMesReleves(this.compteur);
+						
 						
 						fenComp.getLayeredPane().add(fenMesReleve);
 		
 						DefaultTableModel modeleTableReleve = (DefaultTableModel) fenMesReleve.getTabMesReleves().getModel();
 						
 					    List<Releve> mesReleves = this.daoReleve.findAllById(this.compteur.getIdCompteur());
-	
-					    if (mesReleves == null || mesReleves.isEmpty()) {
-					    	JOptionPane.showMessageDialog(
-						            this.fenComp, "Aucun relevé trouvé pour ce compteur.", "Erreur",
-						            JOptionPane.ERROR_MESSAGE
-						        );
-					        return;
-					    }
+
 	
 					    modeleTableReleve.setRowCount(mesReleves.size());
 	

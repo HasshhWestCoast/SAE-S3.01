@@ -7,6 +7,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controleur.GestionFenMesReleves;
+import Modele.Compteur;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -21,12 +22,13 @@ public class FenMesReleves extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 	private JTable tabMesReleves;
 	private GestionFenMesReleves gestionFenMesReleves;
+	private Compteur compteur;
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public FenMesReleves() throws SQLException {
-		
+	public FenMesReleves(Compteur compteur) throws SQLException {
+		this.compteur= compteur;
 		this.gestionFenMesReleves = new GestionFenMesReleves(this);
 		
 		setBackground(new Color(255, 255, 255));
@@ -81,5 +83,9 @@ public class FenMesReleves extends JInternalFrame {
 	
 	public JTable getTabMesReleves() {
 		return tabMesReleves;
+	}
+
+	public Compteur getMonCompteur() {
+		return compteur;
 	}
 }

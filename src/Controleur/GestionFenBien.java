@@ -20,6 +20,7 @@ import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutBien;
 import Vue.Insertion.FenAjoutDiagnostic;
 import Vue.Insertion.FenAjoutFacture;
+import rapport.CreerRapport;
 
 public class GestionFenBien implements ActionListener, ListSelectionListener {
 
@@ -133,6 +134,31 @@ public class GestionFenBien implements ActionListener, ListSelectionListener {
                     fenAc.getLayeredPane().add(fenAddBien);
                     fenAddBien.setVisible(true);
                     break;
+                    
+                case "Generer un word":
+                    
+                    try {
+                        // Appeler la méthode de génération du rapport
+                        CreerRapport.genererRapportBien(daoBien.findAll());
+                        JOptionPane.showMessageDialog(
+                            this.fenAc,
+                            "Rapport généré avec succès dans src/rapport/test.docx",
+                            "Succès",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(
+                            this.fenAc,
+                            "Une erreur est survenue lors de la génération du rapport : " + ex.getMessage(),
+                            "Erreur",
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                        ex.printStackTrace();
+                    }
+                    break;
+
+                    
+                    
                     
                 case "Ajouter des factures":
                     // Ouvre la fenêtre pour ajouter des factures au bien sélectionné
