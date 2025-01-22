@@ -20,6 +20,7 @@ import Vue.FenCompteurs;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutFacture;
 import Vue.Insertion.FenAjoutLogement;
+import Vue.Insertion.FenAjoutQuotite;
 
 
 public class GestionFenLogements implements ActionListener, ListSelectionListener{
@@ -143,6 +144,27 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 					
 					fenAc.getLayeredPane().add(fenAddFacture);
 					fenAddFacture.setVisible(true);
+					break;
+				case "Ajouter Quotite":
+					
+					 // Vérification des conditions
+				    if (this.logement == null) {
+				        JOptionPane.showMessageDialog(
+				            this.fenAc,
+				            "Veuillez sélectionner un logement !",
+				            "Erreur",
+				            JOptionPane.ERROR_MESSAGE
+				        );
+				        return;
+				    }
+				    
+					FenAjoutQuotite fenAddQuotite = null;
+					
+					fenAddQuotite = new FenAjoutQuotite(this.logement);
+					
+					fenAc.getLayeredPane().add(fenAddQuotite);
+					fenAddQuotite.setVisible(true);
+					
 					break;
 					
 				default:

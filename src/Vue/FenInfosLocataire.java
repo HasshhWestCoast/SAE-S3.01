@@ -19,6 +19,8 @@ import Controleur.Afficher.GestionFenLocataire;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class FenInfosLocataire extends JInternalFrame {
@@ -74,7 +76,7 @@ public class FenInfosLocataire extends JInternalFrame {
         btnAnnuler.addActionListener(this.gestionFenLocataire);
         btnAnnuler.setText("Annuler");
         btnAnnuler.setBackground(new Color(31, 153, 88));
-        btnAnnuler.setBounds(478, 468, 96, 21);
+        btnAnnuler.setBounds(443, 468, 96, 21);
         getContentPane().add(btnAnnuler);
         
         RoundedButton btnCharger = new RoundedButton("Charger", 20);
@@ -103,7 +105,7 @@ public class FenInfosLocataire extends JInternalFrame {
         RoundedButton btn_solde_tout_compte = new RoundedButton("Solde tout compte ", 20);
         btn_solde_tout_compte.addActionListener(this.gestionFenLocataire);
         btn_solde_tout_compte.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btn_solde_tout_compte.setBounds(495, 291, 247, 21);
+        btn_solde_tout_compte.setBounds(608, 291, 247, 21);
         btn_solde_tout_compte.setBackground(new Color(31, 151, 83));
         getContentPane().add(btn_solde_tout_compte);
         
@@ -120,7 +122,7 @@ public class FenInfosLocataire extends JInternalFrame {
         btnRegularisation.setText("Régularisation des charges");
         btnRegularisation.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btnRegularisation.setBackground(new Color(31, 153, 88));
-        btnRegularisation.setBounds(495, 78, 247, 21);
+        btnRegularisation.setBounds(597, 65, 247, 21);
         getContentPane().add(btnRegularisation);
         
         JLabel lblSiVotreReste_2_1 = new JLabel("Départ de votre locataire :");
@@ -178,8 +180,25 @@ public class FenInfosLocataire extends JInternalFrame {
         RoundedButton btnAnnuler_1 = new RoundedButton("Annuler", 20);
         btnAnnuler_1.setText("Modifier");
         btnAnnuler_1.setBackground(new Color(31, 153, 88));
-        btnAnnuler_1.setBounds(622, 468, 96, 21);
+        btnAnnuler_1.setBounds(597, 468, 96, 21);
         getContentPane().add(btnAnnuler_1);
+        
+        RoundedButton rndbtnWordRegularisation = new RoundedButton("Word Regularisation des charges", 20);
+        rndbtnWordRegularisation.addActionListener(this.gestionFenLocataire);
+        rndbtnWordRegularisation.setBackground(new Color(31, 153, 88));
+        rndbtnWordRegularisation.setBounds(309, 67, 247, 21); // Ajustez la taille si nécessaire
+        getContentPane().add(rndbtnWordRegularisation);
+
+        RoundedButton btnWordSoldeToutCompte = new RoundedButton("Word solde tout compte", 20);
+        btnWordSoldeToutCompte.addActionListener(this.gestionFenLocataire);
+        btnWordSoldeToutCompte.setBackground(new Color(31, 153, 88));
+        btnWordSoldeToutCompte.setBounds(322, 293, 247, 21); // Ajustez la taille si nécessaire
+        getContentPane().add(btnWordSoldeToutCompte);
+        RoundedButton rndbtnWordRegulaularisationD = new RoundedButton("Annuler", 20);
+        rndbtnWordRegulaularisationD.setText("Word Regularisation d charges");
+        rndbtnWordRegulaularisationD.setBackground(new Color(31, 153, 88));
+        rndbtnWordRegulaularisationD.setBounds(348, 67, 116, 21);
+        getContentPane().add(rndbtnWordRegulaularisationD);
         
 		setBounds(100, 100, 948, 550);
 	}
@@ -244,7 +263,4 @@ public class FenInfosLocataire extends JInternalFrame {
 	public JTable gettabSoldeToutCompte() {
 	    return this.tabSoldeToutCompte;
 	}
-	
-
-
 }

@@ -916,6 +916,12 @@ public class FenAccueil extends JFrame {
         btnAfficherCompteur.setBackground(new Color(31, 153, 88));
         panelCentre.add(btnAfficherCompteur);
         
+        RoundedButton btnAjouterQuotite = new RoundedButton("Ajouter Quotite", 20);
+        btnAjouterQuotite.addActionListener(this.gestionClicLogement);
+        btnAjouterQuotite.setBackground(new Color(31, 153, 88));
+        btnAjouterQuotite.setBounds(728, 136, 173, 23);
+        panelCentre.add(btnAjouterQuotite);
+        
         return panelLogements;
     }
     
