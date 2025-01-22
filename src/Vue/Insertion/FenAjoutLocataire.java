@@ -109,11 +109,13 @@ public class FenAjoutLocataire extends JInternalFrame {
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
 		btnAnnuler.addActionListener(this.gestionClicFenAjoutLocataire);
 		btnAnnuler.setBounds(82, 468, 85, 21);
+		btnAnnuler.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
 		btnAjouter.addActionListener(this.gestionClicFenAjoutLocataire);
 		btnAjouter.setBounds(217, 468, 85, 21);
+		btnAjouter.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouter);
 		
 		checkColocataire = new JCheckBox("OUI");

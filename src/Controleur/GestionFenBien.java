@@ -18,7 +18,9 @@ import Vue.FenAccueil;
 import Vue.FenCompteurs;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutBien;
+import Vue.Insertion.FenAjoutDiagnostic;
 import Vue.Insertion.FenAjoutFacture;
+import rapport.CreerRapport;
 
 public class GestionFenBien implements ActionListener, ListSelectionListener {
 
@@ -133,6 +135,31 @@ public class GestionFenBien implements ActionListener, ListSelectionListener {
                     fenAddBien.setVisible(true);
                     break;
                     
+                case "Generer un word":
+                    
+                    try {
+                        // Appeler la méthode de génération du rapport
+                        CreerRapport.genererRapportBien(daoBien.findAll());
+                        JOptionPane.showMessageDialog(
+                            this.fenAc,
+                            "Rapport généré avec succès dans src/rapport/test.docx",
+                            "Succès",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(
+                            this.fenAc,
+                            "Une erreur est survenue lors de la génération du rapport : " + ex.getMessage(),
+                            "Erreur",
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                        ex.printStackTrace();
+                    }
+                    break;
+
+                    
+                    
+                    
                 case "Ajouter des factures":
                     // Ouvre la fenêtre pour ajouter des factures au bien sélectionné
                     System.out.println("Vous AJOUTER DES FACTURES depuis Bien !");
@@ -154,7 +181,26 @@ public class GestionFenBien implements ActionListener, ListSelectionListener {
                     fenAc.getLayeredPane().add(fenAddFacture);
                     fenAddFacture.setVisible(true);
                     break;
+                
+                case "Ajouter un diagnostic":
+                	System.out.println("Vous AFFICHER LES COMPTEURS depuis Bien !");
+                	if (this.bien == null) {
+                        JOptionPane.showMessageDialog(
+                            this.fenAc,
+                            "Veuillez sélectionner un bien !",
+                            "Erreur",
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                        return;
+                    }
+                	FenAjoutDiagnostic fenAddDiag = null;
+                   
+                	fenAddDiag = new FenAjoutDiagnostic(this.bien);
                     
+                    fenAc.getLayeredPane().add(fenAddDiag);
+                    fenAddDiag.setVisible(true);
+                	break;
+                	
                 default:
                     System.out.println("Action non reconnu !");
             }

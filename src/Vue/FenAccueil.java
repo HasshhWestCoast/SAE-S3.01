@@ -11,12 +11,15 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controleur.GestionFenBien;
+import Controleur.GestionFenDocument;
 import Controleur.GestionFenAssurances;
 import Controleur.GestionFenFacture;
 import Controleur.GestionFenLocation;
 import Controleur.GestionFenLogements;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenAccueil extends JFrame {
 
@@ -37,6 +40,7 @@ public class FenAccueil extends JFrame {
 	private GestionFenBien gestionClicBien;
 	private GestionFenLocation gestionClicLocation;
 	private GestionFenLogements gestionClicLogement;
+	private GestionFenDocument gestionFenDocument;
 	
 	private JTable tabMesBiens;
 	
@@ -58,6 +62,7 @@ public class FenAccueil extends JFrame {
 	private LocalDate currentDate;
     private JLabel monthYearLabel;
     private JPanel daysPanel;
+    private JTable tabMesdocuments;
 
 	
     /**
@@ -197,6 +202,26 @@ public class FenAccueil extends JFrame {
         btnSeDeconnecter.setFont(new Font("Sylfaen", Font.PLAIN, 14));
         btnSeDeconnecter.setBackground(new Color(63, 173, 108));
         panelMenuDroite.add(btnSeDeconnecter);
+        btnSeDeconnecter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Afficher une popup de confirmation
+                int confirmation = JOptionPane.showConfirmDialog(
+                    null,
+                    "Êtes-vous sûr de vouloir vous déconnecter ?",
+                    "Confirmation de déconnexion",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+                );
+
+                // Vérifier la réponse de l'utilisateur
+                if (confirmation == JOptionPane.YES_OPTION) {
+                    // Fermer l'application
+                    System.exit(0);
+                }
+            }
+        });
+
         
     
 
@@ -505,16 +530,6 @@ public class FenAccueil extends JFrame {
         panelCentre.setBackground(new Color(255, 255, 255));
         panelAssurances.add(panelCentre, BorderLayout.CENTER);
         panelCentre.setLayout(null);
-
-        // Ajouter la JComboBox en haut
-        JComboBox comboBoxIDAssurance = new JComboBox();
-        comboBoxIDAssurance.setBounds(59, 11, 148, 26);
-        comboBoxIDAssurance.setForeground(new Color(255, 255, 255));
-        comboBoxIDAssurance.setFont(new Font("Sylfaen", Font.PLAIN, 14));
-        comboBoxIDAssurance.setBackground(new Color(31, 153, 88));
-        comboBoxIDAssurance.setModel(new DefaultComboBoxModel(new String[] { "ID Assurance" }));
-        comboBoxIDAssurance.setToolTipText("ID Assurance");
-        panelCentre.add(comboBoxIDAssurance);
 
         // Ajouter le tableau
         tabMesAssurances = new JTable();
@@ -825,6 +840,19 @@ public class FenAccueil extends JFrame {
         btnAfficherCompteur.setBackground(new Color(33, 153, 88));
         panelCentre.add(btnAfficherCompteur);
         
+        RoundedButton btnAjouterDiagnostic = new RoundedButton("Ajouter un diagnostic", 20);
+        btnAjouterDiagnostic.addActionListener(this.gestionClicBien);
+        btnAjouterDiagnostic.setBackground(new Color(31, 153, 88));
+        btnAjouterDiagnostic.setBounds(788, 138, 173, 23);
+        panelCentre.add(btnAjouterDiagnostic);
+        
+        RoundedButton btnGenererWord = new RoundedButton("Modifier", 20);
+        btnGenererWord.setText("Generer un word");
+        btnGenererWord.addActionListener(this.gestionClicBien);
+        btnGenererWord.setBackground(new Color(31, 153, 88));
+        btnGenererWord.setBounds(46, 11, 162, 23);
+        panelCentre.add(btnGenererWord);
+        
         return panelBiens;
     }
 
@@ -906,12 +934,6 @@ public class FenAccueil extends JFrame {
         btnAjouterLogement.setBounds(728, 182, 173, 23);
         btnAjouterLogement.setBackground(new Color(31, 153, 88));
         panelCentre.add(btnAjouterLogement);
-  
-        RoundedButton btnAjouterDiagnostic = new RoundedButton("Ajouter un diagnostic", 20);
-        btnAjouterDiagnostic.addActionListener(this.gestionClicLogement);
-        btnAjouterDiagnostic.setBounds(728, 228, 173, 23);
-        btnAjouterDiagnostic.setBackground(new Color(31, 153, 88));
-        panelCentre.add(btnAjouterDiagnostic);
         
         RoundedButton btnAjouterFactures = new RoundedButton("Ajouter des factures", 20);
         btnAjouterFactures.addActionListener(this.gestionClicLogement);
@@ -922,9 +944,16 @@ public class FenAccueil extends JFrame {
         
         RoundedButton btnAfficherCompteur = new RoundedButton("Afficher les compteurs", 20);
         btnAfficherCompteur.addActionListener(this.gestionClicLogement);
-        btnAfficherCompteur.setBounds(728, 325, 173, 23);
+        btnAfficherCompteur.setBounds(728, 231, 173, 23);
         btnAfficherCompteur.setBackground(new Color(31, 153, 88));
         panelCentre.add(btnAfficherCompteur);
+        
+        RoundedButton btnGenererWord = new RoundedButton("Ajouter un logement", 20);
+        btnGenererWord.addActionListener(this.gestionClicLogement);
+        btnGenererWord.setText("Générer un word");
+        btnGenererWord.setBackground(new Color(31, 153, 88));
+        btnGenererWord.setBounds(47, 38, 173, 23);
+        panelCentre.add(btnGenererWord);
         
         return panelLogements;
     }
@@ -1035,6 +1064,10 @@ public class FenAccueil extends JFrame {
     
     
     private JPanel createDocumentPanel() throws SQLException {
+    	
+
+    	this.gestionFenDocument = new GestionFenDocument(this);
+    	
     	JPanel paneldocuments = new JPanel();
 		paneldocuments.setLayout(new BorderLayout(0, 0));
 
@@ -1058,13 +1091,13 @@ public class FenAccueil extends JFrame {
         paneldocuments.add(panelCentre, BorderLayout.CENTER);
         panelCentre.setLayout(null);
 
-        JTable tabMesdocuments = new JTable();
+        tabMesdocuments = new JTable();
         tabMesdocuments.setModel(new DefaultTableModel(
             new Object[][] {
                 { null, null, null, null, null, null, null, null, null },
             },
             new String[] {
-                "Nom", "Montant", "Année"
+                "IDLogement", "IDLocataire", "Date","Loyer","Provision"
             }
         ));
         JScrollPane scrollPane = new JScrollPane(tabMesdocuments);
@@ -1076,21 +1109,20 @@ public class FenAccueil extends JFrame {
         panel.setBounds(0, 501, 1024, 48);
         panelCentre.add(panel);
         panel.setLayout(null);
-
-        RoundedButton btnInserer = new RoundedButton("Inserer un impot", 20);
-        btnInserer.setBounds(392, 11, 159, 23);
-        btnInserer.setBackground((new Color(31, 153, 88)));
-        panel.add(btnInserer);
-
-        RoundedButton btnGenerer = new RoundedButton("Génerer une annexe", 20);
-        btnGenerer.setBounds(591, 11, 159, 23);
-        btnGenerer.setBackground((new Color(31, 153, 88)));
-        panel.add(btnGenerer);
         
         RoundedButton btnCharger = new RoundedButton("Charger", 20);
-        btnCharger.setBounds(261, 11, 85, 23);
+        btnCharger.setBounds(451, 11, 85, 23);
+        btnCharger.addActionListener(this.gestionFenDocument);
         btnCharger.setBackground((new Color(31, 153, 88)));
         panel.add(btnCharger);
+        
+        JComboBox comboBoxChoixDocument = new JComboBox();
+        comboBoxChoixDocument.setToolTipText("Choisir un document\r\nLoyer.xslx");
+        comboBoxChoixDocument.setForeground(Color.white);
+        comboBoxChoixDocument.setFont(new Font("Sylfaen", Font.PLAIN, 12));
+        comboBoxChoixDocument.setBackground(new Color(31, 153, 88));
+        comboBoxChoixDocument.setBounds(41, 18, 221, 21);
+        panelCentre.add(comboBoxChoixDocument);
 
         return paneldocuments;
     	
@@ -1148,5 +1180,9 @@ public class FenAccueil extends JFrame {
     
     public void settextFieldCaution(String x) {
     	this.textFieldCaution.setText(x);
+    }
+    
+    public JTable getTabMesdocuments() {
+    	return tabMesdocuments;
     }
 }

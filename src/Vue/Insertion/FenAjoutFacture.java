@@ -175,16 +175,19 @@ public class FenAjoutFacture extends JInternalFrame {
 		RoundedButton btnInserer = new RoundedButton("Inserer", 20);
 		btnInserer.addActionListener(this.gestionClicFenAjoutFacture);
 		btnInserer.setBounds(800, 239, 85, 21);
+		btnInserer.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnInserer);
 		
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
 		btnAnnuler.addActionListener(this.gestionClicFenAjoutFacture);
 		btnAnnuler.setBounds(124, 388, 85, 21);
+		btnAnnuler.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
 		btnAjouter.addActionListener(this.gestionClicFenAjoutFacture);
 		btnAjouter.setBounds(249, 388, 85, 21);
+		btnAjouter.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouter);
 		
 		JLabel lblAcompteVersé = new JLabel("Acompte Versé");
@@ -199,11 +202,13 @@ public class FenAjoutFacture extends JInternalFrame {
 		RoundedButton btnCharger = new RoundedButton("Charger", 20);
 		btnCharger.addActionListener(this.gestionClicFenAjoutFacture);
 		btnCharger.setBounds(367, 388, 85, 21);
+		btnCharger.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnCharger);
 		
 		RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
 		btnSupprimer.addActionListener(this.gestionClicFenAjoutFacture);
 		btnSupprimer.setBounds(672, 239, 96, 21);
+		btnSupprimer.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnSupprimer);
 	}
 	

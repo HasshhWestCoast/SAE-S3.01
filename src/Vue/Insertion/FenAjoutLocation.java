@@ -51,41 +51,41 @@ public class FenAjoutLocation extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblProvisionsCharges = new JLabel("Provisions charges");
-		lblProvisionsCharges.setBounds(375, 219, 96, 13);
+		lblProvisionsCharges.setBounds(397, 219, 96, 13);
 		getContentPane().add(lblProvisionsCharges);
 		
 		JLabel lblNbMois = new JLabel("Nombre de Mois");
-		lblNbMois.setBounds(375, 162, 96, 13);
+		lblNbMois.setBounds(397, 165, 96, 13);
 		getContentPane().add(lblNbMois);
 		
 		JLabel lblDateDebut = new JLabel("Date début");
-		lblDateDebut.setBounds(375, 60, 96, 13);
+		lblDateDebut.setBounds(397, 62, 96, 13);
 		getContentPane().add(lblDateDebut);
 		
 		JLabel lblAjoutLocations = new JLabel("Ajout Location");
 		lblAjoutLocations.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAjoutLocations.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblAjoutLocations.setBounds(400, 20, 131, 21);
+		lblAjoutLocations.setBounds(437, 15, 131, 21);
 		getContentPane().add(lblAjoutLocations);
 		
 		JSeparator separatorAjoutLocations = new JSeparator();
 		separatorAjoutLocations.setForeground(new Color(255, 255, 255));
 		separatorAjoutLocations.setBackground(new Color(31, 151, 83));
-		separatorAjoutLocations.setBounds(380, 38, 188, 2);
+		separatorAjoutLocations.setBounds(413, 32, 188, 2);
 		getContentPane().add(separatorAjoutLocations);
 		
 		textFieldDateDebut = new JTextField();
-		textFieldDateDebut.setBounds(375, 78, 207, 19);
+		textFieldDateDebut.setBounds(395, 84, 207, 19);
 		getContentPane().add(textFieldDateDebut);
 		textFieldDateDebut.setColumns(10);
 		
 		textFieldNbMois = new JTextField();
-		textFieldNbMois.setBounds(375, 180, 207, 19);
+		textFieldNbMois.setBounds(395, 186, 207, 19);
 		getContentPane().add(textFieldNbMois);
 		textFieldNbMois.setColumns(10);
 		
 		textFieldProvisionsCharge = new JTextField();
-		textFieldProvisionsCharge.setBounds(375, 242, 207, 19);
+		textFieldProvisionsCharge.setBounds(395, 243, 207, 19);
 		getContentPane().add(textFieldProvisionsCharge);
 		textFieldProvisionsCharge.setColumns(10);
 		
@@ -136,22 +136,22 @@ public class FenAjoutLocation extends JInternalFrame {
 		scrollPanemesLocataires.setBounds(10, 40, 306, 126);
 		getContentPane().add(scrollPanemesLocataires);
 		
-		JLabel lblNewLabel = new JLabel("montant reel");
-		lblNewLabel.setBounds(375, 279, 118, 13);
+		JLabel lblNewLabel = new JLabel("montant réel");
+		lblNewLabel.setBounds(400, 279, 118, 13);
 		getContentPane().add(lblNewLabel);
 		
 		textFieldMontantReel = new JTextField();
-		textFieldMontantReel.setBounds(375, 302, 207, 19);
+		textFieldMontantReel.setBounds(395, 303, 207, 19);
 		getContentPane().add(textFieldMontantReel);
 		textFieldMontantReel.setColumns(10);
 		
 		JLabel lblCaution = new JLabel("caution");
-		lblCaution.setBounds(375, 331, 118, 13);
+		lblCaution.setBounds(400, 325, 118, 13);
 		getContentPane().add(lblCaution);
 		
 		textFieldCaution = new JTextField();
 		textFieldCaution.setColumns(10);
-		textFieldCaution.setBounds(375, 351, 207, 19);
+		textFieldCaution.setBounds(395, 349, 207, 19);
 		getContentPane().add(textFieldCaution);
 		
 		JLabel lblTrouverICC = new JLabel("Trouver ICC");
@@ -180,87 +180,94 @@ public class FenAjoutLocation extends JInternalFrame {
 		
 		RoundedButton btnAjouterEtatLieux = new RoundedButton("Ajouter Etat Lieux", 20);
 		btnAjouterEtatLieux.addActionListener(this.gestionClicFenAjoutLoc);
-		btnAjouterEtatLieux.setBounds(530, 488, 156, 21);
+		btnAjouterEtatLieux.setBounds(568, 488, 156, 21);
 		btnAjouterEtatLieux.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouterEtatLieux);
 		
 		RoundedButton btnAjouterBail = new RoundedButton("Ajouter Lieux", 20);
 		btnAjouterBail.setText("Ajouter Bail");
 		btnAjouterBail.addActionListener(this.gestionClicFenAjoutLoc);
-		btnAjouterBail.setBounds(530, 519, 156, 21);
+		btnAjouterBail.setBounds(568, 520, 156, 21);
 		btnAjouterBail.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouterBail);
 		
 		RoundedButton btnAnnulerLocation = new RoundedButton("Annuler", 20);
 		btnAnnulerLocation.addActionListener(this.gestionClicFenAjoutLoc);
 		btnAnnulerLocation.setBounds(457, 563, 85, 21);
+		btnAnnulerLocation.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAnnulerLocation);
 		
 		RoundedButton btnAjouterLocation = new RoundedButton("Ajouter", 20);
 		btnAjouterLocation.addActionListener(this.gestionClicFenAjoutLoc);
 		btnAjouterLocation.setBounds(553, 563, 85, 21);
+		btnAjouterLocation.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouterLocation);
 		
 		RoundedButton btnCharger = new RoundedButton("Charger", 20);
 		btnCharger.addActionListener(this.gestionClicFenAjoutLoc);
 		btnCharger.setBounds(347, 563, 96, 21);
+		btnCharger.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnCharger);
 		
 		JLabel lblLoyerPayer = new JLabel("Loyer Payer");
-		lblLoyerPayer.setBounds(375, 432, 118, 13);
+		lblLoyerPayer.setBounds(400, 439, 118, 13);
 		getContentPane().add(lblLoyerPayer);
 		
 		RoundedButton btnInsererICC = new RoundedButton("Inserer ICC", 20);
 		btnInsererICC.addActionListener(this.gestionClicFenAjoutLoc);
 		btnInsererICC.setBounds(25, 563, 108, 21);
+		btnInsererICC.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnInsererICC);
 		
 		checkLoyerPayer = new JCheckBox("OUI");
 		checkLoyerPayer.setBackground(new Color(31, 151, 83));
-		checkLoyerPayer.setBounds(375, 451, 93, 21);
+		checkLoyerPayer.setBounds(400, 459, 93, 21);
 		getContentPane().add(checkLoyerPayer);
 		
 		RoundedButton btnLocataire = new RoundedButton("Inserer L", 20);
 		btnLocataire.addActionListener(this.gestionClicFenAjoutLoc);
 		btnLocataire.setBounds(25, 172, 108, 21);
+		btnLocataire.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnLocataire);
 		
 		textFieldDateSortie = new JTextField();
 		textFieldDateSortie.setColumns(10);
-		textFieldDateSortie.setBounds(375, 135, 207, 19);
+		textFieldDateSortie.setBounds(395, 135, 207, 19);
 		getContentPane().add(textFieldDateSortie);
 		
 		JLabel lblDateSortie = new JLabel("Date Sortie");
-		lblDateSortie.setBounds(375, 119, 96, 13);
+		lblDateSortie.setBounds(397, 108, 96, 13);
 		getContentPane().add(lblDateSortie);
 		
-		JLabel lblLoyerMensTTC = new JLabel("Loyer menseul TCC");
-		lblLoyerMensTTC.setBounds(375, 380, 118, 13);
+		JLabel lblLoyerMensTTC = new JLabel("Loyer mensuel TCC");
+		lblLoyerMensTTC.setBounds(400, 381, 118, 13);
 		getContentPane().add(lblLoyerMensTTC);
 		
 		textFieldLoyerMenssTTC = new JTextField();
 		textFieldLoyerMenssTTC.setColumns(10);
-		textFieldLoyerMenssTTC.setBounds(375, 402, 207, 19);
+		textFieldLoyerMenssTTC.setBounds(395, 409, 207, 19);
 		getContentPane().add(textFieldLoyerMenssTTC);
 		
 		textFieldEtatLieux = new JTextField();
 		textFieldEtatLieux.setColumns(10);
-		textFieldEtatLieux.setBounds(373, 489, 147, 19);
+		textFieldEtatLieux.setBounds(397, 488, 147, 19);
 		getContentPane().add(textFieldEtatLieux);
 		
 		textFieldBail = new JTextField();
 		textFieldBail.setColumns(10);
-		textFieldBail.setBounds(375, 520, 147, 19);
+		textFieldBail.setBounds(397, 520, 147, 19);
 		getContentPane().add(textFieldBail);
 		
 		btnSupprimerLoc = new RoundedButton("Supprimer L", 20);
 		btnSupprimerLoc.addActionListener(gestionClicFenAjoutLoc);
 		btnSupprimerLoc.setBounds(161, 172, 118, 21);
+		btnSupprimerLoc.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnSupprimerLoc);
 		
 		RoundedButton btnSupprimerIcc = new RoundedButton("Supprimer ICC", 20);
 		btnSupprimerIcc.addActionListener(gestionClicFenAjoutLoc);
 		btnSupprimerIcc.setBounds(161, 562, 131, 21);
+		btnSupprimerIcc.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnSupprimerIcc);
 		
 	}

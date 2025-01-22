@@ -10,7 +10,7 @@ public class RequeteSelectQuotiteById extends Requete<Quotite> {
 
     @Override
     public String requete() {
-        return "SELECT * FROM Quotite WHERE type_quotite = ?";
+        return "SELECT * FROM Sae_Quotite WHERE type_quotite = ?";
     }
 
     @Override

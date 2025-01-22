@@ -10,8 +10,8 @@ public class RequeteSelectReleveById extends Requete<Releve> {
 
     @Override
     public String requete() {
-        return "SELECT Id_Compteur, date_RELEVÉ, indexCompteur FROM SAE_RELEVÉ " + 
-        		"WHERE date_releve = ? AND Id_Compteur = ?";
+        return "SELECT * FROM SAE_RELEVÉ " + 
+        		"WHERE date_relevé = ? AND Id_Compteur = ?";
     }
 
     @Override

@@ -11,5 +11,6 @@
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/tradc/Desktop/Cours/S3/R3.07/Ressource/ojdbc11-21.7.0.0-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -10,7 +10,7 @@ public class RequeteDeleteReleve extends Requete<Releve> {
 
     @Override
     public String requete() {
-        return "DELETE FROM SAE_RELEVÉ WHERE date_releve = ? AND Id_Compteur = ?";
+        return "DELETE FROM SAE_RELEVÉ WHERE date_relevé = ? AND Id_Compteur = ?";
     }
 
     @Override

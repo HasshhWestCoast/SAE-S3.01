@@ -74,11 +74,13 @@ public class FenAjoutBien extends JInternalFrame {
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
 		btnAnnuler.addActionListener(gestionClicFenAjoutBien);
 		btnAnnuler.setBounds(77, 419, 85, 21);
+		btnAnnuler.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
 		btnAjouter.addActionListener(gestionClicFenAjoutBien);
 		btnAjouter.setBounds(196, 419, 85, 21);
+		btnAjouter.setBackground(new Color(31, 151, 83));
 		getContentPane().add(btnAjouter);
 		
 		JLabel lblAjoutBien = new JLabel("Ajout Bien");

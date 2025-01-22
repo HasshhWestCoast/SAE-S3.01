@@ -12,6 +12,8 @@ import Modele.Logement;
 import Modele.Dao.Requetes.Select.RequeteSelectCompteur;
 import Modele.Dao.Requetes.Select.RequeteSelectCompteurById;
 import Modele.Dao.Requetes.Select.RequeteSelectCompteurLogement;
+import Modele.Dao.Requetes.Delete.RequeteDeleteCompteur;
+import Modele.Dao.Requetes.Delete.RequeteDeleteReleveByCompt;
 import Modele.Dao.Requetes.Insert.RequeteInsertCompteur;
 import Modele.Dao.Requetes.Select.RequeteSelectCompteurBien;
 
@@ -24,8 +26,24 @@ public class DaoCompteur extends DaoModele<Compteur> implements Dao<Compteur>{
 	}
 
 	@Override
-	public void delete(Compteur t) throws SQLException {		
+	public void delete(Compteur compteur) throws SQLException {
+	    // Étape 1 : Supprimer les relevés associés au compteur
+	    RequeteDeleteReleveByCompt requeteDeleteReleve = new RequeteDeleteReleveByCompt();
+	    try (PreparedStatement prStDeleteReleve = connexion.prepareStatement(requeteDeleteReleve.requete())) {
+	        requeteDeleteReleve.parametres(prStDeleteReleve, compteur);
+	        prStDeleteReleve.executeUpdate();
+	        System.out.println("Relevés liés au compteur supprimés.");
+	    }
+
+	    // Étape 2 : Supprimer le compteur lui-même
+	    RequeteDeleteCompteur requeteDeleteCompteur = new RequeteDeleteCompteur();
+	    try (PreparedStatement prStDeleteCompteur = connexion.prepareStatement(requeteDeleteCompteur.requete())) {
+	        requeteDeleteCompteur.parametres(prStDeleteCompteur, compteur);
+	        prStDeleteCompteur.executeUpdate();
+	        System.out.println("Compteur supprimé : " + compteur.getIdCompteur());
+	    }
 	}
+
 	
 	@Override
 	public void create(Compteur compteur) throws SQLException {
