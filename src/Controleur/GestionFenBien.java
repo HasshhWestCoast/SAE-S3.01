@@ -47,8 +47,7 @@ public class GestionFenBien implements ActionListener, ListSelectionListener {
         String texte = ((RoundedButton) source).getText();
         
         // Modèle du tableau où s'affichent les biens
-        DefaultTableModel modeleTable = 
-            (DefaultTableModel) this.fenAc.getTabMesBiens().getModel();
+        DefaultTableModel modeleTable = (DefaultTableModel) this.fenAc.getTabMesBiens().getModel();
         
         if (texte != null) {
             switch (texte) {
@@ -85,8 +84,12 @@ public class GestionFenBien implements ActionListener, ListSelectionListener {
                             JOptionPane.ERROR_MESSAGE
                         );
                         return;
-                    }
-                    // Logique d'archivage à implémenter ici
+                    }  
+                    DefaultTableModel modeleTableArchives = (DefaultTableModel) this.fenAc.getTabBienArchives().getModel();
+                    
+                    String[] EngrBien = {this.bien.getIdBien(), this.bien.getAdresse(), this.bien.getVille(), this.bien.getCodePostal(), this.bien.getTypeBien()};
+                    modeleTableArchives.addRow(EngrBien);
+                    
                     break;
                     
                 case "Charger":

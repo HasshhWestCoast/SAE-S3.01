@@ -49,8 +49,8 @@ public class FenAccueil extends JFrame {
 	private JTable tabMesAssurances;
 	private JTable tabMesLogements;
 	private JTable tabFactureArchives;
-	private JTable tabLocataireArchives;
-	private JTable tabLocationArchives;
+	private JTable tabBienArchives;
+	private JTable tabLogementArchives;
 	private JTextField textFieldLoyer;
 	private JTextField textFieldProvisionSurCharges;
 	private JTextField textFieldMontantPayé;
@@ -709,6 +709,7 @@ public class FenAccueil extends JFrame {
         panelCentre.setLayout(null);
 
         tabMesFactures = new JTable();
+        tabMesFactures.getSelectionModel().addListSelectionListener(this.gestionClicFacture);
         tabMesFactures.setModel(new DefaultTableModel(
             new Object[][] {
                 { null, null, null, null, null, null, null, null, null },
@@ -996,74 +997,53 @@ public class FenAccueil extends JFrame {
         tabFactureArchives = new JTable();
         tabFactureArchives.setModel(new DefaultTableModel(
         	new Object[][] {
-        		{null, null, null, null, null},
+        		,
         	},
         	new String[] {
-        		"Num\u00E9ro ", "D\u00E9signation", "Montant pay\u00E9", "Montant", "Date Emission"
+        		"Num\u00E9ro", "Date Paiement", "Montant pay\u00E9", "Désignations", "Date Emission"
         	}
         ));
         JScrollPane scrollPaneFacture = new JScrollPane(tabFactureArchives);
-        scrollPaneFacture.setBounds(46, 57, 636, 93);
+        scrollPaneFacture.setBounds(46, 44, 898, 113);
         scrollPaneFacture.setBorder(new LineBorder(new Color(31, 153, 88), 2));
         panelCentre.add(scrollPaneFacture);
         
         // JTable pour "Bien"
-        tabLocataireArchives = new JTable();
-        tabLocataireArchives.setModel(new DefaultTableModel(
+        tabBienArchives = new JTable();
+        tabBienArchives.setModel(new DefaultTableModel(
         	new Object[][] {
-        		{null, null, null, null, null},
+        		,
         	},
         	new String[] {
-        		"Num\u00E9ro ", "D\u00E9signation", "Montant pay\u00E9", "Montant", "Date Emission"
+        		"Id Bien", "Adresse", "Ville", "Code Postal", "Type de Bien"
         	}
         ));
         
-        JScrollPane scrollPaneLocataire = new JScrollPane(tabLocataireArchives);
+        JScrollPane scrollPaneLocataire = new JScrollPane(tabBienArchives);
         scrollPaneLocataire.setBorder(new LineBorder(new Color(31, 153, 88), 2));
-        scrollPaneLocataire.setBounds(46, 197, 636, 83);
+        scrollPaneLocataire.setBounds(46, 184, 898, 113);
         panelCentre.add(scrollPaneLocataire);
         
         // JTable pour "Bien"
-        tabLocationArchives = new JTable();
-        tabLocationArchives.setModel(new DefaultTableModel(
+        tabLogementArchives = new JTable();
+        tabLogementArchives.setModel(new DefaultTableModel(
         	new Object[][] {
-        		{null, null, null, null, null},
+        		,
         	},
         	new String[] {
-        		"Num\u00E9ro ", "D\u00E9signation", "Montant pay\u00E9", "Montant", "Date Emission"
+        		"Id Bien", "Surface habitable", "Date acquisition", "Type Logement", "Nombre de piéces"
         	}
         ));
         
-        JScrollPane scrollPaneLocation = new JScrollPane(tabLocationArchives);
+        JScrollPane scrollPaneLocation = new JScrollPane(tabLogementArchives);
         scrollPaneLocation.setBorder(new LineBorder(new Color(31, 153, 88), 2));
-        scrollPaneLocation.setBounds(46, 325, 636, 83);
+        scrollPaneLocation.setBounds(46, 325, 898, 119);
         panelCentre.add(scrollPaneLocation);
 
         JPanel panel = new JPanel();
         panel.setBounds(0, 501, 1024, 48);
         panelCentre.add(panel);
         panel.setLayout(null);
-        
-        // Buttons
-        RoundedButton btnChargerFacture = new RoundedButton("Ajouter un logement", 20);
-        btnChargerFacture.setText("Charger Facture");
-        btnChargerFacture.addActionListener(this.gestionClicLogement);
-        btnChargerFacture.setBounds(743, 96, 194, 30);
-        btnChargerFacture.setBackground(new Color(31, 153, 88));
-        panelCentre.add(btnChargerFacture);
-        
-        RoundedButton btnChargerLocataire = new RoundedButton("Ajouter un logement", 20);
-        btnChargerLocataire.setText("Charger Locataire");
-        btnChargerLocataire.setBounds(743, 227, 194, 30);
-        btnChargerLocataire.setBackground(new Color(31, 153, 88));
-        panelCentre.add(btnChargerLocataire);
-        
-        RoundedButton rndbtnChargerLocation = new RoundedButton("Ajouter un logement", 20);
-        rndbtnChargerLocation.setText("Charger Location");
-        rndbtnChargerLocation.setBounds(743, 349, 194, 30);
-        rndbtnChargerLocation.setBackground((new Color(31, 153, 88)));
-        
-        panelCentre.add(rndbtnChargerLocation);
         
         
         return panelArchives;
@@ -1184,5 +1164,17 @@ public class FenAccueil extends JFrame {
     
     public JTable getTabMesdocuments() {
     	return tabMesdocuments;
+    }
+    
+    public JTable getTabFactureArchives() {
+    	return tabFactureArchives;
+    }
+    
+    public JTable getTabBienArchives() {
+    	return tabBienArchives;
+    }
+    
+    public JTable gettabLogementArchives() {
+    	return tabLogementArchives;
     }
 }

@@ -109,10 +109,23 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 				
 				case "Archiver":
 					System.out.println("Vous ARCHIVER une donnée prevenant de Logement !");
-					break;
 					
-				case "Ajouter un diagnostic":
-					System.out.println("Vous AJOUTER UN DIAGNOSTIC depuis Logement !");
+					 // Marque le logement sélectionné comme archivé 
+                    System.out.println("Vous ARCHIVER une donnée prevenant de Bien !");
+                    if (this.logement == null) {
+                        JOptionPane.showMessageDialog(
+                            this.fenAc,
+                            "Veuillez sélectionner un logement a archiver !",
+                            "Erreur",
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                        return;
+                    }  
+                    DefaultTableModel modeleTableArchives = (DefaultTableModel) this.fenAc.gettabLogementArchives().getModel();
+                    
+                    String[] EngrBien = {this.logement.getIdLogement(), String.valueOf(this.logement.getSurfaceHabitable()), this.logement.getDateAcquisition(), this.logement.getType_logement(), String.valueOf(this.logement.getNbPieces())};
+                    modeleTableArchives.addRow(EngrBien);
+                    
 					break;
 					
 				case "Charger":

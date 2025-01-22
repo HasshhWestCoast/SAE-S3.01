@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import Modele.Facture;
@@ -19,14 +22,16 @@ import Vue.RoundedButton;
  * Gère les interactions utilisateur liées aux factures, telles que le chargement,
  * la suppression et la modification des factures dans l'interface graphique.
  */
-public class GestionFenFacture implements ActionListener {
+public class GestionFenFacture implements ActionListener, ListSelectionListener {
 
     private FenAccueil fenAc;
     private DaoFacture daoFacture;
+    private Facture facture;
     
     	
 	public GestionFenFacture(FenAccueil fenAc) throws SQLException {
 		this.fenAc = fenAc;
+		this.facture = null;
 		this.daoFacture = new DaoFacture(CictOracleDataSource.getInstance().getConnection());
 	}
 	
@@ -133,6 +138,21 @@ public class GestionFenFacture implements ActionListener {
                 case "Archiver":
                     // TODO: Implémenter la logique d'archivage d'une facture
                     System.out.println("Vous ARCHIVER une donnée prevenant de Facture !");
+
+                    if (this.facture == null) {
+                        JOptionPane.showMessageDialog(
+                            this.fenAc,
+                            "Veuillez sélectionner un logement a archiver !",
+                            "Erreur",
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                        return;
+                    }  
+                    DefaultTableModel modeleTableArchives = (DefaultTableModel) this.fenAc.getTabFactureArchives().getModel();
+                    
+                    String[] EngrBien = {this.facture.getNumeroDevis(), this.facture.getDateEmission(), this.facture.getDatePaiement(), this.facture.getModePaiement(), this.facture.getDesignation()};
+                    modeleTableArchives.addRow(EngrBien);
+                    
                     break;
 
                 default:
@@ -160,4 +180,20 @@ public class GestionFenFacture implements ActionListener {
         modeleTable.setValueAt(facture.getImputableLocataire() == 1 ? "Oui" : "Non", numeroLigne, 7);
         modeleTable.setValueAt(facture.getacompteVerse(), numeroLigne, 8);
     }
+    
+    @Override
+	public void valueChanged(ListSelectionEvent e) {
+		JTable tabFacture = this.fenAc.getTabMesFactures();
+		int selectedRow = tabFacture.getSelectedRow();
+		
+		if (selectedRow > -1) {
+			try {
+				this.facture = daoFacture.findById(tabFacture.getValueAt(selectedRow, 0).toString());
+			}catch (SQLException e1) {
+				e1.printStackTrace();
+			}	
+		}
+	}
+	
+
 }

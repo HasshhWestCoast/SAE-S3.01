@@ -291,14 +291,6 @@ public class FenAjoutLocation extends JInternalFrame {
 		return checkLoyerPayer.isSelected();
 	}
 	
-	public String getTextFieldEtatLieux() {
-		return textFieldEtatLieux.getText();
-	}
-	
-	public String getTextFieldBail() {
-		return textFieldBail.getText();
-	}
-	
 	public JTable getSelectedTable(ListSelectionEvent e) {
 	    Object source = e.getSource();
 	    
