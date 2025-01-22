@@ -198,84 +198,84 @@ BEGIN
 END;
 /
 
-CREATE OR REPLACE FUNCTION PrixConsoLogementQuotite(
-    p_Id_Bien IN SAE_Bien.Id_Bien%TYPE,
-    p_Id_Compteur IN SAE_Compteur.Id_Compteur%TYPE
-) RETURN NUMBER
-IS
+--CREATE OR REPLACE FUNCTION PrixConsoLogementQuotite(
+    --p_Id_Bien IN SAE_Bien.Id_Bien%TYPE,
+    --p_Id_Compteur IN SAE_Compteur.Id_Compteur%TYPE
+--) RETURN NUMBER
+--IS
     -- Déclaration des variables
-    v_ConsommationLogement NUMBER := 0;
-    v_Quotite NUMBER(20, 10);
-    v_TypeQuotite VARCHAR2(50);
-    v_TypeCompteur SAE_Compteur.TypeComp%TYPE;
-    v_PrixConsommationTotale NUMBER := 0;
+    --v_ConsommationLogement NUMBER := 0;
+    --v_Quotite NUMBER(20, 10);
+    --v_TypeQuotite VARCHAR2(50);
+    --v_TypeCompteur SAE_Compteur.TypeComp%TYPE;
+    --v_PrixConsommationTotale NUMBER := 0;
 
 BEGIN
     -- Récupérer le type de compteur
-    SELECT TypeComp
-    INTO v_TypeCompteur
-    FROM SAE_Compteur
-    WHERE Id_Compteur = p_Id_Compteur;
+    --SELECT TypeComp
+    --INTO v_TypeCompteur
+    --FROM SAE_Compteur
+    --WHERE Id_Compteur = p_Id_Compteur;
 
-    DBMS_OUTPUT.PUT_LINE('Type de compteur : ' || v_TypeCompteur);
+    --DBMS_OUTPUT.PUT_LINE('Type de compteur : ' || v_TypeCompteur);
 
     -- Récupérer la quotité du bien
-    BEGIN
-        SELECT pourcentage, type_quotite
-        INTO v_Quotite, v_TypeQuotite
-        FROM SAE_Quotter
-        WHERE Id_Bien = p_Id_Bien
-          AND type_quotite = v_TypeCompteur;
+    --BEGIN
+        --SELECT pourcentage, type_quotite
+        --INTO v_Quotite, v_TypeQuotite
+        --FROM SAE_Quotter
+        --WHERE Id_Bien = p_Id_Bien
+          --AND type_quotite = v_TypeCompteur;
 
-        DBMS_OUTPUT.PUT_LINE('Quotité trouvée : ' || v_Quotite || ', Type : ' || v_TypeQuotite);
+        --DBMS_OUTPUT.PUT_LINE('Quotité trouvée : ' || v_Quotite || ', Type : ' || v_TypeQuotite);
 
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('Aucune quotité trouvée pour le bien et le type de compteur.');
-            RETURN 0;
-    END;
+    --EXCEPTION
+        --WHEN NO_DATA_FOUND THEN
+            --DBMS_OUTPUT.PUT_LINE('Aucune quotité trouvée pour le bien et le type de compteur.');
+            --RETURN 0;
+    --END;
 
     -- Récupérer le montant de la dernière facture liée au bien
-    BEGIN
-        SELECT NVL(SUM(montant), 0)
-        INTO v_PrixConsommationTotale
-        FROM SAE_Facture
-        WHERE Id_Bien = p_Id_Bien
-          AND designation = v_TypeCompteur
-          AND date_emission > (SELECT NVL(MAX(date_derniere_reg), TO_DATE('1900-01-01', 'YYYY-MM-DD'))
-                               FROM SAE_Louer
-                               WHERE Id_Bien = p_Id_Bien);
+    --BEGIN
+        --SELECT NVL(SUM(montant), 0)
+        --INTO v_PrixConsommationTotale
+        --FROM SAE_Facture
+        --WHERE Id_Bien = p_Id_Bien
+          --AND designation = v_TypeCompteur
+          --AND date_emission > (SELECT NVL(MAX(date_derniere_reg), TO_DATE('1900-01-01', 'YYYY-MM-DD'))
+                               --FROM SAE_Louer
+                               --WHERE Id_Bien = p_Id_Bien);
 
-        DBMS_OUTPUT.PUT_LINE('Montant total des factures : ' || v_PrixConsommationTotale);
+        --DBMS_OUTPUT.PUT_LINE('Montant total des factures : ' || v_PrixConsommationTotale);
 
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            DBMS_OUTPUT.PUT_LINE('Aucune facture trouvée pour le bien.');
-            RETURN 0;
-    END;
+    --EXCEPTION
+        --WHEN NO_DATA_FOUND THEN
+            --DBMS_OUTPUT.PUT_LINE('Aucune facture trouvée pour le bien.');
+            --RETURN 0;
+    --END;
 
     -- Vérifier si le montant total est valide
-    IF v_PrixConsommationTotale < 0 THEN
-        RAISE_APPLICATION_ERROR(-20005, 'Montant de la facture invalide.');
-    END IF;
+    --IF v_PrixConsommationTotale < 0 THEN
+      --  RAISE_APPLICATION_ERROR(-20005, 'Montant de la facture invalide.');
+    --END IF;
 
     -- Calculer la consommation pour le logement en prenant en compte la quotité
-    v_ConsommationLogement := v_PrixConsommationTotale * (v_Quotite / 100);
+    --v_ConsommationLogement := v_PrixConsommationTotale * (v_Quotite / 100);
 
-    DBMS_OUTPUT.PUT_LINE('Consommation calculée pour le logement : ' || v_ConsommationLogement);
+    --DBMS_OUTPUT.PUT_LINE('Consommation calculée pour le logement : ' || v_ConsommationLogement);
 
     -- Retourner la consommation calculée
-    RETURN v_ConsommationLogement;
+    --RETURN v_ConsommationLogement;
 
-EXCEPTION
-    WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('Aucune donnée trouvée pour la consommation.');
-        RETURN 0;
-    WHEN OTHERS THEN
-        RAISE_APPLICATION_ERROR(-20006, 'Une erreur s''est produite : ' || SQLERRM);
-        RETURN NULL;
-END;
-/
+--EXCEPTION
+    --WHEN NO_DATA_FOUND THEN
+        --DBMS_OUTPUT.PUT_LINE('Aucune donnée trouvée pour la consommation.');
+        --RETURN 0;
+    --WHEN OTHERS THEN
+        --RAISE_APPLICATION_ERROR(-20006, 'Une erreur s''est produite : ' || SQLERRM);
+        --RETURN NULL;
+--END;
+--/
 
 
 set serveroutput on
