@@ -18,6 +18,7 @@ import Vue.FenAccueil;
 import Vue.FenCompteurs;
 import Vue.RoundedButton;
 import Vue.Insertion.FenAjoutBien;
+import Vue.Insertion.FenAjoutCharge;
 import Vue.Insertion.FenAjoutDiagnostic;
 import Vue.Insertion.FenAjoutFacture;
 import rapport.CreerRapport;
@@ -202,6 +203,26 @@ public class GestionFenBien implements ActionListener, ListSelectionListener {
                     
                     fenAc.getLayeredPane().add(fenAddDiag);
                     fenAddDiag.setVisible(true);
+                	break;
+
+                case "Ajouter une charge":
+                	System.out.println("Vous ajouter une charge depuis Bien !");
+                	if (this.bien == null) {
+                        JOptionPane.showMessageDialog(
+                            this.fenAc,
+                            "Veuillez sélectionner un bien !",
+                            "Erreur",
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                        return;
+                    }
+                	
+                	FenAjoutCharge fenAddCharge = null;
+                    
+                	fenAddCharge = new FenAjoutCharge(this.bien);
+                    
+                    fenAc.getLayeredPane().add(fenAddCharge);
+                    fenAddCharge.setVisible(true);
                 	break;
                 	
                 default:
