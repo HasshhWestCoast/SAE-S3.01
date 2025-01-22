@@ -5,13 +5,11 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Modele.Compteur;
 import Modele.Releve;
 import Modele.Dao.CictOracleDataSource;
-import Modele.Dao.DaoCompteur;
 import Modele.Dao.DaoReleve;
 import Vue.FenMesReleves;
 import Vue.RoundedButton;
@@ -27,7 +25,6 @@ public class GestionFenMesReleves implements ActionListener {
 
     private FenMesReleves fenMesReleve;
     private DaoReleve daoReleve;
-    private DaoCompteur daoCompteur;
     private Compteur compteur;
 
     /**
@@ -36,9 +33,12 @@ public class GestionFenMesReleves implements ActionListener {
      */
     public GestionFenMesReleves(FenMesReleves fenMesReleve) throws SQLException {
         this.fenMesReleve = fenMesReleve;
+
+        this.compteur = fenMesReleve.getMonCompteur();
+
         this.compteur = this.fenMesReleve.getMonCompteur();
+
         this.daoReleve = new DaoReleve(CictOracleDataSource.getInstance().getConnection());
-        this.daoCompteur = new DaoCompteur(CictOracleDataSource.getInstance().getConnection());
     }
 
     /**
@@ -53,13 +53,14 @@ public class GestionFenMesReleves implements ActionListener {
 
         if (texte != null) {
             switch (texte) {
+            
+             	case "Ajouter":
+             		// Ouvre la fenêtre pour ajouter un nouveau relevé
+             		System.out.println("Vous ouvrez AJOUTER RELEVE dans MesReleves !");
+             		try {
+             			// Récupère le compteur actuel associé au relevé
+             			if (this.fenMesReleve.getMonCompteur() == null) {
 
-            case "Ajouter":
-                // Ouvre la fenêtre pour ajouter un nouveau relevé
-                System.out.println("Vous ouvrez AJOUTER RELEVE dans MesReleves !");
-                try {
-                    // Récupère le compteur actuel associé au relevé
-                    if (this.fenMesReleve.getMonCompteur() == null) {
                         JOptionPane.showMessageDialog(
                             fenMesReleve,
                             "Aucun compteur associé non trouvé.",
@@ -150,8 +151,11 @@ public class GestionFenMesReleves implements ActionListener {
         }
     }
 
+
+
     /**
      * Récupère le compteur actuel associé au relevé sélectionné.
      */
+
    
 }

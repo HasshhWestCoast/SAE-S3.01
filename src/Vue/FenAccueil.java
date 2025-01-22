@@ -948,12 +948,20 @@ public class FenAccueil extends JFrame {
         btnAfficherCompteur.setBackground(new Color(31, 153, 88));
         panelCentre.add(btnAfficherCompteur);
         
+
+        RoundedButton btnAjouterQuotite = new RoundedButton("Ajouter Quotite", 20);
+        btnAjouterQuotite.addActionListener(this.gestionClicLogement);
+        btnAjouterQuotite.setBackground(new Color(31, 153, 88));
+        btnAjouterQuotite.setBounds(728, 136, 173, 23);
+        panelCentre.add(btnAjouterQuotite);
+
         RoundedButton btnGenererWord = new RoundedButton("Ajouter un logement", 20);
         btnGenererWord.addActionListener(this.gestionClicLogement);
         btnGenererWord.setText("Générer un word");
         btnGenererWord.setBackground(new Color(31, 153, 88));
         btnGenererWord.setBounds(47, 38, 173, 23);
         panelCentre.add(btnGenererWord);
+
         
         return panelLogements;
     }

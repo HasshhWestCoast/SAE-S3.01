@@ -60,9 +60,10 @@ public class GestionFenCompteurs implements ActionListener, ListSelectionListene
 				        return;
 				    }	
 	
-					try {	
+
+					try {
+						//LA ICIIII
 						FenMesReleves fenMesReleve = new FenMesReleves(this.compteur);
-						
 						
 						fenComp.getLayeredPane().add(fenMesReleve);
 		

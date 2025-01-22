@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
 import Modele.Releve;
 import Modele.Dao.CictOracleDataSource;
 import Modele.Dao.DaoReleve;
@@ -35,6 +33,7 @@ public class GestionFenAjoutReleve implements ActionListener{
 				case "Ajouter":
 					System.out.println("Vous AJOUTER un compteur au bien !");
 					
+
 				    try {
 						String DateReleve = (String) fenAddReleves.getDateReleves();					
 						String IndexString = (String) fenAddReleves.getIndex();

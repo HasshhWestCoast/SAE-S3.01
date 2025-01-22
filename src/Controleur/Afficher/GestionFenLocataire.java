@@ -1,4 +1,6 @@
 package Controleur.Afficher;
+import Modele.RegularisationCharge;
+import Modele.SoldeToutCompte;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,8 +8,12 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import Modele.Dao.CictOracleDataSource;
 import Modele.Dao.Requetes.sous_programme.SousProgrammeCalculChargesReellesTotal;
@@ -20,6 +26,7 @@ import Modele.Dao.Requetes.sous_programme.SousProgrammeCalculerTotalChargesCompl
 import Vue.FenInfosLocataire;
 import Vue.FenAccueil;
 import Vue.RoundedButton;
+import rapport.CreerRapport;
 
 public class GestionFenLocataire implements ActionListener {
 
@@ -163,6 +170,58 @@ public class GestionFenLocataire implements ActionListener {
                         System.out.println("Erreur lors de la mise à jour des 'Provisions sur charges' : " + ex.getMessage());
                     }
                     break;
+                case "Word Regularisation des charges":
+                    try {
+                        // Récupérer les données du tableau `tabRegCharges`
+                        JTable tabRegCharges = this.fenLocataire.getTabRegCharges();
+                        List<RegularisationCharge> regularisations = getRegularisations(tabRegCharges);
+
+                        // Générer le fichier Word
+                        CreerRapport.genererRapportRegularisationCharges(regularisations);
+
+                        JOptionPane.showMessageDialog(
+                            this.fenLocataire,
+                            "Rapport de régularisation des charges généré avec succès dans src/rapport/regularisation_charges.docx",
+                            "Succès",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(
+                            this.fenLocataire,
+                            "Erreur lors de la génération du rapport : " + ex.getMessage(),
+                            "Erreur",
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                        ex.printStackTrace();
+                    }
+                    break;
+
+                case "Word solde tout compte":
+                    try {
+                        // Récupérer les données du tableau `tabSoldeToutCompte`
+                        JTable tabSoldeToutCompte = this.fenLocataire.gettabSoldeToutCompte();
+                        List<SoldeToutCompte> soldes = getSoldes(tabSoldeToutCompte);
+
+                        // Générer le fichier Word
+                        CreerRapport.genererRapportSoldeToutCompte(soldes);
+
+                        JOptionPane.showMessageDialog(
+                            this.fenLocataire,
+                            "Rapport de solde tout compte généré avec succès dans src/rapport/solde_tout_compte.docx",
+                            "Succès",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(
+                            this.fenLocataire,
+                            "Erreur lors de la génération du rapport : " + ex.getMessage(),
+                            "Erreur",
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                        ex.printStackTrace();
+                    }
+                    break;
+
 
                    
 
@@ -345,6 +404,49 @@ public class GestionFenLocataire implements ActionListener {
 
         return solde;
     }
+    
+    private List<RegularisationCharge> getRegularisations(JTable tabRegCharges) {
+        List<RegularisationCharge> regularisations = new ArrayList<>();
+
+        DefaultTableModel model = (DefaultTableModel) tabRegCharges.getModel();
+        for (int i = 0; i < model.getRowCount(); i++) {
+            String bien = (String) model.getValueAt(i, 0); // Bien
+            String periodeDu = (String) model.getValueAt(i, 1); // Période du
+            String periodeAu = (String) model.getValueAt(i, 2); // Période au
+            double chargeReelle = (double) model.getValueAt(i, 3); // Charge réelle
+            double ordres = (double) model.getValueAt(i, 4); // Ordres
+            double totalCharges = (double) model.getValueAt(i, 5); // Total charges
+            double restantDues = (double) model.getValueAt(i, 6); // Restant dû
+            double totalProvisions = (double) model.getValueAt(i, 7); // Total provisions
+            double reste = (double) model.getValueAt(i, 8); // Reste
+
+            regularisations.add(new RegularisationCharge(
+                bien, periodeDu, periodeAu, chargeReelle, ordres, totalCharges, restantDues, totalProvisions, reste
+            ));
+        }
+
+        return regularisations;
+    }
+    
+    private List<SoldeToutCompte> getSoldes(JTable tabSoldeToutCompte) {
+        List<SoldeToutCompte> soldes = new ArrayList<>();
+
+        DefaultTableModel model = (DefaultTableModel) tabSoldeToutCompte.getModel();
+        for (int i = 0; i < model.getRowCount(); i++) {
+            double provisionSurCharge = (double) model.getValueAt(i, 0); // Provision sur charge
+            double chargeReelle = (double) model.getValueAt(i, 1); // Charge réelle
+            double caution = (double) model.getValueAt(i, 2); // Caution
+            double travauxImputables = (double) model.getValueAt(i, 3); // Travaux imputables
+            double restantLoyer = (double) model.getValueAt(i, 4); // Restant du loyer
+            double reste = (double) model.getValueAt(i, 5); // Reste
+
+            soldes.add(new SoldeToutCompte(provisionSurCharge, chargeReelle, caution, travauxImputables, restantLoyer, reste));
+        }
+
+        return soldes;
+    }
+
+
     
 
 
