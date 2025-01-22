@@ -44,65 +44,11 @@ public class GestionFenAjoutQuotite implements ActionListener {
 
         if (texte != null) {
             switch (texte) {
-<<<<<<< HEAD
-	            case "Annuler":
-					System.out.println("Vous FERMEZ la page ajout Quotite !");
-					this.fenAddQuot.dispose();
-					break;
-					
-	            case "Ajouter":
-					System.out.println("Vous Ajouter une Quotite à un Logement !");
-					
-					if (this.fenAddQuot.getTypeQuotite().isEmpty() ||
-					        this.fenAddQuot.getPourcentage().isEmpty())
-					    {
-					        JOptionPane.showMessageDialog(
-					            this.fenAddQuot,
-					            "Veuillez remplir tous les champs requis !",
-					            "Erreur",
-					            JOptionPane.ERROR_MESSAGE
-					        );
-					        return;
-					    }
-					
-					try {
-				        String tpeQuotite = (String) fenAddQuot.getTypeQuotite();                    
-				        String PourcentageString = (String) fenAddQuot.getPourcentage();
-				        int Pourcentage = Integer.parseInt(PourcentageString);
-				        
-				        logement = this.fenAddQuot.getMonLogement();
-				        DaoQuotite daoQuotite = new DaoQuotite(CictOracleDataSource.getInstance().getConnection());
-				        
-				        Quotite quot = new Quotite(tpeQuotite);
-				        daoQuotite.create(quot);
-				        
-				        DaoQuotter daoQuotter = new DaoQuotter(CictOracleDataSource.getInstance().getConnection());
-				        Quotter quotter = new Quotter(Pourcentage, logement, quot);
-				        daoQuotter.create(quotter);
-				        
-				        this.fenAddQuot.dispose();
-				        
-					}catch (Exception e2) {
-						System.out.println(e2.getMessage());
-						e2.printStackTrace();
-					}
-					break;
-					
-	            default:
-					System.out.println("Action non reconnu !");
-					
-            }
-        }else {
-    		System.out.println("Source non reconnu !");
-    	}	
-}
-=======
                 case "Annuler":
                     // Action pour fermer la fenêtre
-                    System.out.println("Vous FERMEZ la page ajout Facture !");
+                    System.out.println("Vous FERMEZ la page ajout quotitie !");
                     this.fenAddQuot.dispose();
                     break;
->>>>>>> d5f0cb3890b9bac0bead2e5121d44c49e14c47f3
 
                 case "Ajouter":
                     // Ajouter une quotité au logement

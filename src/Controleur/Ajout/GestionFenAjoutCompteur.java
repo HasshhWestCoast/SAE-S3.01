@@ -57,25 +57,6 @@ public class GestionFenAjoutCompteur implements ActionListener, ListSelectionLis
         Object source = e.getSource();
         String texte = ((RoundedButton) source).getText(); // Texte du bouton cliqué
 
-<<<<<<< HEAD
-						DaoCompteur daoCompteur = new DaoCompteur(CictOracleDataSource.getInstance().getConnection());
-						
-						Compteur compteur = new Compteur(IdCompteur, TypeCompteur, bien, logement);
-						daoCompteur.create(compteur);
-												
-						fenAjoutCompteur.dispose();
-						
-					}catch (SQLException ex) {
-						System.out.println(ex.getMessage());
-						ex.printStackTrace();
-					}			
-					break;
-					
-				case "Charger les tableaux":
-					System.out.println("Vous CHARGER les Logements et Bien depuis AJOUT Compteur !");
-					DefaultTableModel modeleTableLogement = (DefaultTableModel) this.fenAjoutCompteur.getTabMesLogements().getModel();
-					DefaultTableModel modeleTableBien = (DefaultTableModel) this.fenAjoutCompteur.getTabMesBiens().getModel();
-=======
         if (texte != null) {
             switch (texte) {
                 case "Annuler":
@@ -83,7 +64,6 @@ public class GestionFenAjoutCompteur implements ActionListener, ListSelectionLis
                     System.out.println("Vous FERMEZ la page ajout compteur");
                     this.fenAjoutCompteur.dispose();
                     break;
->>>>>>> d5f0cb3890b9bac0bead2e5121d44c49e14c47f3
 
                 case "Ajouter":
                     // Action pour ajouter un compteur à un bien ou logement
@@ -122,9 +102,9 @@ public class GestionFenAjoutCompteur implements ActionListener, ListSelectionLis
                     }
                     break;
 
-                case "Charger":
+                case "Charger les tableaux":
                     // Action pour charger les données des logements et biens
-                    System.out.println("Vous CHARGER les Logements et Bien depuis AJOUT Compteur !");
+                    System.out.println("Vous CHARGER les tableaux depuis ajout compteur !");
                     DefaultTableModel modeleTableLogement = (DefaultTableModel) this.fenAjoutCompteur.getTabMesLogements().getModel();
                     DefaultTableModel modeleTableBien = (DefaultTableModel) this.fenAjoutCompteur.getTabMesBiens().getModel();
 

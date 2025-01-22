@@ -120,117 +120,8 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
                         return;
                     }
 
-<<<<<<< HEAD
-						
-						fenAjoutAssurance.dispose();
-						
-					}catch (SQLException ex) {
-						System.out.println(ex.getMessage());
-						ex.printStackTrace();
-					}			
-					break;
-				case "Inserer L":
-					System.out.println("Vous AJOUTER un Logement depuis Assurance !");
-					FenAjoutLogement fenAddLog = new FenAjoutLogement();
-	                fenAC.getLayeredPane().add(fenAddLog);
-	                fenAddLog.setVisible(true);
-	                fenAddLog.moveToFront();
-					break;
-					
-				case "Inserer E":
-					System.out.println("Vous AJOUTER une Entreprise depuis Assurance !");
-					FenAjoutEntreprise fenAjoutEntreprise = new FenAjoutEntreprise(fenAjoutAssurance);
-	                fenAC.getLayeredPane().add(fenAjoutEntreprise);
-	                fenAjoutEntreprise.setVisible(true);
-	                fenAjoutEntreprise.moveToFront();
-					break;
-				
-				case "Charger les tableaux":
-					System.out.println("Vous CHARGER les Logements et Entreprise depuis Assurance !");
-					try {
-						List<Logement> mesDonnees = this.daoLogement.findAll();
-		
-						Iterateur<Logement> itL = DaoLogement.getIterateurLogement();
-						
-				        if (itL == null) {
-				            System.out.println("Itérateur non initialisé !");
-				            break;
-				        }
-				        modeleTableLogement.setRowCount(mesDonnees.size());  
-						
-						int countL = 0;
-						while(itL.hasNext() && countL < mesDonnees.size()) {	
-							Logement logement = itL.next();
-							this.ecrireLigneTableLogement(logement, countL);
-							countL++;
-						}
-						
-					}catch (SQLException ex) {
-						System.out.println(ex.getMessage());
-						ex.printStackTrace();
-					}
-					
-					try {
-						List<Entreprise> mesDonnees = this.daoEntreprise.findAll();
-		
-						Iterateur<Entreprise> it = DaoEntreprise.getIterateurEntreprise();
-						
-				        if (it == null) {
-				            System.out.println("Itérateur non initialisé !");
-				            break;
-				        }
-				        modeleTableEntreprise.setRowCount(mesDonnees.size());  
-						
-						int count = 0;
-						while(it.hasNext() && count < mesDonnees.size()) {	
-							Entreprise entreprise = it.next();
-							this.ecrireLigneTableEntreprise(entreprise, count);
-							count++;
-						}
-						
-					}catch (SQLException ex) {
-						System.out.println(ex.getMessage());
-						ex.printStackTrace();
-					}
-					
-					try {
-						List<Bien> mesBiens = this.daoBien.findAll();
-		
-						Iterateur<Bien> itB = DaoBien.getIterateurBien();
-						
-				        if (itB == null) {
-				            System.out.println("Itérateur non initialisé !");
-				            break;
-				        }
-				        modeleTableBien.setRowCount(mesBiens.size());  
-						
-						int count = 0;
-						while(itB.hasNext() && count < mesBiens.size()) {	
-							Bien bien = itB.next();
-							this.ecrireLigneTableBien(bien, count);
-							count++;
-						}
-						
-					}catch (SQLException ex) {
-						System.out.println(ex.getMessage());
-						ex.printStackTrace();
-					}
-					break;
-					
-				default:
-					System.out.println("Action non reconnu !");
-			}
-		}else {
-			System.out.println("Source non reconnu !");
-		}
-	}
-	
-	public void ecrireLigneTableEntreprise(Entreprise entreprise, int numeroLigne) {
-		DefaultTableModel modeleTableEntreprise = (DefaultTableModel) this.fenAjoutAssurance.getTabMesEntreprise().getModel();
-=======
                     try {
                         DefaultTableModel modeleTable = (DefaultTableModel) fenAC.getTabMesAssurances().getModel();
->>>>>>> d5f0cb3890b9bac0bead2e5121d44c49e14c47f3
 
                         // Récupération des données saisies par l'utilisateur
                         String NumeroPolice = (String) fenAjoutAssurance.getNumeroPolice();
@@ -277,7 +168,7 @@ public class GestionFenAjoutAssurance implements ActionListener, ListSelectionLi
                     fenAjoutEntreprise.moveToFront();
                     break;
 
-                case "Charger":
+                case "Charger les tableaux":
                     // Charger les données des logements, entreprises et biens
                     System.out.println("Vous CHARGER les Logements et Entreprise depuis Assurance !");
                     try {

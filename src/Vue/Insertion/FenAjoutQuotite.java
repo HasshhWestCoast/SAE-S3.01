@@ -48,11 +48,12 @@ public class FenAjoutQuotite extends JInternalFrame {
 		btnAnnuler.setBounds(162, 210, 96, 23);
 		getContentPane().add(btnAnnuler);
 		
-		RoundedButton btnInserer = new RoundedButton("Inserer", 20);
-		btnInserer.addActionListener(gestionFenAjoutQuotite);
-		btnInserer.setBackground(new Color(31, 153, 88));
-		btnInserer.setBounds(43, 210, 80, 23);
-		getContentPane().add(btnInserer);
+		RoundedButton btnAjouter = new RoundedButton("Inserer", 20);
+		btnAjouter.setText("Ajouter");
+		btnAjouter.addActionListener(gestionFenAjoutQuotite);
+		btnAjouter.setBackground(new Color(31, 153, 88));
+		btnAjouter.setBounds(43, 210, 80, 23);
+		getContentPane().add(btnAjouter);
 
 	}
 	
