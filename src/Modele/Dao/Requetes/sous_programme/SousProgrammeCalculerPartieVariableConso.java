@@ -21,7 +21,7 @@ public class SousProgrammeCalculerPartieVariableConso implements SousProgramme<S
         if (parametres.length == 0 || parametres[0] == null) {
             throw new SQLException("L'identifiant du compteur (p_Id_Compteur) doit être spécifié.");
         }
-        prSt.setString(1, parametres[0]); // ID du compteur
+        prSt.setString(1, parametres[0]); 
     }
 
     @Override
@@ -30,7 +30,7 @@ public class SousProgrammeCalculerPartieVariableConso implements SousProgramme<S
         if (idCompteur == null) {
             throw new SQLException("L'identifiant du compteur (p_Id_Compteur) doit être spécifié.");
         }
-        prSt.setString(1, idCompteur); // ID du compteur
+        prSt.setString(1, idCompteur); 
     }
 
     @Override
@@ -45,6 +45,6 @@ public class SousProgrammeCalculerPartieVariableConso implements SousProgramme<S
         if (idCompteur == null) {
             throw new SQLException("L'identifiant du compteur (p_Id_Compteur) doit être spécifié.");
         }
-        st.setString(2, idCompteur); // ID du compteur
+        st.setString(2, idCompteur); 
     }
 }
