@@ -151,7 +151,7 @@ VALUES ('IMP008', 1700, '2023');
 
 -- Insertion de donnÃ©es dans la table SAE_Locataire
 INSERT INTO SAE_Locataire (Id_Locataire, nom, prenom, telephone, mail, date_naissance, Collocataire)
-VALUES ('LOC001', 'Dupont', 'Pierre', '0601020304', 'pierre.dupont@mail.com', TO_DATE('1990-05-12', 'YYYY-MM-DD'), 0);
+VALUES ('LOC001', 'Kyllian', 'Pierre', '0601020304', 'pierre.dupont@mail.com', TO_DATE('1990-05-12', 'YYYY-MM-DD'), 0);
 
 INSERT INTO SAE_Locataire (Id_Locataire, nom, prenom, telephone, mail, date_naissance, Collocataire)
 VALUES ('LOC002', 'Martin', 'Sophie', '0604050607', 'sophie.martin@mail.com', TO_DATE('1985-07-25', 'YYYY-MM-DD'), 0);
@@ -166,7 +166,7 @@ INSERT INTO SAE_Locataire (Id_Locataire, nom, prenom, telephone, mail, date_nais
 VALUES ('LOC005', 'Robert', 'Lucie', '0633445566', 'lucie.robert@mail.com', TO_DATE('1992-09-30', 'YYYY-MM-DD'), 0);
 
 INSERT INTO SAE_Locataire (Id_Locataire, nom, prenom, telephone, mail, date_naissance, Collocataire)
-VALUES ('LOC006', 'Durand', 'Marc', '0644556677', 'marc.durand@mail.com', TO_DATE('1984-04-14', 'YYYY-MM-DD'), 0);
+VALUES ('LOC006', 'Antoine', 'Marc', '0644556677', 'marc.durand@mail.com', TO_DATE('1984-04-14', 'YYYY-MM-DD'), 0);
 
 INSERT INTO SAE_Locataire (Id_Locataire, nom, prenom, telephone, mail, date_naissance, Collocataire)
 VALUES ('LOC007', 'Leclerc', 'Amandine', '0655667788', 'amandine.leclerc@mail.com', TO_DATE('1995-01-22', 'YYYY-MM-DD'), 0);
