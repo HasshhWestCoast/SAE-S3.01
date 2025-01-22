@@ -191,6 +191,7 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
 					fenAddFacture.setVisible(true);
 					break;
 				case "Ajouter Quotite":
+					System.out.println("Vous ouvrer la page ajout quotite depuis logement !");
 					
 					 // Vérification des conditions
 				    if (this.logement == null) {

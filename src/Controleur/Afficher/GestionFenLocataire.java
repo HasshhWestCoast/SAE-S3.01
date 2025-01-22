@@ -56,12 +56,9 @@ public class GestionFenLocataire implements ActionListener {
 
         if (texte != null) {
             switch (texte) {
-                case "Annuler":
+                case "Sortir":
                     System.out.println("Vous FERMEZ la page Locataire !");
                     this.fenLocataire.dispose();
-                    break;
-                case "Modifier":
-                    System.out.println("Vous modifiez les données d'un locataire !");
                     break;
                 case "Régularisation des charges":
                     System.out.println("Mise à jour de la charge réelle...");
@@ -181,7 +178,7 @@ public class GestionFenLocataire implements ActionListener {
                         System.out.println("Erreur lors de la mise à jour des 'Provisions sur charges' : " + ex.getMessage());
                     }
                     break;
-                case "Word Regularisation des charges":
+                case "Généner word":
                     try {
                         // Récupérer les données du tableau `tabRegCharges`
                         JTable tabRegCharges = this.fenLocataire.getTabRegCharges();
@@ -207,7 +204,7 @@ public class GestionFenLocataire implements ActionListener {
                     }
                     break;
 
-                case "Word solde tout compte":
+                case "Générer Word":
                     try {
                         // Récupérer les données du tableau `tabSoldeToutCompte`
                         JTable tabSoldeToutCompte = this.fenLocataire.gettabSoldeToutCompte();

@@ -26,12 +26,12 @@ public class GestionFenAjoutReleve implements ActionListener{
 		if (texte != null) {
 			switch (texte) {
 				case "Annuler":
-					System.out.println("Vous FERMEZ la page ajout compteur");
+					System.out.println("Vous fermez la page ajout relevé");
 					this.fenAddReleves.dispose();
 					break;
 				
 				case "Ajouter":
-					System.out.println("Vous AJOUTER un compteur au bien !");
+					System.out.println("Vous AJOUTER un releve dans mes relevé  !");
 					
 
 				    try {

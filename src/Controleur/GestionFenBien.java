@@ -183,7 +183,7 @@ public class GestionFenBien implements ActionListener, ListSelectionListener {
                     break;
                 
                 case "Ajouter un diagnostic":
-                	System.out.println("Vous AFFICHER LES COMPTEURS depuis Bien !");
+                	System.out.println("Vous ajouter un diagnostic  depuis Bien !");
                 	if (this.bien == null) {
                         JOptionPane.showMessageDialog(
                             this.fenAc,

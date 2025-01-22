@@ -116,6 +116,7 @@ public class GestionFenCompteurs implements ActionListener, ListSelectionListene
 
                 case "Charger":
                     // Charger les compteurs dans la table
+                	System.out.println("Vous charger les compteurs.");
                     DefaultTableModel modeleTableCompteur = (DefaultTableModel) fenComp.gettabMesCompteurs().getModel();
                     List<Compteur> mesDonnees = null;
 

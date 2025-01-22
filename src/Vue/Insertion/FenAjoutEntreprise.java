@@ -125,11 +125,13 @@ public class FenAjoutEntreprise extends JInternalFrame {
 		RoundedButton btnAnnuler = new RoundedButton("Annuler", 20);
 		btnAnnuler.addActionListener(this.gestionClicFenAjoutEntreprise);
 		btnAnnuler.setBounds(205, 323, 85, 21);
+		btnAnnuler.setBackground(new Color(31, 153, 88));
 		getContentPane().add(btnAnnuler);
 		
 		RoundedButton btnAjouter = new RoundedButton("Ajouter", 20);
 		btnAjouter.addActionListener(this.gestionClicFenAjoutEntreprise);
 		btnAjouter.setBounds(359, 323, 85, 21);
+		btnAjouter.setBackground(new Color(31, 153, 88));
 		getContentPane().add(btnAjouter);
 	}
 	
