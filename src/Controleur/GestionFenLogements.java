@@ -126,6 +126,14 @@ public class GestionFenLogements implements ActionListener, ListSelectionListene
                     String[] EngrBien = {this.logement.getIdLogement(), String.valueOf(this.logement.getSurfaceHabitable()), this.logement.getDateAcquisition(), this.logement.getType_logement(), String.valueOf(this.logement.getNbPieces())};
                     modeleTableArchives.addRow(EngrBien);
                     
+                    // Affiche un message de confirmation après l'archivage
+                    JOptionPane.showMessageDialog(
+                        this.fenAc,
+                        "Vous avez archivé un logement.",
+                        "Confirmation",
+                        JOptionPane.INFORMATION_MESSAGE
+                    );
+                    
 					break;
 					
 				case "Charger":

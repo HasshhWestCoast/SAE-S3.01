@@ -48,6 +48,15 @@ public class GestionFenConnexion implements ActionListener {
                     if (coBd.getConnection() != null) {
                         FenAccueil fenAc = new FenAccueil();
                         fenAc.setVisible(true);
+                        
+                     // Affiche un message dans une boîte de dialogue
+                        JOptionPane.showMessageDialog(
+                            fenAc,
+                            "Note: Les dates sont au format DD/MM/YYYY",
+                            "Information",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                        
                     }
                     
                     fenCn.dispose();

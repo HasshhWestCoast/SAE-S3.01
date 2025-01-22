@@ -30,6 +30,7 @@ public class DaoAssurance extends DaoModele<assurance> implements Dao<assurance>
 	    try (PreparedStatement prSt = connexion.prepareStatement(requeteDeleteAssurance.requete())) {
 	        requeteDeleteAssurance.parametres(prSt, t);
 	        prSt.executeUpdate();
+	        prSt.close();
 	        System.out.println("Assurance supprimée : " + t.getNuméroPolice());
 	    }
 	}

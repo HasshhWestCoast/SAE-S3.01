@@ -91,6 +91,14 @@ public class GestionFenBien implements ActionListener, ListSelectionListener {
                     String[] EngrBien = {this.bien.getIdBien(), this.bien.getAdresse(), this.bien.getVille(), this.bien.getCodePostal(), this.bien.getTypeBien()};
                     modeleTableArchives.addRow(EngrBien);
                     
+                    // Affiche un message de confirmation après l'archivage
+                    JOptionPane.showMessageDialog(
+                        this.fenAc,
+                        "Vous avez archivé un bien.",
+                        "Confirmation",
+                        JOptionPane.INFORMATION_MESSAGE
+                    );
+                    
                     break;
                     
                 case "Charger":

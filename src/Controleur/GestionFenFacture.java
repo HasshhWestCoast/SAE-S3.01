@@ -153,6 +153,14 @@ public class GestionFenFacture implements ActionListener, ListSelectionListener 
                     String[] EngrBien = {this.facture.getNumeroDevis(), this.facture.getDateEmission(), this.facture.getDatePaiement(), this.facture.getModePaiement(), this.facture.getDesignation()};
                     modeleTableArchives.addRow(EngrBien);
                     
+                    // Affiche un message de confirmation après l'archivage
+                    JOptionPane.showMessageDialog(
+                        this.fenAc,
+                        "Vous avez archivé une facture.",
+                        "Confirmation",
+                        JOptionPane.INFORMATION_MESSAGE
+                    );
+                    
                     break;
 
                 default:

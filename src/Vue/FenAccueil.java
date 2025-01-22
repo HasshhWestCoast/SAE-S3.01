@@ -800,27 +800,21 @@ public class FenAccueil extends JFrame {
 
         RoundedButton btnIArchiver = new RoundedButton("Archiver", 20);
         btnIArchiver.addActionListener(this.gestionClicBien);
-        btnIArchiver.setBounds(356, 11, 85, 23);
+        btnIArchiver.setBounds(402, 11, 85, 23);
         btnIArchiver.setBackground(new Color(33, 153, 88));
         panel.add(btnIArchiver);
 
         RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
         btnSupprimer.addActionListener(this.gestionClicBien);
-        btnSupprimer.setBounds(486, 11, 96, 23);
+        btnSupprimer.setBounds(528, 11, 96, 23);
         btnSupprimer.setBackground(new Color(33, 153, 88));
         panel.add(btnSupprimer);
         
         RoundedButton btnCharger = new RoundedButton("Charger", 20);
         btnCharger.addActionListener(this.gestionClicBien);
-        btnCharger.setBounds(229, 11, 85, 23);
+        btnCharger.setBounds(274, 11, 85, 23);
         btnCharger.setBackground(new Color(33, 153, 88));
         panel.add(btnCharger);
-        
-        RoundedButton btnModifier = new RoundedButton("Modifier", 20);
-        btnModifier.addActionListener(this.gestionClicBien);
-        btnModifier.setBackground(new Color(31, 153, 88));
-        btnModifier.setBounds(623, 11, 96, 23);
-        panel.add(btnModifier);
         
         // Buttons
         RoundedButton btnAjouterUnBien = new RoundedButton("Ajouter un bien", 20);
@@ -914,24 +908,18 @@ public class FenAccueil extends JFrame {
         RoundedButton btnArchiver = new RoundedButton("Archiver", 20);
         btnArchiver.addActionListener(this.gestionClicLogement);
         btnArchiver.setBackground(new Color(31, 153, 88));
-        btnArchiver.setBounds(358, 11, 85, 23);
+        btnArchiver.setBounds(417, 11, 85, 23);
         panel.add(btnArchiver);
-
-        RoundedButton btnModifier = new RoundedButton("Modifier", 20);
-        btnModifier.addActionListener(this.gestionClicLogement);
-        btnModifier.setBounds(490, 11, 96, 23);
-        btnModifier.setBackground(new Color(31, 153, 88));
-        panel.add(btnModifier);
 
         RoundedButton btnSupprimer = new RoundedButton("Supprimer", 20);
         btnSupprimer.addActionListener(this.gestionClicLogement);
-        btnSupprimer.setBounds(623, 11, 96, 23);
+        btnSupprimer.setBounds(583, 11, 96, 23);
         btnSupprimer.setBackground(new Color(31, 153, 88));
         panel.add(btnSupprimer);
         
         RoundedButton btnCharger = new RoundedButton("Charger", 20);
         btnCharger.addActionListener(this.gestionClicLogement);
-        btnCharger.setBounds(218, 11, 85, 23);
+        btnCharger.setBounds(252, 11, 85, 23);
         btnCharger.setBackground(new Color(31, 153, 88));
         panel.add(btnCharger);
         
@@ -995,6 +983,7 @@ public class FenAccueil extends JFrame {
         panelTitre.add(separator, BorderLayout.SOUTH);
 
         JPanel panelCentre = new JPanel();
+        panelCentre.setBorder(new TitledBorder(null, "Logement", TitledBorder.CENTER, TitledBorder.TOP, null, null));
         panelCentre.setBackground(new Color(255, 255, 255));
         panelArchives.add(panelCentre, BorderLayout.CENTER);
         panelCentre.setLayout(null);
@@ -1010,8 +999,9 @@ public class FenAccueil extends JFrame {
         	}
         ));
         JScrollPane scrollPaneFacture = new JScrollPane(tabFactureArchives);
+        scrollPaneFacture.setEnabled(false);
         scrollPaneFacture.setBounds(46, 44, 898, 113);
-        scrollPaneFacture.setBorder(new LineBorder(new Color(31, 153, 88), 2));
+        scrollPaneFacture.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(31, 153, 88), new Color(160, 160, 160)), "Factures", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
         panelCentre.add(scrollPaneFacture);
         
         // JTable pour "Bien"
@@ -1026,7 +1016,8 @@ public class FenAccueil extends JFrame {
         ));
         
         JScrollPane scrollPaneLocataire = new JScrollPane(tabBienArchives);
-        scrollPaneLocataire.setBorder(new LineBorder(new Color(31, 153, 88), 2));
+        scrollPaneLocataire.setEnabled(false);
+        scrollPaneLocataire.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(31, 153, 88), new Color(160, 160, 160)), "Biens", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
         scrollPaneLocataire.setBounds(46, 184, 898, 113);
         panelCentre.add(scrollPaneLocataire);
         
@@ -1042,8 +1033,10 @@ public class FenAccueil extends JFrame {
         ));
         
         JScrollPane scrollPaneLocation = new JScrollPane(tabLogementArchives);
+        scrollPaneLocation.setEnabled(false);
+        scrollPaneLocation.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(31, 153, 88), new Color(160, 160, 160)), "Logements", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
         scrollPaneLocation.setBorder(new LineBorder(new Color(31, 153, 88), 2));
-        scrollPaneLocation.setBounds(46, 325, 898, 119);
+        scrollPaneLocation.setBounds(46, 331, 898, 113);
         panelCentre.add(scrollPaneLocation);
 
         JPanel panel = new JPanel();
