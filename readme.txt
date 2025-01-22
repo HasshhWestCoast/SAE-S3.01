@@ -3,8 +3,8 @@ EQUIPE N°9
 __________________________
 (S3 - E)
 KOUTAIBI AYAT Anas
-Hasina
+RAZAFIMANDIMBY Hasina
 CHOUCHANE Issam
-Manolo
+BRACH Manolo
 (S3 - D)
-Leonardo
+DASILVA MACEDO Filipe Leonardo
